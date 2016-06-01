@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="?attr/actionBarSize"
+    >
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rl_page_header">
+
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/a1ms_logo"
+                       android:layout_alignParentRight="true"
+                       android:id="@+id/imageview_a1ms"
+            />
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorTextWelcome"
+                      android:text="@string/a1ms_msg_shopping"
+                      android:layout_below="@id/imageview_a1ms"
+                      android:paddingTop="10dp"
+                      android:textSize="12sp"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/textView_a1ms_msg_shopping"/>
+
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorTextWelcome"
+                      android:text="@string/welcome_to"
+                      android:textSize="25sp"
+                      android:layout_centerVertical="true"
+                      android:layout_toLeftOf="@+id/textView_a1ms_msg_shopping"
+                      android:layout_toStartOf="@+id/textView_a1ms_msg_shopping"
+                      android:layout_marginRight="46dp"
+                      android:layout_marginEnd="46dp"/>
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_page_header"
+        >
+
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/edittext_enter_email"
+                      android:hint="@string/hint_enter_email"
+                      android:drawableRight="@android:drawable/ic_menu_close_clear_cancel"
+                      android:layout_marginTop="5dp"
+            />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_email">
+
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/edittext_enter_password"
+                      android:hint="@string/hint_create_password"
+                      android:drawableRight="@android:drawable/ic_menu_close_clear_cancel"
+                      android:layout_marginTop="5dp"
+            />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_login_register"
+                android:text="@string/login_register"
+                android:layout_below="@id/input_layout_password"
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/colorPrimary"
+                  android:text="@string/login_forgot_password"
+                  android:layout_below="@+id/input_layout_password"
+                  android:layout_alignParentRight="true"
+                  android:padding="10dp"
+
+                  />
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentBottom="true"
+                      android:orientation="vertical"
+        >
+
+            <CheckedTextView android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:id="@+id/checkbox_existing_user"
+                             android:text="@string/login_already_a1ms_user"
+                             android:checked="false"
+                             android:drawableLeft="@android:drawable/checkbox_off_background"
+                             android:drawableStart="@android:drawable/checkbox_off_background"
+                             android:padding="2dp"
+            />
+
+            <CheckedTextView android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:id="@+id/checkbox_retail_deals"
+                             android:text="@string/login_enjoy_great_deals"
+                             android:checked="true"
+                             android:drawableStart="@android:drawable/checkbox_on_background"
+                             android:drawableLeft="@android:drawable/checkbox_on_background"
+                             android:padding="2dp"
+            />
+
+            <CheckedTextView android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:id="@+id/checkbox_invite_friends"
+                             android:text="@string/login_invite_your_friends"
+                             android:checked="true"
+                             android:drawableStart="@android:drawable/checkbox_on_background"
+                             android:drawableLeft="@android:drawable/checkbox_on_background"
+                             android:padding="2dp"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

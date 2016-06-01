@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">A1MS</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="a1ms_msg_shopping">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ALL IN ONE \n MESSAGING \u0026 SHOPPING</string>
+    <string name="hint_enter_email">Enter your email address</string>
+    <string name="hint_create_password">Enter or create password</string>
+    <string name="login_register">Login / Register</string>
+    <string name="login_already_a1ms_user">Already an A1MS user - Synchronise this new device</string>
+    <string name="login_enjoy_great_deals">Enjoy great retail deals based on what you chat about</string>
+    <string name="login_invite_your_friends">Invite your friends to share and enjoy A1MS with you</string>
+    <string name="login_forgot_password"><u>Forgot password</u></string>
+
+
+    <!-- MENU -->
+    <string name="menu_my_avatar">My Avatar</string>
+    <string name="menu_message_notification">Message Notification</string>
+    <string name="menu_deals_notification">Deals Notification</string>
+    <string name="menu_my_deals_shop">My Deals \u0026 Offers</string>
+    <string name="menu_language_libraries">Language Libraries</string>
+    <string name="hint_contacts">Add Contacts \u0026 Groups</string>
+    <string name="menu_select_all">Select All</string>
+
+    <!-- Permissions -->
+    <string name="permission_title">Permission Request</string>
+    <string name="permission_message_contacts">A1MS needs permission to access contacts to fetch your contacts list</string>
+
+    <!-- Title -->
+    <string name="title_contacts_group">Contacts \u0026 Groups</string>
+</resources>
