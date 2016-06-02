@@ -2,7 +2,7 @@ package a1ms.uk.a1ms.contacts;
 
 import android.content.Context;
 
-import java.util.HashMap;
+import java.util.SortedMap;
 
 import a1ms.uk.a1ms.dto.Contacts;
 
@@ -14,7 +14,7 @@ public class FetchContactsHandler implements FetchContactsLoaderListener{
     private FetchContactsLoader mContactsLoader;
     private static FetchContactsHandler mContactsHandler;
     private Context mContext;
-    private HashMap<String, Contacts> mContactsWithEmailPhone;
+    private SortedMap<String, Contacts> mContactsWithEmailPhone;
     private FetchContactsHandlerListener mListener;
     private FetchContactsHandler(){
 
@@ -52,7 +52,7 @@ public class FetchContactsHandler implements FetchContactsLoaderListener{
     }
 
     @Override
-    public void onContactsLoadComplete(HashMap<String, Contacts> contactsList) {
+    public void onContactsLoadComplete(SortedMap<String, Contacts> contactsList) {
         mContactsWithEmailPhone  = contactsList;
 
         if(mListener != null){

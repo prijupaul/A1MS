@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.HashMap;
+import java.util.SortedMap;
 
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsA1msAdapter;
@@ -25,6 +25,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements FetchCon
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
 
     @Nullable
     @Override
@@ -45,7 +46,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements FetchCon
         mRecyclerView.setNestedScrollingEnabled(false);
         }
 
-    public void setContactList(HashMap<String,Contacts> contactList){
+    public void setContactList(SortedMap<String,Contacts> contactList){
         if(mRecyclerView == null){
             return;
         }
@@ -62,12 +63,18 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements FetchCon
     }
 
     @Override
-    public void onContactsLoadComplete(HashMap<String, Contacts> contactsList) {
+    public void onContactsLoadComplete(SortedMap<String, Contacts> contactsList) {
         setContactList(contactsList);
     }
 
     public void fetchContacts(){
         FetchContactsHandler.getInstance(getActivity().getApplicationContext())
                 .getContactsWithSMSPhone(this);
+    }
+
+    public void setGlobalCheckBoxStatusChange(boolean statusChange){
+
+        ((ContactsGroupsA1msAdapter)mAdapter).setGlobalCheckBoxStatusChange(statusChange);
+        mAdapter.notifyDataSetChanged();
     }
 }

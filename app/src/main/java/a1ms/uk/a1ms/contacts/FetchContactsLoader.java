@@ -7,8 +7,8 @@ import android.provider.ContactsContract;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import a1ms.uk.a1ms.A1MSApplication;
 import a1ms.uk.a1ms.R;
@@ -57,7 +57,10 @@ public class FetchContactsLoader implements Loader.OnLoadCompleteListener<Cursor
 
     String filterEmail = ContactsContract.CommonDataKinds.Email.DATA + " NOT LIKE ''";
 //    String filterSMS = ContactsContract.CommonDataKinds.Phone.DATA + " NOT LIKE ''";
-    String filterSMS = ContactsContract.Data.HAS_PHONE_NUMBER + "!=0 AND (" + ContactsContract.Data.MIMETYPE + "=? OR " + ContactsContract.Data.MIMETYPE + "=?)";
+    String filterSMS = ContactsContract.Data.HAS_PHONE_NUMBER + "!=0 " +
+                        "AND (" + ContactsContract.Data.MIMETYPE + "=? OR " + ContactsContract.Data.MIMETYPE + "=?)";
+
+    String filterName = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC";
 
     String[]selection = {
             ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE,
@@ -77,7 +80,7 @@ public class FetchContactsLoader implements Loader.OnLoadCompleteListener<Cursor
 
         mCursorLoader = new CursorLoader(mContext, ContactsContract.Data.CONTENT_URI,
                 null,
-                filterSMS,selection, ContactsContract.Data.CONTACT_ID);
+                filterSMS,selection, ContactsContract.Data.DISPLAY_NAME);
         mCursorLoader.registerListener(1,this);
         mCursorLoader.registerOnLoadCanceledListener(this);
 
@@ -118,16 +121,13 @@ public class FetchContactsLoader implements Loader.OnLoadCompleteListener<Cursor
 
     @Override
     public void onLoadComplete(Loader<Cursor> loader, Cursor data) {
-        HashMap<String,Contacts> contactsList = new HashMap<>();
-        HashSet<String> contactsSet = new HashSet<String>();
+        SortedMap<String,Contacts> contactsList = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+
         if (data.moveToFirst()) {
             do {
                 // names comes in hand sometimes
                 String name = data.getString(data.getColumnIndex(ContactsContract.Data.DISPLAY_NAME));
                 String mimeType = data.getString(data.getColumnIndex(ContactsContract.Data.MIMETYPE));
-                String sms = data.getString(data.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                String phoneType = data.getString(data.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
-                String email = data.getString(data.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
                 String emailType = data.getString(data.getColumnIndex(ContactsContract.CommonDataKinds.Email.TYPE));
 
                 Contacts contacts;
@@ -136,9 +136,8 @@ public class FetchContactsLoader implements Loader.OnLoadCompleteListener<Cursor
                 }
                 else {
                     contacts = new Contacts();
+                    contacts.setContactName(name);
                 }
-
-                contacts.setContactName(name);
 
                 if(mimeType.equals(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)) {
                     int type = data.getInt(data.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));

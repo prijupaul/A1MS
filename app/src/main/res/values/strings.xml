@@ -17,8 +17,11 @@
     <string name="menu_deals_notification">Deals Notification</string>
     <string name="menu_my_deals_shop">My Deals \u0026 Offers</string>
     <string name="menu_language_libraries">Language Libraries</string>
-    <string name="hint_contacts">Add Contacts \u0026 Groups</string>
+    <string name="hint_add_contacts_groups">Add Contacts \u0026 Groups</string>
     <string name="menu_select_all">Select All</string>
+    <string name="hint_show_groups">Show Groups</string>
+    <string name="hint_show_contacts">Show Contacts</string>
+    <string name="hint_add_contacts">Add Contact</string>
 
     <!-- Permissions -->
     <string name="permission_title">Permission Request</string>

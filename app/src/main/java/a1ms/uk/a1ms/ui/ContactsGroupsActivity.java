@@ -1,14 +1,18 @@
 package a1ms.uk.a1ms.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsPagerAdapter;
@@ -23,7 +27,7 @@ public class ContactsGroupsActivity extends BaseActivity{
 
     private ContactsGroupsPagerAdapter mAdapter;
     private ViewPager mViewPager;
-
+    private FloatingActionButton mFab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +70,16 @@ public class ContactsGroupsActivity extends BaseActivity{
             }
         });
 
+        mFab = (FloatingActionButton)findViewById(R.id.fab);
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ContactsGroupsActivity.this,"touched",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
 
@@ -100,7 +114,6 @@ public class ContactsGroupsActivity extends BaseActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_groups_contacts,menu);
-
         return true;
     }
 
@@ -108,8 +121,28 @@ public class ContactsGroupsActivity extends BaseActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_select_all:{
+                item.setChecked(!item.isChecked());
+                if(item.isChecked()){
+                    item.setIcon(getResources().getDrawable(android.R.drawable.checkbox_on_background));
+                }
+                else {
+                    item.setIcon(getResources().getDrawable(android.R.drawable.checkbox_off_background));
+                }
+
+                BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+                if(fragment instanceof ContactsGroupsA1MSFragment){
+                    ((ContactsGroupsA1MSFragment)fragment).setGlobalCheckBoxStatusChange(item.isChecked());
+                }
+
                 return true;
             }
+            case R.id.action_add_contact:{
+                Intent intent = new Intent(Intent.ACTION_INSERT,ContactsContract.Contacts.CONTENT_URI);
+                startActivity(intent);
+                return true;
+            }
+
+
 
         }
         return false;
