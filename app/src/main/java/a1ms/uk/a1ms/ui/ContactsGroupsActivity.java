@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsPagerAdapter;
+import a1ms.uk.a1ms.listeners.CustomTabLayoutListener;
 import a1ms.uk.a1ms.ui.fragments.BaseFragment;
 import a1ms.uk.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
+import a1ms.uk.a1ms.ui.fragments.ContactsGroupsInviteFragment;
 import a1ms.uk.a1ms.util.PermissionRequestManager;
 
 /**
@@ -28,6 +30,7 @@ public class ContactsGroupsActivity extends BaseActivity{
     private ContactsGroupsPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private FloatingActionButton mFab;
+    private String TAG = ContactsGroupsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,13 +53,29 @@ public class ContactsGroupsActivity extends BaseActivity{
         mAdapter = new ContactsGroupsPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
 
         mViewPager.setAdapter(mAdapter);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        mViewPager.addOnPageChangeListener(new CustomTabLayoutListener(tabLayout){
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                if(positionOffset != 0 && positionOffsetPixels != 0){
+                    mFab.hide();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                onPageScrollChange(state);
+            }
+        });
+
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
                 BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
-//                fragment.updateUi(Forecast.getInstance());
             }
 
             @Override
@@ -81,6 +100,7 @@ public class ContactsGroupsActivity extends BaseActivity{
 
 
     }
+
 
 
     @Override
@@ -146,5 +166,45 @@ public class ContactsGroupsActivity extends BaseActivity{
 
         }
         return false;
+    }
+
+    public void onPageScrollChange(int state) {
+
+        switch (state) {
+            case ViewPager.SCROLL_STATE_SETTLING:
+                displayFloatingActionButtonIfNeeded(mViewPager.getCurrentItem());
+                break;
+
+            case ViewPager.SCROLL_STATE_IDLE:
+                displayFloatingActionButtonIfNeeded(mViewPager.getCurrentItem());
+                break;
+        }
+    }
+
+    private void displayFloatingActionButtonIfNeeded(int position) {
+
+        if (mAdapter.getItem(position) instanceof ContactsGroupsA1MSFragment) {
+            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.sym_action_email));
+            mFab.show();
+
+            mFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+        else if(mAdapter.getItem(position) instanceof ContactsGroupsInviteFragment) {
+            final ContactsGroupsInviteFragment floatingActionButtonFragment = (ContactsGroupsInviteFragment) mAdapter.getItem(position);
+            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_call));
+            mFab.show();
+
+            mFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
     }
 }

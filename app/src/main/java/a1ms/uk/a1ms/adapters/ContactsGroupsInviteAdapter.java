@@ -19,7 +19,7 @@ import static a1ms.uk.a1ms.R.layout.contactsgroups_a1ms_card;
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsA1msAdapter extends RecyclerView.Adapter<ContactsGroupsA1msAdapter.ViewHolder>{
+public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGroupsInviteAdapter.ViewHolder>{
 
     private SortedMap<String,Contacts> mDataSet;
     private boolean mCheckboxStatus;
@@ -51,7 +51,7 @@ public class ContactsGroupsA1msAdapter extends RecyclerView.Adapter<ContactsGrou
 
     }
 
-    public ContactsGroupsA1msAdapter(SortedMap<String,Contacts> dataSet){
+    public ContactsGroupsInviteAdapter(SortedMap<String,Contacts> dataSet){
         mDataSet = dataSet;
     }
 

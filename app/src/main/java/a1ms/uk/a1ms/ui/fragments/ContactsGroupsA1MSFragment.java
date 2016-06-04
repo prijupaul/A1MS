@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import java.util.SortedMap;
 
 import a1ms.uk.a1ms.R;
-import a1ms.uk.a1ms.adapters.ContactsGroupsA1msAdapter;
+import a1ms.uk.a1ms.adapters.ContactsGroupsInviteAdapter;
 import a1ms.uk.a1ms.contacts.FetchContactsHandler;
 import a1ms.uk.a1ms.contacts.FetchContactsHandlerListener;
 import a1ms.uk.a1ms.dto.Contacts;
@@ -51,7 +51,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements FetchCon
             return;
         }
 
-        mAdapter = new ContactsGroupsA1msAdapter(contactList);
+        mAdapter = new ContactsGroupsInviteAdapter(contactList);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
@@ -74,7 +74,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements FetchCon
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange){
 
-        ((ContactsGroupsA1msAdapter)mAdapter).setGlobalCheckBoxStatusChange(statusChange);
+        ((ContactsGroupsInviteAdapter)mAdapter).setGlobalCheckBoxStatusChange(statusChange);
         mAdapter.notifyDataSetChanged();
     }
 }
