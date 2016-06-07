@@ -33,23 +33,16 @@ public class PermissionRequestManager {
 
         if(!checkPermission(activity,permission)){
             if(ActivityCompat.shouldShowRequestPermissionRationale(activity,permission)){
-                DialogUtil.showYESNODialog(activity,
+                DialogUtil.showOKDialog(activity,
                         activity.getString(R.string.permission_title),
                         activity.getString(R.string.permission_message_contacts),
                         activity.getString(android.R.string.ok),
-                        activity.getString(android.R.string.cancel),
                         new DialogCallBackListener() {
                             @Override
                             public void run() {
                                 ActivityCompat.requestPermissions(activity,
                                         new String[]{permission},
                                         code);
-                                return;
-                            }
-                        },
-                        new DialogCallBackListener() {
-                            @Override
-                            public void run() {
                                 return;
                             }
                         },false);

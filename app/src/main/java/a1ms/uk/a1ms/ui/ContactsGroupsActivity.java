@@ -1,5 +1,7 @@
 package a1ms.uk.a1ms.ui;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -8,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsPagerAdapter;
+import a1ms.uk.a1ms.contacts.FetchContactsHandler;
 import a1ms.uk.a1ms.listeners.CustomTabLayoutListener;
 import a1ms.uk.a1ms.ui.fragments.BaseFragment;
 import a1ms.uk.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
@@ -124,16 +128,18 @@ public class ContactsGroupsActivity extends BaseActivity{
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if(requestCode == getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS)) {
-                BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
-                if(fragment instanceof ContactsGroupsA1MSFragment){
-                    ((ContactsGroupsA1MSFragment)fragment).fetchContacts();
-                }
-            }
+                FetchContactsHandler.getInstance(getApplicationContext()).getContactsWithSMSPhone(null);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_groups_contacts,menu);
+
+        SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 

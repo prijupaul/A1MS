@@ -8,20 +8,19 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.SortedMap;
+import java.util.List;
 
 import a1ms.uk.a1ms.R;
-import a1ms.uk.a1ms.dto.Contacts;
+import a1ms.uk.a1ms.db.dto.A1MSUser;
 
 import static a1ms.uk.a1ms.R.layout.contactsgroups_a1ms_card;
 
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGroupsInviteAdapter.ViewHolder>{
+public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGroupsA1MSAdapter.ViewHolder>{
 
-    private SortedMap<String,Contacts> mDataSet;
+    private List<A1MSUser> mDataSet;
     private boolean mCheckboxStatus;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -51,11 +50,11 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
 
     }
 
-    public ContactsGroupsInviteAdapter(SortedMap<String,Contacts> dataSet){
+    public ContactsGroupsA1MSAdapter(List<A1MSUser> dataSet){
         mDataSet = dataSet;
     }
 
-    public void setDataSet(SortedMap<String,Contacts> dataSet){
+    public void setDataSet(List<A1MSUser> dataSet){
         mDataSet = dataSet;
     }
 
@@ -70,9 +69,9 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.textViewName.setText((new ArrayList<>(mDataSet.values())).get(position).getContactName());
-        holder.textViewEmail.setText((new ArrayList<>(mDataSet.values())).get(position).getContactEmailMobile());
-        holder.textViewPhone.setText((new ArrayList<>(mDataSet.values())).get(position).getContactPhoneMobile());
+        holder.textViewName.setText(mDataSet.get(position).getName());
+        holder.textViewEmail.setText(mDataSet.get(position).getEmail());
+        holder.textViewPhone.setText(mDataSet.get(position).getMobile());
         holder.checkBox.setChecked(mCheckboxStatus);
     }
 
@@ -84,6 +83,4 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
     public void setGlobalCheckBoxStatusChange(boolean statusChange){
         mCheckboxStatus = statusChange;
     }
-
-
 }

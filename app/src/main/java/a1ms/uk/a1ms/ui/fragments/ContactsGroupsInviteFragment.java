@@ -44,6 +44,7 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setNestedScrollingEnabled(false);
+
     }
 
     public void setContactList(SortedMap<String,Contacts> contactList){
@@ -68,8 +69,7 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
     }
 
     public void fetchContacts(){
-        FetchContactsHandler.getInstance(getActivity().getApplicationContext())
-                .getContactsWithSMSPhone(this);
+        FetchContactsHandler.getInstance(getActivity().getApplicationContext()).getContactsWithSMSPhone(this);
     }
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange){
@@ -78,5 +78,9 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
         mAdapter.notifyDataSetChanged();
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchContacts();
+    }
 }

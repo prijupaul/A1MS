@@ -23,4 +23,5 @@ public class A1MSApplication extends Application {
     public Activity getCurrentActivity(){
         return this.mActivity;
     }
+
 }
