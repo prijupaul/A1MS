@@ -29,6 +29,13 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
         a1MSUser.setMobile("01234 567 8901");
         a1MSUser.setName("Echo Mate");
         dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser);
+
+        A1MSUser a1MSUser1 = new A1MSUser();
+        a1MSUser1.setEmail("priju@a1ms-uk.com");
+        a1MSUser1.setMobile("01224 567 8901");
+        a1MSUser1.setName("Priju");
+        dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser1);
+
     }
 
     @Override

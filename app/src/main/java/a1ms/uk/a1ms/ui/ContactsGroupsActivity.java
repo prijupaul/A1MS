@@ -1,7 +1,5 @@
 package a1ms.uk.a1ms.ui;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -10,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +38,7 @@ public class ContactsGroupsActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactsgroups_activity);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_actionbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setCollapsible(false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -135,11 +132,6 @@ public class ContactsGroupsActivity extends BaseActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_groups_contacts,menu);
-
-        SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         return true;
     }
 
@@ -167,9 +159,10 @@ public class ContactsGroupsActivity extends BaseActivity{
                 startActivity(intent);
                 return true;
             }
-
-
-
+            case android.R.id.home:{
+                onBackPressed();
+                return true;
+            }
         }
         return false;
     }
@@ -212,5 +205,17 @@ public class ContactsGroupsActivity extends BaseActivity{
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+        if(fragment != null) {
+            if(fragment.onBackPressed()){
+                return;
+            }
+        }
+        super.onBackPressed();
     }
 }

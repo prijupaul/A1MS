@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_chats,menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override

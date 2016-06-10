@@ -33,4 +33,9 @@ public class BaseFragment<T> extends Fragment {
         super.onDetach();
         mCallback = null;
     }
+
+
+    public boolean onBackPressed(){
+        return false;
+    }
 }

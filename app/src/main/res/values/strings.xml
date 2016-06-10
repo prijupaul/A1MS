@@ -22,6 +22,7 @@
     <string name="hint_show_groups">Show Groups</string>
     <string name="hint_show_contacts">Show Contacts</string>
     <string name="hint_add_contacts">Add Contact</string>
+    <string name="hint_delete">Delete Selected</string>
 
     <!-- Permissions -->
     <string name="permission_title">Permission Request</string>
