@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,11 +93,36 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
         return newRowId;
     }
 
+    public  void deleteA1MSUsers(List<A1MSUser> a1MSUser){
+
+        if(a1MSUser == null){
+            return ;
+        }
+
+        ArrayList<String>users = new ArrayList<>();
+        for(A1MSUser user: a1MSUser){
+            users.add("\'" + user.getName() +"\'");
+        }
+
+        String args = TextUtils.join(", ", users);
+        String statement = "DELETE FROM " + A1MSUsersEntry.TABLE_NAME + " WHERE " +
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " IN" + " ( "+ args + " )";
+
+        sqLiteDatabase.execSQL(statement);
+
+    }
+
+
     public  void deleteA1MSUser(A1MSUser a1MSUser){
+
+        if(a1MSUser == null){
+            return;
+        }
 
         String selection = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " LIKE ?";
         String[] selectionArgs = {String.valueOf(a1MSUser.getName())};
         sqLiteDatabase.delete(A1MSUsersEntry.TABLE_NAME,selection,selectionArgs);
+
     }
 
     public List<A1MSUser> getAllA1MSUsers(){

@@ -18,7 +18,7 @@ import static a1ms.uk.a1ms.R.layout.contactsgroups_a1ms_card;
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGroupsA1MSAdapter.ViewHolder> implements View.OnLongClickListener {
+public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGroupsA1MSAdapter.ViewHolder> {
 
     private List<A1MSUser> mDataSet;
     private boolean mCheckboxStatus;
@@ -27,7 +27,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
 
 
     public interface ContactsGroupsA1MSAdapterListener {
-        void onLongClick(View view);
+        void onLongClick(View view,int position);
         void onPrepareSelection(View view, int position);
     }
 
@@ -50,7 +50,36 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
             this.checkBox = (CheckBox) view.findViewById(R.id.checkbox_imageview_icon);
 
 
-            this.cardView.setOnLongClickListener(ContactsGroupsA1MSAdapter.this);
+            this.checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(isAnItemSelected){
+                        if(checkBox.getVisibility() == View.VISIBLE) {
+                            checkBox.setVisibility(View.GONE);
+                        }
+                        else {
+                            checkBox.setVisibility(View.VISIBLE);
+                        }
+
+                        mListener.onPrepareSelection(cardView,getAdapterPosition());
+                    }
+                }
+            });
+
+            this.cardView.setOnLongClickListener(new View.OnLongClickListener(){
+                @Override
+                public boolean onLongClick(View view) {
+                    if (mListener != null) {
+                        CheckBox cb = (CheckBox)view.findViewById(R.id.checkbox_imageview_icon);
+                        cb.setVisibility(View.VISIBLE);
+                        cb.setChecked(true);
+                        isAnItemSelected = true;
+                        mListener.onLongClick(view,getAdapterPosition());
+                    }
+                    return true;
+                }
+            });
+
             this.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -93,6 +122,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
         holder.textViewName.setText(mDataSet.get(position).getName());
         holder.textViewEmail.setText(mDataSet.get(position).getEmail());
         holder.textViewPhone.setText(mDataSet.get(position).getMobile());
+
         if(isAnItemSelected){
             holder.checkBox.setVisibility(View.VISIBLE);
         }
@@ -109,18 +139,6 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange) {
         mCheckboxStatus = statusChange;
-    }
-
-    @Override
-    public boolean onLongClick(View view) {
-        if (mListener != null) {
-            CheckBox cb = (CheckBox)view.findViewById(R.id.checkbox_imageview_icon);
-            cb.setVisibility(View.VISIBLE);
-            cb.setChecked(true);
-            isAnItemSelected = true;
-            mListener.onLongClick(view);
-        }
-        return true;
     }
 
     public void resetContextMenu(){

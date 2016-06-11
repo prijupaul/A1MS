@@ -24,6 +24,12 @@
     <string name="hint_add_contacts">Add Contact</string>
     <string name="hint_delete">Delete Selected</string>
 
+    <!-- dialogs -->
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="dialog_delete">Delete</string>
+
     <!-- Permissions -->
     <string name="permission_title">Permission Request</string>
     <string name="permission_message_contacts">A1MS needs permission to access contacts to fetch your contacts list</string>

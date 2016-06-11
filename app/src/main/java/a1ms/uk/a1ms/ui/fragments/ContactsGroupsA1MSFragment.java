@@ -15,12 +15,15 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsA1MSAdapter;
 import a1ms.uk.a1ms.db.A1MSUsersFieldsDataSource;
 import a1ms.uk.a1ms.db.dto.A1MSUser;
+import a1ms.uk.a1ms.dialogutil.DialogCallBackListener;
+import a1ms.uk.a1ms.dialogutil.DialogUtil;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
@@ -35,6 +38,9 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     protected TextView mTextViewCounter;
     private int selectionCounter;
     private boolean mIsInActionMode = false;
+    List<A1MSUser> mSelectedA1MSUsers = new ArrayList<>();
+    ArrayList<Integer> mSelectedItemPosition = new ArrayList<>();
+    List<A1MSUser> mA1MSUsers;
 
     @Override
     public void onAttach(Context context) {
@@ -72,8 +78,8 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     public void onResume() {
         super.onResume();
 
-        List<A1MSUser> a1MSUsers = mDataSource.getAllA1MSUsers();
-        mAdapter = new ContactsGroupsA1MSAdapter(a1MSUsers,this);
+        mA1MSUsers = mDataSource.getAllA1MSUsers();
+        mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers,this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
@@ -99,7 +105,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     }
 
     @Override
-    public void onLongClick(View view) {
+    public void onLongClick(View view, int position) {
         if(mToolbar != null){
 
             mToolbar.getMenu().clear();
@@ -112,6 +118,8 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 
             setIsInActionMode(true);
 
+            mSelectedA1MSUsers.add(mA1MSUsers.get(position));
+            mSelectedItemPosition.add(position);
         }
     }
 
@@ -120,15 +128,19 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 
         CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkbox_imageview_icon);
         if(checkBox.isChecked()){
+            mSelectedA1MSUsers.add(mA1MSUsers.get(position));
+            mSelectedItemPosition.add(position);
             selectionCounter++;
         }
         else {
+            int indexOfUser = mSelectedItemPosition.indexOf(position);
+            mSelectedA1MSUsers.remove(indexOfUser);
+            mSelectedItemPosition.remove(indexOfUser);
             selectionCounter--;
         }
 
         if(selectionCounter == 0){
             clearActionMode();
-
         }
         else{
             mTextViewCounter.setText(selectionCounter + " Item Selected");
@@ -149,6 +161,10 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(true);
         mAdapter.resetContextMenu();
         selectionCounter = 0;
+
+        // Clear the selected item arrays
+        mSelectedA1MSUsers.clear();
+        mSelectedItemPosition.clear();
     }
 
     @Override
@@ -160,5 +176,36 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
             return true;
         }
         return false;
+    }
+
+    public void deleteSelectedItems(){
+
+        if(mSelectedItemPosition.size() == 0){
+            return;
+        }
+
+        DialogUtil.showYESNODialog(getActivity(), "", getString(R.string.hint_delete) + "?",
+                getString(R.string.dialog_delete), getString(R.string.dialog_cancel), new DialogCallBackListener() {
+                    @Override
+                    public void run() {
+                        mDataSource.deleteA1MSUsers(mSelectedA1MSUsers);
+                        mA1MSUsers = mDataSource.getAllA1MSUsers();
+                        mAdapter.setDataSet(mA1MSUsers);
+                        mAdapter.notifyDataSetChanged();
+                        mSelectedItemPosition.clear();
+                        mSelectedA1MSUsers.clear();
+                        onBackPressed();
+                    }
+                },null,true);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(!isVisibleToUser){
+            if(IsInActionMode()){
+                onBackPressed();
+            }
+        }
     }
 }

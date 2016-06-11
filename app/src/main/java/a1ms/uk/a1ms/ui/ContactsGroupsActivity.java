@@ -77,6 +77,7 @@ public class ContactsGroupsActivity extends BaseActivity{
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
                 BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+
             }
 
             @Override
@@ -161,6 +162,14 @@ public class ContactsGroupsActivity extends BaseActivity{
             }
             case android.R.id.home:{
                 onBackPressed();
+                return true;
+            }
+
+            case R.id.action_delete:{
+                BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+                if(fragment instanceof ContactsGroupsA1MSFragment){
+                    ((ContactsGroupsA1MSFragment)fragment).deleteSelectedItems();
+                }
                 return true;
             }
         }

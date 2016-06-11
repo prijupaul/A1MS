@@ -8,6 +8,7 @@
         android:icon="@android:drawable/checkbox_off_background"
         android:title="@string/menu_select_all"
         android:actionViewClass="android.widget.CheckBox"
+        android:visible="false"
         app:showAsAction="always" />
 
 
