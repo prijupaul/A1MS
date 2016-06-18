@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" xmlns:andrioid="http://schemas.android.com/tools"
-              android:fitsSystemWindows="true"
+              android:layout_height="wrap_content" xmlns:andrioid="http://schemas.android.com/tools"
+
 >
 
     <android.support.v7.widget.CardView
@@ -85,6 +85,15 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invite"
+                android:id="@+id/button_invite"
+                android:background="@drawable/gradient_primary_accent"
+                android:visibility="gone"
+                android:layout_gravity="right|top"
+        />
 
         <!--<RelativeLayout-->
             <!--android:layout_width="fill_parent"-->

@@ -2,6 +2,10 @@ package a1ms.uk.a1ms;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.os.Handler;
+
+import a1ms.uk.a1ms.util.SharedPreferenceManager;
 
 /**
  * Created by priju.jacobpaul on 26/05/16.
@@ -9,10 +13,15 @@ import android.app.Application;
 public class A1MSApplication extends Application {
 
     private Activity mActivity;
+    public static Context applicationContext;
+    public static volatile Handler applicationHandler;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        applicationContext = getApplicationContext();
+        applicationHandler = new Handler(getMainLooper());
+        SharedPreferenceManager.setFilePath(this);
     }
 
 

@@ -117,17 +117,8 @@
                       android:layout_height="wrap_content"
                       android:layout_alignParentBottom="true"
                       android:orientation="vertical"
+                      android:layout_marginBottom="45dp"
         >
-
-            <CheckedTextView android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:id="@+id/checkbox_existing_user"
-                             android:text="@string/login_already_a1ms_user"
-                             android:checked="false"
-                             android:drawableLeft="@android:drawable/checkbox_off_background"
-                             android:drawableStart="@android:drawable/checkbox_off_background"
-                             android:padding="2dp"
-            />
 
             <CheckedTextView android:layout_width="match_parent"
                              android:layout_height="wrap_content"
@@ -139,15 +130,6 @@
                              android:padding="2dp"
             />
 
-            <CheckedTextView android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:id="@+id/checkbox_invite_friends"
-                             android:text="@string/login_invite_your_friends"
-                             android:checked="true"
-                             android:drawableStart="@android:drawable/checkbox_on_background"
-                             android:drawableLeft="@android:drawable/checkbox_on_background"
-                             android:padding="2dp"
-            />
         </LinearLayout>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

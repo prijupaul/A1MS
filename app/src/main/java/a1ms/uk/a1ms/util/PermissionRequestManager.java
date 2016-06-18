@@ -49,9 +49,7 @@ public class PermissionRequestManager {
 
             }
             else {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{permission},
-                        code);
+                ActivityCompat.requestPermissions(activity, new String[]{permission},code);
             }
         }
     }

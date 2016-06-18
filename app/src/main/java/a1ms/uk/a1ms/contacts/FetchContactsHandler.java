@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.SortedMap;
 
 import a1ms.uk.a1ms.dto.Contacts;
+import a1ms.uk.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 30/05/16.
@@ -41,22 +42,27 @@ public class FetchContactsHandler implements FetchContactsLoaderListener{
             mContactsLoader.loadContactsWithSMS();
         }
         else {
-            listener.onContactsLoadComplete(mContactsWithEmailPhone);
+//            listener.onContactsLoadComplete(mContactsWithEmailPhone);
+            NotificationController.getInstance().postNotificationName(NotificationController.contactsDidLoaded,mContactsWithEmailPhone);
         }
     }
 
-
-
-    public  void getContactsWithEmailPhone(){
-        mContactsLoader.loadContactsWithEmail();
+    public SortedMap<String, Contacts> getLoadedContacts(){
+        return mContactsWithEmailPhone;
     }
+
+
+//    public  void getContactsWithEmailPhone(){
+//        mContactsLoader.loadContactsWithEmail();
+//    }
 
     @Override
     public void onContactsLoadComplete(SortedMap<String, Contacts> contactsList) {
         mContactsWithEmailPhone  = contactsList;
+        NotificationController.getInstance().postNotificationName(NotificationController.contactsDidLoaded,mContactsWithEmailPhone);
 
-        if(mListener != null){
-            mListener.onContactsLoadComplete(mContactsWithEmailPhone);
-        }
+//        if(mListener != null){
+//            mListener.onContactsLoadComplete(mContactsWithEmailPhone);
+//        }
     }
 }

@@ -53,6 +53,10 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
             this.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(!isSelectionAllowed(getAdapterPosition())) {
+                        return;
+                    }
+
                     if(isAnItemSelected){
                         if(checkBox.getVisibility() == View.VISIBLE) {
                             checkBox.setVisibility(View.GONE);
@@ -70,7 +74,13 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                 @Override
                 public boolean onLongClick(View view) {
                     if (mListener != null) {
+
                         CheckBox cb = (CheckBox)view.findViewById(R.id.checkbox_imageview_icon);
+                        if(!isSelectionAllowed(getAdapterPosition())){
+                            cb.setVisibility(View.GONE);
+                            return false;
+                        }
+
                         cb.setVisibility(View.VISIBLE);
                         cb.setChecked(true);
                         isAnItemSelected = true;
@@ -84,6 +94,10 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                 @Override
                 public void onClick(View view) {
                     if(isAnItemSelected){
+                        if(!isSelectionAllowed(getAdapterPosition())) {
+                            return;
+                        }
+
                         checkBox.setChecked(!checkBox.isChecked());
                         if(checkBox.getVisibility() == View.VISIBLE) {
                             checkBox.setVisibility(View.GONE);
@@ -146,4 +160,13 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
         notifyDataSetChanged();
     }
 
+    private boolean isSelectionAllowed(int position){
+        if(mDataSet != null){
+            A1MSUser contacts = mDataSet.get(position);
+            if(!contacts.isEditable()){
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -1,6 +1,11 @@
 package a1ms.uk.a1ms.ui;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -14,14 +19,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import a1ms.uk.a1ms.A1MSApplication;
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsPagerAdapter;
 import a1ms.uk.a1ms.contacts.FetchContactsHandler;
+import a1ms.uk.a1ms.dialogutil.DialogCallBackListener;
+import a1ms.uk.a1ms.dialogutil.DialogUtil;
 import a1ms.uk.a1ms.listeners.CustomTabLayoutListener;
 import a1ms.uk.a1ms.ui.fragments.BaseFragment;
 import a1ms.uk.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
 import a1ms.uk.a1ms.ui.fragments.ContactsGroupsInviteFragment;
-import a1ms.uk.a1ms.util.PermissionRequestManager;
 
 /**
  * Created by priju.jacobpaul on 28/05/16.
@@ -31,6 +40,7 @@ public class ContactsGroupsActivity extends BaseActivity{
     private ContactsGroupsPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private FloatingActionButton mFab;
+    private boolean isPermissionAsked = false;
     private String TAG = ContactsGroupsActivity.class.getSimpleName();
 
     @Override
@@ -92,7 +102,6 @@ public class ContactsGroupsActivity extends BaseActivity{
         });
 
         mFab = (FloatingActionButton)findViewById(R.id.fab);
-
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,14 +117,31 @@ public class ContactsGroupsActivity extends BaseActivity{
     @Override
     protected void onResume() {
         super.onResume();
-
-        PermissionRequestManager.checkAndRequestPermission(this,
-        android.Manifest.permission.READ_CONTACTS,
-        getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS));
-
+        askForPermissons();
     }
 
 
+    @TargetApi(Build.VERSION_CODES.M)
+    private void askForPermissons() {
+        if(isPermissionAsked) {
+            return;
+        }
+
+        ArrayList<String> permissons = new ArrayList<>();
+        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            permissons.add(Manifest.permission.READ_CONTACTS);
+            permissons.add(Manifest.permission.WRITE_CONTACTS);
+            permissons.add(Manifest.permission.GET_ACCOUNTS);
+            isPermissionAsked = true;
+            String[] items = permissons.toArray(new String[permissons.size()]);
+            requestPermissions(items, 1);
+        }
+//        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            permissons.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+//            permissons.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//        }
+
+    }
     @Override
     public void updateUi(Object object) {
 
@@ -125,8 +151,44 @@ public class ContactsGroupsActivity extends BaseActivity{
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS)) {
+        if (requestCode == 1) {
+            for (int a = 0; a < permissions.length; a++) {
+                if (grantResults.length <= a || grantResults[a] != PackageManager.PERMISSION_GRANTED) {
+                    continue;
+                }
+                switch (permissions[a]) {
+                    case Manifest.permission.READ_CONTACTS:
+                        FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getContactsWithSMSPhone(null);
+                        break;
+                    case Manifest.permission.WRITE_EXTERNAL_STORAGE:
+
+                        break;
+                }
+            }
+        }
+
+        if(requestCode == 1) {
+            if( (grantResults.length > 1) &&  (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 FetchContactsHandler.getInstance(getApplicationContext()).getContactsWithSMSPhone(null);
+            }
+            else {
+                DialogUtil.showOKDialog(this,
+                        getString(R.string.permission_title),
+                        getString(R.string.permission_message_contacts),
+                        getString(android.R.string.ok),
+                        new DialogCallBackListener() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    intent.setData(Uri.parse("package:" + A1MSApplication.applicationContext.getPackageName()));
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, false);
+            }
         }
     }
 
@@ -192,7 +254,7 @@ public class ContactsGroupsActivity extends BaseActivity{
     private void displayFloatingActionButtonIfNeeded(int position) {
 
         if (mAdapter.getItem(position) instanceof ContactsGroupsA1MSFragment) {
-            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.sym_action_email));
+            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_send));
             mFab.show();
 
             mFab.setOnClickListener(new View.OnClickListener() {
@@ -203,14 +265,18 @@ public class ContactsGroupsActivity extends BaseActivity{
             });
         }
         else if(mAdapter.getItem(position) instanceof ContactsGroupsInviteFragment) {
-            final ContactsGroupsInviteFragment floatingActionButtonFragment = (ContactsGroupsInviteFragment) mAdapter.getItem(position);
-            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_call));
+
+            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_share));
             mFab.show();
 
             mFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,getString(R.string.a1ms_message_invite));
+                    sendIntent.setType("text/plain");
+                    startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.app_name)));
                 }
             });
         }

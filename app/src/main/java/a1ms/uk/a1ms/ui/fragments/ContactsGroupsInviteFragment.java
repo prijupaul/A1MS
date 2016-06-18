@@ -1,5 +1,6 @@
 package a1ms.uk.a1ms.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,24 +9,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.SortedMap;
 
+import a1ms.uk.a1ms.A1MSApplication;
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsInviteAdapter;
 import a1ms.uk.a1ms.contacts.FetchContactsHandler;
 import a1ms.uk.a1ms.contacts.FetchContactsHandlerListener;
 import a1ms.uk.a1ms.dto.Contacts;
+import a1ms.uk.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
  */
-public class ContactsGroupsInviteFragment extends BaseFragment implements FetchContactsHandlerListener{
+public class ContactsGroupsInviteFragment extends BaseFragment implements FetchContactsHandlerListener, NotificationController.NotificationListener{
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ContactsGroupsInviteAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayout mLLNoContactsHolder;
 
+    private SortedMap<String,Contacts> mContactsList;
 
     @Nullable
     @Override
@@ -45,22 +51,50 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setNestedScrollingEnabled(false);
 
+        mLLNoContactsHolder = (LinearLayout)view.findViewById(R.id.ll_no_contacts);
+        setContactList(mContactsList);
     }
 
     public void setContactList(SortedMap<String,Contacts> contactList){
-        if(mRecyclerView == null){
-            return;
+        mContactsList = contactList;
+
+        if(mAdapter == null) {
+            mAdapter = new ContactsGroupsInviteAdapter(contactList);
         }
 
-        mAdapter = new ContactsGroupsInviteAdapter(contactList);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.setDataSet(mContactsList);
+
+        if((mRecyclerView != null)){
+            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+        }
+
+
+        if((mContactsList == null) || mContactsList.size() == 0){
+            if(mRecyclerView != null) {
+                mRecyclerView.setVisibility(View.GONE);
+            }
+            mLLNoContactsHolder.setVisibility(View.VISIBLE);
+        }
+        else {
+            if(mRecyclerView != null) {
+                mRecyclerView.setVisibility(View.VISIBLE);
+            }
+            mLLNoContactsHolder.setVisibility(View.GONE);
+        }
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        NotificationController.getInstance().addObserver(this,NotificationController.contactsDidLoaded);
         fetchContacts();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        NotificationController.getInstance().removeObserver(this,NotificationController.contactsDidLoaded);
     }
 
     @Override
@@ -69,7 +103,7 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
     }
 
     public void fetchContacts(){
-        FetchContactsHandler.getInstance(getActivity().getApplicationContext()).getContactsWithSMSPhone(this);
+        FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getContactsWithSMSPhone(this);
     }
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange){
@@ -79,8 +113,10 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        fetchContacts();
+    public void onNotificationReceived(int id, Object... args) {
+
+        if(id == NotificationController.contactsDidLoaded){
+            setContactList(FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getLoadedContacts());
+        }
     }
 }

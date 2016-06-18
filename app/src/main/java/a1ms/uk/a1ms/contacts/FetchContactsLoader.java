@@ -11,7 +11,6 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import a1ms.uk.a1ms.A1MSApplication;
-import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.dto.Contacts;
 import a1ms.uk.a1ms.util.PermissionRequestManager;
 
@@ -72,52 +71,69 @@ public class FetchContactsLoader implements Loader.OnLoadCompleteListener<Cursor
         mContactsLoadListener = fetchContactsLoaderListener;
     }
 
+    private boolean hasPermission(){
+
+        A1MSApplication application = (A1MSApplication)mContext;
+        Activity activity = application.getCurrentActivity();
+        if(activity == null){
+            return false;
+        }
+
+        return PermissionRequestManager.checkPermission(activity, android.Manifest.permission.READ_CONTACTS);
+
+    }
 
     public void loadContactsWithSMS(){
 
         A1MSApplication application = (A1MSApplication)mContext;
         Activity activity = application.getCurrentActivity();
 
+        if(!hasPermission()){
+            return;
+        }
+
         mCursorLoader = new CursorLoader(mContext, ContactsContract.Data.CONTENT_URI,
                 null,
                 filterSMS,selection, ContactsContract.Data.DISPLAY_NAME);
+
         mCursorLoader.registerListener(1,this);
         mCursorLoader.registerOnLoadCanceledListener(this);
 
-        if(PermissionRequestManager.checkPermission(application.getCurrentActivity(), android.Manifest.permission.READ_CONTACTS)) {
-            if ((mCursorLoader != null) && !mCursorLoader.isStarted()) {
-                mCursorLoader.startLoading();
-            }
+
+        if ((mCursorLoader != null) && !mCursorLoader.isStarted()) {
+            mCursorLoader.startLoading();
         }
-        else {
-            PermissionRequestManager.checkAndRequestPermission(activity,
-                    android.Manifest.permission.READ_CONTACTS,
-                    activity.getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS));
-        }
+
+
+//        else {
+//            PermissionRequestManager.checkAndRequestPermission(activity,
+//                    android.Manifest.permission.READ_CONTACTS,
+//                    activity.getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS));
+//        }
     }
 
-    public void loadContactsWithEmail(){
-
-
-        A1MSApplication application = (A1MSApplication)mContext;
-        Activity activity = application.getCurrentActivity();
-
-        mCursorLoader = new CursorLoader(mContext, ContactsContract.CommonDataKinds.Email.CONTENT_URI,PROJECTION_DP_PHOTO_EMAIL,
-                filterEmail,null,orderEmail);
-        mCursorLoader.registerListener(1,this);
-        mCursorLoader.registerOnLoadCanceledListener(this);
-
-        if(PermissionRequestManager.checkPermission(application.getCurrentActivity(), android.Manifest.permission.READ_CONTACTS)) {
-            if ((mCursorLoader != null) && !mCursorLoader.isStarted()) {
-                mCursorLoader.startLoading();
-            }
-        }
-        else {
-            PermissionRequestManager.checkAndRequestPermission(activity,
-                    android.Manifest.permission.READ_CONTACTS,
-                    activity.getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS));
-        }
-    }
+//    public void loadContactsWithEmail(){
+//
+//
+//        A1MSApplication application = (A1MSApplication)mContext;
+//        Activity activity = application.getCurrentActivity();
+//
+//        mCursorLoader = new CursorLoader(mContext, ContactsContract.CommonDataKinds.Email.CONTENT_URI,PROJECTION_DP_PHOTO_EMAIL,
+//                filterEmail,null,orderEmail);
+//        mCursorLoader.registerListener(1,this);
+//        mCursorLoader.registerOnLoadCanceledListener(this);
+//
+//        if(PermissionRequestManager.checkPermission(application.getCurrentActivity(), android.Manifest.permission.READ_CONTACTS)) {
+//            if ((mCursorLoader != null) && !mCursorLoader.isStarted()) {
+//                mCursorLoader.startLoading();
+//            }
+//        }
+//        else {
+//            PermissionRequestManager.checkAndRequestPermission(activity,
+//                    android.Manifest.permission.READ_CONTACTS,
+//                    activity.getResources().getInteger(R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS));
+//        }
+//    }
 
     @Override
     public void onLoadComplete(Loader<Cursor> loader, Cursor data) {

@@ -16,6 +16,32 @@
         android:layout_height="match_parent"
         android:paddingBottom="50dp"/>
 
-    />
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:id="@+id/ll_no_contacts"
+                  android:layout_margin="5dp"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+    >
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/no_contacts"
+                  android:textSize="20sp"
+                  android:textStyle="bold"
+                  android:layout_gravity="center"
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:padding="10dp"
+                  android:textSize="14sp"
+                  android:id="@+id/tv_contacts_permission_denied"
+                  android:text="@string/permission_contact_denied"
+        />
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ public class A1MSUser {
     private String email;
     private String token;
     private String avatar;
+    private boolean isEditable = true;
 
     public String getName() {
         return name;
@@ -49,5 +50,13 @@ public class A1MSUser {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public boolean isEditable() {
+        return isEditable;
+    }
+
+    public void setEditable(boolean editable) {
+        isEditable = editable;
     }
 }

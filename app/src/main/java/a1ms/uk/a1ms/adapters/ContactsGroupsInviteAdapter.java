@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
         TextView textViewPhone;
         CardView cardView;
         CheckBox checkBox;
+        Button invite;
 
 
         public ViewHolder(View view){
@@ -39,6 +41,8 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
             this.textViewEmail = (TextView)view.findViewById(R.id.textview_contact_email);
             this.textViewPhone = (TextView)view.findViewById(R.id.textview_contact_sms);
             this.checkBox = (CheckBox)view.findViewById(R.id.checkbox_imageview_icon);
+            this.invite = (Button)view.findViewById(R.id.button_invite);
+            this.invite.setVisibility(View.VISIBLE);
 
             this.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,7 +82,7 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
 
     @Override
     public int getItemCount() {
-        return mDataSet.size();
+        return mDataSet != null ? mDataSet.size() : 0;
     }
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange){

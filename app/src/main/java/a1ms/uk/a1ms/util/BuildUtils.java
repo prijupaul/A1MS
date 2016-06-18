@@ -42,4 +42,8 @@ public class BuildUtils {
     public static boolean isVersionLesserThanM(){
         return Build.VERSION.SDK_INT <  Build.VERSION_CODES.M;
     }
+
+    public static int getMaxPhoneNumberDigits(){
+        return 9;
+    }
 }
