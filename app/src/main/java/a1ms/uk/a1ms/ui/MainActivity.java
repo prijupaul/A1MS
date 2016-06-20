@@ -14,10 +14,12 @@ import a1ms.uk.a1ms.A1MSApplication;
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
+import a1ms.uk.a1ms.util.AndroidUtils;
 import a1ms.uk.a1ms.util.SharedPreferenceManager;
 
 public class MainActivity extends BaseActivity implements RegistrationAcceptPhoneFragment.OnRegoAcceptPhoneFragmentInteractionListener,
-        RegistrationAcceptActivationFragment.OnRegoActivationFragmentInteractionListener{
+        RegistrationAcceptActivationFragment.OnRegoActivationFragmentInteractionListener
+{
 
     private FrameLayout mFrameLayoutHolder;
 
@@ -93,7 +95,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
             // TODO:
             // Send the phone number to the server
-
+            AndroidUtils.setWaitingForSms(true);
             launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo);
         }
     }
@@ -112,7 +114,8 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     public void onSendActivationCode(String activationCode) {
         // TODO:
         // Send the activation code to the server
-
+        AndroidUtils.setWaitingForSms(false);
         startContactsGroupsActivity(null,true);
     }
+
 }

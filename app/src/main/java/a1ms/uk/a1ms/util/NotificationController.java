@@ -15,6 +15,8 @@ public class NotificationController {
     private static int totalEvents = 1;
 
     public static final int contactsDidLoaded = totalEvents++;
+    public static final int didReceiveSmsCode = totalEvents++;
+
     private int broadcasting = 0;
 
     private SparseArray<ArrayList<Object>> observers = new SparseArray<>();

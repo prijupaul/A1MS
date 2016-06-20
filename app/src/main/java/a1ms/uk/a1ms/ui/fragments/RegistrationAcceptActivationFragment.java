@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import a1ms.uk.a1ms.R;
+import a1ms.uk.a1ms.util.NotificationController;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +25,7 @@ import a1ms.uk.a1ms.R;
  * Use the {@link RegistrationAcceptActivationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegistrationAcceptActivationFragment extends BaseFragment {
+public class RegistrationAcceptActivationFragment extends BaseFragment implements NotificationController.NotificationListener {
 
     private OnRegoActivationFragmentInteractionListener mListener;
     private EditText mETActivationCode;
@@ -57,6 +58,7 @@ public class RegistrationAcceptActivationFragment extends BaseFragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class RegistrationAcceptActivationFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        NotificationController.getInstance().addObserver(this,NotificationController.didReceiveSmsCode);
 
         mETActivationCode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,6 +103,12 @@ public class RegistrationAcceptActivationFragment extends BaseFragment {
         });
 
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        NotificationController.getInstance().removeObserver(this,NotificationController.didReceiveSmsCode);
     }
 
     @Override
@@ -141,5 +150,13 @@ public class RegistrationAcceptActivationFragment extends BaseFragment {
 
      public interface OnRegoActivationFragmentInteractionListener {
         void onSendActivationCode(String activationCode);
+    }
+
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+
+        if(id == NotificationController.didReceiveSmsCode){
+            mETActivationCode.setText("" + args[0]);
+        }
     }
 }

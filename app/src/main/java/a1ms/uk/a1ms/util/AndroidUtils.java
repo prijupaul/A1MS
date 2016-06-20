@@ -7,6 +7,9 @@ import a1ms.uk.a1ms.A1MSApplication;
  */
 public class AndroidUtils {
 
+    private static final Object smsLock = new Object();
+    private static boolean waitingForSms = false;
+
     public static void runOnUIThread(Runnable runnable) {
         runOnUIThread(runnable, 0);
     }
@@ -21,5 +24,19 @@ public class AndroidUtils {
 
     public static void cancelRunOnUIThread(Runnable runnable) {
         A1MSApplication.applicationHandler.removeCallbacks(runnable);
+    }
+
+    public static boolean isWaitingForSms() {
+        boolean value;
+        synchronized (smsLock) {
+            value = waitingForSms;
+        }
+        return value;
+    }
+
+    public static void setWaitingForSms(boolean value) {
+        synchronized (smsLock) {
+            waitingForSms = value;
+        }
     }
 }
