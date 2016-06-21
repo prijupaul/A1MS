@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.futuremind.recyclerviewfastscroll.FastScroller;
+
 import java.util.SortedMap;
 
 import a1ms.uk.a1ms.A1MSApplication;
@@ -27,6 +29,7 @@ import a1ms.uk.a1ms.util.NotificationController;
 public class ContactsGroupsInviteFragment extends BaseFragment implements FetchContactsHandlerListener, NotificationController.NotificationListener{
 
     private RecyclerView mRecyclerView;
+    private FastScroller mFastScroller;
     private ContactsGroupsInviteAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private LinearLayout mLLNoContactsHolder;
@@ -44,6 +47,8 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
         super.onViewCreated(view, savedInstanceState);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.a1ms_recycler_view);
+        mFastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
+
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -117,6 +122,7 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
 
         if(id == NotificationController.contactsDidLoaded){
             setContactList(FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getLoadedContacts());
+            mFastScroller.setRecyclerView(mRecyclerView);
         }
     }
 }

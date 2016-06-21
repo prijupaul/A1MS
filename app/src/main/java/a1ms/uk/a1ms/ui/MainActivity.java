@@ -1,6 +1,8 @@
 package a1ms.uk.a1ms.ui;
 
-import android.content.Intent;
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,11 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import a1ms.uk.a1ms.A1MSApplication;
+import java.util.ArrayList;
+
 import a1ms.uk.a1ms.R;
+import a1ms.uk.a1ms.dialogutil.DialogUtil;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
 import a1ms.uk.a1ms.util.AndroidUtils;
+import a1ms.uk.a1ms.util.PermissionRequestManager;
 import a1ms.uk.a1ms.util.SharedPreferenceManager;
 
 public class MainActivity extends BaseActivity implements RegistrationAcceptPhoneFragment.OnRegoAcceptPhoneFragmentInteractionListener,
@@ -28,25 +33,24 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
         super.onCreate(savedInstanceState);
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        if(toolbar != null) {
+            toolbar.setCollapsible(false);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setTitle("Activation");
+        }
+
+        SharedPreferenceManager.setFirstTimeLaunch(false,this);
+
         if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
             setContentView(R.layout.mainactivity);
             mFrameLayoutHolder = (FrameLayout)findViewById(R.id.framelayout_holder);
             launchRegoAcceptPhoneFragment();
         }
         else {
-
-            Intent messagingActivity = new Intent(getApplicationContext(),MessagingActivity.class);
-            startActivity(messagingActivity);
-            finish();
+            startContactsGroupsActivity(null,true);
         }
-
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setCollapsible(false);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setTitle("Activation");
-
-        ((A1MSApplication)getApplication()).setCurrentActivity(this);
 
     }
 
@@ -69,8 +73,12 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         switch (requestCode){
-            case R.integer.MY_PERMISSIONS_REQUEST_READ_CONTACTS:{
-
+            case 1:{
+                DialogUtil.showOKDialog(this,
+                        getString(R.string.permission_title),
+                        getString(R.string.permission_receive_sms),
+                        getString(android.R.string.ok),
+                        null, false);
                 break;
             }
         }
@@ -81,7 +89,18 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     private void launchRegoAcceptPhoneFragment(){
+
+
+        if (!PermissionRequestManager.checkPermission(this,Manifest.permission.RECEIVE_SMS)) {
+            ArrayList<String> permissons = new ArrayList<>();
+            permissons.add(Manifest.permission.RECEIVE_SMS);
+            String[] items = permissons.toArray(new String[permissons.size()]);
+            PermissionRequestManager.requestPermission(this,items,1);
+        }
+
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         Fragment fr = RegistrationAcceptPhoneFragment.newInstance();

@@ -25,6 +25,14 @@ public class PermissionRequestManager {
         return  (permissionStatus == PackageManager.PERMISSION_GRANTED) ? true : false;
     }
 
+    public static void requestPermission(final Activity activity,String[] permissions, final int code){
+        if(BuildUtils.isVersionLesserThanM()) {
+            return;
+        }
+        ActivityCompat.requestPermissions(activity, permissions,code);
+
+    }
+
     public static void checkAndRequestPermission(final Activity activity, final String permission,final int code){
 
         if(BuildUtils.isVersionLesserThanM()) {

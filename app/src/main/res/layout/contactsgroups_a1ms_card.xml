@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content" xmlns:andrioid="http://schemas.android.com/tools"
+              android:layout_height="wrap_content"
+              xmlns:andrioid="http://schemas.android.com/tools"
 
 >
 
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         card_view:cardElevation="4dp"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         card_view:cardCornerRadius="2dp"
         card_view:contentPadding="10dp"
         android:foreground="?android:attr/selectableItemBackground"
@@ -87,7 +88,7 @@
         </LinearLayout>
 
         <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:text="Invite"
                 android:id="@+id/button_invite"
                 android:background="@drawable/gradient_primary_accent"

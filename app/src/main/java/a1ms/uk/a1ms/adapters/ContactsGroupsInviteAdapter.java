@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
+
 import java.util.ArrayList;
 import java.util.SortedMap;
 
@@ -20,7 +22,7 @@ import static a1ms.uk.a1ms.R.layout.contactsgroups_a1ms_card;
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGroupsInviteAdapter.ViewHolder>{
+public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGroupsInviteAdapter.ViewHolder> implements SectionTitleProvider {
 
     private SortedMap<String,Contacts> mDataSet;
     private boolean mCheckboxStatus;
@@ -89,5 +91,8 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
         mCheckboxStatus = statusChange;
     }
 
-
+    @Override
+    public String getSectionTitle(int position) {
+        return ((String)mDataSet.keySet().toArray()[position]).substring(0,1);
+    }
 }

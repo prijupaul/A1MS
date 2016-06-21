@@ -33,6 +33,11 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
     private TextView mTVActivationCodeSend;
     private static final String PHONE_NUMBER = "phone";
 
+
+    public interface OnRegoActivationFragmentInteractionListener {
+        void onSendActivationCode(String activationCode);
+    }
+
     public RegistrationAcceptActivationFragment() {
         // Required empty public constructor
     }
@@ -148,9 +153,6 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
         return false;
     }
 
-     public interface OnRegoActivationFragmentInteractionListener {
-        void onSendActivationCode(String activationCode);
-    }
 
     @Override
     public void onNotificationReceived(int id, Object... args) {

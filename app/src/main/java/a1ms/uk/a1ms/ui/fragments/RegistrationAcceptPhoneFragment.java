@@ -89,7 +89,7 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
             public void afterTextChanged(Editable editable) {
 
                 if((editable.toString().length() >= BuildUtils.getMaxPhoneNumberDigits() &&
-                        (mETCountryCode.getText().length() >= 2))){
+                        (mETCountryCode.getText().length() >= 1))){
                     mMenuNext.setEnabled(true);
                 }
                 else {
@@ -112,7 +112,7 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                if((editable.toString().length() >= 2 &&
+                if((editable.toString().length() >= 1 &&
                         (mETPhoneNumber.getText().length() >= BuildUtils.getMaxPhoneNumberDigits()))){
                     mMenuNext.setEnabled(true);
                 }

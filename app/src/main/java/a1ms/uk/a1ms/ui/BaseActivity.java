@@ -33,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        ((A1MSApplication)getApplication()).setCurrentActivity(this);
+        ((A1MSApplication)getApplication()).setCurrentActivity(null);
     }
 
 

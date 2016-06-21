@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
+
 import java.util.List;
 
 import a1ms.uk.a1ms.R;
@@ -18,7 +20,7 @@ import static a1ms.uk.a1ms.R.layout.contactsgroups_a1ms_card;
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGroupsA1MSAdapter.ViewHolder> {
+public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGroupsA1MSAdapter.ViewHolder> implements SectionTitleProvider {
 
     private List<A1MSUser> mDataSet;
     private boolean mCheckboxStatus;
@@ -39,7 +41,6 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
         TextView textViewPhone;
         CardView cardView;
         CheckBox checkBox;
-
 
         public ViewHolder(View view) {
             super(view);
@@ -168,5 +169,10 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
             }
         }
         return true;
+    }
+
+    @Override
+    public String getSectionTitle(int position) {
+        return mDataSet.get(position).getName().substring(0,1);
     }
 }
