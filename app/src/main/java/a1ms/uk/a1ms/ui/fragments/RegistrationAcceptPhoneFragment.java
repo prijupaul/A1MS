@@ -59,6 +59,7 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.registration_add_phone, container, false);
 
@@ -90,9 +91,11 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
 
                 if((editable.toString().length() >= BuildUtils.getMaxPhoneNumberDigits() &&
                         (mETCountryCode.getText().length() >= 1))){
-                    mMenuNext.setEnabled(true);
+                    if(mMenuNext != null) {
+                        mMenuNext.setEnabled(true);
+                    }
                 }
-                else {
+                else if(mMenuNext != null){
                     mMenuNext.setEnabled(false);
                 }
             }
@@ -114,9 +117,11 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
 
                 if((editable.toString().length() >= 1 &&
                         (mETPhoneNumber.getText().length() >= BuildUtils.getMaxPhoneNumberDigits()))){
-                    mMenuNext.setEnabled(true);
+                    if(mMenuNext != null) {
+                        mMenuNext.setEnabled(true);
+                    }
                 }
-                else {
+                else if(mMenuNext != null){
                     mMenuNext.setEnabled(false);
                 }
             }
@@ -127,7 +132,6 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        setHasOptionsMenu(true);
         if (context instanceof OnRegoAcceptPhoneFragmentInteractionListener) {
             mListener = (OnRegoAcceptPhoneFragmentInteractionListener) context;
         } else {
@@ -144,6 +148,7 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu( menu, inflater );
         inflater.inflate(R.menu.menu_phone_registration,menu);
         mMenuNext = menu.findItem(R.id.action_send_activation_code);
     }

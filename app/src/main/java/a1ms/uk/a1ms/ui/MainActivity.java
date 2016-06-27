@@ -9,13 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.dialogutil.DialogUtil;
+import a1ms.uk.a1ms.network.dto.UserDetails;
+import a1ms.uk.a1ms.network.handlers.UserActivationNetworkHandler;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
 import a1ms.uk.a1ms.util.AndroidUtils;
@@ -33,19 +34,19 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
         super.onCreate(savedInstanceState);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        if(toolbar != null) {
-            toolbar.setCollapsible(false);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            getSupportActionBar().setTitle("Activation");
-        }
-
-        SharedPreferenceManager.setFirstTimeLaunch(false,this);
-
         if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
             setContentView(R.layout.mainactivity);
+
             mFrameLayoutHolder = (FrameLayout)findViewById(R.id.framelayout_holder);
+
+            Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+            if(toolbar != null) {
+                toolbar.setCollapsible(false);
+                setSupportActionBar(toolbar);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setTitle("Activation");
+            }
+
             launchRegoAcceptPhoneFragment();
         }
         else {
@@ -54,19 +55,19 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_deals_notification:{
-                return true;
-            }
-            case R.id.action_contacts:{
-                startContactsGroupsActivity(null,false);
-                return true;
-            }
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.action_deals_notification:{
+//                return true;
+//            }
+//            case R.id.action_contacts:{
+//                startContactsGroupsActivity(null,false);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -109,13 +110,33 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     }
 
     @Override
-    public void onNextPressed(String countryCode, String phoneNo) {
+    public void onNextPressed(final String countryCode, final String phoneNo) {
         if(!countryCode.isEmpty() && !phoneNo.isEmpty()){
 
-            // TODO:
-            // Send the phone number to the server
-            AndroidUtils.setWaitingForSms(true);
-            launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo);
+            UserActivationNetworkHandler builder = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
+                    .setMobileNumber(phoneNo)
+                    .setName("deprecated")
+                    .setPassword("password124")
+                    .build();
+            builder.doRegisterUserWithMobileNumber(new UserActivationNetworkHandler.UserActivationListener() {
+                @Override
+                public void onUserActivationResponse(UserDetails details) {
+                    if(details != null){
+                        SharedPreferenceManager.saveUserToken(details.getToken(),MainActivity.this);
+                    }
+
+                    AndroidUtils.setWaitingForSms(true);
+                    launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo);
+                }
+
+                @Override
+                public void onUserActivationError() {
+
+                }
+            });
+
+
+
         }
     }
 

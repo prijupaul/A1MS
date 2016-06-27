@@ -58,9 +58,11 @@
         app:layout_anchorGravity="bottom|right|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email"
+        android:background="@android:color/transparent"
         app:fabSize="normal"
         android:clickable="true"
         android:id="@+id/fab"
+        app:elevation="4dp"
         app:layout_anchor="@id/pager"/>
 
 

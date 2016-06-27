@@ -49,7 +49,8 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
             this.textViewEmail = (TextView) view.findViewById(R.id.textview_contact_email);
             this.textViewPhone = (TextView) view.findViewById(R.id.textview_contact_sms);
             this.checkBox = (CheckBox) view.findViewById(R.id.checkbox_imageview_icon);
-
+            this.checkBox.setVisibility(View.GONE);
+            this.checkBox.setChecked(false);
 
             this.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,21 +60,26 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                     }
 
                     if(isAnItemSelected){
+                        mDataSet.get(getAdapterPosition()).setChecked(checkBox.isChecked());
                         if(checkBox.getVisibility() == View.VISIBLE) {
                             checkBox.setVisibility(View.GONE);
                         }
                         else {
                             checkBox.setVisibility(View.VISIBLE);
                         }
-
                         mListener.onPrepareSelection(cardView,getAdapterPosition());
                     }
+                    else {
+                        mDataSet.get(getAdapterPosition()).setChecked(false);
+                    }
+
                 }
             });
 
             this.cardView.setOnLongClickListener(new View.OnLongClickListener(){
                 @Override
                 public boolean onLongClick(View view) {
+
                     if (mListener != null) {
 
                         CheckBox cb = (CheckBox)view.findViewById(R.id.checkbox_imageview_icon);
@@ -84,6 +90,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
 
                         cb.setVisibility(View.VISIBLE);
                         cb.setChecked(true);
+                        mDataSet.get(getAdapterPosition()).setChecked(cb.isChecked());
                         isAnItemSelected = true;
                         mListener.onLongClick(view,getAdapterPosition());
                     }
@@ -100,6 +107,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                         }
 
                         checkBox.setChecked(!checkBox.isChecked());
+                        mDataSet.get(getAdapterPosition()).setChecked(checkBox.isChecked());
                         if(checkBox.getVisibility() == View.VISIBLE) {
                             checkBox.setVisibility(View.GONE);
                         }
@@ -138,12 +146,14 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
         holder.textViewEmail.setText(mDataSet.get(position).getEmail());
         holder.textViewPhone.setText(mDataSet.get(position).getMobile());
 
-        if(isAnItemSelected){
+        if(isAnItemSelected && mDataSet.get(position).isChecked()){
             holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setChecked(true);
         }
         else {
             holder.checkBox.setVisibility(View.GONE);
             holder.checkBox.setChecked(false);
+            mDataSet.get(position).setChecked(false);
         }
     }
 

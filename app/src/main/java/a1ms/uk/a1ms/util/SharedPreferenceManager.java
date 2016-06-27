@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
  */
 public class SharedPreferenceManager {
 
-    private static String mAuthTokenKey;
+    private static String mToken;
     private static String mFirstTimeLaunch;
     private static String mIsUserRegistered;
     private static String mFile;
@@ -18,18 +18,18 @@ public class SharedPreferenceManager {
     public static void setFilePath(Context context) {
 
         mFile = context.getPackageName();
-        mAuthTokenKey = mFile + "." + "authToken";
+        mToken = mFile + "." + "token";
         mFirstTimeLaunch = mFile + "." + "firstTimeLaunch";
         mIsUserRegistered = mFile + "." + "isUserRegistered";
 
     }
 
-    public static void saveAuthToken(String authToken, Context context, String keyName) {
-        saveStringValue(mAuthTokenKey + keyName, authToken, context);
+    public static void saveUserToken(String authToken, Context context) {
+        saveStringValue(mToken, authToken, context);
     }
 
-    public static String getAuthToken(Context context, String keyName) {
-        return getStringValue(mAuthTokenKey + keyName, context, "");
+    public static String getUserToken(Context context, String keyName) {
+        return getStringValue(mToken + keyName, context, "");
     }
 
     public static void setUserRegistered(boolean userRegistered,Context context){

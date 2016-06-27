@@ -27,6 +27,11 @@ public class PhoneConfigUtils {
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         //getNetworkCountryIso
         CountryID= manager.getSimCountryIso().toUpperCase();
+        if(CountryID.isEmpty()) {
+            CountryID = Locale.getDefault().getCountry();
+        }
+
+
         String[] rl=context.getResources().getStringArray(R.array.CountryCodes);
         for(int i=0;i<rl.length;i++){
             String[] g=rl[i].split(",");

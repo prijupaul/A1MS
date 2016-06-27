@@ -11,6 +11,7 @@ public class A1MSUser {
     private String token;
     private String avatar;
     private boolean isEditable = true;
+    private boolean isChecked = false;
 
     public String getName() {
         return name;
@@ -58,5 +59,13 @@ public class A1MSUser {
 
     public void setEditable(boolean editable) {
         isEditable = editable;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

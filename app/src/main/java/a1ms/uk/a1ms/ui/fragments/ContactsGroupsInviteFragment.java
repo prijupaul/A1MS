@@ -3,12 +3,14 @@ package a1ms.uk.a1ms.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 
 import com.futuremind.recyclerviewfastscroll.FastScroller;
@@ -19,20 +21,20 @@ import a1ms.uk.a1ms.A1MSApplication;
 import a1ms.uk.a1ms.R;
 import a1ms.uk.a1ms.adapters.ContactsGroupsInviteAdapter;
 import a1ms.uk.a1ms.contacts.FetchContactsHandler;
-import a1ms.uk.a1ms.contacts.FetchContactsHandlerListener;
 import a1ms.uk.a1ms.dto.Contacts;
 import a1ms.uk.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
  */
-public class ContactsGroupsInviteFragment extends BaseFragment implements FetchContactsHandlerListener, NotificationController.NotificationListener{
+public class ContactsGroupsInviteFragment extends BaseFragment implements  NotificationController.NotificationListener{
 
     private RecyclerView mRecyclerView;
     private FastScroller mFastScroller;
     private ContactsGroupsInviteAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private LinearLayout mLLNoContactsHolder;
+    private FloatingActionButton mFab;
 
     private SortedMap<String,Contacts> mContactsList;
 
@@ -48,17 +50,36 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.a1ms_recycler_view);
         mFastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
-
+        mFab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
+                    mFab.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 ||dy<0 && mFab.isShown()) {
+                    mFab.hide();
+                }
+
+            }
+        });
 
         mLLNoContactsHolder = (LinearLayout)view.findViewById(R.id.ll_no_contacts);
-        setContactList(mContactsList);
+        fetchContacts();
     }
+
 
     public void setContactList(SortedMap<String,Contacts> contactList){
         mContactsList = contactList;
@@ -79,13 +100,17 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
             if(mRecyclerView != null) {
                 mRecyclerView.setVisibility(View.GONE);
             }
-            mLLNoContactsHolder.setVisibility(View.VISIBLE);
+            if(mLLNoContactsHolder != null) {
+                mLLNoContactsHolder.setVisibility(View.VISIBLE);
+            }
         }
         else {
             if(mRecyclerView != null) {
                 mRecyclerView.setVisibility(View.VISIBLE);
             }
-            mLLNoContactsHolder.setVisibility(View.GONE);
+            if(mLLNoContactsHolder != null) {
+                mLLNoContactsHolder.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -93,7 +118,6 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
     public void onAttach(Context context) {
         super.onAttach(context);
         NotificationController.getInstance().addObserver(this,NotificationController.contactsDidLoaded);
-        fetchContacts();
     }
 
     @Override
@@ -102,13 +126,10 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements FetchC
         NotificationController.getInstance().removeObserver(this,NotificationController.contactsDidLoaded);
     }
 
-    @Override
-    public void onContactsLoadComplete(SortedMap<String, Contacts> contactsList) {
-        setContactList(contactsList);
-    }
+
 
     public void fetchContacts(){
-        FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getContactsWithSMSPhone(this);
+        FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getContactsWithSMSPhone(null);
     }
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange){

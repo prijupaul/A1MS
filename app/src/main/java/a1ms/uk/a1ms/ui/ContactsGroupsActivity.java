@@ -54,6 +54,7 @@ public class ContactsGroupsActivity extends BaseActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("Groups & Contacts");
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("A1MS"));
         tabLayout.addTab(tabLayout.newTab().setText("Invites"));

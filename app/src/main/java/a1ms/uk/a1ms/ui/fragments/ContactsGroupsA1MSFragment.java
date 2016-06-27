@@ -3,6 +3,7 @@ package a1ms.uk.a1ms.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -30,7 +32,8 @@ import a1ms.uk.a1ms.dialogutil.DialogUtil;
 /**
  * Created by priju.jacobpaul on 27/05/16.
  */
-public class ContactsGroupsA1MSFragment extends BaseFragment implements ContactsGroupsA1MSAdapter.ContactsGroupsA1MSAdapterListener {
+public class ContactsGroupsA1MSFragment extends BaseFragment implements ContactsGroupsA1MSAdapter.ContactsGroupsA1MSAdapterListener
+{
 
     private RecyclerView mRecyclerView;
     private FastScroller mFastScroller;
@@ -44,6 +47,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     List<A1MSUser> mSelectedA1MSUsers = new ArrayList<>();
     ArrayList<Integer> mSelectedItemPosition = new ArrayList<>();
     List<A1MSUser> mA1MSUsers;
+    FloatingActionButton mFab;
 
     @Override
     public void onAttach(Context context) {
@@ -64,24 +68,36 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.a1ms_recycler_view);
         mFastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
+        mFab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
 
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
+                    mFab.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 ||dy<0 && mFab.isShown()) {
+                    mFab.hide();
+                }
+
+            }
+        });
 
         if(((AppCompatActivity)getActivity()).getSupportActionBar() != null){
             mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
             mTextViewCounter = (TextView)getActivity().findViewById(R.id.textview_countertext);
         }
-
-//        VerticalRecyclerViewFastScroller fastScroller = (VerticalRecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
-//        // Connect the recycler to the scroller (to let the scroller scroll the list)
-//        fastScroller.setRecyclerView(mRecyclerView);
-//        // Connect the scroller to the recycler (to let the recycler scroll the scroller's handle)
-//        mRecyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
     }
 
@@ -89,11 +105,14 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     public void onResume() {
         super.onResume();
 
-        mA1MSUsers = mDataSource.getAllA1MSUsers();
-        mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers,this);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-        mFastScroller.setRecyclerView(mRecyclerView);
+        if(mAdapter == null) {
+            mA1MSUsers = mDataSource.getAllA1MSUsers();
+            mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, this);
+            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+            mFastScroller.setRecyclerView(mRecyclerView);
+        }
+
     }
 
     @Override
@@ -219,5 +238,12 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                 onBackPressed();
             }
         }
+        else {
+            if(mAdapter != null) {
+                mAdapter.setDataSet(mA1MSUsers);
+                    mAdapter.notifyDataSetChanged();
+            }
+        }
     }
+
 }
