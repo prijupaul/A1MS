@@ -19,6 +19,7 @@ import a1ms.uk.a1ms.network.dto.UserDetails;
 import a1ms.uk.a1ms.network.handlers.UserActivationNetworkHandler;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
+import a1ms.uk.a1ms.ui.utilui.ProgressView;
 import a1ms.uk.a1ms.util.AndroidUtils;
 import a1ms.uk.a1ms.util.PermissionRequestManager;
 import a1ms.uk.a1ms.util.SharedPreferenceManager;
@@ -93,7 +94,6 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     @TargetApi(Build.VERSION_CODES.M)
     private void launchRegoAcceptPhoneFragment(){
 
-
         if (!PermissionRequestManager.checkPermission(this,Manifest.permission.RECEIVE_SMS)) {
             ArrayList<String> permissons = new ArrayList<>();
             permissons.add(Manifest.permission.RECEIVE_SMS);
@@ -101,17 +101,23 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             PermissionRequestManager.requestPermission(this,items,1);
         }
 
-
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         Fragment fr = RegistrationAcceptPhoneFragment.newInstance();
         fragmentTransaction.replace(R.id.framelayout_holder, fr);
         fragmentTransaction.commit();
+
     }
 
     @Override
     public void onNextPressed(final String countryCode, final String phoneNo) {
         if(!countryCode.isEmpty() && !phoneNo.isEmpty()){
+
+            // TODO: remove the deprecated fields.
+
+
+            mFrameLayoutHolder.setEnabled(false);
+            ProgressView.addProgressView(mFrameLayoutHolder,"Registering +" + countryCode + phoneNo);
 
             UserActivationNetworkHandler builder = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                     .setMobileNumber(phoneNo)
@@ -121,7 +127,10 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             builder.doRegisterUserWithMobileNumber(new UserActivationNetworkHandler.UserActivationListener() {
                 @Override
                 public void onUserActivationResponse(UserDetails details) {
-                    if(details != null){
+
+                    ProgressView.removeProgressView(mFrameLayoutHolder);
+
+                    if((details != null) && (details.getToken() != null)){
                         SharedPreferenceManager.saveUserToken(details.getToken(),MainActivity.this);
                     }
 
@@ -131,12 +140,9 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
                 @Override
                 public void onUserActivationError() {
-
+                    ProgressView.removeProgressView(mFrameLayoutHolder);
                 }
             });
-
-
-
         }
     }
 
@@ -147,7 +153,6 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         Fragment fr = RegistrationAcceptActivationFragment.newInstance(phoneNumber);
         fragmentTransaction.replace(R.id.framelayout_holder, fr);
         fragmentTransaction.commit();
-
     }
 
     @Override
@@ -158,4 +163,11 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         startContactsGroupsActivity(null,true);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        UserActivationNetworkHandler.cancelNetworkOperation();
+        ProgressView.removeProgressView(mFrameLayoutHolder);
+    }
 }

@@ -142,12 +142,14 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             }
         });
 
-    }
-
-    public void getUserDetails(UserActivationListener listener){
 
     }
 
+    public static void cancelNetworkOperation(){
 
+        if ((getCurrentRetrofitCall() != null) && !getCurrentRetrofitCall().isCanceled()){
+            getCurrentRetrofitCall().cancel();
+        }
+    }
 
 }

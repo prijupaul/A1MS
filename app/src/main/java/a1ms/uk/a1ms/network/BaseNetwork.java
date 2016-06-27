@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,6 +20,7 @@ public class BaseNetwork {
     private String baseUrl;
     private String bearerToken;
     private Retrofit retrofit;
+    protected static Call<Object> mCurrentRetrofitCall;
 
 
     protected String getBaseUrl() {
@@ -81,5 +83,9 @@ public class BaseNetwork {
 
     protected Retrofit getRetrofit(){
         return retrofit;
+    }
+
+    protected static Call<Object> getCurrentRetrofitCall(){
+        return mCurrentRetrofitCall;
     }
 }

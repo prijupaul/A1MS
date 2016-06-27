@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import a1ms.uk.a1ms.R;
+import a1ms.uk.a1ms.util.AndroidUtils;
 import a1ms.uk.a1ms.util.BuildUtils;
 import a1ms.uk.a1ms.util.PhoneConfigUtils;
 
@@ -158,11 +159,23 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
 
         if(item.getItemId() == R.id.action_send_activation_code){
             if(item.isEnabled()){
+
+                // hide keyboard
+                AndroidUtils.hideKeyboard(mETCountryCode);
+                AndroidUtils.hideKeyboard(mETPhoneNumber);
+                disableInput();
                 mListener.onNextPressed(mETCountryCode.getText().toString(),mETPhoneNumber.getText().toString());
                 return true;
             }
         }
         return false;
+    }
+
+
+    private void disableInput(){
+        mMenuNext.setEnabled(false);
+        mETCountryCode.setEnabled(false);
+        mETPhoneNumber.setEnabled(false);
     }
 
      public interface OnRegoAcceptPhoneFragmentInteractionListener {
