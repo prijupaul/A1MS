@@ -12,6 +12,7 @@ public class A1MSUser {
     private String avatar;
     private boolean isEditable = true;
     private boolean isChecked = false;
+    private boolean isGroup = false;
 
     public String getName() {
         return name;
@@ -67,5 +68,13 @@ public class A1MSUser {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public boolean isGroup() {
+        return isGroup;
+    }
+
+    public void setGroup(boolean group) {
+        isGroup = group;
     }
 }

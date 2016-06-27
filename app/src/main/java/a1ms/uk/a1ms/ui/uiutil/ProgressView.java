@@ -1,4 +1,4 @@
-package a1ms.uk.a1ms.ui.utilui;
+package a1ms.uk.a1ms.ui.uiutil;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,7 +1,9 @@
 package a1ms.uk.a1ms.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +56,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        setHasOptionsMenu(true);
         mDataSource = new A1MSUsersFieldsDataSource(context);
         mDataSource.open();
     }
@@ -179,8 +184,25 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu( menu, inflater );
+        inflater.inflate(R.menu.menu_main_groups_contacts,menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+
+            case R.id.action_add_contact: {
+                Intent intent = new Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.action_contacts_groups:{
+                return true;
+            }
+        }
+        return false;
     }
 
     private void clearActionMode(){

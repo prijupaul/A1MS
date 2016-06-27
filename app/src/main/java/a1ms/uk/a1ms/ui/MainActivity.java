@@ -2,6 +2,7 @@ package a1ms.uk.a1ms.ui;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,7 +20,7 @@ import a1ms.uk.a1ms.network.dto.UserDetails;
 import a1ms.uk.a1ms.network.handlers.UserActivationNetworkHandler;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import a1ms.uk.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
-import a1ms.uk.a1ms.ui.utilui.ProgressView;
+import a1ms.uk.a1ms.ui.uiutil.ProgressView;
 import a1ms.uk.a1ms.util.AndroidUtils;
 import a1ms.uk.a1ms.util.PermissionRequestManager;
 import a1ms.uk.a1ms.util.SharedPreferenceManager;
@@ -34,6 +35,8 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        SharedPreferenceManager.setFirstTimeLaunch(false,this);
 
         if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
             setContentView(R.layout.mainactivity);
@@ -76,11 +79,13 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
         switch (requestCode){
             case 1:{
-                DialogUtil.showOKDialog(this,
-                        getString(R.string.permission_title),
-                        getString(R.string.permission_receive_sms),
-                        getString(android.R.string.ok),
-                        null, false);
+                if( (grantResults.length > 1) &&  (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
+                    DialogUtil.showOKDialog(this,
+                            getString(R.string.permission_title),
+                            getString(R.string.permission_receive_sms),
+                            getString(android.R.string.ok),
+                            null, false);
+                }
                 break;
             }
         }
