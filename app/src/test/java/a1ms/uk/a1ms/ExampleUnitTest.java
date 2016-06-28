@@ -1,4 +1,4 @@
-package a1ms.uk.a1ms;
+package uk.com.a1ms;
 
 import org.junit.Test;
 
