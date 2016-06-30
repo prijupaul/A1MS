@@ -16,7 +16,7 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     public A1MSDbHelper(Context context){
-        super(context,DATABASE_NAME,null,DATABASE_VERSION);
+        super(new A1MSDatabaseContext(context),DATABASE_NAME,null,DATABASE_VERSION);
         mContext = context;
     }
 

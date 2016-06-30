@@ -27,6 +27,9 @@ public class ProgressView {
         if(inflatedView != null) {
             ProgressBar progressView = (ProgressBar) inflatedView.findViewById(R.id.progressbar);
             progressView.setVisibility(View.VISIBLE);
+            progressView.getIndeterminateDrawable().setColorFilter(
+                    A1MSApplication.applicationContext.getResources().getColor(R.color.light_color_accent),
+                    android.graphics.PorterDuff.Mode.SRC_IN);
 
             TextView textView = (TextView) inflatedView.findViewById(R.id.progressbar_text);
             textView.setText(text);

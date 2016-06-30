@@ -16,6 +16,7 @@ public class NotificationController {
 
     public static final int contactsDidLoaded = totalEvents++;
     public static final int didReceiveSmsCode = totalEvents++;
+    public static final int didReceiveLocation = totalEvents++;
 
     private int broadcasting = 0;
 

@@ -2,7 +2,7 @@ package uk.com.a1ms.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import uk.com.a1ms.A1MSApplication;
@@ -14,14 +14,16 @@ import uk.com.a1ms.util.StrictModeUtils;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         if (BuildConfig.DEBUG) {
             // Enable strict mode checks when in debug modes
             StrictModeUtils.enableStrictMode();
         }
+        ((A1MSApplication)getApplication()).setCurrentActivity(this);
     }
 
     @Override
@@ -50,5 +52,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public abstract void updateUi(Object object);
+    protected void startRegistrationActivity(Bundle bundle,boolean finish){
+
+        Intent intent = new Intent(this,MainActivity.class);
+        if(bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+
+        if(finish){
+            finish();
+        }
+    }
+
 }

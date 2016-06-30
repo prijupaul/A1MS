@@ -1,6 +1,11 @@
 package uk.com.a1ms.util;
 
+import android.Manifest;
+import android.app.Activity;
 import android.os.Build;
+
+import uk.com.a1ms.A1MSApplication;
+import uk.com.a1ms.BuildConfig;
 
 /**
  * Created by priju.jacobpaul on 24/05/16.
@@ -45,5 +50,17 @@ public class BuildUtils {
 
     public static int getMaxPhoneNumberDigits(){
         return 9;
+    }
+
+    public static boolean isDbOnSDCard(){
+
+        Activity activity = ((A1MSApplication)A1MSApplication.applicationContext).getCurrentActivity();
+        if(activity != null) {
+            if ((BuildConfig.DEBUG) &&
+                    (PermissionRequestManager.checkPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE))){
+                return true;
+            }
+        }
+        return false;
     }
 }

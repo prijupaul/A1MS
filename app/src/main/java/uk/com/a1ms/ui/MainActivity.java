@@ -2,7 +2,6 @@ package uk.com.a1ms.ui;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,54 +11,74 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
-import java.util.ArrayList;
+import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.R;
-import uk.com.a1ms.dialogutil.DialogUtil;
 import uk.com.a1ms.network.dto.UserDetails;
 import uk.com.a1ms.network.handlers.UserActivationNetworkHandler;
 import uk.com.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import uk.com.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
 import uk.com.a1ms.ui.uiutil.ProgressView;
 import uk.com.a1ms.util.AndroidUtils;
+import uk.com.a1ms.util.LocationService;
+import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 public class MainActivity extends BaseActivity implements RegistrationAcceptPhoneFragment.OnRegoAcceptPhoneFragmentInteractionListener,
-        RegistrationAcceptActivationFragment.OnRegoActivationFragmentInteractionListener
-{
+        RegistrationAcceptActivationFragment.OnRegoActivationFragmentInteractionListener, NotificationController.NotificationListener {
 
     private FrameLayout mFrameLayoutHolder;
+    private final String TAG = MainActivity.class.getSimpleName();
+    private LocationService mLocationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        SharedPreferenceManager.setFirstTimeLaunch(false,this);
+//        SharedPreferenceManager.setFirstTimeLaunch(false,this);
+        setContentView(R.layout.mainactivity);
 
-        if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
-            setContentView(R.layout.mainactivity);
+        mFrameLayoutHolder = (FrameLayout) findViewById(R.id.framelayout_holder);
+        mLocationService = new LocationService(this);
 
-            mFrameLayoutHolder = (FrameLayout)findViewById(R.id.framelayout_holder);
-
-            Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-            if(toolbar != null) {
-                toolbar.setCollapsible(false);
-                setSupportActionBar(toolbar);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                getSupportActionBar().setTitle("Activation");
-            }
-
-            launchRegoAcceptPhoneFragment();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            toolbar.setCollapsible(false);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setTitle("Activation");
         }
-        else {
-            startContactsGroupsActivity(null,true);
-        }
-
     }
 
-//    @Override
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        NotificationController.getInstance().addObserver(this,NotificationController.didReceiveLocation);
+
+        if (SharedPreferenceManager.isFirstTimeLaunch(this)) {
+            launchRegoAcceptPhoneFragment();
+        } else {
+            startContactsGroupsActivity(null, true);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        NotificationController.getInstance().removeObserver(this,NotificationController.didReceiveLocation);
+        mLocationService.stopLocationListener();
+    }
+
+    //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        switch (item.getItemId()){
 //            case R.id.action_deals_notification:{
@@ -75,36 +94,36 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch (requestCode){
-            case 1:{
-                if( (grantResults.length > 1) &&  (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
-                    DialogUtil.showOKDialog(this,
-                            getString(R.string.permission_title),
-                            getString(R.string.permission_receive_sms),
-                            getString(android.R.string.ok),
-                            null, false);
-                }
+
+        switch (requestCode) {
+            case 1: {
+//                if ((grantResults.length > 1) && (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
+//                    DialogUtil.showOKDialog(this,
+//                            getString(R.string.permission_title),
+//                            getString(R.string.permission_receive_sms),
+//                            getString(android.R.string.ok),
+//                            null, false);
+//                }
                 break;
             }
         }
     }
 
-    @Override
-    public void updateUi(Object object) {
-
-    }
-
     @TargetApi(Build.VERSION_CODES.M)
-    private void launchRegoAcceptPhoneFragment(){
+    private void launchRegoAcceptPhoneFragment() {
 
-        if (!PermissionRequestManager.checkPermission(this,Manifest.permission.RECEIVE_SMS)) {
-            ArrayList<String> permissons = new ArrayList<>();
-            permissons.add(Manifest.permission.RECEIVE_SMS);
-            String[] items = permissons.toArray(new String[permissons.size()]);
-            PermissionRequestManager.requestPermission(this,items,1);
-        }
+//        if (!PermissionRequestManager.checkPermission(this, Manifest.permission.RECEIVE_SMS)) {
+//            ArrayList<String> permissons = new ArrayList<>();
+//            permissons.add(Manifest.permission.RECEIVE_SMS);
+//            permissons.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+//            permissons.add(Manifest.permission.ACCESS_FINE_LOCATION);
+//
+//            String[] items = permissons.toArray(new String[permissons.size()]);
+//            PermissionRequestManager.requestPermission(this, items, 1);
+//        }
+
+        PermissionRequestManager.checkAndRequestPermission(this, Manifest.permission.RECEIVE_SMS,1);
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -116,13 +135,13 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     @Override
     public void onNextPressed(final String countryCode, final String phoneNo) {
-        if(!countryCode.isEmpty() && !phoneNo.isEmpty()){
+        if (!countryCode.isEmpty() && !phoneNo.isEmpty()) {
 
             // TODO: remove the deprecated fields.
 
 
             mFrameLayoutHolder.setEnabled(false);
-            ProgressView.addProgressView(mFrameLayoutHolder,"Registering +" + countryCode + phoneNo);
+            ProgressView.addProgressView(mFrameLayoutHolder, "Registering +" + countryCode + phoneNo);
 
             UserActivationNetworkHandler builder = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                     .setMobileNumber(phoneNo)
@@ -135,8 +154,8 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
                     ProgressView.removeProgressView(mFrameLayoutHolder);
 
-                    if((details != null) && (details.getToken() != null)){
-                        SharedPreferenceManager.saveUserToken(details.getToken(),MainActivity.this);
+                    if ((details != null) && (details.getToken() != null)) {
+                        SharedPreferenceManager.saveUserToken(details.getToken(), MainActivity.this);
                     }
 
                     AndroidUtils.setWaitingForSms(true);
@@ -151,7 +170,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         }
     }
 
-    private void launchRegoInputActivationCodeFragment(String phoneNumber){
+    private void launchRegoInputActivationCodeFragment(String phoneNumber) {
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -165,7 +184,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         // TODO:
         // Send the activation code to the server
         AndroidUtils.setWaitingForSms(false);
-        startContactsGroupsActivity(null,true);
+        startContactsGroupsActivity(null, true);
     }
 
 
@@ -174,5 +193,22 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         super.onDestroy();
         UserActivationNetworkHandler.cancelNetworkOperation();
         ProgressView.removeProgressView(mFrameLayoutHolder);
+    }
+
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+
+        if(id == NotificationController.didReceiveLocation){
+
+            Double latitude = (Double) args[0];
+            Double longitude = (Double) args[1];
+            Logger.d("Latitude %f" , latitude);
+            Logger.d("Longitude %f" , longitude);
+
+            if(mLocationService != null){
+                mLocationService.stopLocationListener();
+            }
+            NotificationController.getInstance().removeObserver(this,NotificationController.didReceiveLocation);
+        }
     }
 }

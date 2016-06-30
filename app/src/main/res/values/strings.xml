@@ -35,9 +35,14 @@
     <string name="hint_add_contacts">Add Contact</string>
     <string name="hint_delete">Delete Selected</string>
     <string name="hint_next">Next</string>
-    <string name="hint_enter_phone">--- --- ---  --- --- ---  --- --- ---</string>
-    <string name="hint_enter_phone_activation_code_will_be_send">Please confirm your country code and phone number. The activation code will be send to this number. Hence, please make sure the number can receive messages.</string>
-    <string name="hint_enter_phone_activation_code_wait">Activation code is send as SMS to the phone number %s</string>
+    <string name="hint_enter_phone">--- --- --- --- --- --- --- --- ---</string>
+    <string name="hint_enter_phone_activation_code_will_be_send">Please confirm your country code
+        and phone number. The activation code will be send to this number. Hence, please make sure
+        the number can receive messages.
+    </string>
+    <string name="hint_enter_phone_activation_code_wait">Activation code is send as SMS to the phone
+        number %s
+    </string>
     <string name="hint_input_activation_code">Activation code</string>
 
     <!-- dialogs -->
@@ -48,10 +53,11 @@
 
     <!-- Permissions -->
     <string name="permission_title">Permission Request</string>
-    <string name="permission_message_contacts">A1MS needs permission to access contacts to fetch
-        your contacts list
+    <string name="permission_denied_message">All features of A1MS will not function without
+        requested permissions granted. Please provide access to all requested permissions.
     </string>
-    <string name="permission_receive_sms">A1MS needs permission to access your SMS to pre-populate the activation code.
+    <string name="permission_receive_sms">A1MS needs permission to access your SMS to pre-populate
+        the activation code.
     </string>
 
     <!-- Title -->
@@ -64,4 +70,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string name="intro_one">A1MS Intro 1</string>
+    <string name="intro_two">A1MS Intro 2</string>
+    <string name="intro_three">A1MS Intro 3</string>
+
+    <string name="hint_register">Register</string>
+
 </resources>

@@ -13,8 +13,4 @@ public class MessagingActivity extends BaseActivity {
         super.onCreate(savedInstanceState, persistentState);
     }
 
-    @Override
-    public void updateUi(Object object) {
-
-    }
 }

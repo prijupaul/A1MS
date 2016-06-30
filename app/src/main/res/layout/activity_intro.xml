@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    />
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginBottom="20dp"
+                 android:background="@color/transparent"
+                 android:orientation="horizontal"
+    >
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:gravity="center"
+        >
+
+            <ImageView android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:layout_margin="5dp"
+                       android:id="@+id/imageview_circle1"
+                       android:background="@drawable/circle"/>
+
+            <ImageView android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:layout_margin="5dp"
+                       android:id="@+id/imageview_circle2"
+                       android:background="@drawable/circle_blue"/>
+
+            <ImageView android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:layout_margin="5dp"
+                       android:id="@+id/imageview_circle3"
+                       android:background="@drawable/circle_blue"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

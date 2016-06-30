@@ -30,6 +30,7 @@ import uk.com.a1ms.listeners.CustomTabLayoutListener;
 import uk.com.a1ms.ui.fragments.BaseFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsInviteFragment;
+import uk.com.a1ms.util.PermissionRequestManager;
 
 /**
  * Created by priju.jacobpaul on 28/05/16.
@@ -128,10 +129,16 @@ public class ContactsGroupsActivity extends BaseActivity{
         }
 
         ArrayList<String> permissons = new ArrayList<>();
-        if (checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+        if ( (checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) ||
+            (!PermissionRequestManager.checkPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)) ||
+                (!PermissionRequestManager.checkPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE))) {
+
             permissons.add(Manifest.permission.READ_CONTACTS);
             permissons.add(Manifest.permission.WRITE_CONTACTS);
             permissons.add(Manifest.permission.GET_ACCOUNTS);
+            permissons.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            permissons.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
             isPermissionAsked = true;
             String[] items = permissons.toArray(new String[permissons.size()]);
             requestPermissions(items, 1);
@@ -140,10 +147,6 @@ public class ContactsGroupsActivity extends BaseActivity{
 //            permissons.add(Manifest.permission.READ_EXTERNAL_STORAGE);
 //            permissons.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 //        }
-
-    }
-    @Override
-    public void updateUi(Object object) {
 
     }
 
@@ -159,22 +162,19 @@ public class ContactsGroupsActivity extends BaseActivity{
                 switch (permissions[a]) {
                     case Manifest.permission.READ_CONTACTS:
                         FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getContactsWithSMSPhone(null);
-                        break;
+                        return;
                     case Manifest.permission.WRITE_EXTERNAL_STORAGE:
 
-                        break;
+                        return;
                 }
             }
         }
 
         if(requestCode == 1) {
-            if( (grantResults.length > 1) &&  (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                FetchContactsHandler.getInstance(getApplicationContext()).getContactsWithSMSPhone(null);
-            }
-            else {
+
                 DialogUtil.showOKDialog(this,
                         getString(R.string.permission_title),
-                        getString(R.string.permission_message_contacts),
+                        getString(R.string.permission_denied_message),
                         getString(android.R.string.ok),
                         new DialogCallBackListener() {
                             @Override
@@ -188,7 +188,7 @@ public class ContactsGroupsActivity extends BaseActivity{
                                 }
                             }
                         }, false);
-            }
+
         }
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
@@ -40,10 +41,11 @@ public class PermissionRequestManager {
         }
 
         if(!checkPermission(activity,permission)){
+
             if(ActivityCompat.shouldShowRequestPermissionRationale(activity,permission)){
                 DialogUtil.showOKDialog(activity,
                         activity.getString(R.string.permission_title),
-                        activity.getString(R.string.permission_message_contacts),
+                        activity.getString(R.string.permission_denied_message),
                         activity.getString(android.R.string.ok),
                         new DialogCallBackListener() {
                             @Override
@@ -57,7 +59,9 @@ public class PermissionRequestManager {
 
             }
             else {
-                ActivityCompat.requestPermissions(activity, new String[]{permission},code);
+
+//                ActivityCompat.requestPermissions(activity, new String[]{permission}, code);
+                Toast.makeText(activity, "Go to settings and enable permissions", Toast.LENGTH_LONG).show();
             }
         }
     }
