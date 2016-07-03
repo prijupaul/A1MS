@@ -12,6 +12,7 @@ public class SharedPreferenceManager {
     private static String mFirstTimeLaunch;
     private static String mIsUserRegistered;
     private static String mFile;
+    private static String mUserId;
 
     private static String TAG = SharedPreferenceManager.class.getName();
 
@@ -19,6 +20,7 @@ public class SharedPreferenceManager {
 
         mFile = context.getPackageName();
         mToken = mFile + "." + "token";
+        mUserId = mFile + "." + "userId";
         mFirstTimeLaunch = mFile + "." + "firstTimeLaunch";
         mIsUserRegistered = mFile + "." + "isUserRegistered";
 
@@ -28,8 +30,16 @@ public class SharedPreferenceManager {
         saveStringValue(mToken, authToken, context);
     }
 
-    public static String getUserToken(Context context, String keyName) {
-        return getStringValue(mToken + keyName, context, "");
+    public static String getUserToken(Context context) {
+        return getStringValue(mToken , context, "");
+    }
+
+    public static void saveUserId(String authToken, Context context) {
+        saveStringValue(mToken, authToken, context);
+    }
+
+    public static String getUserId(Context context) {
+        return getStringValue(mToken + mUserId, context, "");
     }
 
     public static void setUserRegistered(boolean userRegistered,Context context){

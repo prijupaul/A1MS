@@ -27,6 +27,8 @@ public class UserActivationNetworkHandler extends BaseNetwork {
     @Deprecated
     private String password;
 
+    private String userId;
+
     private UserActivationListener userActivationListener;
 
     public static class UserActivationNetworkHandlerBuilder{
@@ -36,6 +38,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         private String mobileNumber;
         private String name;
         private String password;
+        private String userID;
 
         public  UserActivationNetworkHandlerBuilder setBearerToken(String bearerToken ){
             this.bearerToken = bearerToken;
@@ -62,6 +65,11 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             return this;
         }
 
+        public UserActivationNetworkHandlerBuilder setUserID(String userID){
+            this.userID = userID;
+            return this;
+        }
+
 
         public UserActivationNetworkHandler build(){
 
@@ -71,6 +79,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             userActivationNetworkHandler.setMobileNumber(mobileNumber);
             userActivationNetworkHandler.setPassword(password);
             userActivationNetworkHandler.setName(name);
+            userActivationNetworkHandler.setUserId(userID);
             userActivationNetworkHandler.init();
             return userActivationNetworkHandler;
         }
@@ -103,13 +112,36 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         this.name = name;
     }
 
+    public void setUserId(String userId){
+        this.userId = userId;
+    }
 
     public void doActivateUserWithCode(UserActivationListener listener){
 
         this.userActivationListener = listener;
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doActivatePhoneNumber(mobileNumber,activationCode);
+        final Call<UserDetails> call = userActivation.doActivatePhoneNumber(activationCode,userId);
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+                userActivationListener.onUserActivationResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UserDetails> call, Throwable t) {
+                userActivationListener.onUserActivationError();
+            }
+        });
+
+    }
+
+    public void doResendActivationCode(UserActivationListener listener){
+
+        this.userActivationListener = listener;
+
+        NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
+        final Call<UserDetails> call = userActivation.doResendActivationCode(userId);
         call.enqueue(new Callback<UserDetails>() {
             @Override
             public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
@@ -141,8 +173,6 @@ public class UserActivationNetworkHandler extends BaseNetwork {
                 userActivationListener.onUserActivationError();
             }
         });
-
-
     }
 
     public static void cancelNetworkOperation(){

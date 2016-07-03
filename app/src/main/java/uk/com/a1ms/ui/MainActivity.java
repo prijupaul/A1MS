@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
@@ -156,6 +157,8 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
                     if ((details != null) && (details.getToken() != null)) {
                         SharedPreferenceManager.saveUserToken(details.getToken(), MainActivity.this);
+                        SharedPreferenceManager.saveUserId(details.getUser().getId(),MainActivity.this);
+
                     }
 
                     AndroidUtils.setWaitingForSms(true);
@@ -183,8 +186,25 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     public void onSendActivationCode(String activationCode) {
         // TODO:
         // Send the activation code to the server
-        AndroidUtils.setWaitingForSms(false);
-        startContactsGroupsActivity(null, true);
+
+        UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
+                .setActivationCode(activationCode)
+                .setUserID(SharedPreferenceManager.getUserId(this))
+                .build();
+        activationNetworkHandler.doActivateUserWithCode(new UserActivationNetworkHandler.UserActivationListener() {
+            @Override
+            public void onUserActivationResponse(UserDetails userDetails) {
+                AndroidUtils.setWaitingForSms(false);
+                startContactsGroupsActivity(null, true);
+            }
+
+            @Override
+            public void onUserActivationError() {
+                Toast.makeText(MainActivity.this,"Activation error",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
 
