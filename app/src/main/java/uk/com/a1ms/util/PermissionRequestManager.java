@@ -16,33 +16,72 @@ import uk.com.a1ms.dialogutil.DialogUtil;
 public class PermissionRequestManager {
 
 
-    public static boolean checkPermission(Activity activity,String permission){
+    public static boolean checkPermission(Activity activity, String permission) {
 
-        if(BuildUtils.isVersionLesserThanM()) {
+        if (BuildUtils.isVersionLesserThanM()) {
             return true;
         }
 
-        int permissionStatus = ContextCompat.checkSelfPermission(activity,permission);
-        return  (permissionStatus == PackageManager.PERMISSION_GRANTED) ? true : false;
+        int permissionStatus = ContextCompat.checkSelfPermission(activity, permission);
+        return (permissionStatus == PackageManager.PERMISSION_GRANTED) ? true : false;
     }
 
-    public static void requestPermission(final Activity activity,String[] permissions, final int code){
-        if(BuildUtils.isVersionLesserThanM()) {
+    public static void requestPermission(final Activity activity, String[] permissions, final int code) {
+        if (BuildUtils.isVersionLesserThanM()) {
             return;
         }
-        ActivityCompat.requestPermissions(activity, permissions,code);
+        ActivityCompat.requestPermissions(activity, permissions, code);
 
     }
 
-    public static void checkAndRequestPermission(final Activity activity, final String permission,final int code){
+    public static void checkAndRequestPermissions(final Activity activity, final String[] permissions, final int code) {
 
-        if(BuildUtils.isVersionLesserThanM()) {
+        if (BuildUtils.isVersionLesserThanM()) {
             return;
         }
 
-        if(!checkPermission(activity,permission)){
+        boolean shouldShowRequestPermission = false;
 
-            if(ActivityCompat.shouldShowRequestPermissionRationale(activity,permission)){
+        for (String permission : permissions) {
+            if (!checkPermission(activity, permission)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+                    shouldShowRequestPermission = true;
+                    break;
+                }
+            }
+        }
+
+        if (shouldShowRequestPermission) {
+            DialogUtil.showOKDialog(activity,
+                    activity.getString(R.string.permission_title),
+                    activity.getString(R.string.permission_denied_message),
+                    activity.getString(android.R.string.ok),
+                    new DialogCallBackListener() {
+                        @Override
+                        public void run() {
+                            ActivityCompat.requestPermissions(activity,
+                                    permissions,
+                                    code);
+                            return;
+                        }
+                    }, false);
+
+        } else {
+
+//                ActivityCompat.requestPermissions(activity, new String[]{permission}, code);
+            Toast.makeText(activity, "You could enable permissions from settings app.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static void checkAndRequestPermission(final Activity activity, final String permission, final int code) {
+
+        if (BuildUtils.isVersionLesserThanM()) {
+            return;
+        }
+
+        if (!checkPermission(activity, permission)) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
                 DialogUtil.showOKDialog(activity,
                         activity.getString(R.string.permission_title),
                         activity.getString(R.string.permission_denied_message),
@@ -55,13 +94,12 @@ public class PermissionRequestManager {
                                         code);
                                 return;
                             }
-                        },false);
+                        }, false);
 
-            }
-            else {
+            } else {
 
 //                ActivityCompat.requestPermissions(activity, new String[]{permission}, code);
-                Toast.makeText(activity, "Go to settings and enable permissions", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "You could enable permissions from settings app.", Toast.LENGTH_LONG).show();
             }
         }
     }

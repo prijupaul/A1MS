@@ -22,7 +22,7 @@ public interface NetworkServices {
 
 
     @FormUrlEncoded
-    @POST(NetworkConstants.USER_ACTIVATION_2)
+    @POST(NetworkConstants.USER_ACTIVATION)
     Call<UserDetails> doActivatePhoneNumber(@Field("code") String code,
                                             @Field("id") String id);
 

@@ -2,6 +2,8 @@ package uk.com.a1ms.contacts;
 
 import android.content.Context;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.SortedMap;
 
 import uk.com.a1ms.dto.Contacts;
@@ -38,7 +40,7 @@ public class FetchContactsHandler implements FetchContactsLoaderListener{
 
     public  void getContactsWithSMSPhone(FetchContactsHandlerListener listener){
         mListener = listener;
-        if(mContactsWithEmailPhone == null) {
+        if( (mContactsWithEmailPhone == null) || (mContactsWithEmailPhone.size() == 0)) {
             mContactsLoader.loadContactsWithSMS();
         }
         else {
@@ -58,6 +60,7 @@ public class FetchContactsHandler implements FetchContactsLoaderListener{
 
     @Override
     public void onContactsLoadComplete(SortedMap<String, Contacts> contactsList) {
+        Logger.d("onContactsLoadComplete contactsList size: %d",contactsList.size());
         mContactsWithEmailPhone  = contactsList;
         NotificationController.getInstance().postNotificationName(NotificationController.contactsDidLoaded,mContactsWithEmailPhone);
 

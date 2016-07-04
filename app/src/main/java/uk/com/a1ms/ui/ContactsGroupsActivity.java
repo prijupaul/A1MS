@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 
 import uk.com.a1ms.A1MSApplication;
@@ -135,18 +137,14 @@ public class ContactsGroupsActivity extends BaseActivity{
 
             permissons.add(Manifest.permission.READ_CONTACTS);
             permissons.add(Manifest.permission.WRITE_CONTACTS);
-            permissons.add(Manifest.permission.GET_ACCOUNTS);
             permissons.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             permissons.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
             isPermissionAsked = true;
             String[] items = permissons.toArray(new String[permissons.size()]);
-            requestPermissions(items, 1);
+//            requestPermissions(items, 1);
+            PermissionRequestManager.checkAndRequestPermissions(this,items,1);
         }
-//        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            permissons.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-//            permissons.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//        }
 
     }
 
@@ -161,10 +159,10 @@ public class ContactsGroupsActivity extends BaseActivity{
                 }
                 switch (permissions[a]) {
                     case Manifest.permission.READ_CONTACTS:
+                        Logger.d(TAG + " onRequestPermissionsResult - Contacts");
                         FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getContactsWithSMSPhone(null);
                         return;
-                    case Manifest.permission.WRITE_EXTERNAL_STORAGE:
-
+                      case Manifest.permission.WRITE_EXTERNAL_STORAGE:
                         return;
                 }
             }

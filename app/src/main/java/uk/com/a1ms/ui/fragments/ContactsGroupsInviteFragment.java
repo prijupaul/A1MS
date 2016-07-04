@@ -14,6 +14,7 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 
 import com.futuremind.recyclerviewfastscroll.FastScroller;
+import com.orhanobut.logger.Logger;
 
 import java.util.SortedMap;
 
@@ -37,6 +38,8 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements  Notif
     private FloatingActionButton mFab;
 
     private SortedMap<String,Contacts> mContactsList;
+
+    private final String TAG = ContactsGroupsInviteFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -140,6 +143,8 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements  Notif
 
     @Override
     public void onNotificationReceived(int id, Object... args) {
+
+        Logger.d(TAG + " onNotificationReceived %s",id);
 
         if(id == NotificationController.contactsDidLoaded){
             setContactList(FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getLoadedContacts());

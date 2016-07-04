@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.IntroPagerAdapter;
+import uk.com.a1ms.util.SharedPreferenceManager;
 
 public class IntroActivity extends BaseActivity implements IntroPagerAdapter.IntroPageListener {
 
@@ -24,6 +25,19 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        SharedPreferenceManager.setFirstTimeLaunch(true,this);
+
+        if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
+            initPages();
+        }
+        else {
+            startContactsGroupsActivity(savedInstanceState,true);
+        }
+
+    }
+
+
+    private void initPages(){
         ImageView img1 = (ImageView)findViewById(R.id.imageview_circle1);
         ImageView img2 = (ImageView)findViewById(R.id.imageview_circle2);
         ImageView img3 = (ImageView)findViewById(R.id.imageview_circle3);
@@ -67,9 +81,7 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
 
             }
         });
-
     }
-
     @Override
     public void registerButtonPressed() {
 
@@ -79,6 +91,8 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        permissions.add(Manifest.permission.READ_CONTACTS);
+
         String[] items = permissions.toArray(new String[permissions.size()]);
         ActivityCompat.requestPermissions(this,items,1);
     }
