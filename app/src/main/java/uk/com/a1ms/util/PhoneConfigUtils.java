@@ -5,6 +5,7 @@ import android.telephony.TelephonyManager;
 
 import java.util.Locale;
 
+import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 
 /**
@@ -41,6 +42,12 @@ public class PhoneConfigUtils {
             }
         }
         return CountryPhoneCode;
+    }
+
+    public static String getIMEI(){
+
+        TelephonyManager telephonyManager = (TelephonyManager) A1MSApplication.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getDeviceId();
     }
 }
 

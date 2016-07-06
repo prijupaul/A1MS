@@ -87,6 +87,7 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
 
         ArrayList<String> permissions = new ArrayList<>();
         permissions.add(Manifest.permission.RECEIVE_SMS);
+        permissions.add(Manifest.permission.READ_PHONE_STATE);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);

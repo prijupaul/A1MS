@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 import com.orhanobut.logger.Logger;
@@ -23,12 +24,15 @@ import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.ContactsGroupsInviteAdapter;
 import uk.com.a1ms.contacts.FetchContactsHandler;
 import uk.com.a1ms.dto.Contacts;
+import uk.com.a1ms.network.handlers.UserInviteNetworkHandler;
 import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
  */
-public class ContactsGroupsInviteFragment extends BaseFragment implements  NotificationController.NotificationListener{
+public class ContactsGroupsInviteFragment extends BaseFragment implements  NotificationController.NotificationListener,
+        ContactsGroupsInviteAdapter.ContactsGroupsInviteAdapterListener
+{
 
     private RecyclerView mRecyclerView;
     private FastScroller mFastScroller;
@@ -88,7 +92,7 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements  Notif
         mContactsList = contactList;
 
         if(mAdapter == null) {
-            mAdapter = new ContactsGroupsInviteAdapter(contactList);
+            mAdapter = new ContactsGroupsInviteAdapter(contactList,this);
         }
 
         mAdapter.setDataSet(mContactsList);
@@ -150,5 +154,24 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements  Notif
             setContactList(FetchContactsHandler.getInstance(A1MSApplication.applicationContext).getLoadedContacts());
             mFastScroller.setRecyclerView(mRecyclerView);
         }
+    }
+
+    @Override
+    public void onInviteClick(String email, String mobileNumber, int position) {
+        UserInviteNetworkHandler inviteNetworkHandler = new UserInviteNetworkHandler.UserInviteNetworkBuilder()
+                .setMobileNumber(mobileNumber)
+                .setUserEmail(email)
+                .build();
+        inviteNetworkHandler.sendInviteToUser(new UserInviteNetworkHandler.UserInviteNetworkListener() {
+            @Override
+            public void onInviteResponse() {
+                Toast.makeText(getActivity(),getString(R.string.invite_sent),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onInviteError() {
+                Toast.makeText(getActivity(),getString(R.string.invite_sent_error),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -24,6 +24,8 @@ import uk.com.a1ms.util.AndroidUtils;
 import uk.com.a1ms.util.LocationService;
 import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
+import uk.com.a1ms.util.PhoneConfigUtils;
+import uk.com.a1ms.util.Random;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 public class MainActivity extends BaseActivity implements RegistrationAcceptPhoneFragment.OnRegoAcceptPhoneFragmentInteractionListener,
@@ -144,10 +146,11 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             mFrameLayoutHolder.setEnabled(false);
             ProgressView.addProgressView(mFrameLayoutHolder, "Registering +" + countryCode + phoneNo);
 
+            final String password = PhoneConfigUtils.getIMEI() + ":" + Random.getRandomString();
             UserActivationNetworkHandler builder = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                     .setMobileNumber(phoneNo)
                     .setName("deprecated")
-                    .setPassword("password124")
+                    .setPassword(password)
                     .build();
             builder.doRegisterUserWithMobileNumber(new UserActivationNetworkHandler.UserActivationListener() {
                 @Override
@@ -156,13 +159,15 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                     ProgressView.removeProgressView(mFrameLayoutHolder);
 
                     if ((details != null) && (details.getToken() != null)) {
+                        SharedPreferenceManager.saveMobileNumber(details.getUser().getUsername(),MainActivity.this);
                         SharedPreferenceManager.saveUserToken(details.getToken(), MainActivity.this);
                         SharedPreferenceManager.saveUserId(details.getUser().getId(),MainActivity.this);
+                        SharedPreferenceManager.saveUserPassword(password,MainActivity.this);
 
                     }
 
                     AndroidUtils.setWaitingForSms(true);
-                    launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo);
+                    launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,details.getUser().getCode());
                 }
 
                 @Override
@@ -173,11 +178,11 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         }
     }
 
-    private void launchRegoInputActivationCodeFragment(String phoneNumber) {
+    private void launchRegoInputActivationCodeFragment(String phoneNumber,String code) {
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        Fragment fr = RegistrationAcceptActivationFragment.newInstance(phoneNumber);
+        Fragment fr = RegistrationAcceptActivationFragment.newInstance(phoneNumber,code);
         fragmentTransaction.replace(R.id.framelayout_holder, fr);
         fragmentTransaction.commit();
     }
@@ -195,7 +200,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             @Override
             public void onUserActivationResponse(UserDetails userDetails) {
                 AndroidUtils.setWaitingForSms(false);
-                startContactsGroupsActivity(null, true);
+                doUserLogin(userDetails);
             }
 
             @Override
@@ -205,6 +210,26 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         });
 
 
+    }
+
+
+    private void doUserLogin(UserDetails details){
+
+        UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
+                .setMobileNumber(SharedPreferenceManager.getMobileNumber(this))
+                .setPassword(SharedPreferenceManager.getUserPassword(this))
+                .build();
+        activationNetworkHandler.doUserLogin(new UserActivationNetworkHandler.UserActivationListener() {
+            @Override
+            public void onUserActivationResponse(UserDetails userDetails) {
+                startContactsGroupsActivity(null, true);
+            }
+
+            @Override
+            public void onUserActivationError() {
+                Toast.makeText(MainActivity.this,"Login error",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 

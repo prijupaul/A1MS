@@ -13,6 +13,8 @@ public class SharedPreferenceManager {
     private static String mIsUserRegistered;
     private static String mFile;
     private static String mUserId;
+    private static String mUserPassword;
+    private static String mMobileNumber;
 
     private static String TAG = SharedPreferenceManager.class.getName();
 
@@ -23,6 +25,8 @@ public class SharedPreferenceManager {
         mUserId = mFile + "." + "userId";
         mFirstTimeLaunch = mFile + "." + "firstTimeLaunch";
         mIsUserRegistered = mFile + "." + "isUserRegistered";
+        mUserPassword = mFile + "." + "userPassword";
+        mMobileNumber = mFile + "." + "mobileNumber";
 
     }
 
@@ -34,12 +38,28 @@ public class SharedPreferenceManager {
         return getStringValue(mToken , context, "");
     }
 
-    public static void saveUserId(String authToken, Context context) {
-        saveStringValue(mToken, authToken, context);
+    public static void saveMobileNumber(String mobileNumber, Context context) {
+        saveStringValue(mMobileNumber, mobileNumber, context);
+    }
+
+    public static String getMobileNumber(Context context) {
+        return getStringValue(mMobileNumber , context, "");
+    }
+
+    public static void saveUserId(String userId, Context context) {
+        saveStringValue(mUserId, userId, context);
     }
 
     public static String getUserId(Context context) {
-        return getStringValue(mToken + mUserId, context, "");
+        return getStringValue(mUserId , context, "");
+    }
+
+    public static void saveUserPassword(String userPassword, Context context) {
+        saveStringValue(mUserPassword, userPassword, context);
+    }
+
+    public static String getUserPassword(Context context) {
+        return getStringValue(mUserPassword, context, "");
     }
 
     public static void setUserRegistered(boolean userRegistered,Context context){

@@ -11,8 +11,13 @@ public class NetworkConstants {
     public static final String USER_DETAILS = "/api/user";
     public static final String USER_ACTIVATION = "/api/user/activate";
     public static final String USER_MESSAGE = "/api/message/{idUser}";
+    public static final String USER_INVITE = "/api/invite";
+    public static final String USER_CREATE_GROUP = "/api/group";
+    public static final String USER_GET_GROUP = "api/group";
+
+
 
     public static final String BASE_URL = "http://163.172.137.155:8000";
 
-    public static final boolean IS_MOCK = true;
+    public static final boolean IS_MOCK = false;
 }

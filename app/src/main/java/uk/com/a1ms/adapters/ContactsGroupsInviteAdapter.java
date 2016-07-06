@@ -26,8 +26,14 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
 
     private SortedMap<String,Contacts> mDataSet;
     private boolean mCheckboxStatus;
+    private ContactsGroupsInviteAdapterListener mInviteAdapterListener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public interface ContactsGroupsInviteAdapterListener {
+        void onInviteClick(String email, String mobileNumber, int position);
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textViewName;
         TextView textViewEmail;
         TextView textViewPhone;
@@ -49,7 +55,12 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
             this.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if(ContactsGroupsInviteAdapter.this.mInviteAdapterListener != null){
+                        mInviteAdapterListener.onInviteClick(
+                                textViewEmail.getText().toString(),
+                               textViewPhone.getText().toString(),
+                                getAdapterPosition() );
+                    }
                 }
             });
 
@@ -57,8 +68,9 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
 
     }
 
-    public ContactsGroupsInviteAdapter(SortedMap<String,Contacts> dataSet){
+    public ContactsGroupsInviteAdapter(SortedMap<String,Contacts> dataSet,ContactsGroupsInviteAdapterListener listener){
         mDataSet = dataSet;
+        mInviteAdapterListener = listener;
     }
 
     public void setDataSet(SortedMap<String,Contacts> dataSet){

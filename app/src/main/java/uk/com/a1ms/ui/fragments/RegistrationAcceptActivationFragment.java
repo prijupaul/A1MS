@@ -32,6 +32,9 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
     private MenuItem mMenuNext;
     private TextView mTVActivationCodeSend;
     private static final String PHONE_NUMBER = "phone";
+    private static final String CODE = "code";
+
+    private String code;
 
 
     public interface OnRegoActivationFragmentInteractionListener {
@@ -49,10 +52,11 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
      * @return A new instance of fragment BlankFragment.
      */
 
-    public static RegistrationAcceptActivationFragment newInstance(String phoneNumber) {
+    public static RegistrationAcceptActivationFragment newInstance(String phoneNumber,String code) {
         RegistrationAcceptActivationFragment fragment = new RegistrationAcceptActivationFragment();
         Bundle bundle = new Bundle();
         bundle.putString(PHONE_NUMBER,phoneNumber);
+        bundle.putString(CODE,code);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -61,6 +65,7 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        code = getArguments().getString(CODE);
     }
 
 
@@ -76,7 +81,7 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
         String string = String.format(getResources().getString(R.string.hint_enter_phone_activation_code_wait),
                 bundle.getString(PHONE_NUMBER));
         mTVActivationCodeSend.setText(string);
-
+        mETActivationCode.setText(code);
         return view;
     }
 

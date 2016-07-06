@@ -24,7 +24,6 @@ public class UserActivationNetworkHandler extends BaseNetwork {
     private String mobileNumber;
     @Deprecated
     private String name;
-    @Deprecated
     private String password;
 
     private String userId;
@@ -155,6 +154,34 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         });
 
     }
+
+    /**
+     * This is the last step of two step login.
+     * 1. Registration
+     * 2. Activation
+     * 3. Login
+     * @param listener
+     */
+    public void doUserLogin(UserActivationListener listener){
+
+        this.userActivationListener = listener;
+
+        NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
+        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password);
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+                userActivationListener.onUserActivationResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UserDetails> call, Throwable t) {
+                userActivationListener.onUserActivationError();
+            }
+        });
+
+    }
+
 
     public void doRegisterUserWithMobileNumber(UserActivationListener listener){
 

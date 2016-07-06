@@ -15,12 +15,17 @@ public class UserDetails {
 
         private String username;
         private String name;
+        private String password;
         private String dateCreated;
         private boolean isActive;
+        private boolean isAdmin;
         private boolean isRetailer;
         private String code;
         private boolean isDeleted;
         private String id;
+        private String ids;
+        private String isActiSent;
+
 
         public String getUsername() {
             return username;
@@ -84,6 +89,38 @@ public class UserDetails {
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public boolean isAdmin() {
+            return isAdmin;
+        }
+
+        public void setAdmin(boolean admin) {
+            isAdmin = admin;
+        }
+
+        public String getIds() {
+            return ids;
+        }
+
+        public void setIds(String ids) {
+            this.ids = ids;
+        }
+
+        public String getIsActiSent() {
+            return isActiSent;
+        }
+
+        public void setIsActiSent(String isActiSent) {
+            this.isActiSent = isActiSent;
         }
     }
 

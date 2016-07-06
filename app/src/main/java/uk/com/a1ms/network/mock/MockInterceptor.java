@@ -25,6 +25,13 @@ public class MockInterceptor implements Interceptor {
         if (encoded.equals(NetworkConstants.USER_REGISTRATION)) {
             return mockUserRegistrationResponse(chain);
         }
+        else if(encoded.equals(NetworkConstants.USER_LOGIN)) {
+            return mockUserLogin(chain);
+        }
+        else if(encoded.equals(NetworkConstants.USER_ACTIVATION)){
+            return mockUserActivation(chain);
+        }
+
         // nothing to handle. proceed with the original request
         return chain.proceed(original);
     }
@@ -49,5 +56,41 @@ public class MockInterceptor implements Interceptor {
     }
 
 
+
+    private Response mockUserLogin(Chain chain){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String jsonResponse = "{\"user\":{\"code\":\"9973\",\"dateCreated\":\"2016-07-05T20:11:09.717Z\",\"id\":\"161da82f-8f36-4723-929f-8ef03de8de00\",\"ids\":\"f1289d6e-cfbe-53c4-a674-116d5421974f\",\"isActiSent\":false,\"isActive\":true,\"isAdmin\":false,\"isDeleted\":false,\"isRetailer\":false,\"name\":\"deprecated\",\"username\":\"2145236589\"},\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE2MWRhODJmLThmMzYtNDcyMy05MjlmLThlZjAzZGU4ZGUwMCIsImlzQWRtaW4iOmZhbHNlLCJpc1JldGFpbGVyIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTQ2Nzc0OTQ5MSwiZXhwIjoxNDY3NzU4NDkxfQ.gxIVp8I6EJ0JC32U7GqOn2mkagUbW8KpNxlw5FDJ-00\"}";
+
+        return new Response.Builder()
+                .code(200)
+                .message("MockResponse")
+                .protocol(Protocol.HTTP_1_1)
+                .request(chain.request())
+                .body(ResponseBody.create(MediaType.parse("application/json"), jsonResponse))
+                .build();
+    }
+
+    private Response mockUserActivation(Chain chain){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String jsonResponse = "{\"code\":\"805\",\"Error\":\"User Activated!\"}";
+
+        return new Response.Builder()
+                .code(200)
+                .message("MockResponse")
+                .protocol(Protocol.HTTP_1_1)
+                .request(chain.request())
+                .body(ResponseBody.create(MediaType.parse("application/json"), jsonResponse))
+                .build();
+    }
 }
 
