@@ -26,6 +26,7 @@ import uk.com.a1ms.contacts.FetchContactsHandler;
 import uk.com.a1ms.dto.Contacts;
 import uk.com.a1ms.network.handlers.UserInviteNetworkHandler;
 import uk.com.a1ms.util.NotificationController;
+import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
@@ -161,6 +162,7 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements  Notif
         UserInviteNetworkHandler inviteNetworkHandler = new UserInviteNetworkHandler.UserInviteNetworkBuilder()
                 .setMobileNumber(mobileNumber)
                 .setUserEmail(email)
+                .setBearerToken(SharedPreferenceManager.getUserToken(getActivity()))
                 .build();
         inviteNetworkHandler.sendInviteToUser(new UserInviteNetworkHandler.UserInviteNetworkListener() {
             @Override

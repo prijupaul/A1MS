@@ -25,7 +25,7 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        SharedPreferenceManager.setFirstTimeLaunch(true,this);
+        SharedPreferenceManager.setFirstTimeLaunch(false,this);
 
         if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
             initPages();

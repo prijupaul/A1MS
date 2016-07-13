@@ -52,7 +52,7 @@ public class ContactsGroupsInviteAdapter extends RecyclerView.Adapter<ContactsGr
             this.invite = (Button)view.findViewById(R.id.button_invite);
             this.invite.setVisibility(View.VISIBLE);
 
-            this.cardView.setOnClickListener(new View.OnClickListener() {
+            this.invite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(ContactsGroupsInviteAdapter.this.mInviteAdapterListener != null){

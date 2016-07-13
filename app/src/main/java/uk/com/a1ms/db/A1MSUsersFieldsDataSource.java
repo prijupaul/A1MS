@@ -187,7 +187,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
     }
 
 
-    public List<A1MSUser> getAllA1MSUsers(){
+    public List<A1MSUser> getAllA1MSUsers(boolean removeEchomate){
 
         List<A1MSUser> a1MSUsers = new ArrayList<>();
 
@@ -223,7 +223,9 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                 A1MSUser a1MSUser = cursorToUser(c);
                 if(!isEchomateFound && a1MSUser.getName().contentEquals("Echo Mate")){
                     isEchomateFound  = true;
-                    a1MSUsers.add(0,a1MSUser);
+                    if(!removeEchomate) {
+                        a1MSUsers.add(0, a1MSUser);
+                    }
                 }
                 else {
                     a1MSUsers.add(a1MSUser);

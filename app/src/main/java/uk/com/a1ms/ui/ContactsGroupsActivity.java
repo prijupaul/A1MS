@@ -246,7 +246,8 @@ public class ContactsGroupsActivity extends BaseActivity{
     private void displayFloatingActionButtonIfNeeded(int position) {
 
         if (mAdapter.getItem(position) instanceof ContactsGroupsA1MSFragment) {
-            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_send));
+//            mFab.getMenuIconView().setImageResource(R.drawable.ic_edit);
+            mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
             mFab.show();
 
             mFab.setOnClickListener(new View.OnClickListener() {
@@ -259,7 +260,9 @@ public class ContactsGroupsActivity extends BaseActivity{
         else if(mAdapter.getItem(position) instanceof ContactsGroupsInviteFragment) {
 
             mFab.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_share));
+//            mFab.getMenuIconView().setImageResource(android.R.drawable.ic_menu_share);
             mFab.show();
+
 
             mFab.setOnClickListener(new View.OnClickListener() {
                 @Override

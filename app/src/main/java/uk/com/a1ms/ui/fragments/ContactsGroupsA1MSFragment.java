@@ -112,7 +112,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
         super.onResume();
 
         if(mAdapter == null) {
-            mA1MSUsers = mDataSource.getAllA1MSUsers();
+            mA1MSUsers = mDataSource.getAllA1MSUsers(false);
             mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, this);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
@@ -204,7 +204,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                 if(mIsGroupsShown){
                     if(mAdapter != null) {
                         mIsGroupsShown = false;
-                        mA1MSUsers = mDataSource.getAllA1MSUsers();
+                        mA1MSUsers = mDataSource.getAllA1MSUsers(false);
                         mAdapter.setDataSet(mA1MSUsers);
                         mAdapter.notifyDataSetChanged();
                         item.setIcon(getResources().getDrawable(R.drawable.contacts_group));
@@ -265,7 +265,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                     @Override
                     public void run() {
                         mDataSource.deleteA1MSUsers(mSelectedA1MSUsers);
-                        mA1MSUsers = mDataSource.getAllA1MSUsers();
+                        mA1MSUsers = mDataSource.getAllA1MSUsers(false);
                         mAdapter.setDataSet(mA1MSUsers);
                         mAdapter.notifyDataSetChanged();
                         mSelectedItemPosition.clear();
