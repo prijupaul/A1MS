@@ -114,7 +114,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
 
         if(mAdapter == null) {
 
-            mAdapter = new CreateGroupsAdapter(mA1MSUsers, this);
+            mAdapter = new CreateGroupsAdapter(mA1MSUsers, true,this);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
             mFastScroller.setRecyclerView(mRecyclerView);
@@ -132,6 +132,9 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         super.onCreateOptionsMenu( menu, inflater );
         inflater.inflate(R.menu.menu_create_group,menu);
         mMenuNext = menu.findItem(R.id.action_create_groups);
+        if(mA1MSUsers.size() > 0){
+            mMenuNext.setEnabled(true);
+        }
     }
 
 

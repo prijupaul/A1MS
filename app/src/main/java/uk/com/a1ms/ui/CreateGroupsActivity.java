@@ -2,7 +2,6 @@ package uk.com.a1ms.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -19,8 +18,9 @@ import uk.com.a1ms.util.NotificationController;
  * Created by priju.jacobpaul on 11/07/16.
  */
 public class CreateGroupsActivity extends BaseActivity implements NotificationController.NotificationListener ,
-        CreateGroupsFragment.CreateGroupsFragmentListener
+        CreateGroupsFragment.CreateGroupsFragmentListener, CreateGroupsPreviewFragment.GroupPreviewListener
 {
+    private CreateGroupsFragment mCreateGroupsFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,17 +57,23 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        Fragment fr = CreateGroupsFragment.newInstance(this);
-        fragmentTransaction.replace(R.id.creategroup_framelayout_holder, fr);
+        mCreateGroupsFragment = CreateGroupsFragment.newInstance(this);
+        fragmentTransaction.replace(R.id.creategroup_framelayout_holder, mCreateGroupsFragment);
         fragmentTransaction.commit();
     }
 
     @Override
     public void onGroupMembersSelected(List<A1MSUser> selectedA1MSUsers) {
-        CreateGroupsPreviewFragment previewFragment =  CreateGroupsPreviewFragment.newInstance();
+        CreateGroupsPreviewFragment previewFragment =  CreateGroupsPreviewFragment.newInstance(selectedA1MSUsers,this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.creategroup_framelayout_holder,previewFragment);
-        transaction.addToBackStack("PreviewFragment");
+        transaction.add(R.id.creategroup_framelayout_holder,previewFragment);
+        transaction.hide(mCreateGroupsFragment);
+        transaction.addToBackStack(CreateGroupsFragment.class.getSimpleName());
         transaction.commit();
+    }
+
+    @Override
+    public void onGroupCreated(String groupName, List<A1MSUser> a1MSUsers) {
+
     }
 }

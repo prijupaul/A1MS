@@ -35,6 +35,8 @@
     <string name="hint_add_contacts">Add Contact</string>
     <string name="hint_delete">Delete Selected</string>
     <string name="hint_next">Next</string>
+    <string name="hint_create_group">Create Group</string>
+    <string name="hint_groupname">Enter your group name</string>
     <string name="hint_enter_phone">--- --- --- --- --- --- --- --- ---</string>
     <string name="hint_enter_phone_activation_code_will_be_send">Please confirm your country code
         and phone number. The activation code will be send to this number. Hence, please make sure
