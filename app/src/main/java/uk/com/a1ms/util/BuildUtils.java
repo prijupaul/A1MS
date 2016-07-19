@@ -63,4 +63,8 @@ public class BuildUtils {
         }
         return false;
     }
+
+    public static int getMaxGroupsMemberSize(){
+        return 100;
+    }
 }

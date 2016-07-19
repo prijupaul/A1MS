@@ -31,7 +31,17 @@ public interface NetworkServices {
     @FormUrlEncoded
     @POST(NetworkConstants.USER_LOGIN)
     Call<UserDetails> doUserLogin(@Field("username") String username,
-                                            @Field("password") String password);
+                                  @Field("password") String password,
+                                  @Field("latitude")String latitude,
+                                  @Field("longitude")String longitude,
+                                  @Field("locale")String locale,
+                                  @Field("imei")String imei,
+                                  @Field("countryCode")String countryCode,
+                                  @Field("androidVersion")String androidVersion,
+                                  @Field("manufacture")String manufacture,
+                                  @Field("language")String language,
+                                  @Field("country")String country);
+
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_ACTIVATION_CODE_RESEND)

@@ -146,6 +146,10 @@ public class CreateGroupsPreviewFragment extends BaseFragment implements CreateG
                 return true;
             }
         }
+
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
         return false;
     }
 
@@ -157,7 +161,10 @@ public class CreateGroupsPreviewFragment extends BaseFragment implements CreateG
 
     @Override
     public boolean onBackPressed() {
-        getActivity().finish();
+        if(getFragmentManager().getBackStackEntryCount() != 0){
+            getFragmentManager().popBackStack();
+            return true;
+        }
         return super.onBackPressed();
     }
 

@@ -1,13 +1,13 @@
 package uk.com.a1ms.network.handlers;
 
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.com.a1ms.network.BaseNetwork;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.NetworkServices;
 import uk.com.a1ms.network.dto.UserDetails;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by priju.jacobpaul on 24/06/16.
@@ -22,6 +22,16 @@ public class UserActivationNetworkHandler extends BaseNetwork {
     private String bearerToken;
     private String activationCode;
     private String mobileNumber;
+    private String latitude;
+    private String longitude;
+    private String locale;
+    private String imei;
+    private String countryCode;
+    private String androidVersion;
+    private String manufacture;
+    private String language;
+    private String country;
+
     @Deprecated
     private String name;
     private String password;
@@ -32,12 +42,22 @@ public class UserActivationNetworkHandler extends BaseNetwork {
 
     public static class UserActivationNetworkHandlerBuilder{
 
-        private  String bearerToken;
+        private String bearerToken;
         private String activationCode;
         private String mobileNumber;
         private String name;
         private String password;
         private String userID;
+
+        private String latitude;
+        private String longitude;
+        private String locale;
+        private String imei;
+        private String countryCode;
+        private String androidVersion;
+        private String manufacture;
+        private String language;
+        private String country;
 
         public  UserActivationNetworkHandlerBuilder setBearerToken(String bearerToken ){
             this.bearerToken = bearerToken;
@@ -69,6 +89,51 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             return this;
         }
 
+        public UserActivationNetworkHandlerBuilder setLatitude(String latitude){
+            this.latitude = latitude;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setLongitude(String longitude){
+            this.longitude = longitude;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setLocale(String locale){
+            this.locale = locale;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setIMEI(String imei){
+            this.imei = imei;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setCountryCode(String countryCode){
+            this.countryCode = countryCode;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setAndroidVersion(String androidVersion){
+            this.androidVersion = androidVersion;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setManufacture(String manufacture){
+            this.manufacture = manufacture;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setLanguage(String language){
+            this.language = language;
+            return this;
+        }
+
+        public UserActivationNetworkHandlerBuilder setCountry(String country){
+            this.country = country;
+            return this;
+        }
+
 
         public UserActivationNetworkHandler build(){
 
@@ -79,6 +144,15 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             userActivationNetworkHandler.setPassword(password);
             userActivationNetworkHandler.setName(name);
             userActivationNetworkHandler.setUserId(userID);
+            userActivationNetworkHandler.setLatitude(latitude);
+            userActivationNetworkHandler.setLongitude(longitude);
+            userActivationNetworkHandler.setImei(imei);
+            userActivationNetworkHandler.setAndroidVersion(androidVersion);
+            userActivationNetworkHandler.setLocale(locale);
+            userActivationNetworkHandler.setCountryCode(countryCode);
+            userActivationNetworkHandler.setManufacture(manufacture);
+            userActivationNetworkHandler.setLanguage(language);
+            userActivationNetworkHandler.setCountry(country);
             userActivationNetworkHandler.init();
             return userActivationNetworkHandler;
         }
@@ -113,6 +187,42 @@ public class UserActivationNetworkHandler extends BaseNetwork {
 
     public void setUserId(String userId){
         this.userId = userId;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public void setImei(String imei) {
+        this.imei = imei;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public void setAndroidVersion(String androidVersion) {
+        this.androidVersion = androidVersion;
+    }
+
+    public void setManufacture(String manufacture) {
+        this.manufacture = manufacture;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public void doActivateUserWithCode(UserActivationListener listener){
@@ -167,7 +277,8 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         this.userActivationListener = listener;
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password);
+        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
+                locale,imei,countryCode,androidVersion,manufacture,language,country);
         call.enqueue(new Callback<UserDetails>() {
             @Override
             public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {

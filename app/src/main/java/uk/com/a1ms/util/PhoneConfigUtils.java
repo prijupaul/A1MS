@@ -1,6 +1,7 @@
 package uk.com.a1ms.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import java.util.Locale;
@@ -13,9 +14,12 @@ import uk.com.a1ms.R;
  */
 public class PhoneConfigUtils {
 
+    public static String getCountryCode(){
+        return Locale.getDefault().getCountry();
+    }
     public static String getCountryLocale(){
 
-        String countryCode = Locale.getDefault().getCountry();
+        String countryCode = getCountryCode();
         Locale locale = new Locale("",countryCode);
         return Locale.getDefault().getDisplayCountry(locale);
     }
@@ -49,5 +53,23 @@ public class PhoneConfigUtils {
         TelephonyManager telephonyManager = (TelephonyManager) A1MSApplication.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();
     }
+
+    public static int getAndroidVersion(){
+        return Build.VERSION.SDK_INT;
+    }
+
+    public static String getDisplayLanguage(){
+        return Locale.getDefault().getDisplayLanguage(Locale.US);
+    }
+
+    public static String getDisplayCountry(){
+        return Locale.getDefault().getDisplayCountry(Locale.US);
+    }
+
+    public static String getManufacture(){
+        return Build.MANUFACTURER;
+    }
+
+
 }
 

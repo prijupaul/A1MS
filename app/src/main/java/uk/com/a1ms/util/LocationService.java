@@ -26,8 +26,8 @@ public class LocationService extends Service {
 
     private final Context mContext;
 
-    double latitude; // latitude
-    double longitude; // longitude
+    static double latitude; // latitude
+    static double longitude; // longitude
 
     // The minimum distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
@@ -85,7 +85,7 @@ public class LocationService extends Service {
     /**
      * Function to get latitude
      */
-    public double getLatitude() {
+    public static double getLatitude() {
 
         // return latitude
         return latitude;
@@ -94,7 +94,7 @@ public class LocationService extends Service {
     /**
      * Function to get longitude
      */
-    public double getLongitude() {
+    public static double getLongitude() {
 
         // return longitude
         return longitude;

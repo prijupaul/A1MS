@@ -215,9 +215,19 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     private void doUserLogin(UserDetails details){
 
+
         UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                 .setMobileNumber(SharedPreferenceManager.getMobileNumber(this))
                 .setPassword(SharedPreferenceManager.getUserPassword(this))
+                .setCountry(PhoneConfigUtils.getDisplayCountry())
+                .setLatitude("" + LocationService.getLatitude())
+                .setLongitude("" + LocationService.getLongitude())
+                .setLocale(PhoneConfigUtils.getCountryLocale())
+                .setIMEI(PhoneConfigUtils.getIMEI())
+                .setCountryCode(PhoneConfigUtils.getCountryCode())
+                .setAndroidVersion(String.valueOf(PhoneConfigUtils.getAndroidVersion()))
+                .setManufacture(PhoneConfigUtils.getManufacture())
+                .setLanguage(PhoneConfigUtils.getDisplayLanguage())
                 .build();
         activationNetworkHandler.doUserLogin(new UserActivationNetworkHandler.UserActivationListener() {
             @Override

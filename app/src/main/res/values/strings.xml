@@ -81,4 +81,7 @@
 
     <string name="hint_register">Register</string>
 
+    <!-- Groups -->
+    <string name="max_group_size_reached">You have reached the maximum members that can be added for a group.</string>
+
 </resources>

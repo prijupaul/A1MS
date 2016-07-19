@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 
@@ -36,6 +38,7 @@ import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.CreateGroupsAdapter;
 import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.util.BuildUtils;
 
 /**
  * Created by priju.jacobpaul on 13/07/16.
@@ -106,6 +109,11 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setNestedScrollingEnabled(false);
+
+        if(((AppCompatActivity)getActivity()).getSupportActionBar() != null){
+            mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+            mToolbar.setSubtitle(String.format("(%d/100)",mSelectedA1MSUsers.size()));
+        }
     }
 
     @Override
@@ -147,6 +155,10 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
                 return true;
             }
         }
+
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
         return false;
     }
 
@@ -170,6 +182,11 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
     }
 
     private void addContact(final A1MSUser a1MSUser) {
+
+        if(mSelectedA1MSUsers.size() == BuildUtils.getMaxGroupsMemberSize()){
+            Toast.makeText(getActivity(),getString(R.string.max_group_size_reached),Toast.LENGTH_LONG).show();
+            return;
+        }
 
         View view = getActivity().getLayoutInflater().inflate(R.layout.creategroups_memberpreview, null);
 
@@ -206,6 +223,8 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
 
         mMenuNext.setEnabled(true);
 
+        mToolbar.setSubtitle(String.format("(%d/100)",mSelectedA1MSUsers.size()));
+
     }
 
     private void removeContact(A1MSUser a1MSUser){
@@ -227,6 +246,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
             mMenuNext.setEnabled(false);
         }
 
+        mToolbar.setSubtitle(String.format("(%d/100)",mSelectedA1MSUsers.size()));
     }
 
     private void performFullScrollRight(){

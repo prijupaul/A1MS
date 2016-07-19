@@ -127,10 +127,10 @@ public class CreateGroupsAdapter extends RecyclerView.Adapter<CreateGroupsAdapte
         if (mDataSet.get(position).isChecked() && isSelectable) {
             holder.checkBox.setVisibility(View.VISIBLE);
             holder.checkBox.setChecked(true);
+            mDataSet.get(position).setChecked(true);
         } else {
             holder.checkBox.setVisibility(View.GONE);
             holder.checkBox.setChecked(false);
-            mDataSet.get(position).setChecked(false);
         }
     }
 
