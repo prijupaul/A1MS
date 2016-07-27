@@ -61,6 +61,7 @@
     <string name="permission_receive_sms">A1MS needs permission to access your SMS to pre-populate
         the activation code.
     </string>
+    <string name="permission_camera">To capture photos, provide A1MS access to your camera and external storage.</string>
 
     <!-- Title -->
     <string name="title_contacts_group">Contacts \u0026 Groups</string>

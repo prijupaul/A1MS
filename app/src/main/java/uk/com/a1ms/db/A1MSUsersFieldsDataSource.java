@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.util.ExecutorUtils;
+import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 6/06/16.
@@ -66,9 +68,22 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
     }
 
 
-    public SQLiteDatabase open() throws SQLException {
-        sqLiteDatabase = a1MSDbHelper.getWritableDatabase();
-        return sqLiteDatabase;
+    public void open() throws SQLException {
+
+        ExecutorUtils.runInBackgroundThread(new Runnable() {
+            @Override
+            public void run() {
+                sqLiteDatabase = a1MSDbHelper.getWritableDatabase();
+
+                ExecutorUtils.runOnUIThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        NotificationController.getInstance().postNotificationName(NotificationController.didOpenDatabase,null);
+                    }
+                },0);
+
+            }
+        });
     }
 
     public void close(){
@@ -187,7 +202,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
     }
 
 
-    public List<A1MSUser> getAllA1MSUsers(boolean removeEchomate){
+    public List<A1MSUser> getAllA1MSUsers(boolean removeEchomate,boolean includeGroups){
 
         List<A1MSUser> a1MSUsers = new ArrayList<>();
 
@@ -202,12 +217,23 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
         };
 
+        String whereClause = null;
+        String [] whereArgs = null;
+
+        if(!includeGroups) {
+            whereClause = A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP+"=?";
+            whereArgs = new String[1];
+            whereArgs[0] = "0";
+        }
+
+
+
         String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
         Cursor c = sqLiteDatabase.query(
                 A1MSUsersEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                null,                                // The columns for the WHERE clause
-                null,                               // The values for the WHERE clause
+                whereClause,                                // The columns for the WHERE clause
+                whereArgs,                               // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
                 sortOrder                                 // The sort order
@@ -215,8 +241,6 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
 
         if(c != null) {
             c.moveToFirst();
-
-
             boolean isEchomateFound = false;
 
             while (!c.isAfterLast()){

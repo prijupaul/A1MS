@@ -39,11 +39,12 @@ import uk.com.a1ms.adapters.CreateGroupsAdapter;
 import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.util.BuildUtils;
+import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 13/07/16.
  */
-public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAdapter.CreateGroupsAdapterListener{
+public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAdapter.CreateGroupsAdapterListener, NotificationController.NotificationListener{
 
     private RecyclerView mRecyclerView;
     private FastScroller mFastScroller;
@@ -85,9 +86,10 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
     public void onAttach(Context context) {
         super.onAttach(context);
 
+        NotificationController.getInstance().addObserver(this,NotificationController.didOpenDatabase);
         mDataSource = new A1MSUsersFieldsDataSource(context);
         mDataSource.open();
-        mA1MSUsers = mDataSource.getAllA1MSUsers(true);
+
     }
 
     @Nullable
@@ -117,16 +119,26 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
     }
 
     @Override
+    public void onNotificationReceived(int id, Object... args) {
+
+        if(id == NotificationController.didOpenDatabase){
+            mA1MSUsers = mDataSource.getAllA1MSUsers(true,false);
+            if(mAdapter == null) {
+                mAdapter = new CreateGroupsAdapter(mA1MSUsers, true,this);
+                mRecyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+                mFastScroller.setRecyclerView(mRecyclerView);
+            }
+
+            NotificationController.getInstance().removeObserver(this,NotificationController.didOpenDatabase);
+        }
+
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
-        if(mAdapter == null) {
-
-            mAdapter = new CreateGroupsAdapter(mA1MSUsers, true,this);
-            mRecyclerView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-            mFastScroller.setRecyclerView(mRecyclerView);
-        }
     }
 
     @Override
@@ -140,7 +152,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         super.onCreateOptionsMenu( menu, inflater );
         inflater.inflate(R.menu.menu_create_group,menu);
         mMenuNext = menu.findItem(R.id.action_create_groups);
-        if(mA1MSUsers.size() > 0){
+        if((mA1MSUsers!=null ) && mA1MSUsers.size() > 0){
             mMenuNext.setEnabled(true);
         }
     }

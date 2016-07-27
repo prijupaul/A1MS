@@ -13,7 +13,7 @@ public class NetworkConstants {
     public static final String USER_MESSAGE = "/api/message/{idUser}";
     public static final String USER_INVITE = "/api/invite";
     public static final String USER_CREATE_GROUP = "/api/group";
-    public static final String USER_GET_GROUP = "api/group";
+    public static final String USER_GET_GROUP = "/api/group";
 
 
 

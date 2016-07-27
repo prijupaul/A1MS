@@ -163,11 +163,9 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                         SharedPreferenceManager.saveUserToken(details.getToken(), MainActivity.this);
                         SharedPreferenceManager.saveUserId(details.getUser().getId(),MainActivity.this);
                         SharedPreferenceManager.saveUserPassword(password,MainActivity.this);
-
+                        AndroidUtils.setWaitingForSms(true);
+                        launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,details.getUser().getCode());
                     }
-
-                    AndroidUtils.setWaitingForSms(true);
-                    launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,details.getUser().getCode());
                 }
 
                 @Override

@@ -172,7 +172,7 @@ public class ContactsGroupsActivity extends BaseActivity{
 
                 DialogUtil.showOKDialog(this,
                         getString(R.string.permission_title),
-                        getString(R.string.permission_denied_message),
+                        getString(R.string.permission_camera),
                         getString(android.R.string.ok),
                         new DialogCallBackListener() {
                             @Override

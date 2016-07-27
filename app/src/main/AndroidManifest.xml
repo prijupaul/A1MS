@@ -15,6 +15,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
         android:name=".A1MSApplication"
@@ -28,7 +31,6 @@
         </activity>
 
         <activity android:name=".ui.IntroActivity">
-
         </activity>
 
         <activity android:name=".ui.ContactsGroupsActivity">
@@ -43,6 +45,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+                  android:theme="@style/Base.Theme.AppCompat" />
 
         <receiver android:name=".listeners.SmsListener">
             <intent-filter>

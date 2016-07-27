@@ -26,7 +26,7 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
 
     public UserGroupsNetworkHandler(){
         super();
-        setBaseUrl(NetworkConstants.USER_CREATE_GROUP);
+        setBaseUrl(NetworkConstants.BASE_URL);
     }
 
     @Override

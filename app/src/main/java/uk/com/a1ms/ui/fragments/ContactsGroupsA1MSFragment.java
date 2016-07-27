@@ -32,11 +32,13 @@ import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
+import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
  */
-public class ContactsGroupsA1MSFragment extends BaseFragment implements ContactsGroupsA1MSAdapter.ContactsGroupsA1MSAdapterListener
+public class ContactsGroupsA1MSFragment extends BaseFragment implements ContactsGroupsA1MSAdapter.ContactsGroupsA1MSAdapterListener,
+        NotificationController.NotificationListener
 {
 
     private RecyclerView mRecyclerView;
@@ -58,6 +60,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     public void onAttach(Context context) {
         super.onAttach(context);
         setHasOptionsMenu(true);
+        NotificationController.getInstance().addObserver(this,NotificationController.didOpenDatabase);
         mDataSource = new A1MSUsersFieldsDataSource(context);
         mDataSource.open();
     }
@@ -110,15 +113,6 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     @Override
     public void onResume() {
         super.onResume();
-
-        if(mAdapter == null) {
-            mA1MSUsers = mDataSource.getAllA1MSUsers(false);
-            mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, this);
-            mRecyclerView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-            mFastScroller.setRecyclerView(mRecyclerView);
-        }
-
     }
 
     @Override
@@ -204,7 +198,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                 if(mIsGroupsShown){
                     if(mAdapter != null) {
                         mIsGroupsShown = false;
-                        mA1MSUsers = mDataSource.getAllA1MSUsers(false);
+                        mA1MSUsers = mDataSource.getAllA1MSUsers(false,true);
                         mAdapter.setDataSet(mA1MSUsers);
                         mAdapter.notifyDataSetChanged();
                         item.setIcon(getResources().getDrawable(R.drawable.contacts_group));
@@ -265,7 +259,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                     @Override
                     public void run() {
                         mDataSource.deleteA1MSUsers(mSelectedA1MSUsers);
-                        mA1MSUsers = mDataSource.getAllA1MSUsers(false);
+                        mA1MSUsers = mDataSource.getAllA1MSUsers(false,true);
                         mAdapter.setDataSet(mA1MSUsers);
                         mAdapter.notifyDataSetChanged();
                         mSelectedItemPosition.clear();
@@ -291,4 +285,17 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
         }
     }
 
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+        if(id == NotificationController.didOpenDatabase){
+            if(mAdapter == null) {
+                mA1MSUsers = mDataSource.getAllA1MSUsers(false,true);
+                mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, this);
+                mRecyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+                mFastScroller.setRecyclerView(mRecyclerView);
+            }
+            NotificationController.getInstance().removeObserver(this,NotificationController.didOpenDatabase);
+        }
+    }
 }

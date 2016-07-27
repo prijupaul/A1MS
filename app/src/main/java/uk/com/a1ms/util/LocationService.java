@@ -333,9 +333,11 @@ public class LocationService extends Service {
             }
 
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            latitude = mLastLocation.getLatitude();
-            longitude = mLastLocation.getLongitude();
-            NotificationController.getInstance().postNotificationName(NotificationController.didReceiveLocation, latitude, longitude);
+            if(mLastLocation != null) {
+                latitude = mLastLocation.getLatitude();
+                longitude = mLastLocation.getLongitude();
+                NotificationController.getInstance().postNotificationName(NotificationController.didReceiveLocation, latitude, longitude);
+            }
         }
 
         @Override

@@ -136,7 +136,7 @@ public class CreateGroupsAdapter extends RecyclerView.Adapter<CreateGroupsAdapte
 
     @Override
     public int getItemCount() {
-        return mDataSet.size();
+        return mDataSet==null ? 0 :mDataSet.size();
     }
 
     @Override

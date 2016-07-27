@@ -18,6 +18,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.A1MS.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.A1MS.BottomSheet.Modal</item>
+    </style>
 
+    <style name="Widget.A1MS.BottomSheet.Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">400dp</item>
+    </style>
 
 </resources>

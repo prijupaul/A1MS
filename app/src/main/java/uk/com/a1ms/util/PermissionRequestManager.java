@@ -16,6 +16,7 @@ import uk.com.a1ms.dialogutil.DialogUtil;
 public class PermissionRequestManager {
 
 
+
     public static boolean checkPermission(Activity activity, String permission) {
 
         if (BuildUtils.isVersionLesserThanM()) {
@@ -24,6 +25,20 @@ public class PermissionRequestManager {
 
         int permissionStatus = ContextCompat.checkSelfPermission(activity, permission);
         return (permissionStatus == PackageManager.PERMISSION_GRANTED) ? true : false;
+    }
+
+    public static boolean checkPermissions(Activity activity, String[] permissions) {
+
+        if (BuildUtils.isVersionLesserThanM()) {
+            return true;
+        }
+
+        for (String permission : permissions) {
+            if (!checkPermission(activity, permission)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void requestPermission(final Activity activity, String[] permissions, final int code) {
