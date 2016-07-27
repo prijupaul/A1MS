@@ -97,6 +97,9 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
         userGroupsNetworkHandler.createGroup(new UserGroupsNetworkHandler.UserGroupsNetworkListener() {
             @Override
             public void onGroupCreated(GroupDetails groupDetails) {
+                // TODO: The create group details should be inserted to the database
+                // and this should should be shown to the user.
+                // A toast should be shown that the group was created. ?
                 finish();
             }
 
@@ -107,6 +110,7 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
 
             @Override
             public void onCreateGroupError() {
+                // TODO: Show appropriate error message to the user.
 
             }
         });

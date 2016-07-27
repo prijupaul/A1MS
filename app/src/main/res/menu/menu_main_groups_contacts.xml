@@ -17,4 +17,10 @@
         android:title="@string/hint_add_contacts"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_create_group"
+        android:orderInCategory="100"
+        android:title="@string/hint_create_group"
+        app:showAsAction="never" />
+
 </menu>

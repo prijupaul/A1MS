@@ -288,4 +288,8 @@ public class ContactsGroupsActivity extends BaseActivity{
         }
         super.onBackPressed();
     }
+
+    public void showCreateGroupsActivity(Bundle bundle, boolean isFinish){
+        startCreateGroupsActivity(bundle,isFinish);
+    }
 }

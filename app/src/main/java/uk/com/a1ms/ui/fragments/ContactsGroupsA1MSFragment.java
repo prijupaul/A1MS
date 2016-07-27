@@ -32,6 +32,7 @@ import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
+import uk.com.a1ms.ui.ContactsGroupsActivity;
 import uk.com.a1ms.util.NotificationController;
 
 /**
@@ -216,6 +217,10 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                     }
                 }
 
+                return true;
+            }
+            case R.id.action_create_group:{
+                ((ContactsGroupsActivity)getActivity()).showCreateGroupsActivity(null,false);
                 return true;
             }
         }

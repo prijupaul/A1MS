@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
         super.onCreate(savedInstanceState);
 
-//        SharedPreferenceManager.setFirstTimeLaunch(false,this);
+        SharedPreferenceManager.setFirstTimeLaunch(false,this);
         setContentView(R.layout.mainactivity);
 
         mFrameLayoutHolder = (FrameLayout) findViewById(R.id.framelayout_holder);
