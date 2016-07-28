@@ -39,6 +39,9 @@
         <activity android:name=".ui.IntroActivity">
         </activity>
 
+        <activity android:name=".ui.MessagingActivity">
+        </activity>
+
         <activity android:name=".ui.ContactsGroupsActivity">
             <meta-data
                 android:name="android.app.searchable"

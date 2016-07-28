@@ -6,4 +6,8 @@
     <color name="light_color_accent">#f5c6a3</color>
     <color name="colorTextWelcome">#EB6C22</color>
     <color name="transparent">#00000000</color>
+    <color name="lblFromName">#777777</color>
+    <color name="bg_msg_you">#5eb964</color>
+    <color name="bg_msg_from">#e5e7eb</color>
+    <color name="title_gray">#434343</color>
 </resources>

@@ -180,6 +180,12 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     }
 
     @Override
+    public void onItemClick(View view, int position) {
+        A1MSUser a1MSUser = mA1MSUsers.get(position);
+        ((ContactsGroupsActivity)getActivity()).chatWith(a1MSUser);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu( menu, inflater );
         inflater.inflate(R.menu.menu_main_groups_contacts,menu);

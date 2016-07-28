@@ -58,6 +58,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public void startActivity(Class<?> clas ,Bundle bundle,boolean finish){
+
+        Intent intent = new Intent(this,clas);
+        if(bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+
+        if(finish){
+            finish();
+        }
+    }
     public void startCreateGroupsActivity(Bundle bundle, boolean finish){
 
         Intent intent = new Intent(this,CreateGroupsActivity.class);

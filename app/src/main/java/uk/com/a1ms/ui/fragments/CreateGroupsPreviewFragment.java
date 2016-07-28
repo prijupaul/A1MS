@@ -168,7 +168,7 @@ public class CreateGroupsPreviewFragment extends BaseFragment implements CreateG
     @Override
     public void onDetach() {
         super.onDetach();
-        BottomSheetHelper.dismiss(getChildFragmentManager());
+        BottomSheetHelper.dismiss(getFragmentManager());
     }
 
     @Override
@@ -221,7 +221,7 @@ public class CreateGroupsPreviewFragment extends BaseFragment implements CreateG
             @Override
             public void onAction(int id) {
 
-                BottomSheetHelper.dismiss(getChildFragmentManager());
+                BottomSheetHelper.dismiss(getFragmentManager());
 
                 if (id == R.id.ll_camera_holder) {
                     showCamera();
@@ -231,7 +231,7 @@ public class CreateGroupsPreviewFragment extends BaseFragment implements CreateG
             }
         });
 
-        BottomSheetHelper.showBottomSheet(getChildFragmentManager(), imagePickerBottomSheet);
+        BottomSheetHelper.showBottomSheet(getFragmentManager(), imagePickerBottomSheet);
     }
 
     private boolean requestPermissions(){
@@ -272,8 +272,10 @@ public class CreateGroupsPreviewFragment extends BaseFragment implements CreateG
     }
 
     private void showGallery() {
+        mCurrentGroupProfilePhotoPath = null;
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, CHOOSE_GALLERY_REQUEST_CODE);
+
     }
 
     private void showCamera() {

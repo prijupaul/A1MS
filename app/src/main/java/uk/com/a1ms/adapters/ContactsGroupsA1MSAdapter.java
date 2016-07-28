@@ -31,6 +31,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
     public interface ContactsGroupsA1MSAdapterListener {
         void onLongClick(View view,int position);
         void onPrepareSelection(View view, int position);
+        void onItemClick(View view, int position);
     }
 
 
@@ -116,6 +117,9 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                         }
 
                         mListener.onPrepareSelection(checkBox,getAdapterPosition());
+                    }
+                    else {
+                        mListener.onItemClick(view, getAdapterPosition());
                     }
                 }
             });

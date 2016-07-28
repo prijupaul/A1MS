@@ -26,6 +26,7 @@ import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.ContactsGroupsPagerAdapter;
 import uk.com.a1ms.contacts.FetchContactsHandler;
+import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
 import uk.com.a1ms.listeners.CustomTabLayoutListener;
@@ -291,5 +292,11 @@ public class ContactsGroupsActivity extends BaseActivity{
 
     public void showCreateGroupsActivity(Bundle bundle, boolean isFinish){
         startCreateGroupsActivity(bundle,isFinish);
+    }
+
+    public void chatWith(A1MSUser a1MSUser){
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("user",a1MSUser);
+        startActivity(MessagingActivity.class,bundle,false);
     }
 }
