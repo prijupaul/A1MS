@@ -56,7 +56,7 @@ public class MessageAdapter extends BaseAdapter {
         }
 
         TextView msg = (TextView) vi.findViewById(R.id.message_text);
-        msg.setText(message.getShortMessage());
+        msg.setText(message.getShortMessage().getShortMessage());
         LinearLayout layout = (LinearLayout) vi.findViewById(R.id.bubble_layout);
         LinearLayout parent_layout = (LinearLayout) vi.findViewById(R.id.bubble_layout_parent);
 

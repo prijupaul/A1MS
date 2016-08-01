@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.BuildConfig;
-import uk.com.a1ms.util.StrictModeUtils;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
@@ -22,7 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         if (BuildConfig.DEBUG) {
             // Enable strict mode checks when in debug modes
-            StrictModeUtils.enableStrictMode();
+//            StrictModeUtils.enableStrictMode();
         }
         ((A1MSApplication)getApplication()).setCurrentActivity(this);
     }

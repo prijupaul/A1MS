@@ -61,7 +61,8 @@ public interface NetworkServices {
                                 @Field("shortMessage") String shortMessage,
                                 @Field("message")String message,
                                 @Field("idToUser")String idToUser,
-                                @Field("idUser") String idUser);
+                                @Field("idUser") String idUser,
+                                @Field("messageId")String guid);
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_CREATE_GROUP)

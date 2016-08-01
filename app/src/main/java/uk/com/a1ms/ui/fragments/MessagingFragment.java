@@ -2,6 +2,9 @@ package uk.com.a1ms.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +19,9 @@ import java.util.ArrayList;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.MessageAdapter;
+import uk.com.a1ms.dto.LongMessage;
 import uk.com.a1ms.dto.Message;
+import uk.com.a1ms.dto.ShortMessage;
 
 /**
  * Created by priju.jacobpaul on 28/07/16.
@@ -98,14 +103,27 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void sendTextMessage(View v) {
         String message = msg_edittext.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
+
 //            final Message chatMessage = new ChatMessage(user1, user2,
 //                    message, "" + random.nextInt(1000), true);
 //            chatMessage.setMsgID();
 //            chatMessage.body = message;
 //            chatMessage.Date = CommonMethods.getCurrentDate();
 //            chatMessage.Time = CommonMethods.getCurrentTime();
+
+            // TODO: Parse the messages here.
+
             Message messageObj = new Message();
-            messageObj.setShortMessage(message);
+            ShortMessage shortMessage = new ShortMessage();
+
+            LongMessage longMessage = new LongMessage();
+            longMessage.setLongMessage(new SpannableString(message));
+            SpannableString spannableString = new SpannableString(message);
+            spannableString.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.bg_msg_custom_acronym)),10,15, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.bg_msg_existing_acronym)),20,25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            shortMessage.setShortMessage(spannableString);
+
+            messageObj.setShortMessage(shortMessage);
             messageObj.setSelf(true);
 
             msg_edittext.setText("");

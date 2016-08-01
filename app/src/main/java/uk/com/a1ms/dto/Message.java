@@ -8,8 +8,8 @@ import uk.com.a1ms.db.dto.A1MSUser;
 public class Message {
 
     private int messageId;
-    private String shortMessage;
-    private String message;
+    private ShortMessage shortMessage;
+    private LongMessage message;
     private A1MSUser idToUser;
     private A1MSUser idUser;
     private boolean isSelf;
@@ -22,19 +22,19 @@ public class Message {
         this.messageId = messageId;
     }
 
-    public String getShortMessage() {
+    public ShortMessage getShortMessage() {
         return shortMessage;
     }
 
-    public void setShortMessage(String shortMessage) {
+    public void setShortMessage(ShortMessage shortMessage) {
         this.shortMessage = shortMessage;
     }
 
-    public String getMessage() {
+    public LongMessage getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(LongMessage message) {
         this.message = message;
     }
 

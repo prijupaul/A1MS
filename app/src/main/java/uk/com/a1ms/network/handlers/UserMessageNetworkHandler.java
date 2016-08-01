@@ -1,6 +1,8 @@
 package uk.com.a1ms.network.handlers;
 
 
+import java.util.UUID;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +25,7 @@ public class UserMessageNetworkHandler extends BaseNetwork {
     private String idToUser;
     private String idUser;
     private String bearerToken;
+    private String messageId;
 
     public String getShortMessage() {
         return shortMessage;
@@ -67,6 +70,14 @@ public class UserMessageNetworkHandler extends BaseNetwork {
         super.setBearerToken(this.bearerToken);
     }
 
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
+
     public static class UserMessageNetworkBuilder{
 
         private String shortMessage;
@@ -107,6 +118,7 @@ public class UserMessageNetworkHandler extends BaseNetwork {
             userMessageNetworkHandler.setIdToUser(idToUser);
             userMessageNetworkHandler.setIdUser(idUser);
             userMessageNetworkHandler.setBearerToken(bearerToken);
+            userMessageNetworkHandler.setMessageId(UUID.randomUUID().toString());
             userMessageNetworkHandler.init();
             return userMessageNetworkHandler;
         }
@@ -122,7 +134,7 @@ public class UserMessageNetworkHandler extends BaseNetwork {
 
         NetworkServices userMessageSendService = getRetrofit().create(NetworkServices.class);
         final Call<Object> call = userMessageSendService.doSendUserMessage(shortMessage,
-                message,idToUser,idUser);
+                message,idToUser,idUser,messageId);
         call.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {

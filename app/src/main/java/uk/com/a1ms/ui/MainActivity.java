@@ -2,6 +2,7 @@ package uk.com.a1ms.ui;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import uk.com.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import uk.com.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
 import uk.com.a1ms.ui.uiutil.ProgressView;
 import uk.com.a1ms.util.AndroidUtils;
+import uk.com.a1ms.messages.FileReaderService;
 import uk.com.a1ms.util.LocationService;
 import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
@@ -53,6 +55,9 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setTitle("Activation");
         }
+
+        Intent intent = new Intent(Intent.ACTION_SYNC,null,this, FileReaderService.class);
+        startService(intent);
     }
 
 
