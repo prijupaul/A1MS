@@ -1,10 +1,9 @@
 package uk.com.a1ms.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +21,9 @@ import uk.com.a1ms.adapters.MessageAdapter;
 import uk.com.a1ms.dto.LongMessage;
 import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.dto.ShortMessage;
+import uk.com.a1ms.messages.MessageParser;
+import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
+import uk.com.a1ms.util.ExecutorUtils;
 
 /**
  * Created by priju.jacobpaul on 28/07/16.
@@ -33,6 +35,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private EditText msg_edittext;
     private ArrayList<Message> mMessagesArrayList = new ArrayList<>();
     public static MessageAdapter messageAdapter;
+    private UserMessageWebSocketHandler webSocketHandler;
+    private MessageParser messageParser;
 
     public interface MessagingFragmentListener{
 
@@ -43,6 +47,19 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        webSocketHandler = new UserMessageWebSocketHandler();
+        messageParser = new MessageParser();
+        ExecutorUtils.runInBackgroundThread(new Runnable() {
+            @Override
+            public void run() {
+                webSocketHandler.connect();
+            }
+        });
     }
 
     public static MessagingFragment newInstance(MessagingFragmentListener createGroupsFragmentListener){
@@ -118,9 +135,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
             LongMessage longMessage = new LongMessage();
             longMessage.setLongMessage(new SpannableString(message));
-            SpannableString spannableString = new SpannableString(message);
-            spannableString.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.bg_msg_custom_acronym)),10,15, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spannableString.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.bg_msg_existing_acronym)),20,25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            SpannableString spannableString = new SpannableString(messageParser.Parse(message));
             shortMessage.setShortMessage(spannableString);
 
             messageObj.setShortMessage(shortMessage);
@@ -129,6 +144,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             msg_edittext.setText("");
             messageAdapter.add(messageObj);
             messageAdapter.notifyDataSetChanged();
+
+            webSocketHandler.sendMessage(shortMessage.getShortMessage().toString());
         }
     }
 
