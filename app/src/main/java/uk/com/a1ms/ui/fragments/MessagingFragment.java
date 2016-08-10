@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+
 import java.util.ArrayList;
 
 import uk.com.a1ms.R;
@@ -22,13 +26,14 @@ import uk.com.a1ms.dto.LongMessage;
 import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.dto.ShortMessage;
 import uk.com.a1ms.messages.MessageParser;
+import uk.com.a1ms.network.dto.MessageResponseDetails;
 import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
 import uk.com.a1ms.util.ExecutorUtils;
 
 /**
  * Created by priju.jacobpaul on 28/07/16.
  */
-public class MessagingFragment extends BaseFragment implements View.OnClickListener {
+public class MessagingFragment extends BaseFragment implements View.OnClickListener, UserMessageWebSocketHandler.UserMessageWebSocketListener {
 
     private MessagingFragmentListener mMessagingFragmentListener;
     private ListView msgListView;
@@ -38,7 +43,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private UserMessageWebSocketHandler webSocketHandler;
     private MessageParser messageParser;
 
-    public interface MessagingFragmentListener{
+
+    public interface MessagingFragmentListener {
 
     }
 
@@ -52,7 +58,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        webSocketHandler = new UserMessageWebSocketHandler();
+        webSocketHandler = new UserMessageWebSocketHandler(this);
         messageParser = new MessageParser();
         ExecutorUtils.runInBackgroundThread(new Runnable() {
             @Override
@@ -62,7 +68,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         });
     }
 
-    public static MessagingFragment newInstance(MessagingFragmentListener createGroupsFragmentListener){
+    public static MessagingFragment newInstance(MessagingFragmentListener createGroupsFragmentListener) {
 
         MessagingFragment fragment = new MessagingFragment();
         Bundle bundle = new Bundle();
@@ -76,7 +82,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.messaging_fragment,container,false);
+        return inflater.inflate(R.layout.messaging_fragment, container, false);
     }
 
     @Override
@@ -95,7 +101,6 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     }
 
 
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -103,10 +108,10 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home: {
                 onBackPressed();
-                return  true;
+                return true;
             }
         }
         return super.onOptionsItemSelected(item);
@@ -130,12 +135,14 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
             // TODO: Parse the messages here.
 
+            SpannableString spannableString = new SpannableString(messageParser.Parse(message));
+
             Message messageObj = new Message();
             ShortMessage shortMessage = new ShortMessage();
 
             LongMessage longMessage = new LongMessage();
             longMessage.setLongMessage(new SpannableString(message));
-            SpannableString spannableString = new SpannableString(messageParser.Parse(message));
+
             shortMessage.setShortMessage(spannableString);
 
             messageObj.setShortMessage(shortMessage);
@@ -149,9 +156,49 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
+
     @Override
     public boolean onBackPressed() {
         getActivity().finish();
         return super.onBackPressed();
     }
+
+    @Override
+    public void onMessageReceived(String message) {
+
+        Gson gson = new GsonBuilder().create();
+        String msg = message;
+
+        try {
+            MessageResponseDetails response = gson.fromJson(message, MessageResponseDetails.class);
+            if (response.canIgnore()) {
+                return;
+            }
+
+            msg = response.getMsg().getData();
+
+        } catch (JsonSyntaxException e) {
+
+        }
+
+
+        final Message messageObj = new Message();
+        ShortMessage shortMessage = new ShortMessage();
+
+        LongMessage longMessage = new LongMessage();
+        longMessage.setLongMessage(new SpannableString(msg));
+        shortMessage.setShortMessage(new SpannableString(msg));
+
+        messageObj.setShortMessage(shortMessage);
+        messageObj.setSelf(false);
+
+        ExecutorUtils.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                messageAdapter.add(messageObj);
+                messageAdapter.notifyDataSetChanged();
+            }
+        }, 0);
+    }
+
 }

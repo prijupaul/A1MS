@@ -22,23 +22,33 @@ public class UserMessageWebSocketHandler{
 
     private WebSocketFactory webSocketFactory;
     private WebSocket webSocket;
+    private UserMessageWebSocketListener listener;
+
     private String TAG = UserMessageWebSocketHandler.class.getSimpleName();
 
-    public UserMessageWebSocketHandler(){
+    public interface UserMessageWebSocketListener{
+        void onMessageReceived(String message);
+    }
+
+    public UserMessageWebSocketHandler(UserMessageWebSocketListener listener){
         webSocketFactory = new WebSocketFactory();
+        this.listener = listener;
 
     }
 
     public void connect(){
         try {
             webSocketFactory.setConnectionTimeout(10000);
-            webSocket = webSocketFactory.createSocket("ws://echo.websocket.org");//ws://163.172.137.155:80");
+            webSocket = webSocketFactory.createSocket("ws://echo.websocket.org");ws://163.172.137.155:8080");
             webSocket.addListener(new WebSocketAdapter() {
                 @Override
                 public void onTextMessage(WebSocket websocket, String text) throws Exception {
                     super.onTextMessage(websocket, text);
 
                     Log.d(TAG,"onTextMessage" + " " + text);
+                    if(listener != null) {
+                        listener.onMessageReceived(text);
+                    }
                 }
 
                 @Override

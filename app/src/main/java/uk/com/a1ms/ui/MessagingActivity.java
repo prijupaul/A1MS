@@ -27,7 +27,9 @@ public class MessagingActivity extends BaseActivity implements MessagingFragment
         toolbar.setCollapsible(false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("User Name");
+
+        A1MSUser a1MSUser = getIntent().getParcelableExtra("user");
+        getSupportActionBar().setTitle(a1MSUser.getName());
     }
 
     @Override

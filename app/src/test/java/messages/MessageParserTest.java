@@ -33,7 +33,7 @@ public class MessageParserTest {
     @org.junit.Test
     public void testParse2() throws Exception {
         MessageParser messageParser = new MessageParser();
-        SpannableString parsedString = messageParser.Parse("Mum and I are getting Compact Disc and Black Biker gloves.");
+        SpannableString parsedString = messageParser.Parse("Mum and I Love Black gloves");
         Log.d("Test",parsedString.toString());
     }
 
@@ -41,6 +41,13 @@ public class MessageParserTest {
     public void testParse3() throws Exception {
         MessageParser messageParser = new MessageParser();
         SpannableString parsedString = messageParser.Parse("Mum and I are getting CD and Black Biker Gloves...");
+        Log.d("Test",parsedString.toString());
+    }
+
+    @org.junit.Test
+    public void testParse4() throws Exception {
+        MessageParser messageParser = new MessageParser();
+        SpannableString parsedString = messageParser.Parse("Thanks again For");
         Log.d("Test",parsedString.toString());
     }
 }
