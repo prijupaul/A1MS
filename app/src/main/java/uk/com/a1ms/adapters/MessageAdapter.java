@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,11 +55,12 @@ public class MessageAdapter extends BaseAdapter{
         final ViewHolder viewHolder;
 
         if (vi == null) {
-            vi = inflater.inflate(R.layout.chatbubble, null);
+            vi = inflater.inflate(R.layout.chatbubble_rl, null);
             viewHolder = new ViewHolder();
             viewHolder.textView = (TextView) vi.findViewById(R.id.message_text);
             viewHolder.linearLayout = (LinearLayout) vi.findViewById(R.id.bubble_layout);
-            viewHolder.linearLayoutParent = (LinearLayout) vi.findViewById(R.id.bubble_layout_parent);
+            viewHolder.linearLayoutParent = (RelativeLayout) vi.findViewById(R.id.bubble_layout_parent);
+            viewHolder.timeView = (TextView)vi.findViewById(R.id.message_time);
             vi.setTag(viewHolder);
         }
         else {
@@ -66,13 +68,13 @@ public class MessageAdapter extends BaseAdapter{
         }
 
         viewHolder.textView.setText(message.getShortMessage().getShortMessage());
-        viewHolder.indicatorView = addView(message,viewHolder);
+//        viewHolder.indicatorView = addView(message,viewHolder);
+        viewHolder.timeView.setText(message.getTime());
 
         // if message is mine then align to right
         if (message.isSelf()) {
             viewHolder.linearLayout.setBackgroundResource(R.drawable.bubble2);
             viewHolder.linearLayoutParent.setGravity(Gravity.RIGHT);
-
         }
         // If not mine then align to left
         else {
@@ -83,12 +85,26 @@ public class MessageAdapter extends BaseAdapter{
         viewHolder.linearLayoutParent.setOnTouchListener(new OnSwipeTouchListener(viewHolder.textView.getContext()){
             @Override
             public void onSwipeRight() {
-                viewHolder.textView.setText("Swiped right");
+                if(viewHolder.isLongMessageShown) {
+                    viewHolder.textView.setText(message.getShortMessage().getShortMessage());
+                    viewHolder.isLongMessageShown = false;
+                }
+                else {
+                    viewHolder.textView.setText(message.getMessage().getLongMessage());
+                    viewHolder.isLongMessageShown = true;
+                }
             }
 
             @Override
             public void onSwipeLeft() {
-                viewHolder.textView.setText("Swiped left");
+                if(viewHolder.isLongMessageShown) {
+                    viewHolder.textView.setText(message.getShortMessage().getShortMessage());
+                    viewHolder.isLongMessageShown = false;
+                }
+                else {
+                    viewHolder.textView.setText(message.getMessage().getLongMessage());
+                    viewHolder.isLongMessageShown = true;
+                }
             }
         });
         return vi;
@@ -124,10 +140,13 @@ public class MessageAdapter extends BaseAdapter{
 
 
     private class ViewHolder{
+
         private TextView textView;
         private View indicatorView;
-        private LinearLayout linearLayoutParent;
+        private RelativeLayout linearLayoutParent;
         private LinearLayout linearLayout;
+        private boolean isLongMessageShown;
+        private TextView timeView;
 
     }
 }

@@ -40,6 +40,12 @@ public class FileReaderService extends IntentService {
     public void populateOfflineFiles(){
         filesToRead.add("M_ShortenedWordsSet1.txt");
         filesToRead.add("M_ShortenedWordsSet2.txt");
+        filesToRead.add("M_SMSConversionSet1.txt");
+        filesToRead.add("M_SMSConversionSet2.txt");
+        filesToRead.add("M_SMSConversionSet3.txt");
+        filesToRead.add("M_SMSConversionSet4.txt");
+        filesToRead.add("M_SMSConversionSet5.txt");
+        filesToRead.add("M_SMSConversionSet6.txt");
     }
 
     @Override
@@ -69,8 +75,9 @@ public class FileReaderService extends IntentService {
                 }
                 reader.close();
             }
-            ((A1MSApplication)(A1MSApplication.applicationContext)).setAcronymsArray(acronymsArray);
-            ((A1MSApplication)(A1MSApplication.applicationContext)).setSentenceArrays(sentenceArrays);
+
+            FileParseDetails.setAcronymsArray(acronymsArray);
+            FileParseDetails.setSentenceArrays(sentenceArrays);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -28,6 +28,7 @@ import uk.com.a1ms.dto.ShortMessage;
 import uk.com.a1ms.messages.MessageParser;
 import uk.com.a1ms.network.dto.MessageResponseDetails;
 import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
+import uk.com.a1ms.util.DateTime;
 import uk.com.a1ms.util.ExecutorUtils;
 
 /**
@@ -138,15 +139,19 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             SpannableString spannableString = new SpannableString(messageParser.Parse(message));
 
             Message messageObj = new Message();
-            ShortMessage shortMessage = new ShortMessage();
+
+
 
             LongMessage longMessage = new LongMessage();
-            longMessage.setLongMessage(new SpannableString(message));
+            longMessage.setLongMessage(new SpannableString(messageParser.getLongSpannableStringBuilder()));
 
+            ShortMessage shortMessage = new ShortMessage();
             shortMessage.setShortMessage(spannableString);
 
             messageObj.setShortMessage(shortMessage);
+            messageObj.setMessage(longMessage);
             messageObj.setSelf(true);
+            messageObj.setTime(DateTime.getTimeInAmPm());
 
             msg_edittext.setText("");
             messageAdapter.add(messageObj);

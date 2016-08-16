@@ -1,0 +1,3439 @@
+/	Number	Number
+0	Zero	
+0.02	Your two cents worth.	
+0.02	My two cents worth.	
+1	One	
+2	To	
+2	two	
+3	Three	
+4	For	
+4	for	
+4	Four	
+5	Five	
+6	Six	
+7	Seven	
+8	Eight	
+9	Nine	
+10	Ten	
+86	To get rid of	
+86	Out Of	
+86	Over	
+101	beginner	
+101	the basics	
+121	One to one	
+121	one to one	
+121	one-2-one	
+143	I love you	
+143	I love you	
+143	one hundred and forty three	
+404	I haven't a clue	
+404	I don't know	
+404	clueless	
+404	emergency	
+404	I have no clue	
+404	I haven't a clue	
+404	lost	
+411	Info	
+420	let's get high	
+420	got weed?	
+478	curse for Drop Dead in Mandarin	
+1337	leet or Elite	
+1457	Last	
+!	I have a comment	
+*fsh	starfish	
+*vin	starving	
+:'-(	crying	
+:'-(	omgosh cry	
+:'-(	sad	
+:'-(	sad crying	
+:)s	Smiles	
+:D	Big smile	
+?	I have a question	
+?RUD	What are you doing?	
+@mosFER	atmosphere	
+@TEOTD	At The End Of The Day	
+@TEOTD	At the end of the day	
+@wrk	at work	
+[$X$]	No spam !!	
+\_/\_/	drinks for two	
++ive	positive	
+<chuckle>	the speaker chuckles	
+<eg>	Evil Grin	
+<frown>	the speaker is frowning	
+<g>	Grin	
+<grin>	the speaker is grinning	
+<smile>	the one writing the message is smiling	
+<smirk>	the one writing the message is smirking	
+<wink>	the one writing the message is winking	
+01CnStpTxtng	I cant stop texting	
+01CnStpTxtng	no one can stop texting	
+10Q	Thank You	
+10q	Thank you	
+10X	Thanks	
+14324*7	I love you 24 hours seven days a week	
+1CE	once	
+1dering	wondering	
+1dr	wonder	
+1dRfL	wonderful	
+1Drful	wonderful	
+1ns	once	
+1ns	ones	
+1st	first	
+1sth@	firsthand	
+1TL	one true love	
+1TL	one to love	
+2+	too add	
+26Y4U	too sexy for you	
+2B1	to be won	
+2bacco	tabacco	
+2bacco	tobacco	
+2bacco	tobbaco	
+2BCtnd	to be continued	
+2BONO	To be or not to be	
+2DAY	today	
+2day	today	
+2day	today?	
+2day?	today?	
+2FS	flipping the bird	
+2FS	two finger salute	
+2FS	the fingers	
+2g2	to go to	
+2G2BT	Too good to be true	
+2gethR	together	
+2gtha	together	
+2Hot4U	to hot for you	
+2ic	assistant manager	
+2ic	deputy	
+2ic	second in command	
+2ic	twice	
+2l8	too late	
+2MI	Too much information	
+2MOR	tomorrow	
+2moz	tomorrow	
+2moz	tommorow	
+2moz	tommorrow	
+2n8	Two and Eight (Right Old State)	
+2nd	second	
+2nds	seconds	
+2NIGHT	Tonight	
+2NITE	Tonight	
+2NITE	tonight	
+2nite	tonight	
+2nyt	tonight	
+2nyt	Tonite	
+2R	tour	
+2U	to you	
+2U2	To You Too	
+2U2	To you, too	
+4COL	For Crying Out Loud	
+4EAE	Forever and ever	
+4eva	forever	
+4EVER	Forever	
+4ever	forever	
+4ever	for ever	
+4ever	time without end	
+4evr	forever	
+4evr	for ever	
+4evryrs	forever yours	
+4evryrs	for ever yours	
+4f	for friends	
+4f	for fun	
+4f	family,friends,food,and fun	
+4FRNFR	Forever and Ever	
+4get	forget	
+4giv	forgive	
+4give	forgive	
+4give	forgive.	
+4got10	forgotten	
+4plA	foreplay	
+4plA	forplay	
+4t	Forty	
+4t	for the	
+4t	fort	
+4t	thought	
+4tnite	fortnight	
+4tnite	for tonight	
+4tnite	for the night	
+4tnite	for tonite	
+4tun8	fortunate	
+4U	For you	
+4YEO	For Your Eyes Only	
+4YEO	for you alone	
+4YI	For Your Information	
+6T	sixty	
+6ual	sexual	
+7K	Sick	
+7T	seventy	
+8(:-)	Mickey Mouse	
+8(:-)	Mousketeer	
+8(:-)	smile	
+8L3W	8 letters 3 words (I love you)	
+8T	ate	
+8T	eighty	
+9T	ninety	
+9T	night	
+A/S/L	Age/sex/location	
+A/S/L	age/sex/location	
+A/S/L	age, sex, location	
+A/S/L?	age sex location	
+A3	Anytime, Anywhere, Anyplace	
+A3	Anytime, Anywhere, Anyplace	
+A3	Anytime, anywhere, anyplace	
+A41A14A	All For One And One For All	
+AAAAA	American Association Against Acronym Abuse	
+AAF	As A Friend	
+AAF	As a matter of fact	
+AAK	Asleep At Keyboard	
+AAK	Asleep at keyboard	
+AAMOF	As A Matter Of Fact	
+AAMOF	As A Matter Of Fact	
+AAMOF	As a matter of fact	
+AAMOI	As A Matter Of Interest	
+AAMOI	As a matter of interest	
+AAP	Always a pleasure	
+AAQ	Assumed Asinine Questions	
+AAR	At Any Rate	
+AAR	At any rate	
+AAR8	At Any Rate	
+AAS	Alive And Smiling	
+AAS	Alive and smiling	
+AATK	Always At The Keyboard	
+AAYF	As Always, Your Friend	
+AB	Ass Backwards	
+abbr	abbreviation	
+ABF	All But For 	
+ABH	Anyone But Him	
+ABITHIWT	A bird In The Hand Is Worth Two In The Bush	
+ABRS	Abbreviations	
+ABS	Anything But Soaps	
+ABT2	About To	
+ACD	Alt Control Delete	
+ACE	Access Control Entry	
+ACK	Acknowledgement	
+ACK	Acknowledge	
+ACTO	ACcording TO 	
+AD	And Do 	
+ADAD	Another Day Another Dollar	
+ADBB	All Done Bye Bye	
+Adctd2txt	addicted to text	
+Adctd2txt	addicted to texting	
+ADD	Address	
+ADD	Address	
+ADDY	Address	
+ADIH	Another Day In Hell	
+ADIP	Another Day In Paradise	
+ADN	Any Day Now	
+ADN	Any day now	
+ADN	Any day now	
+ADN	Any day now	
+ADR	Ain't Doin' Right	
+ADR	Address	
+ADR	Address	
+AE	Almost Every 	
+AEAP	As Early As Possible	
+AEAP	As early as possible	
+AFAGAY	A Friend As Good As You	
+AFAHMASP	A Fool And His Money Are Soon Parted	
+AFAIC	As Far As I'm Concerned	
+AFAIC	As Far As I'm Concerned	
+AFAIC	As far as I'm concerned	
+AFAICS	As Far As I Can See	
+AFAICT	As far as I can tell	
+AFAICT	as far as I can tell	
+AFAIK	As Far As I Know	
+AFAIK	As Far As I Know	
+AFAIK	As Far As I Know	
+AFAIK	As far as I know	
+AFAIR	As Far As I Remember	
+afair	as far as I remember	
+afair	As Far As I Recall	
+afair	affair	
+AFAIU	As Far As I Understand	
+AFAIUI	As Far As I Understand It	
+AFAP	As Far As Possible	
+AFC	Away From Computer	
+AFDN	Any Fucking Day Now	
+AFH	Away From Home	
+AFIAA	As Far As I Am Aware	
+AFINIAFI	A Friend In Need Is A Friend Indeed	
+AFJ	April Fools Joke	
+AFK	Away From Keyboard	
+AFK	Away From the Keyboard	
+AFK	Away From Keyboard	
+AFK	Away from keyboard	
+AFM	And For Me	
+AFPOE	A fresh pair of eyes	
+AFR	Amazing Formula Refresh	
+AFU	All fucked up	
+AFZ	Acronym free zone	
+AGF	A Great Fan	
+AGKWE	And God Knows What Else	
+AHA	All Honesty Aside	
+AI	Authentic Idiocy	
+AIAMU	And I'm a monkey's uncle	
+AIB	As Instructed By 	
+AIGHT	Alright	
+AIH	As It Happens	
+AIMB	As I Mentioned Before	
+AIMP	Always In My Prayers	
+AIR	As I Recall	
+AISB	As it should be	
+AISE	As I Said Earlier	
+AISI	As I See It	
+AISI	As I see it	
+AISI	as I see it	
+AISI	like this	
+AKA	Also Known As	
+AKA	Also known as	
+ALAP	As Late As Possible	
+ALCON	All concerned	
+ALF	All Laughs and Fun	
+ALOL	Actually Laughing Out Loud	
+ALR	A Little Reminder	
+alredi	already	
+alredi	all ready	
+ALTG	Act Locally, Think Globally	
+alwys	always	
+AMAP	As Many As Possible	
+AMBW	All my best wishes	
+AMBW	all my best wishes	
+AMF	Adios, motherfucker!	
+AMIIC	Ask Me If I Care	
+AML	All My Love	
+AML	All my love	
+ANBAT	Ain't Nothing But A Thing	
+ANFAWFOS	And Now For A Word From Our Sponsor	
+ANFAWFOW	And now for a word from our web sponsor	
+ANFSCD	And Now For Something Completely Different	
+ANFSCD	And Now For Something Completely Different	
+ani1	anyone	
+ANOTH	Another	
+anoyn	anoying	
+ans	answer	
+ans	years old	
+ans	years	
+AOA	All Of the Above	
+AOAS	All of a sudden	
+AOB	Abuse Of Bandwidth	
+AOL	Army of lamers	
+A-OLs	Administrators On-Line	
+AOTA	All of the above	
+AP	Apple pie	
+APT	Appropriate	
+ARO	Average Rating Of 	
+AS	Another Subject	
+ASAFP	As Soon As 'Friggin' Possible	
+ASAP	As Soon As Possible	
+ASAP	As Soon As Possible	
+ASAP	As Soon As Possible	
+ASAP	As soon as possible	
+ASAYGT	As Soon As You Get This	
+ASL	American Sign Language	
+ASL	Age, Sex, Location	
+ASL	Age, Sex, Location?	
+ASL	Age/sex/location	
+ASLA	Age, Sex, Location, Availability	
+ASLMH	Age/Sex/Location/Music/Hobbies?	
+asslp	asleep	
+AT	Attention To 	
+AT	At your terminal	
+ata2ud	attitude	
+ATC	All Things Considered	
+ATK	At The Keyboard	
+ATL	Along These Lines	
+ATM	At The Moment	
+ATM	At The Moment	
+ATM	At the moment	
+ATSL	Along The Same Line	
+ATST	At the same time	
+attn	attention	
+ATW	All the Web	Around the Web	
+AV	Audio Visual	
+AV	Anti-Virus	
+avg	average	
+aw8	await	
+AWC	After While, Crocodile	
+awcigo	and where can I get one ?	
+awcigo	and where can i get one	
+AWGTHTGT	Are we going to have to go through this again?	
+AWGTHTGTTA	Are We Going To Have To Go Through This Again?	
+AWHFY	Are We Having Fun Yet?	
+AWOL	Absent Without Leave	
+AWOL	Away without leaving	
+AWTTW	A Word To The Wise	
+AWYWI	Any Way You Want It	
+AYEC	At your earliest convenience	
+AYK	As You Know	
+AYOR	At Your Own Risk	
+AYOR	At Your Own Risk	
+AYOR	At your own risk	
+AYSOS	Are You Stupid Or Something?	
+AYSOS	Are you stupid or something	
+AYT	Are You There	
+AYTMTB	And you're telling me this because?	
+AYTMTB	And you're telling me this because 	
+B	Be	
+B	Bye	
+B	be	
+b%kD	booked	
+B*d	bastard	
+b.y.o.b.	bring you own beer	
+b.y.o.b.	bring you own booze	
+b.y.o.b.	Bring Your Own Bombs	
+b.y.o.b.	bring your own bottle	
+b.y.o.b.	bring your own beverage	
+B/C	Because	
+B/F	Boyfriend	
+b@r	batter	
+b@RE	battery	
+b2w	back to work	
+b2w	by the way	
+B4	Before	
+B4	Before	
+B4	Before	
+b4	before	
+B4N	Bye For Now	
+B4N	Bye For Now	
+B4N	Bye For Now	
+B4N	Bye for now	
+B4U	Before You	
+B4YKI	Before You Know It	
+b6ual	bisexual	
+BA	By Arrangement	
+BA	Bad Ass	
+BA6	basics	
+BAC	Bad A**ed Chick	
+BAG	Bursting A Gut	
+BAK	Back At Keyboard	
+BAK	Back At Keyboard	
+BAK	Back at keyboard	
+balNs	balance	
+BAU	Business As Usual	
+BAU	Business as usual	
+BB	Bathroom break	
+BB	Be back	
+BB4N	Bye-Bye for Now	
+BBB	Blah Blah Blah	
+BBBG	Bye Bye Be Good	
+BBFBBM	Body by Fisher, brains by Mattel	
+BBFN	Bye Bye For Now	
+BBFN	Bye-Bye for Now	
+BBIAB	Be Back In A Bit	
+BBIAB	Be back in a bit	
+BBIAF	Be Back In A Few	
+BBIAF	Be back in a few	
+BBIAF	Be back in a few	
+BBIAF	be back in a few	
+BBIAM	Be back in a minute	
+BBIAM	be back in a minute	
+BBIAS	Be Back In A Sec	
+BBIAS	Be back in a sec	
+BBIAW	Be Back In A While	
+BBL	Be Back Later	
+BBL	Be Back Later	
+BBL	Be Back Later	
+BBL	Be back later	
+BBN	Bye, Bye Now	
+BBN	bye bye now	
+BBN	Bye Bye (for) Now	
+BBN	better be nice	
+BBN	be back never	
+BBQ	Be back quickly	
+BBQ	barbecue	
+BBQ	barbeque	
+BBQ	be back quick	
+BBQ	Barbecue!	
+BBR	Burnt Beyond Repair	
+BBS	Be Back Soon	
+BBS	Be Back Soon	
+BBS	Be back soon	
+BBSD	Be Back Soon Darling	
+BBSL	Be Back Sooner or Later	
+BBT	Be Back Tomorrow	
+BBT	Be back tomorrow	
+BC	Because	
+BC	Because	
+BC	Because	
+BCBS	Big company, big school	
+BCC	Blind carbon copy	
+BCNU	Be seein’ you	
+BCNU	be seeing you	
+BCNU	Be seein' you	
+BCNU	be seeing you	
+BCOS	Because	
+BCOZ	Because	
+BCZ	Because	
+BD	Big Deal	
+BDAY	Birthday	
+BDC	Big dumb company	Big dot com	
+BDN	Big damn number	
+BDN	Big damn number	
+BEG	Big Evil Grin	
+BEOS	Nudge	
+betr	better	
+BETW	BETWeen	
+BF	Best Friend	
+BF	BoyFriend	
+BF	Boy Friend	
+BF	Boyfriend	
+BF	Boyfriend	
+BF	Best friend	
+BFD	Big Frickin Deal	
+BFD	Big fucking deal	
+BFF	Best Friends Forever	
+BFF	Best Friends Forever	
+BFFEAE	best friends for ever and ever	
+BFFEAE	best friend for ever and ever	
+BFFEAE	best friends forever and ever	
+BFG	Big  fucking grin	
+BFN	Bye For Now	
+BFN	Bye For Now	
+BFN	Bye For Now	
+BFN	Bye for now	
+BFN	bye for now	
+BFN	Big Fat Negative	
+BG	Big grin	
+BG	Big grin	
+BGWM	Be gentle with me	
+bhl8	be home late	
+BHOF	Bald headed old fart	
+BIBO	beer in, beer out	
+BIBO	bear in, bear out	
+BIBO	drink	
+BIF	Before I Forget	
+BIF	Basis in fact	before I forget	
+BIITEOTB	beauty is in the eye of the beholder	
+BIO	By Invitation Only	
+BION	Believe it or not	
+BION	believe it or not	
+BION	Believe it or not.	
+BIOYN	Blow it Out Your Nose	
+BIOYN	Blow it out your nose	
+BITD	Back in the day	
+BITMT	But in the meantime	
+biz	business	
+biz	busy	
+biz	bisous	
+biz	buisness	
+biz	two	
+BKA	Better Known As	
+BKD	Backed	
+bl$	bless	
+bl@	bland	
+BLNT	Better luck next time	
+BLTN	Better Late Than Never	
+BM	Byte me	
+BM&Y	Between me and you	
+BMG	Be My Guest	
+BMOTA	Byte me on the ass	
+BMW	Be My Wife	
+BNF	Big name fan	
+BNWOT	brand new without tags	
+BNWOT	Brand New Without Tag.	
+BO	buzz off	
+BOBFOC	Body Off Baywatch, Face Off Crimewatch	
+bod	body	
+bod	point	
+BOHICA	Bend Over, Here It Comes Again	
+BOHICA	Bend over, here it comes again	
+BOL	Best of luck	
+BOT	Back On Topic	
+BOT	Back on topic	
+BPLM	Big person little mind	
+BR	Best Regards	
+BR	Bathroom	
+br@	brat	
+BRB	Bar Room Bar	
+BRB	Be Right Back	
+BRB	Be Right Back	
+BRB	Be Right Back	
+BRB	Be right back	
+brEZ	breezy	
+brEZ	breeze	
+brEZ	breathe easy	
+bro	brother	
+bro	bridge	
+bros	brothers	
+bros	smile	
+BRS	Big Red Switch	
+BRT	Be Right There	
+BRT	Be right there	
+BS	Big Smile	
+BSF	But Seriously, Folks	
+bstwshs	best wishes	
+BT	Byte This	
+BTA	But Then Again	
+BTA	But then again	Before the attacks	
+BTA	But then again	
+BTAIM	Be That As It May	
+BTB	By The Bye	
+BTCABE	burning the candle at both ends	
+BTDT	Been There, Done That	
+BTDT	been there done that	
+BTDT	Been there, done that	
+BTDTGTS	Been There, Done That, Got The T-shirt	
+BTHOM	Beats The Hell Outta Me	
+BTHOOM	Beats The Heck Out Of Me	
+btl	better than life	
+btl	bottle	
+btl	bacon tomato lettuce	
+BTOBD	Be There Or Be Dead	
+BTOBS	Be there or be square	
+BTSOOM	Beats the shit out of me	
+BTT	bored to tears	
+BTTC	Best Time To Call	
+BTTP	back to the point	
+BTW	By The Way	
+BTW	By The Way	
+BTW	By The Way	
+BTW	By the way	
+BTWBO	Be there with bells on	
+BTWN	Between	
+bugly	Butt Ugly	
+BURMA	Be Upstairs and Ready, My Angel	
+BW	Best Wishes	
+bw/u	be with you	
+BWDIK	But what do I know?	
+BWKOTL	big wet kiss on the lips	
+BWL	Bursting With Laughter	
+BWL	bursting with laughter	
+BWL	bubbling with laughter	
+BWO	Black, white or other	
+BWQ	Buzz Word Quotient	
+BYE	Response to BYE?	
+BYE?	Are you ready to say goodbye?	
+BYKT	But You Knew That	
+BYKT	But you Knew That	
+BYOB	Bring Your Own Bottle	
+BYOM	Bring Your Own Mac	
+BYORL	Bring your own rocket launcher	
+BzAR	bizarre	
+BzAR	bazaar	
+bzy	busy	
+C	See	
+C	see	
+c%dnt	could not	
+c%l	cool	
+C&G	Chuckle and Grin	
+C/P	Cross post	
+c@s	cats	
+C2it	see to it	
+C4N	Ciao for now	
+CADET	Can't Add, Doesn't Even Try	
+CB	Chat brat	
+CBA	Can't Be Arse	
+CBD	Cannot Be Determined	
+CBLI	Couldn't Be Less Interested	
+CBS	Can't Be Serious	
+centR	center	
+centR	centre	
+centR	central	
+CFD	Call for discussion	
+CFO	Cash For Operations	
+CFV	Call for vote	
+ch$	chess	
+chocl@	chocolate	
+CIAO	Goodbye (in Italian)	
+ciao	bye	
+ciao	goodbye	
+ciao	hello	
+ciao	hi	
+ciao	laters	
+ciao	see ya	
+CICO	Coffee in, Coffee out	
+CID	Consider It Done	
+CID	Crying In Disgrace	
+CID	consider it done	
+CIO	Communism Is Ok	
+CIO	check it out	
+CIO	Chief information officer	
+CIO	Cut It Out	
+CIO	check out our	
+CIS	CompuServe Information Service	
+CL	Call	
+cla$	class	
+cliK	click	
+cm4agt	call me for a good time	
+CMF	Count my fingers	
+CMI	Cannot Make It	
+CMIIW	Correct Me If I'm Wrong	
+CMIIW	Correct Me If I’m Wrong	
+CMIIW	Correct me if I'm wrong	
+CMON	Come on	
+cmputA	computer	
+cmputA	Computor	
+cn	can	
+CNP	Continued in my next post	
+CO	Conference	
+CO	Company	
+COA	Center Of Attention	
+COB	Close Of Business	
+COB	Close of business	
+Cof$	Church of Scientology	
+CofS	Church of Scientology	
+cofy	coffee	
+com&	command	
+com&	come and	
+comb@	combat	
+communic8	communicate	
+complic8	complicate	
+complX	complex	
+compNE	company	
+confuz	confuse	
+congr@ul8	congratulate	
+congr@ul8	congratulations	
+congrats	congratulations	
+cool	kewl	
+COS	Because	
+Coz	Because	
+COZ	because	
+CP	Sleepy	
+CP	Cross post	
+CPP	C Plus Plus
+C++	C Plus Plus	
+CR8	Create	
+CRAFT	Can't remember a fucking thing	
+CRAP	Cheap, redundant assorted products	
+craZ	crazy	
+CRB	Come right back	
+CRBT	Crying really big tears	
+crbt	crying real big tears	
+crims	criminals	
+CRM	Can't Remember Meaning	
+CRS	Can Remember Stuff	
+CRS	Can't Remember Stuff	
+CRS	Can't Remember Shit	
+cruz	cruise	
+cruz	cross	
+CRZY	Crazy	
+CSG	Chuckle, Snicker, Grin	
+CSM	Come See Me	
+Cson	season	
+CT	City	
+CT	city	
+CT	can not talk	
+CT	C'était	
+CT	Cash Transaction	
+CT	It was	
+CTC	Community Technology Centers	
+CTC	Choking the chicken	
+CTFD	Calm The F*$# Down	
+CTN	Can't Talk Now	
+CU	See You	
+CU	See You	
+CU	See You	
+CU	See you	
+CU@	See You Around	
+CU2	See You, Too	
+CU2day	see you today	
+CU2NITE	see you tonight	
+CU2NITE	see you tonite	
+CUA	See you around	
+CUL	See You Later	
+CUL	See you later	
+CUL	See You Later	
+CUL	See you later	
+CUL8ER	See You Later	
+CUL8R	See you later	
+CUL8R	See You Later	
+CUL8R	See You Later	
+CUL8R	See you later	
+cul8r	see you later	
+cul8r	see u later	
+CUL8TR	See you later	
+CULA	See You Later, Alligator	
+CUNS	See You In School!	
+CURT	Clever Use Of Reasoning Tools	
+CUS	See You Soon	
+CUZ	Because	
+CUZ	Because	
+CVS	Code Versioning System	
+CW	Conventional Wisdom	
+cw2cu	can't wait to see you	
+cw2cu	can`t wait to see you	
+cw2cu2m	I can't wait to see you tomorrow	
+CWOT	Complete Waste Of Time	
+cwtsy	can't wait to see you	
+CWYL	Chat With You Later	
+CWYL	Chat with you later	
+CWYL	Chat with you later	
+CY	Calm Yourself	
+CYA	See Ya	Cover Your Ass	
+CYA	See Ya	
+CYA	See ya	
+CYAL8R	See You All Later	
+cyal8r	call ya later	
+cyal8r	see you all later	
+cyal8r	See You Later	
+cyal8r	see yall later	
+CYL	See You Later	
+CYO	See you online	
+CYOA	Cover Your Own Ass	
+CYT	See You Tomorrow	
+CYW	Call Your Wife	
+D	Duh	
+D/L	Download	
+D8	Date	
+d8	date	
+DA	the	
+DAC	Duck And Cover	
+Dad@hvn	dad at heaven	
+Dad@hvn	our father who art in heaven	
+DAMIFINO	Damn, if I know	
+DARFC	Ducking And Running For Cover	
+dat	that	
+DAU	Dosen't Add Up	
+Db8	Debate	
+Db8	debate	
+DBAU	Doing business as usual	
+DBI	Don't Buy It	
+DCF	Doesn't Care For 	
+Dcide	decide	
+DD	Due diligence	
+ddaiddais	don't do as I do, do as I say	
+DDD	Direct distance dial	
+DDT	Don't Do That	
+DEGT	Don't even go there	
+DEK	Don't Even Know	
+DES	Description	
+DESC	Description	
+DESCR	Description	
+DF	Dear Friend	
+DFL	Dumb, Fat, and Lazy	
+Dfl8	deflate	
+DG	Don't Get 	
+DGI	Damn Good Idea	
+Dgre	degree	
+DGT	Don't Go There	
+DH	Don't Have 	
+DH	Dear Hubby	Dear Husband	
+DIIK	Damned If I Know	
+DIKU	Do I Know You	
+DIKU	Do I know you?	
+DIKU?	Do I Know You?	
+DILLIGAD	Do I Look Like I Give A Darnn?	
+DILLIGAD	Do I look like I give a damn?	
+DILLIGAF	Do I look like I give a fuck?	
+DILLIGAS	Do I look like I give a shit?	
+dImNd	diamond	
+dinero	cash	
+dinero	money	
+DINK	Double Income No Kids	
+dinR	diner	
+dis	December	
+dis	disrespect	
+dis	rich	
+dis	said	
+dis	these	
+dis	this	
+dis	twice	
+DIY	Do It Yourself	
+DIY	Do it yourself	
+DJ	Dumb Jerk	
+DK	Don't Know	
+DK	Don’t Know	
+DL	Download	
+DL	Download	
+dlAd	delayed	
+dlAd	defense logistics acquisition directive	
+dlAd	Department of Local Affairs & Development	
+dlAd	DNase II-like acid DNase	
+dlghitm	don't look a gift horse in the mouth	
+DLTBBB	Don't Let The Bed Bugs Bite	
+dm&	demand	
+DMA	Doesn't Mean Anything	
+dmonstr8n	demonstration	
+dmonstr8n	demonstrating	
+DNC	Does Not Compute	
+DND	Do Not Disturb	
+DND	Do Not Disturb	
+DNFTT	Do Not Feed The Trolls	
+DntBL8	Do not Be Late	
+DQMOT	Don't quote me on this	
+DSapER	disappear	
+DSL	Doesn't Seem Likely	
+Dtails	details	
+DTRT	Do The Right Thing	
+DTS	Don't Talk Software	
+DTS	Don't think so	
+DUD	Don't U Dare	
+DUNNO	I Don't Know	
+DUST	Did You See That?	
+DV	Don't Vomit	
+DV8	Deviate	
+DV8	deviate	
+DVDA	Double Vaginal Double Anal	
+DVNt	deviant	
+DWAI	Don't Worry About It	
+DWIMC	Do What I Mean, Correctly	
+DWIMNWIS	Do What I Mean, Not What I Say	
+DWL	Dying with laughter	
+DWPF	Divorced White Professional Female	
+DWYDLIP	Don't Wash Your Dirty Linen In Public	
+DWYM	Does what you mean	
+DX	decks	
+DXNRY	Dictionary	
+DYK	Did You Know ?	
+DYLM	do you like me	
+DYOFDW	Do Your Own Fucking Dirty Work	
+DYSTSOTT	Did you see the size of that thing?	
+DzastA	disaster	
+Dzine	design	
+E123	Easy as One, Two, Three	
+EAK	Eating at Keyboard	
+EBKAC	Error between keyboard and chair	
+EF4T	Effort	
+ef4T	effort	
+EG	Evil Grin	
+EG	Evil grin	
+EG	Evil grin	
+EL	Evil Laugh	
+EM	Excuse Me?	
+EMA	E-mail address	
+EMFBI	Excuse me for butting in	
+EMFJI	Excuse me for jumping in	
+EMITAS	Excuse Me, I am Taking A Survey	
+EMS	Eat My Shorts	
+EMSG	E-mail message	
+ENUF	Enough	
+enuf	enough	
+EOD	End of discussion	
+EOD	End of day	
+EOL	End of Life	
+EOM	Every Other Month	
+EOM	End of message	
+EOM	End of message	
+EOM	end of message	
+EOM	end of month	
+EOM	end of mail	
+EOT	End of transmission	
+EPIF	Epic Fail	
+ESAD	Eat Shit And Die	
+ESO	Equipment smarter than operator	
+ETA	age	
+ETA	aged	
+ETA	estimated time of arrival	
+ETA	this	
+ETLA	Extended Three Letter Acronym	
+ETS	Easy To Say	
+EULA	End-User License Agreement	
+EVA	Ever	
+evrywhr	everywhere	
+EWI	E-mailing while intoxicated	
+experENs	experience	
+experENs	experienced	
+EZ	Easy	
+EZ	easy	
+EZY	Easy	
+f%d	food	
+f%t	foot	
+f%tT	footy	
+F2F	Face To Face	
+F2F	Face to Face	
+F2F	Flesh to flesh	Face to face	
+F2F	Face to face	
+F2T	free to talk	
+F2T	Free to talk	
+f8	fate	
+FAB	Features, attributes, benefits	
+FAI	Frequently argued issue	
+fanC	fancy	
+fantaC	fantasy	
+FAO	For Attention Of 	
+FAQ	Frequently Asked Questions	
+FAQL	Frequently Asked Questions List	
+favR	favour	
+favR	favor	
+FAWC	For Anyone Who Cares	
+FB	Followed By 	
+fbi	Federal Bureau of Investigation	
+fbi	I will look into it	
+FBKS	Failure between keyboard and seat	
+FBM	Fine By Me	
+FBM	Fine by me	
+FBO	For the Benefit of 	
+FBOW	For better or worse	
+FBUGLY	Fucking Butt Ugly	
+FC	Fingers Crossed	
+FC	Fingers crossed	
+FCFS	First Come, First Served	
+FCS	For Christ's Sake!	
+FE	Fatal error	
+FF	Friends Forever	
+FFPN	Fresh fields and pastures new	
+FICAR	Forget It, Cut And Run	
+FICCL	Frankly I couldn't care a less	
+FIFY	Fixed It For You	
+FISH	First In, Still Here	
+FISH	First in, Still Here	
+FISH	First in, still here	
+FITB	Fill In The Blank	
+FITB	Fill in the Blanks	
+FITB	Fill in the blank	
+FIWDIM	Fuck It, We'll Do It Monday	
+fl@	flat	
+FNO	From Now On	
+FO	fuck off	
+FOAD	Fuck off and die	
+FOAD	Fuck Off And Die	
+FOAF	Friend Of A Friend	
+FOAF	Friend Of A Friend	
+FOAF	Friend of a friend	
+FOAG	Fuck Off And Google	
+FOC	Free of Charge	
+FOCL	Falling Off the Chair Laughing	
+FOCL	Falling off chair laughing	
+FOFL	Falling on Floor Laughing	
+FOMC	Fell Off My Chair	
+FOMCL	Falling off my chair laughing	
+footy	football	
+footy	soccer	
+FOTFLOL	falling on the floor, laughing out loud	
+foto	photo	
+foto	photograph	
+FRED	fucking ridiculous electronic device	
+freeballin	not wearing any underpants	
+FRM	from	
+FRT	For real though	
+FS	For Sale	
+FSCK	File System Check	
+FTASB	Faster Than A Speeding Bullet	
+FTASB	Faster than a speeding bullet	
+ftbomh	from the bottom of my heart	
+FTBSITTTD	Fuck The Bull Shit It's Time To Throw Down	
+FTF	Face To Face	
+FTFTFWMF	Fuck Them, Fuck Those Fucking Worthless Mother Fuckers	
+FTITM	First Thing In The Morning	
+FTL	Faster Than Light	
+FTL	Faster than light	
+FTM	For That Matter	
+FTM	Far Too Many 	
+FTMFW	For The Mother Fucking Win	
+FTMFWB	For The Mutha Fuckin Win Bitches	
+FTMP	For The Most Part	
+FTTB	For the time being	
+FTTYYGTS	Fart That Tells You You Got To Shit	
+FTW	For The Win	
+FUBAB	fucked up beyond all belief	
+FUBAR	Fouled Up Beyond All Repair	
+FUBAR	fucked up beyond all reason / recognition / repair	
+FUBB	Fouled Up Beyond Belief	
+FUBB	Fucked Up Beyond Belief	
+FUBIO	Fuck You Buddy I'm Out	
+FUD	Fear, Uncertainty and Doubt	
+FUD	Fear, Uncertainty and Doubt	
+FURTB	Full Up Ready To Burst	
+FWD	Forward	
+FWIW	For What It's Worth	
+FWIW	For What It’s Worth	
+FWIW	For What It's Worth	
+FWIW	For what it's worth	
+FYA	For Your Amusement	
+FYA	For Your Amusement	
+FYA	For your amusement	
+FYEO	For your eyes only	
+FYI	For Your Information 	
+FYI	For Your Information	
+FYI	For Your Information	
+FYI	For your information	
+fyi	for your information	
+fyi	fix yourself it	
+fyi	for your informations	
+FYIFV	fuck you, I'm fully vested	
+FYIP	For Your Information, Please	
+FYIV	fuck you, I'm vested	
+FYKC	For Your Kind Consideration	
+FYM	For your misinformation	
+FYNA	For Your Necessary Action	
+FYQA	For Your Quick Attention	
+FYYSOS	Fuck you, you sack of shit	
+G	Grin	Giggle	
+G	Grin	
+G	Grin	
+g%d	good	
+G&T	gin and tonic	
+G&T	give and take	
+G/F	Girlfriend	
+G1	Good One	
+G2CU	Good to see you	
+G2G	Got to Go	
+G2G	Got to Go	
+G2G	Got to go	
+G2R	Got to run	
+G9	Genius	
+G9	Genius	
+GA	Go Ahead	
+GA	Go ahead	
+GA	Go ahead	
+GAL	Get A life	
+GAL	Get A Life	
+GAL	Get A Life	
+GAL	Get a life	
+gal	get a life	
+gal	girl	
+gal	madman	
+GALGAL	Give A Little Get A Little	
+garNT	guarantee	
+GAS	Go And See	
+GB	Goodbye	
+GBH	Great Big Hug	
+GBTW	Get back to work	
+GBU	God Bless U(You)	
+GBU	God bless you	
+GBYF	Go Bother Your Father	
+GBYM	Go Bother Your Mother	
+GD&R	Grinning, Ducking and Running	
+GD&RF	Grinning, Ducking and Running Fast	
+GD&WVF	Grinning, Ducking, and Walking Very Fast	
+GD/R	Grinning, ducking, and running	
+gdby	bye bye	
+gdby	goodbye	
+gdby	good bye	
+GDR	Grinning, Ducking and Running	
+GDR	Grinning, ducking, and running	
+GDW	Grin, Duck and Weave	
+GF	Girl Friend	
+GF	Girlfirend	
+GF	Girlfriend	
+GFC	Going for coffee	
+GFE	GirlFriend Experience	
+GFETE	Grinning from ear to ear	
+GFI	Go for it	
+GFN	Gone For Now	
+GFN	Gone for now	
+GFR	Grim File Reaper	
+GFY	Good For You	
+GG	Good Game	
+GG	Good Game	
+GG	Gotta Go or Good Game	
+GGN	Gotta Go Now	
+GGN	Gotta Go Now	
+GGP	Gotta Go Pee	
+ggpo	good game, peace out	
+GGs	horses	
+GHP	Good hand partner (for online card games)	
+GIAR	Give it a rest	
+GIDK	Gee I Don't Know	
+GIGO	Garbage in, garbage out	
+GIGO	Garbage in, garbage out	
+GINU	Glad I'm Not You	
+GIWIST	Gee, I Wish I’d Said That	
+GJ	Good Job	
+GJ	Good Job	
+GJIAGDVYCN	Go jump in a god damn volcano, you fucking cave newt	
+GL	Good Lord	
+GL	Good Luck	
+GL	Good luck	
+GL	Good luck	
+GL/HF	Good luck, have fun	
+GLGH	Good Luck and Good Hunting	
+GLLA	Great lovers love alike	
+GLNG	Good luck next game	
+GLWT	Good Luck With That	
+GLWTN	Guffawing loudly waking up the neighborhood	
+GLYASDI	God loves you and so do I	
+GM	Goodness Me!	
+GM	Good Morning	
+GM	Good Message	
+GMBO	Giggling my butt off	
+GMT	greenwich mean time	
+GMTA	Great Minds Think Alike	
+GMTA	Great Minds Think Alike	
+GMTA	Great minds think alike	
+GMTA	great minds think alike	
+GMTA	give me the answer	
+GMTFT	Great minds think for themselves	
+GNBLFY	Got nothing but love for you	
+gNR8N	generation	
+gNR8tN	generation	
+GNU	Good, and You	
+GO	Get Out	Get Off	
+GOAP	Go Outside And Play	
+GOI	Get over it	
+GOK	God Only Knows	
+GOL	Giggling out loud	
+GOWI	Get On With It	
+GOYFA	Get Off Your Fat Ass	
+gr%vy	groovy	
+GR&D	Grinning, Running and Ducking	
+GR&D	Grinning, running and ducking	
+GR8	Great	
+GR8	Great	
+GR8	Great!	
+GR8	Great	
+gr8	great	
+gr8ly	greatly	
+gradU8	graduate	
+GRD	Grinning, running and ducking	
+GRMBL	Grumble	
+GRMBL	Grumble	
+GRO	Going Right On	
+GRRRR	Growling	
+GRT	Great	
+grUsum	gruesome	
+GSOAS	Go sit on a snake	
+GSOH	Good Sense Of Humor	
+GSOH	Good Sense Of Humour	Good Salary, Own Home	
+GSS	Generic Security Service	
+Gsus	geezass	
+Gsus	Jesus	
+GT	Good try	
+gt2	get to	
+GTFO	Get The F*** Out	Get the F*** Off	
+GTG	Got To Go	
+GTG	Got to Go	
+GTG	Got To Go	
+GTG	got to go	
+GTG	Got to go	
+GTGB	Got to go, bye	
+GTGP	Got to go pee	
+GTH	Go To Hell	
+GTH	Go To Hell	
+GTRM	Going to read mail	
+GTSY	Great To See You	
+GTSY	Glad to see ya	
+gudnite	good night	
+gudnite	goodnight	
+GW	Gee Whiz	
+GW	Get With	
+GWAR	God, What Awful Racket	
+GWT	Go With That	
+GWTL	get with the Lingo	
+GYPO	Get your pants off	
+h&d	handy	
+h&d	hand	
+H&K	Hugs and Kisses	
+H&K	Hugs & kisses	
+H2CUS	Hope to see you soon	
+H2CUS	hope to see you soon	
+H2O	water	
+H4U	Hot For You	
+H8	hate	
+H8	Hate	
+HAB	Hot Asian babe	
+HABUN	have a better 'un	
+HABUN	have a better one	
+HACK	To use something not in its intended manner.	
+HAG	Have A Go	
+HAGD	Have A Great Day	
+HAGD	Have a Great Day	
+HAGN	Have a good night	
+HAGN	Have a good night	
+HAGO	Have a good one	
+HAGO	Have a good one	
+HAK	Hugs And Kisses	
+HAK	Hugs And Kisses	
+HAK	Hugs and kisses	
+HAM	Hardly Any Money	
+hamRd	hammered	
+HAND	Have A Nice Day	
+HAND	Have A Nice Day	
+HAND	have a nice day	
+HAND	Have a nice day	
+hand	four inches in horse height	
+hand	have a nice day	
+hapnd	happened	
+hav	have	
+hav	ocean	
+hav	sea	
+HAY	How Are You?	
+HB	Happy Birthday	
+HB	Hurry back	
+HBASTD	Hitting Bottom And Starting To Dig	
+hbtu	Happy Birthday To You	
+hbtu	happy birthday to you	
+HBU	How About You 	
+HD	Hold	
+HDA	Havent Decided A	
+HDYLTA	How Do You Like Them Apples?	
+hevE	heavy	
+HF	Hello, Friend	
+HF	Have fun	
+HH	Hold Hands	
+HHIS	Hanging Head In Shame	
+HHIS	Hanging head in shame	
+HHIS	Head hanging in shame	
+HHIS	hanging head in shame	
+HHO12K	Ha ha, only half kidding	
+HHOJ	Ha Ha Only Joking	
+HHOJ	Ha-Ha, Only Joking	
+HHOK	Ha Ha Only Kidding	
+HHOK	Ha ha, only kidding	
+HHOS	Ha Ha Only Serious	
+HHOS	Ha-Ha, Only Being Serious	
+HHTYAY	Happy Holidays to You and Yours	
+HHTYAY	Happy Holidays To You And Yours	
+HI	Humorous Intention	
+HI	Hello	
+HI	Here Is 	
+HIH	Hope It Helps	
+hi-lited	highlighted	
+HIOOC	Help! I'm out of coffee	
+hir	higher	
+hir	Hope I am Right	
+hir	Hopefully I am Right	
+hir	Hoping I am Right	
+hir	her	
+HNY	Happy New Year	
+HNY	Happy New Year	
+HOAS	Hang On A Sec (Second)	
+HOAS	Hold On A Sec	
+HOAS	Hold on a second	
+HOHA	Hollywood hacker	
+HON	Honey	
+HOT4U	hot for you	
+hot4U	hot for you	
+hovR	hover	
+HOW U	How Are You	
+HOYEW	Hanging On Your Every Word	
+HP	Handphone	
+HPN	Happen	
+hpn	happen	
+hrtz	hurts	
+hrtz	hearts	
+HRU	How are you?	
+HRU	Cómo estás?	
+HRU	Cómo estás	
+HRU	how are you	
+HRU	how are you?	
+HRU	how r u	
+HRU	what are you doing now?	
+hru2d	how are you today	
+HS	Horribly Slow	
+HSIK	How Should I Know	
+HT	Hi There	
+HTH	Hope That Helps!	
+HTH	Hope this helps	
+HTH	Hope this helps	
+HUA	Heads up ace	
+hub	head up butt	
+hub	hub	
+hub	hoisting	
+hub	how you been	
+hub	lift	
+HUD	How You Doing?	
+HUGZ	Hugs	
+HUYA	Head up your ass	
+HV	Have	
+HW	Homework	
+I 1DR	I Wonder	
+I.N.O.T.T.F.L.S.	It's Not Over unTill The Fat Lady Sings	
+I12	I want to	
+I12CU	I want to see you	
+IAC	In Any Case	
+IAC	In Any Case	
+IAC	In any case	
+IAC	In any case	
+IAE	In Any Event	
+IAE	In any event	
+IAH	I Am Here	
+IAITS	It's all in the subject	
+iam*vin	I am starving	
+IANAC	I am not a crook	
+IANAE	I Am Not an Expert	
+IANAL	I Am Not A Lawyer	
+IANAL	I am not a lawyer	
+IANAL	I am not a lawyer	
+IARW	InAccurate Reconstruction Warning	
+IAT	I Am Tired	
+IAW	In Accordance With	
+IAYL	In A While	
+IB	I'm back	
+IBCNU	I'll be seeing you	
+IBK	Idiot Behind Keyboard	
+IBRB	I Will Be Right Back	
+IBT	In between technology	
+IBTD	I Beg To Differ	
+IBTD	I beg to differ	
+IC	I See	
+IC	I See	
+IC	I See	
+IC	I see	
+ICBW	I Could Be Wrong	
+ICBW	It could be worse	
+icbw	I could be wrong	
+icbw	it could be worse	
+iccl	I couldn't care less	
+ICQ	I Seek you	
+icw2cu	I can't wait to See You	
+icw2cu	I can't wait to see you kisses and hugs	
+ID	I Dare	
+ID10T	Idiot	
+IDC	I Don't Comprehend	
+IDC	I Don't Care	
+IDC	I Don't Care	
+IDE	I Didn't Even 	
+IDK	I Don't Know	
+IDK	I Don't Know	
+IDK	I Don't Know	
+IDK	I don't know	
+idk	I don't know.	
+idk	I don't know	
+idk	I do not know	
+idk	I dont know	
+idkh2s	i don't know how to spell	
+IDKTMWIM	I Don't Know Tell Me What It Means	
+IDL	Ideal	
+IDM	It Don't Matter	
+IDM	It Does Not Matter	
+IDR	I Don't Remember	
+IDT	I Don't Think	
+IDTS	I don't think so	
+IDUNNO	I don't know	
+IEF	It's esther's fault	
+IFAB	I found a bug	
+IFO	In Front Of 	
+IFU	I fucked up	
+IG2R	I got to run	
+IGGP	I gotta go pee	
+IGTP	I Get The Point	
+ih8u	I hate you	
+IHAIM	I Have Another Instant Message	
+IHD	I Have Diarrhea	
+IHNO	I Have No Opinion	
+IHTFP	I Have Truly Found Paradise	
+IHTFP	I Hate This Fucking Place	
+IIABDFI	If It Ain't Broke, Don't Fix It	
+IIIO	Intel inside, idiot outside	
+IIMAD	If it makes any difference	
+IINM	If I'm Not Mistaken	
+IIR	If I Remember	If I Recall	
+IIRC	If I Remember Correctly	
+IIRC	If I Remember Correctly	
+IIRC	If I remember correctly	
+IIRC	If I remember correctly	
+IIWM	If It Were Me	
+IIWM	If it were me	
+IJWTK	I Just Want To Know	
+IJWTS	I Just Want To Say	
+IKALOPLT	I Know A Lot Of People Like That	
+IKT	I know that	
+IKT	I knew that	
+IKWR	I Know What's Right	
+IKWUM	I Know What You Mean	
+IKYABWAI	I Know You Are But What Am I?	
+ILBL8	I'll be late	
+ilbl8	I'll be late	
+ilbl8	I will be late	
+ilbl8	I’ll be late	
+ILICISCOMK	I laughed, I cried, I spat coffee over my keyboard	
+ILICISCOMK	I laughed, I cried, I spilt coffee over my keyboard	
+ILICISCOMK	I laughed, I cried, I spat crumbs over my keyboard	
+ILICISCOMK	I laughed, I cried, I spilt crumbs over my keyboard	
+ILICISCOMK	I laughed, I cried, I spat coke over my keyboard	
+ILICISCOMK	I laughed, I cried, I spilt coke over my keyboard	
+ILU	I Love You	
+ILU	I love you	
+ilu2	I love you too	
+ilu4e	I love you forever	
+IluvUM&MED	I love you more & more each day	
+IluvUM&MED	I love you more and more each day	
+IluvUM&MED	I love you more n more each day	
+ILY	I love you	
+ILY	I love you	
+ILYFL	I Love You For Life	
+ilyvm	I love you very much	
+IM	Instant Messanger	
+IM	Instant Message	
+IM	Instant messaging	
+IM	Instant message	
+Im*vin	I'm starving	
+im@tUR	immature	
+IMA	I Might Add	
+ima*vinrtst&iwan2eatu	I am a starving artist and I want to eat you	
+IMAO	Ill Make An Opinion	
+IMAO	In My Arrogant Opinion	
+IMB	I Might Be 	
+IMCO	In My Considered Opinion	
+IMCO	In my considered opinion	
+imd14u	I'm the one for you	
+imd14u	I am the one for you	
+IME	In My Experience	
+IMEO	in my educated opinion.	
+IMF	I Am Failed	
+IMHO	In My Humble Opinion	
+IMHO	In My Humble Opinion	
+IMHO	In My Honest/Humble Opinion	
+IMHO	In my humble opinion	
+IMI	I Mean It	
+IML	in my life	
+IMMD	It Made My Day	
+IMN2U	I'm Into You	
+IMNSHO	In My Not So Humble Opinion	
+IMNSHO	In My Not So Humble Opinion	
+IMNSHO	in my not so humble opinion	
+IMNSHO	In my not so humble opinion	
+IMO	In My Opinion	
+IMO	In My Opinion	
+IMO	In my opinion	
+IMOH	I'm outta here	
+IMOW	In My Own Words	
+IMPE	In my previous/personal experience	
+IMPOV	In My Point Of View	
+impr$	impress	
+impRsN8	impersonate	
+IMS	In a Manner of Speaking	
+IMS	I Am Sorry	
+IMS	I am sorry	
+IMTTY	I miss talking to you	
+imu2	I miss you too	
+IMVHO	In my very humble opinion	
+IMW	in my world	
+IMY	I Miss You	
+imya	I miss u already	
+imya	i miss you already	
+in2	into	
+INAL	I'm not a lawyer	
+infl8	inflate	
+INMP	It's not my problem	
+inottfls	it's not over 'till the fat lady sings	
+inottfls	it is not over until the fat lady sings	
+INPO	In No Particular Order	
+INPO	In no particular order	
+invSTg8	investigate	
+invSTg8n	investigating	
+invSTg8n	investigation	
+IO	In Order 	
+IO	In Our	
+IOH	I'm Outta Here	
+IOH	I'm outta here	
+IOHE4U	I Only Have Eyes For You	
+IOHO	In Our Humble Opinion	
+IOP	In Out Permanently	
+IOTTMCO	Intuitively obvious to the most casual observer	
+IOU	I owe you	
+IOW	In other words	
+IOW	In Other Words	
+IOW	In Other Words	
+IOW	In other words	
+iowan2bwu	I only want to be with you	
+IPN	I'm posting naked	
+Ir8	irrate	
+IRC	Internet Relay Chat	
+IRL	It's Ridiculously Lame	
+IRL	In Real Life	
+IRL	In Real Life	
+IRL	In real life	
+IRLU	I really love you	
+IRMC	I rest my case	
+IRS	It Really Stinks	
+ISFB	I'm So Frigging Bored	
+ISS	I’m So Sure	
+ISS	I said so	
+ISSYGTI	I’m So Sure You Get The Idea!	
+ISTM	It Seems to Me	
+ISTR	I Seem To Remember	
+ISWYM	I See What You Mean	
+ISWYM	I See What You Mean	
+IT	Is The	
+ITE	It's The End	
+ITFA	In The Final Analysis	
+ITM	In the money	
+ITOG	Is That One Good?	
+ITSFWI	If The Shoe Fits Wear It	
+itz	it is	
+itz	its	
+IUM	If You Must	
+IUSS	If you say so	
+IUSS	If you say so	
+-ive	negative	
+IWALU	I Will Always Love You	
+IWBNI	It Would Be Nice If	
+IWD	Interactive Written Discourse	
+IWTAAQ	I Want To Ask A Question	
+IYFEG	Insert Your Favorite Ethnic Group	
+IYH	In Your House	
+IYKWIM	If you know what i mean	
+IYKWIM	If you know what I mean	
+IYKWIMAI	If You Know What I Mean And I Think You Do	
+IYM	In Your Mail	
+IYO	In your opinion	
+IYO	In your opinion	
+IYP	In Your Pocket	
+IYQ	I like you	
+IYSS	If You Say So	
+IYSS	If you say so	
+IYSS	If you say so	
+IYSS	if you say so	
+IYSS	I you say so	
+IYSWIM	If You See What I Mean	
+IYSWIM	If you see what I mean	
+IYW	If You Wish	
+j00r	Your	
+J4F	Just For Fun	
+J4F	just for fun	
+J4F	just for friends	
+JA	Just Another	
+JAC	Just a sec	
+jacuZ	jacuzzi	
+JAD	Just Another day	
+JAFO	Just another fucking onlooker	
+JAM	Just A Minute	
+JAM	Just A Minute	
+JAS	Just A Second	
+JAS	Just A Second	
+JAS	Just a second	
+JAT	Just A Thought	
+JC	Just Chilling	
+JC	Just checking	
+JFI	Just For Information	
+JIC	Just In Case	
+JIC	Just in case	
+JIC	Just in case	
+JJ	Just Joking	
+JJA	Just joking around	
+JK	Just Kidding	
+JK	Just Keep	
+JK	Just Kidding	
+JK	Just Kidding	
+JK	Just kidding	
+JK	Just kidding	
+jk	just kidding	
+jk	joke	
+jk	jokes	
+jk	Jerusalem kids	
+JKP	Just Keep Pestering	
+jLSE	jealousy	
+JM2C	Just My 2 Cents	
+JM2C	just my 2 cents	
+JM2C	just my two cents	
+jm2p	just my two pence worth	
+JMHO	Just My Honest Opinion	
+JML	Just My Luck	
+JMO	Just My Opinion	
+JMO	Just my opinion	
+jmo	just my opinion	
+jmo	just in my opinion	
+jngl	jungle	
+jokN	joking	
+JOO	You	
+JOOTT	Just one of those things	
+JP	Just playing	
+JPYL	Just pulling your leg	
+jRne	journey	
+JST	Just	
+Jst4U	Just for you	
+JT	Joint	
+JT	Just Teasing	
+JTLYK	Just To Let You Know	
+JTLYK	just to let you know	
+JTM	Just Talking To Myself	
+juC	jucy	
+juC	juice	
+juC	juicy	
+JUM	Jumble	
+juviNiL	juvenile	
+JUX	Juxtaposition	
+JUX	Juxtapose	
+JW	Just Wait	
+JW	Just wondering (Wondered)	
+JWI	Just Wingin' It	
+JWK	Just Wondering	
+JWZ	Jee, Whiz!	
+JYYC	Just yanking your chain	
+K	Okay	
+K	okay	
+k/b	Keyboard	
+K8T	Katie	
+k9	canine	
+k9	dog	
+K9s	dogs	
+kapbL	capable	
+KB	Keyboard	
+KBD	Keyboard	
+KEWL	Cool	
+KFY	Kiss for you	
+KFY	kiss for you	
+KHUF	Know How You Feel	
+KHYF	Know How You Feel	
+KIBO	Knowledge In, Bullshit Out	
+KIC	Keep In Contact	
+KIR	Keep It Real	
+KISS	Keep It Simple, Stupid	
+KISS	Keep It Simple, Stupid	
+KISS	Keep it simple, stupid	
+KIT	Keep It Together	
+KIT	Keep In Touch	
+KIT	Keep in touch	
+KIT	Keep in touch	
+KK	Okay, Okay	
+KL	Cool	
+klick	click	
+klick	clicking	
+klick	kilometre	
+klick	kilometer	
+KMA	Kiss My Ass	
+KMA	Kiss my ass	
+KMIA	Kiss My Italian Ass	
+KMRIA	Kiss my royal Irish arse	
+KNIM	Know what I mean?	
+KOC	Kiss on cheek	
+KOC	Kiss on <the> cheek	
+KOC	Kiss On Cheek	
+KOK	Knock	
+KOTC	Kiss on the cheek	
+KOTC	Kiss on the cheek	
+KOTL	Kiss on the lips	
+KOTL	Kiss on the lips	
+koz	because	
+koz	cosy	
+KPC	Keep Parents Clueless	
+KUTGW	Keep Up The Good Work	
+KUZ	BeCause	
+KW	Knows Whether	
+KWIM	Know what I mean?	
+KWIM	Know What I Mean?	
+KWIM	Know what i mean	
+KWL	Cool	
+KYFC	Keep Your Fingers Crossed	
+KYPO	Keep your pants on	
+KYPO	keep your pants on	
+L	Although	
+l%k	look	
+L@N	latin	
+L@U	laughing at you	
+L@U	laugh at you	
+l33t	Elite	
+l337	elite	
+L8	Late	
+L8	late	
+L8a	Later	
+L8ER	later	
+L8r	Later	
+L8R	Later	
+L8R	Later	
+l8r	later	
+l8r	see you later	
+l8rg8r	later 'gater	
+l8rg8r	Later Gator	
+L8RS	Laters	
+l8st	latest	
+L8TR	Later	
+laff	laugh	
+LAGNAF	Let's all get naked and fuck!	
+LAQ	Lame ass quote	
+latpatpwlat	look after the pennies the pounds will look after themselves	
+LB	Lame Brain	
+LBL	Little By Little	
+lckE	lucky	
+LD	Long distance	
+LD	Later, dude	
+LDO	Like, Duh, Obviously	
+LDR	Long Distance Relationship	
+LDTTWA	Let's do the time warp again	
+leaV	leave	
+LERK	leaving easy reach of keyboard	
+lern	learn	
+lern	Library Electronic Reference Network	
+LHO	laughing head off	
+LHU	Lord help us	
+LHU	Lord help you	
+LIBBY	life is better because of you	
+LIFO	Last in, first out	
+LK	Like	
+LLTA	Lots and lots of thunderous applause	
+LMAO	Laugh My Ass Off	
+LMAO	Laugh My Ass Off	
+LMAO	Laughing my ass off	
+LMBO	Laugh My Butt off	
+LMFAO	Laughing My Fucking Ass Off	
+LMHO	laughing my head off	
+LMHO	laughing my heiny off	
+LMIRL	Let's meet in real life	
+LMK	Let me know	
+LMK	let me know	
+LMOAM	Left Message On Answering Machine	
+LMOL	Laugh Majorly out loud	
+LMOT	Left Message On Tape	
+lmso	laughing my socks off	
+lmso	laugh my socks off	
+Lndn	London	
+loc8	locate	
+LOL	Laugh Out Loud	
+LOL	Lots Of Love	
+LOL	Lots Of Laughter	
+LOL	Laugh Out Loud	
+LOL	Lots Of Love	
+LOL	Laughing out loud	
+LOLA	Laugh Out Loud Again	
+LOLERSKATES	Laugh Out Loud +Skates	
+LOLLERSKATES	Laugh Out Loud Skates - Hilarity on wheels; Funny plus skates	
+LOLOL	Laugh Out Loud Out Loud	
+LOOL	Laughing Outragously Out Loud	
+loo's	toilets	
+LOPSOD	Long on promises, short on delivery	
+LOSAS	Laughing Out Softly And Sexy	
+lotRE	lottery	
+lov	love	
+lov	law	
+lov	triumph of imagination over intellegence	
+LQTM	Laughing Quietly To Myself	
+LRF	Little rubber feet	
+lst	first	
+lst	last	
+lst	list	
+LTLYB	love to love you baby	
+LTM	Listen To Me	
+LTM	Laugh to myself	
+LTNS	Long Time No See	
+LTNS	Long time no see	
+ltns	long time no see	
+ltns	long time, no see	
+LTNT	Long time, no talk	
+LTR	Long term relationship	
+lts	laughing to self	
+lts	lets	
+lts	lots	
+LUL2	love you lots too	
+LULAB	Love you like a brother	
+LULAS	Love you like a sister	
+LUV	Love	
+LUV U	Love You	
+luvD	loved	
+luvN	loving	
+luvs	loves	
+LUVU	I love you	
+LUVU	love you	
+LUWAMH	love you with all my heart	
+LV	love	
+LVG	Leaving	
+LVM	Left Voice Mail	
+LvU2	I love you too	
+LvU2	love you too	
+LvU2	love u too	
+LvU2	love u to	
+LvU2	love u 2	
+LWR	Launch When Ready	
+LWYL	living without your love	
+LY	love ya	
+LY	love you	
+LY	like you	
+LY	loves you	
+ly2p	love you to pieces	
+ly4evr	love you forever	
+ly4evr	love u for ever	
+LYFE	Love You ForEver	
+LYK	Let You Know	
+LYL	Love ya lots	
+LYLAB	Love You Like a Brother	
+LYLAS	Love You Like A Sister	
+LYLAS	Love you like a sister	
+LYLAS	Love you like a sis	
+m&m	candy	
+m&m	Mr and Mrs	
+m&m	m & ms	
+m@r	matter	
+M2M	Machine to Machine	
+M8	Mate	
+M8	Mate	
+M8	Mate	
+m8	bredrin	
+m8	friend	
+m8	mate	
+M8	Mate	Mates	
+m8s	buddies	
+m8s	mates	
+MA	Most Annoying	
+MB	Mighty Busy	
+MBG	Might Be Getting	
+MBH	My Brain Hurts	
+MBY	May Be You	
+MC	Merry Christmas	
+McDs	MacDonald's	
+McDs	MacDonalds	
+McDs	Mc Donalds	
+McDs	McDonalds	
+McDs	Mc'Donalds	
+McDs	Mac Donalds	
+memRE	memory	
+memry	memory	
+mEt	meet	
+mEt	with	
+meTQLS	meticulous	
+MFD	Multi-Function Device	
+MfG	Mit freundlichen Gruessen	
+MFI	Mad for it	
+MGMT	Management	
+MHBFY	My Heart Bleeds For You	
+MHOTY	My Hat's Off To You	
+MIH	Make It Happen	
+MIHAP	May I Have Your Attention Please	
+Million$	a million dollars	
+Million$	Millions of Dollars	
+Million$	million dollars	
+Million$	millions	
+MIRC	M Internet Relay Chat	
+mirra	mirror	
+mirra	mirrors	
+mjr	major	
+MKOP	My Kind Of Place	
+MM	Mighty Miffed	
+MM	Market Maker	
+MMFU	my mate fancies you	
+MMHA2U	My Most Humble Apologies To You	
+MMI	Me, Myself, and I	
+MMS	Multimedia Messaging System	
+mo	Moment	
+MOF	Matter Of Fact	
+mofo	Mother Fucker	
+MOMPL	One Moment Please	
+MOO	Mud, Object-Oriented	
+MOOS	Member Of The Opposite Sex	
+MorF	Male or Female?	
+MorF	Male or female?	
+MorF	from	
+MorF	Male or Female	
+MorF	Male or Female?	
+MorF	mother or father	
+MoS	Mother over shoulder	
+MOSS	Member Of The Same Sex	
+MOTAS	Member Of The Appropriate Sex	
+MOTD	Message of the day	
+MOTD	Message Of The Day	
+MOTD	message of the day	
+MOTO	Master Of The Obvious	
+MOTSS	Members Of The Same Sex	
+moV	movie	
+MPE	Millennium Pro Edition	
+mprmt	my parents read my text	
+mRketN	marketing	
+mRvLS	marvellous	
+mRvLS	marvelous	
+mRyMe	marry me	
+MSG	Message	
+MSG	Message	
+MSG	Message	
+MSIA	Malaysia	
+Msia	Malaysia	
+Mstake	mistake	
+mstke	mistake	
+MTBF	Mean Time Between Failure	
+MTE	My Thoughts Exactly	
+MTF	More to follow	
+MTFBWU	may the force be with you	
+MTFBWU	May the force be with you	
+MTFBWY	May The Force Be With You	
+MUBAR	Messed up Beyond All Recognition	
+MUS	Must	
+MUSL	Muscle	
+MUSM	Miss you so much	
+MUSX	Musics	
+MUT	Mother	
+MUV	Move	
+MUZ	Music	
+mwah	airkisses	
+mwah	I love you	
+mwah	kissing sound	
+mwah	kiss	
+mwah	kisses to the people	
+mwah	messages which are helpful	
+mwah	me wants a hug	
+mwah	Me	
+mwah	signed with a kiss	
+mwah	sending a kiss	
+mwah	the sound of a kiss	
+MWBRL	More Will Be Revealed Later	
+myn	mine	
+MYOB	Mind Your Own Business	
+MYOB	Mind your own Business	
+MYOB	Mind your own business	
+MYOB	mind your own business	
+MYOB	mind your own beeswax	
+MYSM	Miss You So Much	
+N	And	
+N CASE	In Case	
+N/A	Not Applicable	
+N00B	Noobie (New Person)	
+n00b	Newbie	
+N1	Nice One	
+N1	Nice one	
+N2K	need to know	
+N2K	nice to know	
+N2K	none to kind	
+N2M	Not To Mention	
+NA	Not applicable	Not affiliated	
+nAbR	neighbour	
+NAK	Nursing at keyboard	
+NALOPKT	Not A Lot of People Know That	
+NAP	Not a problem	
+NAS	Not Absolutely Sure	
+NAUT	Nautical	
+NAZ	Name, Address, Zip
+NAZ	NASDAQ	
+NBD	No big deal	
+NBD	No big deal	
+NBIF	No basis in fact	
+NC	No comment	
+NCEA	National Certificate of Educational Achievement	
+NCG	New college graduate	
+NclsD	enclosed	
+NcreDbl	incredible	
+NDA	Nope, Doesn't Apply	
+NDA	Now Don't Ask	
+NE	any	
+NE	Any	
+NE1	Anyone	
+NE1	anyone	
+NE1	Anyone	
+ne1	anyone	
+NE1 ER	Anyone Here?	
+NET	Not Entirely True	
+NETHNG	anything	
+NEthng	anything	
+nevr	never	
+NF	Nucking Futs (Fucking Nuts)	
+NFC	No fucking clue	
+NFI	No Further Information	
+NFI	No fucking idea	
+NFM	Not For Me	
+NFM	None for me / Not for me	
+NFN	Not For Now	
+NFU	Not For Us	
+NFW	No fucking way	
+NG	New gme	
+NgoC8	negociate	
+NgoC8	negotiate	
+NgoC8R	negociator	
+NH	Nice Hand (Used in Poker)	
+NIFOC	Nude in front of the computer	
+NIM	No Intended Message	
+NIM	No internal message	
+NIMBY	Not in my back yard	
+NIMBY	Not in my back yard	
+NIMQ	Not in my queue	
+NINJA	No Income, No Job, or Assets	
+NLT	No Later Than 	
+NLT	No later than	
+NM	Nothing Much	
+NM	NeverMind	
+NM	Nothing much / Never mind	
+NMH	Not much here	
+NMJC	Nothing Much, Just Chillin	
+NMP	Not my problem	
+NNTR	No Need To Reply	
+NO1	no one	
+NO1	No one	
+nocem	Not Seen Them	
+NOM	No Offence Meant	
+NOOB	New Person
+Noobie	New person	
+noob	a new player	
+noob	beginner	
+noob	bad remark made about someone	
+noob	idiot	
+noob	loser	
+noob	newbie	
+noob	newcomer	
+noob	new player	
+noob	new person	
+noob	none of our business	
+noob	nobody	
+noob	new	
+noob	someone who is new	
+noob	wetback	
+norty	naughty	
+nothA	another	
+NoTY	knotty	
+NoTY	No Thank You	
+NoTY	naughty	
+NOYB	None of your business	
+NOYB	None of your business	
+noyZ	noise	
+NP	No Problem	
+NP	no problem	
+NP	No problem	
+NPA	No Pictures Available	
+NPM	Nokia Picture Meesage	
+NQOCD	Not quite our class, dear	
+NQT	Not QuiTe	
+NRG	Energy	
+NRG	Energy	
+NRG	energy	
+NRN	No Reply Necessary	
+NRN	No response/reply necessary	
+NRN	no reply necessary	
+NRN	no response necessary	
+NRN	not right now	
+NRN	no reply needed	
+NRR	No Reply Required	
+NSA	No Such Animal	
+NSF	Not So Fast	
+NSFW	Not Safe For Work	
+Nside	inside	
+NSL	No Such Luck	
+NSL	Not So Long	
+nSSRe	necessary	
+NT	Next To	
+NT	No text	
+NTK	Nice To Know	
+NTL	Not Too Long	
+ntrtain	Entertain	
+NTYMI	Now That You Mention It	
+NUF	Enough	
+nuf	enough	
+nuf	non user friendly	
+NUF SED	Enough Said	
+NUFF	Enough Said	
+NUTS	Neils Unix Talker Server	
+NUZ	News	
+NVG	Not Very Good	
+Nvig8	Navigate	
+NVM	Not Very Many	
+NVM	Nevermind	
+NVM	Never mind	
+NVO	Not Very Organized	
+NVR	Never	
+NW	No Way!	
+NW	No way	
+NW)	No way out	
+NXD	Nixed	
+NXQ	No eXCuse	
+NXT	Next	
+nxt	next	
+NYCFS	New York City finger salute	
+nyt	night	
+nyts	nights	
+O1	only one	
+O2	oxygen	
+O2	ohto	
+O2	oh too	
+o4u	only for you	
+OAUS	On an unrelated subject	
+OBO	On Behalf Of 	
+OBTW	Oh, by the way	
+ocup8n	occupation	
+OD	Oh, Dear	
+OEM	Original equipment manufacturer	
+Oh2	Oh too	
+OIC	Oh, I see	
+OIC	Oh I Concur	
+OIC	Oh I See	
+OIC	Oh, I see	
+OIC	oh I see	
+OIC	oh, I see	
+OIC	oh, i see!	
+OIC	o i see	
+OIC	only in canada	
+OK	All Correct	
+OKS	Approves	
+OLL	Online love	
+OM	Oh, Merde!	
+OM	On My	
+OMDB	Over My Dead Body	
+OMFG	Oh my fucking God	
+OMG	Oh, My God	
+OMG	Oh My God	
+OMG	Oh my God	
+OMIK	Open mouth, insert keyboard	
+OMT	One More Thing	
+OMW	On My Way	
+OMW	On my way	
+on9	online	
+ONNA	Oh no, not again!	
+ONNTA	Oh No, Not This Again	
+OO	Over and out	
+OOC	Out of character	
+OOF	Out Of Facility	
+OOH	Out of here	
+OOI	Out Of Interest	
+OOMA	Object Of My Affection	
+OOO	Out Of Office	
+OOO	Out of office	
+OOT	Out Of Time	
+OOTB	Out of the box	Out of the blue	
+ootb	brand new	
+ootb	out of the blue	
+ootb	out of the box	
+ootb	out-of-the-box	
+OOTC	Obligatory on topic comment	
+OOTD	One of these days	
+OOTO	Out Of The Ordinary	
+OP	Out of Place	
+OP	On phone	
+opis	office	
+opRtunET	opportunity	
+OPT	On Pace To 	
+OS	Operating system	
+OT	Off topic	
+OTB	On The Button	
+OTB	Off to bed	
+OTH	Over The Hill	
+OTL	Out to lunch	
+otoc	on the quiet of course	
+OTOH	On the other hand	
+OTOH	On the other hand	
+OTP	On the Phone	
+OTS	Over The Shoulder	
+OTT	One Time Text	
+OTT	Over The Top	
+OTT	Over the top	
+OTTOMH	Off the Top of my Head	
+OTTOMH	Off the top of my head	
+OTTOMH	off the top of my head	
+OTW	On The Whole	
+OTW	Off to work	
+OUSU	Oh, You Shut Up	
+outd%rs	outdoors	
+OVA	Over	
+OvR8d	overated	
+OvR8d	overrated	
+OvR8d	over rated	
+ovRdU	overdue	
+OWTTE	Or words to that effect	
+oystz	oysters	
+OZ	Australia	
+P	Phew	
+p*d	pissed	
+PANB	parents are nearby	
+PANS	Pretty awesome new stuff	
+PAW	parents are watching	
+PB	Panic Button	
+PCM	Please call me	
+PCM	Please call me	
+PCO	Please Carry On	
+PCS	Please Contribute Some 	
+PD	Public Domain	
+PDB	Please Don't Bother	
+PDOMA	Pulled directly out of my ass	
+PDQ	Pretty Darn Quick	
+PDQ	Pretty darn quick	
+PDQ	pretty damn quick	
+PDQ	pretty darn quick	
+PDR	Please Don't Rush	
+PEBCAK	Problem exists between chair and keyboard	
+pebcak	problem exists between chair and keyboard	
+PFA	Please Find Attachment	
+PFB	Please Find Below	
+PHP	Push Harder Please	
+PIMP	Put In My Pocket	
+PIMP	Peeing in my pants	
+PITA	Pain In The Arse	
+pix	pictures	
+pix	photos	
+pix	photographs	
+pix	picture	
+pL8	plate	
+PLAAT	Peace, love, and all that	
+playa	beach	
+playa	player	
+PLMK	Please Let Me Know	
+PLMK	Please let me know	
+PLS	Please	
+PLS	please	
+PLS	Please	
+pls	please	
+PLZ	Please	
+plz	please	
+PLZKTHXBYE	Please. OK, thanks. Bye.	
+PLZKTHXBYE	please okaythanks bye	
+PLZKTHXBYE	please ok thanks bye	
+PM	Pocket Message	
+PM	Private Messaging	
+PM	Personal Message	
+PM	Personal Message	
+PM	Private Message	
+PMFI	Pardon me for interrupting	
+PMFJI	Pardon me for jumping in	
+PMFJI	Pardon me for jumping in	
+PMIGBOM	Put Mind In Gear Before Opening Mouth	
+PMJI	Pardon My Jumping In	
+PML	Piss Myself Laughing	
+PMP	Peeing my pants	
+PMPF	Piss My Pants Funny	
+PMS	Please Make Sense	
+PMSL	Piss MySelf Laughing	
+PO	Piss off	
+po$bl	possible	
+POAHF	Put on a happy face	
+POETS	Piss on everyone, tomorrow's Saturday	
+PONA	Person of no account	
+POOF	Good-bye	
+porno	dirty pics	
+porno	old	
+porno	pornography	
+porno	porn	
+porno	x rated movie	
+POS	Parent Over Shoulder	
+POS	Parent over shoulder	
+POS	Parent over shoulder	
+POV	Point of view	
+POV	point of view	
+POV	privately owned vehicle	
+POV	Persistence Of Vision	
+PPA	Please Provide Assistance	
+PPL	People	
+PPL	People	
+ppl	people	
+ppl	peed pants laughing	
+prelim	preliminary	
+PROLLY	Probably	
+PROM	Please Return On Monday	
+pRsN	person	
+pRsNL	personal	
+PRT	Party	
+PRT	Party	
+pRticulR	particular	
+pRtnR	partner	
+pRtnR	printer	
+PRW	Parents Are Watching	
+PRW	People/parents are watching	
+PS	Post Script	
+PSA	Please See Attached	
+pswrd	password	
+PTB	Please Text Back	
+PTC	Please Take Care	
+PTC	Person To Contact	
+PTL	Praise the Lord	
+PTMM	Please tell me more	
+PTY	Party	
+PU	It Stinks	
+PU	That Stinks	
+PU	That stinks!	
+puCk@	pussycat	
+puCk@	p*ssy cat	
+pwnage	Ownage	
+pwned	Owned	
+PWT	Point Well Taken	
+PXT	Please explain that	
+PYT	Pretty Young Thing	
+PZA	Pizza	
+Q	Queue	
+Q4	Fourth Quarter	
+QCK	Quick	
+QIK	Quick	
+QL	Quit Laughing!	
+QS	Quit Scrolling	
+QSL	reply	
+QSO	conversation	
+QstN	question	
+QT	Cutie	
+QT	Cutie	
+qty	quantity	
+QY	Quit Your 	
+R	Are	
+R	are	
+r%m	room	
+r8	art	
+r8	rate	
+r8	right	
+RAM	Retrieving Away Messages	
+RAR	Respond After Recieving	
+RAT	Remotely activated trojan	
+RB@U	right back at you	
+RBAY	Right Back At Ya	
+RBTL	Read between the lines	
+rcvd	received	
+RD	Research and development	
+RE	Regards	Hello Again	
+REHI	Hello again	
+REJASE	RE-using Junk As Something Else	
+remMbR	remember	
+respX	respects	
+respX	respect	
+resRv8n	reservation	
+RF	Real Fuzzy	
+RF	Really Fast	
+RFD	Request For Discussion	
+RFR	Really fucking rich	
+RFS	Really fucking soon	
+RGDS	Regards	
+ritN	written	
+ritN	writing	
+RJ	Really Joking	
+RKBA	Right to keep and bear arms	
+RL	Real life	
+RL	Real life	
+RLF	Real life friend	
+RLR	Earlier	
+RME	Rolling my eyes	
+RMLB	Read my lips baby	
+RMMM	Read my mail man!	
+Rmntic	romantic	
+RN	Right now!	
+RnR	rest and recreation	
+RnR	rest & recreation	
+RNTUAQT	aren't you a cutie	
+ROFL	Rolls On Floor, Laughing	
+ROFL	Rolling On The Floor Laughing	
+ROFL	Rolling on floor laughing	
+ROFLCOPTER	Roll On Floor Laughing Copter (It's funny and it flies)	
+ROFLMAO	Rolling on the floor laughing my ass off	
+ROFLOL	Roll On Floor Lauging Out Loud	
+rokz	rocks	
+rong	wrong	
+rot8	rotate	
+ROTFL	Rolling On The Floor Laughing	
+ROTFL	Rolling on the floor laughing	
+ROTFL	Rolling on the floor laughing	
+ROTFLMAO	Roll On The Floor Laughing My Ass Off	
+ROTFLOL	Rolling On The Floor Laughing Out Loud	
+ROTFLUTS	Rolling on the floor laughing unable to speak	
+rotlfbo	rolling on the floor laughing my butt off	
+ROTM	Right on the money	
+RP	Role play	
+RPD	Rapid	
+RPG	Role playing games	
+RR	Rest and relaxation	
+RRT	Request Remailing To 	
+RSN	Real Soon Now	
+RSN	Real soon now	
+RSN	Real soon now	
+rstRNt	restaurant	
+RTBS	Reason to be single	
+RTDox	Read the documentations	
+RTF	Read the FAQ	
+RTFAQ	Read the FAQ File	
+RTFI	read the fucking instructions	
+RTFM	Read The Flippin Manual	
+RTFM	read the fucking manual	
+RTFM	Read the Fucking Manual	
+RTFM	Read the f***ing manual	
+RTK	Return to keyboard	
+RTM	Read the manual	
+RTM	read the manual	
+Rtst	Artist	
+RTT	Reply To This	
+RU	Are You 	
+RU	are you	
+rucmng	are you comming	
+RUF	Rough	
+ruf2c	Are You Free To Chat	
+ruf2c	are you free to come	
+ruf2c	are you free to call	
+RUF2T	are you free to talk	
+RUF2T	are you free to talk?	
+RUJ	aRe yoU Joking?	
+RUK	aRe yoU Kidding?	
+rulZ	rules	
+rumf	are you male or female	
+rumf	aRe yoU Male or Female?	
+RUMORF	Are You Male Or Female	
+RUOK	are you okay	
+RUOK	Are you okay?	
+RUOK	are you ok	
+RUOK	are you ok?	
+RUOK	are you okay	
+RUUP4IT	Are You Up For It	
+RUX	aRe yoU eXperienced?	
+RW	Regardless of Whether 	
+RX	Regards	
+RYO	Roll your own	
+RYQ	Regarding Your Query	
+RYT	Right	
+RZR	Razor	
+S	These	
+S	Smile	
+s%n	soon	
+s@RdA	Saturday	
+S1VS	someone very special	
+S2R	Send To Receive	
+S4L	Spam For Life	
+SA	Smart Ass	
+SAD	Surprise And Delight	
+saft	juice	
+saft	saftey	
+saft	Simple Asynchronous File Transfer	
+saft	sap	
+saft	safely	
+SAL	Such a laugh	
+SAP	Send Another Person	
+SAPFU	Surpassing All Previous Foul Ups	
+SBIA	Stands Back In Amazement	
+SBTA	Sorry, Being Thick Again	
+SC	Stay cool	
+sc$	success	
+SCADA	Supervisory Control And Data Acquisition	
+SCNR	Sorry, Could Not Resist	
+SCNR	Sorry, Could Not Resist	
+SDP	So Don't Pay	
+SE	Somewhere Else	
+SE	Something Else	
+SEC	Wait a second	
+SED	Said Enough Darling	
+sEmz	seems	
+set^	setup	
+SETE	Smiling Ear To Ear	
+SETE	Smiling Ear to Ear	
+SETE	Smiling Ear-to-Ear	
+sexC	sexy	
+SF	Surfer Friendly	Science Fiction	
+SFAIAA	So Far As I Am Aware	
+SFETE	Smiling From Ear To Ear	
+SFETE	Smiling From Ear To Ear	
+SFLA	Stupid Four Letter Acronym	
+sfw	Safe For Work	
+SG4IT	Search Google For It	
+SH	Shit Happens	
+sh%d	should	
+SHID	slaps head in disgust	
+SHID	Slap Head In Disgust	
+SICNR	Sorry, I could not resist	
+SICS	Sitting In Chair Snickering	
+SIG2R	Sorry, I got to run	
+SIS	Sister	
+SIS	Snickering in silence	
+SIT	Stay in touch	
+SITCOMs	Single Income, Two Children, Oppressive Mortgage	
+SITD	Still In The Dark	
+SITD	still in the dark	
+SIZ	Size	
+SK8	Skate	
+skool	looks	
+skool	school	
+SLAP	Sounds like a plan	
+SLF	Self	
+SLIRK	Smart Little Rich Kid	
+SLM	See Last Mail	
+SLO	Slow	
+SLT	Something Like That	
+SLW	Slow	
+SM	See Message	
+SMAIM	Send Me An Instant Message	
+SME	Subject Matter Expert	
+SMEM	Send Me E-Mail	
+smexy	intellectually sexy	
+smexy	sexy	
+SMHID	Scratching my head in disbelief	
+sml	small	
+sml	send me the link	
+sml	small medium large	
+sml	send my love	
+sml	send me one	
+SMOP	Small Matter of Programming	
+SMOS	Send Messages Over Sms	
+SMPF	Shit My Pants Funny	
+SMS	Short Message Services	
+SMS	Short Messages Service	
+SMS	Short Message Sending	
+SMS	Short Message Service	
+SMSC	Short Message Service Center	
+smsslt	so many sites so little time	
+SNAFU	Situation Normal: All Fouled Up	
+SNAFU	Situation Normal, All Fucked Up	
+SNAFU	Situation normal all fouled up	
+SNAG	Sensitive New Age Guy	
+snd	send	
+SNERT	Snotty Nosed Egotistical Rotten Teenager	
+SNF	That's eNough	
+SNQ	So Not Quite	
+sntAclws	santa claus	
+SO	Significant Other	
+SO	Significant Other	
+SO	Significant other	
+SOB	Stressd Out Bigtime	
+softR	softer	
+SOHF	Sense Of Humor Failure	
+Sokay	its okay	
+Sokay	it's okay	
+SOL	Seems Only Likely	
+SOL	Sure Out of Luck	
+SOL	Shit Out Of Luck	
+SOL	Shit Out of Luck	
+SOL	Sooner or later	
+some1	someone	
+SOMY	Sick of me yet?	
+SOP	Standard Operating Procedure	
+SorG	Straight or Gay?	
+SorG	care	
+SorG	concern	
+SorG	Straight or Gay ?	
+SorG	Straight or Gay	
+SOS	Same Old Stuff	Help!	
+SOTMG	Short of time, must go	
+sotmg	short of time must go	
+sotmg	short of time, must go	
+sotmg	short of time must go!	
+sotmg	Short On Time, Must Go	
+SOW	Speaking Of Which	
+SOZ	sorry	
+SPK	Speak	
+spk2ul8r	speak to you later	
+SPRED	Sms Program For Retrieving Election Data	
+SPST	Same Place Same Time	
+SPST	Same place, same time	
+SRK	Shah Rukh Khan	
+SRO	Standing Room Only	
+SRY	Sorry	
+SRY	Sorry	
+SS	So sorry	
+SSDD	Same Stuff, Different Day	
+SSDD	Same Stuff Different Day	
+SSDD	Same Shit Different Day	
+SSDD	Same stuff, different day	
+SSEWBA	Someday Soon, Everything Will Be Acronyms	
+SSF	SMS Spam Filtering	
+SSINF	So stupid it's not funny	
+st&	stand	
+st&rd	standard	
+st&rd	standards	
+st8N	station	
+STATS	Your sex and age	
+statU	statue	
+STD	Save The Date	
+steD	location	
+steD	place	
+steD	steady	
+steD	spot	
+STFU	Shut The Fuck Up!	
+STFW	Search The Fine Web	
+stil	essay	
+stil	still	
+stil	style	
+stix	sticks	
+STKY	Sticky	
+STM	Spank The Monkey	
+STN	Something That's Never 	
+STN	Spend The Night	
+str$	stress	
+str&	strand	
+STR8	Straight	
+STR8	Straight	
+STS	Stay The Same	
+STW	Search the Web	
+STYS	Speak To You Soon	
+SU	Shut Up	
+SUB	Sit Up and Beg	
+subjX	subjects	
+subjX	subject	
+SUFID	Screwing Up Face In Disgust	
+SUITM	See you in the morning	
+SUL	Snooze You Loose	
+SUL	See you later	
+SUM1	someone	
+SUP	What's up?	
+sup	What's Up?	
+S'up	what is up	
+S'up	whats up	
+SUR	Something U Really	
+suspX	suspects	
+sux	sucks	
+SUYF	Shut Up You Fool	
+SW	Some Will 	
+SW	So What?	
+SWAG	Scientific Wild Ass Guess	
+SWAK	Sealed With A Kiss	
+SWAK	Sent (or Sealed) With A Kiss	
+SWAK	sealed with a kiss	
+SWAK	sent with a kiss	
+SWALK	Sent with a loving Kiss	
+SWDYT	So What Do You Think?	
+SWG	Scientific Wild Guess	
+SWIM	See What I Mean?	
+SWL	Screaming With Laughter	
+SWTDRMZ	Sweet Dreams	
+sx	sex	
+sxA	sex appeal	
+SxC	sexy	
+SXT	Same eXact Thing	
+SYA	Since You Asked	
+SYD	Subject Your Discretion	
+SYH	Save Your Hide	
+SYI	Share Your Information	
+SYL	See You Later	
+SYL	See you later	
+SYLB	See You Later Baby	
+SYS	See You Soon	
+SYS	See You Soon	
+sys	see you soon	
+sys	system	
+sys	see you shortly	
+SYT	Save Your Time	
+SYW	So You Wish	
+t%k	took	
+T.O.U.	thinking of you	
+T.O.U.	thinking about you	
+T+	Think positive	
+T+	Think positive	
+T+	Think Positive	
+T2UL	Talk To You Later	
+t2ul	talk to you later	
+T42	tea for two	
+t4luk	thanks for letting us know	
+TA	Thanks Alot	
+TA	Thanks a lot	
+TAC	Take A Chance	
+TAF	That's All, Folks!	
+TAFN	That’s All For Now	
+TAFN	That's all for now	
+TAFN	That's all for now	
+TAH	Take a hike	
+TAKS	That's a knee slapper	
+talkin	talking	
+TAM	That Amuses Me	
+TAM	Tomorrow a.m.	
+tanglD	tangled	
+TANJ	There Ain’t No Justice	
+TANSTAAFL	There Ain’t No Such Thing As A Free Lunch	
+tanstaafl	There Ain't No Such Thing As A Free Lunch	
+tanstaafl	there's no such thing as a free lunch	
+tanstaafl	There \'aint such thing as a free lunch	
+TARFU	Things Are Really Fouled Up	
+TARFU	Things are really fucked up	
+TAS	Taking A Shower	
+tat2	tattoo	
+TB	Too Bad	
+TB	Text Back	
+TBA	To be advised	
+TBC	Text Based Conversation	
+TBC	To be continued	
+TBC	To be continued	
+TBD	To Be Decided	
+TBD	To be determined	
+TBH	To Be Honest	
+tbh	To Be Honest	
+TBH	To be honest	
+TBNT	Thanks But No thanks	
+TBS	To Be Sure	
+TBU	True But Useless	
+TBYB	Try Before You Buy	
+TC	Take Care	
+TC	Take care	
+TCB	The Trouble Came Back!	
+tcfw	Too Cool For Words	
+TCMF	Take Care My Friend	
+TCO	Total Cost of Ownership	
+TCOY	Take care of yourself	
+TCOY	take care of your self!	
+TDM	Too Damn Much	
+TDM	Too Darn Many	
+TDM	Too Darn Many	
+TDTM	Talk dirty to me	
+teknoloG	technology	
+teofwawki	The end of the world as we know it	
+TEOTWAWK	The end of the world as we know it	
+TFDS	That is For Darn Sure	
+TFH	Thread from hell	
+TFN	Thanks for nothing	Till further notice	
+tfr	Thanks For Reading	
+TFS	Three Finger Salute (Ctl-Alt-Del)	
+TFTHAOT	Thanks For The Help Ahead Of Time	
+TFTT	Thanks For The Thought	
+tg4u	too good for you	
+TGAL	Think Globally, Act Locally	
+TGIF	Thank God it Is Friday	
+TGIF	Thank God it's Friday	
+THANQ	thank you	
+thaNQ	thank you	
+thaNQ	thanks	
+THNQ	Thank-you	
+THNX	Thanks	
+THNX 1.0	Thanks a million	
+thru	through	
+THX	Thanks	
+THX	Thank You	
+THX	Thanks	
+thx	thanks	
+thx	thank you	
+thx	Thank's	
+THX	thanks
+T	Thanks	
+THN	Thanks	
+THX40	Thanks For Nothing	
+Ti2G	Time To Go	
+TIA	Thanks In Advance	
+TIA	Thanks in advance	
+TIA	Thanks in advance	
+TIAD	Tomorrow is another day	
+TIAIL	Think I am in love	
+TIC	Tongue In Cheek	
+TIC	Tongue in cheek	
+TILII	Tell it like It Is	
+TINWIS	That Is Not What I Said	
+TLA	Three letter acronym	
+TLA	three letter acronym	
+TLA	three-letter acronym	
+TLA	true love always	
+TLA	Three Letter Abbreviation / Acronym	
+TLGO	The list goes on	
+tlk	talk	
+TLK2UL	Talk to You Later	
+TLK2UL8R	Talk to you later	
+TM	Trust me	
+TMA	Too many acronyms	
+TMB	Text Me Back	
+TMB	Text me back	
+TMFA	Too many fucking acronyms	
+TMI	Too Much Information	
+TMI	Too much information	
+TMI	Too much information	
+TMIY	Take me Im yours	
+TMK	To my knowledge	
+TMOT	Trust me on this	
+TMTOWTDI	There's more than one way to do it	
+TMWFI	Take my word for it	
+TNA	Temporarily not available	
+TNC	Tongue In Cheek	
+TNSTAAFL	There's No Such Thing As A Free Lunch	
+TNSTAAFL	There's no such thing as a free lunch	
+TNTL	Trying Not To Laugh	
+TNTLLAC	Try Not To Look Like A Cock	
+TNX	Thanks	
+TNX	Thanks	
+tnx	thanks	
+TNXE6	Thanks A Million	
+TnxE6	thanks a Million	
+TnxE6	thank's a million	
+TOBAL	There Oughta Be A Law	
+TOBG	This Oughta Be Good	
+TOM	Tomorrow	
+TOMA	Take Over My Arse/Ass	
+TOS	Terms of service	
+TOT	Tons of Time	
+TOY	Thinking Of You	
+toy	thinking of you	
+TP	Team Player	
+TPC	The phone company	
+TPM	Tomorrow p.m.	
+TPTB	The Powers That Be	
+TPTB	The powers that be	
+TPTB	The powers that be	
+TPTB	the powers that be	
+TPTB	The Power That Be	
+traFK	traffic	
+transl8	translate	
+transl8N	translation	
+transl8N	Translating	
+transl8R	translator	
+TRDMC	Tears Running Down My Cheeks	
+treeware	book	
+treeware	documentation	
+truk	struck	
+truk	truck	
+trukR	trucker	
+TS	Totally Stinks	
+TSOR	thirty seconds of research	
+TSR	Totally Stupid Rules	
+TSR	Totally stuck in ram	
+TSTB	The sooner, the better	
+TSWC	Tell someone who cares	
+TTBOMK	To The Best Of My Knowledge	
+TTBOMK	To the best of my knowledge	
+TTFN	Ta Ta For Now	
+TTFN	Ta-Ta For Now!	
+TTFN	Ta ta for now	
+TTG	Time to Go	
+TTKSF	Trying To Keep a Straight Face	
+TTS	Text to Speech	
+TTT	That's the ticket	to the top	
+TTTT	To Tell The Truth	
+TTTT	To Tell The Truth	
+TTTT	These things take time	
+TTUL	Talk To You Later	
+TTUL	Talk to You Later	
+TTWIG	That's the way it goes	
+TTYAWFN	Talk To You A While From Now	
+ttyawfn	talk to you a while from now	
+TTYL	Text To You Later	
+TTYL	Talk To You Later	
+TTYL	Talk To You Later	
+TTYL	Talk to you later	
+TTYL	talk to you later	
+TTYL	type to you later	
+TTYL	talk to ya later	
+TTYL	Too Tacky Yet Lovely	
+TTYL	Talk To You Later!	
+TTYL8R	Talk to you later	
+TTYLL	Talk To You Later, Love	
+TTYS	Talk To Ya Soon	
+TTYS	Talk To You Soon	
+TTYS	Talk to you soon	
+TTYT	Talk To You Tomorrow	
+TU	Thank you	
+TUF	Tough	
+TVN	Thank You Very Much	
+TW	Team Work	
+tw@	twat	
+TWF	That Was Funny	
+TWIMC	To whom it may concern	
+TWT	That Was Then	
+TWT	Twat!	
+TXS	Thanks	
+TXT BAC	text back	
+txtme	text me	
+TY	Thank You	
+TY	Thank you	
+TY	Thank you	
+TYCLO	Turn Your CAPS LOCK Off (Stop Shouting)	
+typ	type	
+typ	Thank You Partner	
+typ	to you personally	
+TYT	Take Your Time	
+TYT	Take your time	
+TYVM	Thank You Very Much	
+TYVM	Thank You Very Much	
+TYVM	thank you very much	
+TYVM	Thank you very much	
+tyvm	Thank you very much	
+U	You	
+U	You	
+U&I	u and I	
+U&I	you and I	
+U2	You Too	
+U4E	Yours For Ever	
+UATW	You Are Too Wonderful	
+UBG	U Be Good	
+UBL	U Be Lucky	
+UBX	U Be eXcellent	
+UCMU	You crack me up	
+UD	Usually Do	
+UDB	U Dim Bulb!	
+UDH	UnDerwater Housing	
+UDM	U Da Man	
+UFS	Unnumbered Frames State	
+UGB	U Gotta Be 	
+UGLY	Understanding Generous Lovable You	
+UGPM	Usigs Geospatial Production Management	
+UGTBK	You've got to be kidding	
+UI!	You Idiot!	
+UIQ	User Interface Quartz	
+UKTR	You know that's right	
+UL	You Will?	
+UL	Upload	
+UN	Utter Nonsense	
+un4gtebL	unforgettable	
+un4gtebL	unforgetable	
+un4tUn8	unfortunate	
+uncRtN	uncertain	
+undRst&	understand	
+UNF	UNFortunately	
+UNG	U No Good	
+unPC	unPolitically correct	
+unPC	Politically Incorrect	
+unPC	unpolitically correct	
+unpl&	unplanned	
+unpl&	unplaned	
+UO	on	
+UO	uh oh	
+UO	you owe	
+UOK	Are You OK?	
+UOK	Are You OK?	
+UOM	You Owe Me	
+UOMBT	You Owe Me Big Time	
+up2	upto	
+up2	up to	
+up2	what are you up to	
+upd8	update	
+upd8	updated	
+UR	Your	
+UR	You Are 	
+UR	Your	
+UR	your	
+UR	You Are?	
+UR	Your
+UR	You're	
+URA*	You are star	
+URA*	you're a star	
+URAQT	you are a cutie	
+URAS	you are a star	
+URB	You Are Beautiful	
+urda14me	your the one for me	
+URGR8T	you are great	
+URGR8T	your great	
+URSpshl	you are special	
+URT1	Your are the one	
+URW	You are welcome	
+URWS	You Are Wise	
+URYY4M	You are too wise for me	
+USNG	Using	
+usu	usually	
+UTD	United	
+UTH	Youth	
+UTL	Utility	
+Utlkn2Me	are you talking to me?	
+Utlkn2Me	you talking to me	
+UTM	U The Man!	
+UTMS	Urban Traffic Management System	
+UTSL	Use The Source Luke	
+UV	Unpleasant visual	
+UVM	Universitas Viridis Montis	
+UW	You're welcome	
+uz	use	
+uz	us	
+uz	you are	
+VAM	Vamoose	
+VBG	Very Big Grin	
+VBG	Very Big Grin	
+vbr8or	vibrator	
+VBS	Very Big Smile	
+VC	Venture capital	
+VEG	Very Evil Grin	
+VEG	Very evil grin	
+VFM	Value for money	
+VFM	Value for money	
+VGC	Very good condition	
+VGD	Very GooD	
+Vges	vegetables	
+Vges	veggies	
+VIP	Very important person	
+VM	Voice mail	
+VM	Voice mail	
+Vmail	voicemail	
+Vmail	voice mail	
+VOL	Volume	
+VR	virtual reality	
+VRBS	Virtual reality bullshit	
+VSF	Very Sad Face	
+VSF	Very sad face	
+VTY	Very Truly Yours	
+VW	Very Well	
+VW	Very Wonderful	
+VY	Virtually Yours	
+W	with	
+W 	Whatever	
+w%l	wool	
+w%Nt	wouldn't	
+W/	With	
+w/	with	
+W/B	Write back	
+W/O	Without	
+w/o	without	
+w/o	with out	
+w/o	write off	
+W00T	We Owned the Other Team	
+w00t	congratulations	
+w00t	hooray	
+w00t	woohoo	
+w00t	We Owned the Other Team	
+w00t	woot	
+w00t	We Own the Other Team	
+W3s	websites	
+W4U	wait for you	
+W4U	waiting for you	
+W4U	wait for u	
+W8	Wait...
+W8	wait	
+W84M	wait for me	
+W8ASEC	wait a second	
+W8U	wait up	
+W8U	wait you	
+W8U	waitin for u	
+W8U	wait for you	
+WABI	What A Beautiful Idea	
+WABO	We're All Better Off	
+WAD	Without A Doubt	
+WAEF	When All Else Fails	
+WAG	Wild Assed Guess	
+WAG	Wild Ass Guess	
+WAGJ	What A Great Job!	
+WAI	What an idiot	
+WAK	Whack	
+WALOB	What A Load Of Baloney!	
+WAM	What About Me	
+WAM	Wait a minute	
+WAMBAM	Web application meets brick and mortar	
+WAN2	want to	
+wan2camov	want to see a movie	
+wan2camov	want to come over	
+WAN2TLK	Want to talk	
+wana	want to	
+wannaB	want to be	
+wannaB	wanna be	
+wannaB	wannabe	
+warin	wearing	
+WARM	WHAT ABOUT REMEMBERING ME?	
+WAT	What	
+WAT	Welcome Any Time	
+watevA	whatever	
+watz	what is	
+watz	what\'s	
+WAWI	What A Wonderful Idea	
+WAYD	What Are You Doing?	
+wayd	what are you doing	
+wayd	what are you doing?	
+WAYF	Where Are You From?	
+WAYF	Where are you from?	
+WAZA	What Is A 	
+WAZUP	What's Up?	
+WAZZUP	What's Up?	
+WB	Would Be	
+WB	Welcome Back	
+WB	Welcome Back	
+WB	Welcome back	
+WBE	We Be 	
+WBS	Write Back Soon	
+WBU	What About You?	
+WC	Who Cares?	
+WC	Who cares	
+WCA	Who cares anyway	
+WCA	Who cares anyway	
+WCB	Will Call Back	
+WCWD	What Can We Do?	
+WCYD	What Can You Do?	
+WD	What Doing	
+WDALYIC	Who died and left you in charge?	
+WDALYIC	Who died and left you in charge	
+WDC	We Don't Care	
+WDH	What Da Hell?	
+WDIJ	Why Didn't I Just 	
+WDIM	What Does It Mean?	
+WDOI	Wouldn't Dream Of It	
+WDTM	What Does This Mean?	
+WDWG	What Do We Gain?	
+WDWW	Who Does What Where?	
+WDY	What's Driving You?	
+WDYD	What Do You Do?	
+WDYE	What Do You Expect?	
+WDYK	What Do You Know?	
+WDYK	What do you know	
+WDYMBT	What Do You Mean By That?	
+wdymbt	what do you mean by that?	
+wdymbt	what doyou mean by that?	
+wdymbt	what did you mean by that	
+wdymbt	what do you mean by that	
+WDYS	What did you say?	
+WDYT	What Do You Think?	
+WDYT	What Do You Think?	
+WDYT	What do you think?	
+WDYW	What Do You Want?	
+WE	Whatever	
+WE	Whatever	
+WE	whatever	
+we	Weekend	
+WEG	Wicked evil grin	
+WEL	Well	
+WEL	Welcome	
+WEN	When	
+WESK	Who Else Should Know	
+WF	Way Fun	
+WFD	Worlds Fantabulous Defacers	
+WFL	What's For Lunch?	
+WFM	Works For Me	
+WFM	Works for me	
+WG	Wicked grin	
+WGAFF	Who gives a flying fuck	
+WGO	What's Going On	
+WGON	What's Going On Now?	
+WH	We Have	
+WHEV	Whatever	
+WHFO	When Hell Freezes Over	
+WHIS	Whisper	
+WHLE	While	
+WHN?	What Happens Next?	
+WHRE	Where	
+WHSE	Whose	
+WHSL	Whistle	
+WHT	What Happened To	
+WHT	Whatever Happened To	
+WHWN	What's hot - What's not	
+WHYA	Why Are You ?	
+WHYB	Where Have You Been?	
+WIA	Where It's At	
+WIA	Where Its At	
+WIAN	What's In A Name	
+WIB	We're In Between	
+WIBAMU	Well, I'll Be A Monkey's Uncle	
+WIBBI	Wouldn't It Be Better If 	
+WIBN	Wouldn't It Be Nice	
+WIBNI	Wouldn't It Be Nice If	
+WIBNI	Wouldn’t It Be Nice If	
+WIBNI	Wouldn't it be nice if	
+WICY	When I'm Calling You	
+WID	With	
+WIGH	When I Get Home	
+WIGIG	When It's Gone It's Gone	
+WIGO	What Is Going On	
+WII	What's In it	
+WIIC	Whatever It Is Called	
+WIIFM	What's In It For Me	
+WIIFM	What's in it for me?	
+WIIFM	What's in it for me?	
+WIIWD	What it is we do	
+WILF	What I'm Looking For	
+WIM	Where is my  ?	
+WIMR	Where is my RAM?	
+WIRMI	What I Really Mean Is...	
+WISP	Winning Is So Pleasureable	
+WISP	Winning is so pleasurable	
+WIT	What I Think	
+WIT	What Is This	
+WIT	Wordsmith in training	
+WITD	What Is The Deal?	
+WITFITS	What in the fuck is this shit	
+WITG	Who Is This Guy?	
+WITW	What in the world	
+WIU	Wrap it up	
+WIWT	Wish It Were True	
+WIWT	Wish I Was There	
+WIWU	Wish I Was You	
+WIYM	What's In Your Mind?	
+WIYP	What's In Your Pockets?	
+WJAT	What's That?	
+WK	Who Knows	
+WK	Week	
+WKD	Weekend	
+WKND	weekend	
+wlk	walk	
+WLTM	Would Like to Meet	
+WLUMRyMe	Will you marry Me?	
+WLY	We Love You	
+WMMOWS	Wash My Mouth Out With Soap	
+WMMW	What Matters to Me and Why	
+WMW	Who's Mailing What!	
+WMY	What Makes You 	
+WNAT	Typo For 'want'	
+WNB	Will Not Be 	
+WNBA	Would Not Be Advisable	
+WNEV	Whenever	
+WNLT	Wait No Longer Than 	
+WNOHGB	Where No One Has Gone Before	
+WNOHGB	Were No One Has Gone Before	
+WNQR	We're Not Quite Ready	
+WNYH	What's N Your Head?	
+WO	without	
+WOA	Work Of Art	
+WOEV	Whoever	
+WOG	Wise old guy	
+WOMBAT	Waste of money, brains and time	
+WOMBAT	Waste of money, brains and time	
+WOMW	Well On My Way	
+wori	worry	
+worid	worried	
+worid	world	
+WOT	What	
+WOTAM	Waste Of Time And Money	
+WOW	Way Over What	
+wrds	words	
+wrk	Work	
+WRK	Work	
+WRT	With Respect To 	
+WRT	with regard to	
+WRT	With Regard To	With Respect To	
+WRT	With regard to	
+WRT	With regard to	
+WRTF	Will Return The Favor	
+WRTN	Written	
+WRU	What Are You 	
+WRU	Where Are You?	
+WRU	where are you	
+WRU	where are you ?	
+WRU	wherefore are thou	
+WRU	where art thou?	
+WRU	where are you?	
+WRU	where r u	
+WRU	who are you	
+WRUD	What Are You Doing	
+WRUD	What are you doing?	
+WRUD?	What Are You Doing?	
+wruw	what are you wearing	
+WT	Without Thinking	
+WT	Without Thinking	
+WT	What?	
+WTB	Who's The Boss?	
+WTB	Want To Buy	
+WTB	Want to buy	
+WTB	Wanted to buy	
+WTBI	What's The Big Idea?	
+WTBO	What's The Big Occasion?	
+WTC	What The Christ	
+WTF	What's This For?	
+WTF	Who's The Fairest?	
+WTF	Wait Til Friday	
+WTF	What The F***?	
+WTF	What The Fuck	
+WTF	What the f**k	
+WTFA	When Things Fall Apart	
+WTFH	What The Flaming Hell ?	
+WTFIYP	What The F*** Is Your Problem?	
+WTFRU	Who the fuck are you?	
+WTFWT	What the fuck was that?	
+WTG	Way To Go!	
+WTG	Way To Go!	
+WTG	Way to go	
+wtg	way to go	
+wtg	way to go!	
+wtg	waiting	
+wtg	watch the game	
+WTGK	Way To Go, Kids!	
+WTGO	Way To GO!	
+WTGP	Want To Go Private?	
+WTGP	Want to go private?	
+WTH	What the Heck!	What The Hell!	
+WTH	What The Heck	What the Hell
+WTH	What the heck?	What the hell?	
+WTHN	Within	
+WTM	What They Meant	
+WTMG	Where's The Money Gone?	
+WTMI	Way Too Much Information	
+WTMI	Way too much information	
+WTN	What then now?	
+WTN	Who then now?	
+WTTM	Without Thinking Too Much	
+WTTM	Without Thinking To Much	
+WTV	What's The Value	
+WTW	Who's The Winner?	
+WTYG	Well There You Go	
+WTYGA	Well, There You Go Again	
+WU	What's Updated	
+WU	What's Up?	
+WU	Whatsamatta U	
+WU	What is Up	
+WU?	What's up?	
+WUBT	Will You Be There	
+WUCIWUG	What you see is what you get	
+WUD	Would	
+WUD	what you doing	
+WUDN	Wouldn't	
+WUF	Where are you From?	
+WUF	Where Are You From?	
+WUF?	Where you from?	
+WUM	Watch Your Mouth	
+WUU2	What You Up To?	
+wuu2?	what you up to?	
+wuu2?	what you up too	
+wuu2?	what's up you two	
+wuu2?	what you up to	
+wuu2?	what are you up too?	
+wuu2?	wat u up 2	
+wuu2atm	what you up to at the moment	
+WUWH	Wish you were here	
+WUWO	While U Were Out	
+WWAT	What Would Aristotle Think?	
+WWDWIIWD	When we do what it is we do	
+WWHD	What We Have Done	
+WWI	What Was It?	
+WWIE	When Will It End?	
+WWIT	What Will It Take?	
+WWIT?	What Was I Thinking?	
+WWJD	What Would Jesus Do?	
+WWJD	What Would Jesus Do?	
+WWJD	What would Jesus do?	
+WWN	What's Working Now	
+WWTT	What Would They Think?	
+WWTT	WHAT WERE THEY THINKING?	
+WWUD	What Will You Do?	
+WWWM	What's Wrong With Me?	
+WWY	Where Were You?	
+WWYB	Where Will You Be?	
+WWYC	Write when you can	
+WWYD	What Would You Do?	
+WYCM	Will You Call Me?	
+wYf	wife	
+WYGOWM	will you go out with me	
+wyL	while	
+wyL	why you little	
+WYLEI	When you least expect it	
+WYM	Watch Your Mouth	
+WYP	What's your problem?	
+WYRN	What's your real name?	
+WYS	Whatever you say	
+WYSITWIR	What you see is totally worthless in real life	
+WYSIWYG	What you see is what you get	
+WYSIWYG	What you see is what you get	
+wysiwyg	what you see is what you get	
+wysiwyg	what you see on the screen is what you will get on output	
+WYSLPG	What you see looks pretty good	
+WYT	Whatever you think	
+WYWH	Wish You Were Here	
+wz	was	
+X	Kiss	
+Xcite	excite	
+XcitN	exciting	
+XI10	Exciting	
+Xit	exit	
+Xit	love it	
+XLNT	excellent	
+XLNT	Excellent	
+XME	Excuuuuse Me	
+XMeQk	kiss me quick	
+XOXO	Hugs and Kisses	
+XOXOXO	Kisses and hugs	
+XOXOXO	hugs and kisses	
+xpect	Expect	
+xpectD	expected	
+XperENs	experience	
+xperts	experts	
+xplosiv	explosive	
+XpNsiv	expensive	
+Xpr$	express	
+XS	excess	
+XS	extra small	
+XS	hugs	
+XS	hugs and kisses	
+XS	kisses	
+XS	sex	
+XS	too much	
+xtc	ecstacy	
+xtc	Ecstasy	
+xxxwrds	rude words	
+xxxwrds	swear words	
+xxxwrds	sexy words	
+Y	why	
+Y3	details omitted	
+Y3	yadda yadda yadda	
+Y3	Yadda...Yadda... Yadda.	
+Y3	you three	
+YA	Yet another	
+YA	Your	
+YA yaya	Yet Another Ya-Ya	
+YABA	Yet Another Bloody Acronym	
+YABA	Yet another bloody acronym	
+YACC	Yet another calendar company	
+YAFIYGI	You asked for it, you got it	
+YAOTM	Yet Another Off-Topic Message	
+YAUN	Yet Another Unix Nerd	
+YAVIS	Young, Attractive, Verbal, Intelligent, and Successful	
+YAVIS	young, attractive, verbal, intelligent, successful	
+YAVIS	you are very intelligent sir	
+yb	why be	
+YBS	You’ll be Sorry	
+YBS	You'll be sorry	
+YBYSA	You Bet Your Sweet Ass	
+YCMU	You crack me up	
+YCT	Your Comment To	
+YGBKM	You've got to be kidding me	
+YGIAGAM	Your guess is as good as mine	
+YGLT	You're Gonna Love This	
+YGTBK	You've Got To Be Kidding	
+YGTI	You Get The Idea?	
+YGWYPF	You Get What You Pay For	
+YGWYPF	You get what you pay for	
+YHM	You have mail	
+YHNI	you have no idea	
+YIC	Yours in Christ	
+YIU	Yes, I Understand	
+YIWGP	Yes, I Will Go Private	
+YKW	You Know What?	
+YKWIM	You know what I mean	
+YKWYCD	You know what you can do	
+YKYARW	You Know You're A Redneck When	
+yl	while	
+yl	Young Lady	
+yl	you lose	
+YM	Young man	
+YMMV	Your Mileage May Vary	
+YMMV	Your mileage may vary	
+YMMV	Your mileage may vary	
+YMMV	your mileage may vary	
+YMMV	your experience may differ	
+YMMV	your results/opinion may differ	
+YNK	You never know	
+YR	Why Are	
+YR	Your	
+YR	Yeah right	
+yr	your	
+yr	Yeah Right	
+yr	year	
+yr	you're right	
+yr	you are	
+yr	youre right	
+YRYOCC	You're running your own cookoo clock	
+YSYD	Yeah, sure you do	
+YSYD	Yeah sure you do	
+YTTT	You telling the truth?	
+YW	You are Welcome	
+YW	You're welcome	
+ywia	you're welcome in advance	
+ywia	you are welcome in advance	
+YYSSW	yeah yeah sure sure whatever	
+z%	zoo	
+ZOMG	Oh My God	
+zup	whats up	
+zup	what's up?	
+ZZZ	Sleeping
+zzzn	sleeping	
+zzz	snooze	
+zzz	sleep	
+zzz	sleepy	
+zzz	snoring	
+zzz	Tired	
+ZZZZ	Sleeping	

@@ -1,0 +1,980 @@
+1nc	once
+bday	birthday
+alot	a lot
+tho	though
+4gv	forgive
+4giv	forgive
+wiv	with
+w/	with
+wid	with
+wth	with
+lst	last
+cud	could
+fav	favorite
+fave	favorite
+wich	which
+wch	which
+gng	going
+goin	going
+wots	what's
+msg	message
+msgs	messages
+tlkn	talking
+talkin	talking
+nthn	nothing
+nthin	nothing
+thru	through
+dnd	do not disturb
+2	to
+whatcha	what are you
+tht	that
+lft	left
+rite	right
+osum	awesome
+bx	box
+uz	use
+hpn	happen
+answr	answer
+prty	party
+w8n	waiting
+sndn	sending
+c'mon	come on
+cmon	come on
+cmmn	common
+bod	body
+sup	what's up
+4got	forgot
+feeln	feeling
+wrld	world
+mor	more
+bk	back
+kddn	kidding
+kiddin	kidding
+yday	yesterday
+tlln	telling
+tellin	telling
+dnt	don't	do not
+dont	do not
+trnsl8	translate
+trnsl8r	translator
+transl8r	translator
+trnsltn	translation
+tues	tuesday
+wedn	wednesday
+orda	order
+2b	to be
+2day	today
+y-day	yesterday
+2moro	tomorrow
+2nite	tonight
+hapnd	happened
+hav	have
+havnt	haven't
+4	for
+4evr	forever
+up2	up to
+dwntwn	downtown
+4gv	forgive
+4nr	foreigner
+ab	ah bless
+yrs	yours
+bzy	busy
+wer	were
+shud	should
+xx	kiss kiss
+nxt	next
+bbq	barbecue
+dey	they
+attn	attention
+abt	about
+nite	night
+alrdy	already
+alredi	already
+dun	done
+dat	that
+betta	better
+gmme	give me
+gimme	give me
+abt2	about to
+thr	there	their
+ther	there
+ack	acknowledgement	acknowledge
+actv8	activate
+activ8	activate
+dactv8	deactivate
+dactiv8	deactivate
+addr	address
+alg8r	alligator
+alig8r	alligator
+alwz	always
+ax	across
+b	be
+b2	back to
+b4	before
+bb	be back
+bcme	became	become
+bcame	became
+bcum	become
+bcums	becomes
+bd	big deal
+bf	boyfriend
+bg	big grin
+bibi	bye bye
+bm	byte me
+bn	been
+bng	being
+br	bathroom
+brb	be right back
+bro	brother
+btr	better
+btw	by the way
+c	see
+cm	call me
+cmn	come on
+cmon	come on
+cn	can
+cnt	can't
+cos	because
+cr8	create
+crcdl	crocodile
+c-t	city
+cu	see you
+cupl	couple
+cy	calm yourself
+cya	see ya
+czn	season
+czin	season
+d	the
+d8	date
+d8ing	dating
+db8	debate
+dh	dear hubby
+dct8	dictate
+dict8	dictate
+dnnr	dinner
+dinr	diner	dinner
+diy	do it yourself
+dk	don't know
+dl	download
+dng	doing	dining	dung
+doin	doing
+dv8	deviate
+eft	electronic funds transfer
+eg	evil grin
+el	evil laugh
+evry1	everyone
+ezy	easy
+f	friends
+f2f	face to face
+f2t	free to talk
+f9	fine
+faq	frequently asked questions
+fbm	fine by me
+fone	phone
+fst	fast
+ftac	fantasy
+ftbl	football
+fune	funny
+fwd	forward
+g2g	got to go
+g9	genius
+ga	go ahead
+gal	get a life	girl
+gd	good
+gdi	god damn it
+gf	girlfriend
+gfi	go for it
+gg	good game
+gj	good job
+gl	good luck
+gm	good move
+gnr8	generate
+gnr8n	generation
+gowi	get on with it
+gr8	great
+congrats	congratulations
+imprtnt	important
+scure	secure
+gt	good try
+h8	hate
+hamrd	hammered
+hf	have fun
+ht	hi there
+hugz	hugs
+humr	humour
+hv	have
+hw	how
+hwk	homework
+ic	i see
+im	i am
+imo	in my opinion
+iou	i owe you
+k	ok
+kbd	keyboard
+kul	cool
+l	laugh
+hvn	having	haven	heaven
+havin	having
+wud	would
+mayb	maybe
+4eva	forever
+enuf	enough
+hapi	happy
+gr&d	grand
+l8	late
+l8r	later
+tru	true
+tlkd	talked
+tlk	talk
+NEtn	anything
+anytin	anything
+frm	from
+lch	lunch
+lkit	like it
+lol	laughing out loud
+luv	love
+luvu	love you
+lyn	lying
+m8	mate
+m8s	mates
+sk%l	school
+skool	school
+wz	was
+plc	place
+mov	movie
+msg	message
+mu	miss you
+n	and
+n1	nice one
+na	no access
+ncase	in case
+ne	any
+ne1	anyone
+ned	need
+no1	no one
+np	no problem
+nrg	energy
+nt	nice try
+nuff	enough
+nufn	nothing
+nw	no way
+o	or
+obab	oh baby
+om	old man
+omg	oh my god
+ova	over
+pls	please
+pov	point of view
+ppl	people
+prt	party
+ps	post script
+q	queue
+qix	quick
+r	are
+wrd	word
+clik	click
+jst	just
+transl8n	translating
+wn2	want to
+hre	here
+transl8	translate
+2c	to see
+def	definitely
+wrds	words
+comin	coming
+s	is
+sec	second
+sfx	sound effects
+shppn	shopping
+shopn	shopping
+sis	sister
+sk8	skate
+sk8er	skater
+slg	slag
+smmr	summer
+spk	speak
+sry	sorry
+str8	straight
+stra	stray
+su	shut up
+sum1	someone
+sx	sex
+sxe	sexy
+tel	telephone	telecommunication	telecom
+tfx	traffic
+thn	then
+thnqu	thank you
+thx	thanks
+tink	think
+txt	text
+txtin	texting
+u	you
+u2	you too
+u-l	you will
+up4it	up for it
+ur	you are
+uve	you've
+uwot	you what
+vm	voice mail
+vri	very
+w	with
+w8	wait
+wckd	wicked
+wf	way fun
+whl	while
+wk	week
+wknd	weekend
+wl	will
+wn	when
+wo	without
+wot	what
+wx	weather
+x	kiss
+xlnt	excellent
+y	why
+z	said
+zzzz	sleeping
+zzzn	sleeping
+0	zero
+1	one
+3	three
+4	four
+5	five
+6	six
+7	seven
+8	ate
+9	nine
+10	ten
+11	eleven
+12	twelve
+13	thirteen
+14	fourteen
+15	fifteen
+16	sixteen
+17	seventeen
+18	eighteen
+19	nineteen
+20	twenty
+100	hundred
+1000	thousand
+%	percent
+1ly	only
+1st	first
+2k	took
+2o	too
+2tly	totally
+abv8	abbreviate
+aftr	after
+agen	again
+agrid	agreed
+al	all
+allw	allow
+allwed	allowed
+allwing	allowing
+almst	almost
+alt	alternative
+amzng	amazing
+answrd	answered
+app	application
+apps	applications
+aprl	april
+arnd	around
+rtcl	article
+askd	asked
+askin	asking
+atx	adaptxt
+aug	august
+avlbl	available
+bby	baby
+biz	business
+bk	book
+bl2th	bluetooth
+blggng	blogging
+blve	believe
+blvd	boulevard	believed
+blvn	believing
+bliev	believe
+blievd	believed
+blievin	believing
+blve	believe
+brk	break
+brrw	borrow
+brstl	bristol
+brwsr	browser
+bsnss	business
+bst	best
+bth	both
+butfl	beautiful
+cds	cul-de-sac
+cn	can
+cfe	cafe
+cffE	coffee
+cffee	coffee
+cffn	coffin	caffeine	coughing
+chck	check
+chk	check
+chng	change
+chngd	changed
+chngin	changing
+clbr8	collaborate
+cld	cold
+cll	call
+clld	called
+cllin	calling
+cls	close
+clos	close
+clsd	closed
+closd	closed
+clss	class
+cmptr	computer
+cnnxion	connection
+cnsdr	consider
+cr8ed	created
+crry	carry
+crryd	carried
+crzy	crazy
+ctrl	control
+dy	day
+dcide	decide
+dcided	decided
+dec	december
+demo	demonstration
+demos	demonstrations
+demoing	demonstrating
+dev	develop
+di	die
+dir	directory
+dmn	damn
+doc	document	doctor
+docs	documents	doctors
+drctr	director
+dscssn	discussion
+duz	does
+dvice	device
+dvlpmnt	development
+dvlpng	developing
+dvlpr	developer
+dvlprs	developers
+dwn	down
+Etn	eating	
+eatin	eating
+ednbrgh	edinburgh
+els	else
+eng	english
+erly	early
+eurp	europe
+evn	even
+evr	ever
+evry	every
+evrytin	everything
+fcbk	facebook
+fby	february
+fllw	follow
+fllwn	following
+fllwrs	followers
+fmly	family
+fnd	find
+fndtn	foundation
+fnshd	finished
+foto	photo
+fri	Friday
+frnd	friend
+gttn	getting	gotten
+gettin	getting
+g%gl	google
+ggle	google
+giv	give
+gla	glasgow
+glbl	global
+gona	gonna
+gota	gotta
+grl	girl
+gez	guess
+ges	guess	gesture
+gues	guess
+gys	guys
+hed	head
+hel	hell
+herd	heard
+hlf	half
+hlp	help
+hme	home
+hnd	hand
+hndhld	handheld
+hndst	handset
+hpe	hope
+hpn	happen
+hpnd	happened
+hpnn	happening
+hpnin	happening
+hr	hour
+hrd	hard
+hrdwr	hardware
+hrs	hours
+implmnt	implement
+implmntn	implementing	implementation
+n2	into
+in2	into
+Nov8	innovate
+Nov8n	innovation
+innov8ion	innovation
+intgr8	integrate
+Ntgr8	integrate
+Ntgr8n	integration
+intl	international
+Ntl	national
+Ntntl	international
+intrfce	interface
+intrnt	internet
+intrstn	interesting
+iphn	iphone
+jny	january
+jul	july
+kds	kids
+knd	kind
+knw	know
+knw	knew
+knwin	knowing
+krnl	kernel
+lck	luck
+lve	leave
+leav	leave
+lrn	learn
+lern	learn
+lrnd	learned
+lrnt	learnt
+lernd	learned
+lil	little
+lstnn	listening
+lstng	listening
+listnin	listening
+lke	like
+lndn	london
+lng	long
+lnk	link
+l%k	look
+l%kn	looking
+l%kd	looked
+lookin	looking
+lst	last
+luk	look
+lukd	looked
+luvd	loved
+luvin	loving
+lvn	loving	living
+lve	live
+lvrpl	liverpool
+lyk	like
+xtra	extra
+mak	make
+mk	make
+mkn	making
+makin	making
+mch	much
+mde	made
+mdia	media
+mdl	model
+mdls	models
+mght	might
+min	minute
+mins	minutes
+mke	make
+mkes	makes
+mlln	million
+mnchstr	manchester
+mnd	mind
+mngr	manager
+mngrs	managers
+mny	many
+mon	Monday
+mrnn	morning
+AM	morning	Ante Meridian
+PM	evening	Prime Minister	Post Meridian
+mornin	morning
+mrch	march
+mss	miss
+mst	most
+mtng	meeting
+myslf	myself
+nce	nice
+nds	needs
+nites	nights
+nme	name
+notha	another
+ntce	notice
+ntcd	noticed
+ntcn	noticing
+notce	notice
+notcd	noticed
+notcn	noticing
+notic	notice
+noticd	noticed
+noticin	noticing
+nov	november
+nu	new
+nvr	never
+nws	news
+nxt	next
+ny	new york
+o	oh
+oct	october
+of9	offline
+ofis	office
+on9	online
+opn	open
+opn	open
+opnd	opened
+opp	opportunity
+opps	opportunities
+othr	other
+othrs	others
+pge	page
+pln	plain
+plnng	planning
+pltfrm	platform
+pltfrms	platforms
+ply	play
+plying	playing
+prbly	probably
+prety	pretty
+prevu	preview
+pro2typ	prototype
+projct	project
+prt	part
+pstd	posted
+rcvd	received
+rding	reading
+rdio	radio
+rlly	really	rally
+realy	really
+rcv	receive
+rcvd	received
+rcvn	receiving
+recev	receive
+recevin	receiving
+rdy	ready
+redy	ready
+ridclus	ridiculous
+rok	rock
+rst	rest
+rnn	running
+runin	running
+rvnu	revenue
+sat	Saturday
+sck	sick
+sep	september
+sggst	suggest
+sggstd	suggested
+sggtn	suggestion
+sggtns	suggestions
+sho	show
+shpmnt	shipment
+shpmnts	shipments
+shps	shops
+shw	show
+shwd	showed
+shwin	showing
+simpl	simple
+snd	send
+sno	snow
+smdy	somebody	someday	sameday
+sumday	someday
+sum	some
+spk	speak
+spkn	speaking	spoken
+spkin	speaking
+spnd	spend
+spndin	spending
+spnt	spent
+spok	spoke
+srch	search
+stdy	study
+stdyn	studying
+stdyin	studying
+stg	something
+stil	still
+stp	stop
+stp	stop
+stppd	stopped
+strt	start
+strtn	starting
+strtd	started
+strtin	starting
+stry	story
+stuf	stuff
+sun	Sunday
+supa	super
+sur	sure
+swnd	sound
+swnds	sounds
+swt	sweet
+symbn	symbian
+tek	technical	technology
+tech	technical	technology
+techs	technologies
+thght	thought
+thk	thank
+thn	then
+thng	thing
+thngs	things
+thnkin	thinking
+thos	those
+thru	through
+ths	this
+tht	that
+thur	Thursday
+thx	thanks
+tke	take
+tym	time
+tyms	times
+trd	tired
+trmnl	terminal
+trmnls	terminals
+trnsl8	translate
+trnsl8in	translating
+trnsl8or	translator
+tru	TRUE
+trvl	travel
+tryin	trying
+tst	test
+tue	Tuesday
+twt	tweet
+twtr	twitter
+twtrin	twittering
+txted	texted
+UI	user interface
+undrstnd	understand
+undrst%d	understood
+untl	until
+upd8	update
+usd	used
+usin	using
+usr	user
+vi	via
+vid	video
+vids	videos
+vist	visit
+vistd	visited
+vstn	visiting	visitation
+vst@n	visitation	
+vistin	visiting
+vp	vice president
+wbst	website
+wed	Wednesday
+wel	well
+whol	whole
+whr	where
+wifi	wireless
+wkpdia	wikipedia
+wlcm	welcome
+wn	win	won	when
+wndr	wonder	wander
+wndrn	wondering	wandering
+wndrin	wondering	wandering
+wndw	window
+wndws	windows
+wnt	want
+wnts	wants
+wnt	want	won't
+wont	won't
+wrk	work
+wrkng	working
+wrng	wrong
+wrried	worried
+wrry	worry
+wrryn	worrying
+wrryin	worrying
+wrtn	writing
+wrtin	writing
+wsh	wish
+bwtch	bewitch
+bwtchd	bewitched
+bewtchn	bewitching
+wtch	watch	witch
+wtch	watch	witch
+wtchd	watched	witched
+wtched	watched	withced
+wtchn	watching	witching
+wtchin	watching	witching
+xclsv	exclusive
+xctd	excited
+xpernce	experience
+yeh	yeah
+ys	yes
+zzz	sleep
+holdin	holding
+achvmnt	achievement
+achvmnts	achievements
+a/cn	accounting
+accountin	accounting
+optmstc	optimistic
+pssmstic	pessimistic
+im	I am
+st	street
+clb	club
+clb's	club's
+joind	joined
+uniq	unique
+rtrn	return
+revuw	review
+wantd	wanted
+primry	primary
+hart	heart
+descrptn	description
+diferent	different
+trainin	training
+hearin	hearing
+post	position
+net	internet
+engnrng	engineering
+probs	problems
+sys	system
+combnd	combined
+recycld	recycled
+uni	university
+pic	picture
+fild	filled
+xprssin	expressing
+rspnsblty	responsibility
+suxesful	successful
+prsn	person
+cc	carbon copy
+gov	government
+didnt	did not
+btween	between
+o	of
+rsk	risk
+q	question
+qs	questions
+info	information
+dept	department
+depts	departments
+futr	future
+cncrn	concern
+cncrnd	concerned
+cncrnn	concerning
+concrnd	concerned
+concrnin	concerning
+xpln	explain
+xplnd	explained
+xplnn	explaining
+xplntn	explanation
+xplain	explain
+xplainin	explaining
+pnt	point	pint	punt
+pntn	pointing
+pointin	pointing
+i'd	I would
+cat	category
+cats	categories
+dtrmind	determined
+r'nt	aren't	are not
+r!	are not	aren't
+Rnt	aren't
+arent	aren't
+lttn	letting
+letin	letting
+0	zero
+1	one
+2	to
+3	three
+4	for
+5	five
+6	six
+7	seven
+8	ate
+9	nine
+10	ten
+11	eleven
+12	twelve
+13	thirteen
+14	fourteen
+15	fifteen
+16	sixteen
+17	seventeen
+18	eighteen
+19	nineteen
+20	twenty
+100	hundred
+1000	thousand
+%	percent
+@	at
++	plus
+0ed	zeroed
+1nc	once
+1s	ones
+1st	first
+1stly	firstly
+2b	to be
+2c	to see
+2day	today
+2gether	together
+2moro	tomorrow
+2ndary	secondary
+2ndd	seconded
+2ndly	secondly
+2nds	seconds
+2nite	tonight
+2o	too
+2tly	totally
+3rd	third
+3rdly	thirdly
+4aged	foraged
+4aging	foraging
+4bearing	forbearing
+4bidding	forbidding
+4boding	foreboding
+4casting	forecasting
+4cd	forced
+4cing	forcing
+4closing	foreclosing
+4clsd	foreclosed
+4d	ford
+4k	fork
+4ded	forded
+4din	fording
+4eva	forever
+4feitd	forfeited
+4feitn	forfeiting
+4gttn	forgetting
+4gn	forging
+4gv	forgive
+4gvn	forgiving
+4going	foregoing
+4got	forgot
+4grndn	foregrounding
+4gv	forgive
+4kd	forked
+4king	forking
+4m8ed	formatted
+4malsd	formalised
+4malsn	formalising
+4malzd	formalized
+4malzn	formalizing
+4mattd	formatted
+4mattn	formatting
+4md	formed
+4min	forming
+4mul8	formulate
+4mul8d	formulated
+4mul8ed	formulated
+4mul@n	formulating	formulation
+4mulatn	formulating
+4nicatn	fornicating
+4nik8ed	fornicated
+4nr	foreigner
+4saking	forsaking
+4seeing	foreseeing
+4shadowing	foreshadowing
+4shortening	foreshortening
+4shortnd	foreshortened
+4stald	forestalled
+4stalling	forestalling
+4swearing	forswearing
+4telling	foretelling
+4thcoming	forthcoming
+4tifying	fortifying
+4warnd	forewarned
+4warning	forewarning
+4wrded	forwarded
+4wrdin	forwarding

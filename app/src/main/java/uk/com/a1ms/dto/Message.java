@@ -13,6 +13,7 @@ public class Message {
     private A1MSUser idToUser;
     private A1MSUser idUser;
     private boolean isSelf;
+    private String time;
 
     public int getMessageId() {
         return messageId;
@@ -60,5 +61,13 @@ public class Message {
 
     public void setSelf(boolean self) {
         isSelf = self;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

@@ -33,6 +33,7 @@ import uk.com.a1ms.listeners.CustomTabLayoutListener;
 import uk.com.a1ms.ui.fragments.BaseFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsInviteFragment;
+import uk.com.a1ms.util.BuildUtils;
 import uk.com.a1ms.util.PermissionRequestManager;
 
 /**
@@ -127,7 +128,7 @@ public class ContactsGroupsActivity extends BaseActivity{
 
     @TargetApi(Build.VERSION_CODES.M)
     private void askForPermissons() {
-        if(isPermissionAsked) {
+        if(BuildUtils.isVersionLesserThanM() || isPermissionAsked) {
             return;
         }
 

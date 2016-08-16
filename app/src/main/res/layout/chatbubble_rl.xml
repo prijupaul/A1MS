@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/bubble_layout_parent"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+               >
+
+    <LinearLayout
+        android:id="@+id/bubble_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/bubble1">
+
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:text="Hi! new message. A very long message is typed and you could see what is happening here. "
+            android:textColor="@android:color/primary_text_light"
+            android:layout_weight="0.80"
+        />
+
+        <TextView
+            android:id="@+id/message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="5.40pm"
+            android:layout_gravity="bottom"
+            android:paddingLeft="5dp"
+            android:textColor="@color/title_gray"
+            android:layout_toRightOf="@id/message_text"
+            android:layout_toEndOf="@id/message_text"
+        />
+
+    </LinearLayout>
+
+</RelativeLayout>
