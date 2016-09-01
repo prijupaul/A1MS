@@ -164,7 +164,7 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
                 AndroidUtils.hideKeyboard(mETCountryCode);
                 AndroidUtils.hideKeyboard(mETPhoneNumber);
                 disableInput();
-                mListener.onNextPressed(mETCountryCode.getText().toString(),mETPhoneNumber.getText().toString());
+                mListener.onPhoneNumberEntered(mETCountryCode.getText().toString(),mETPhoneNumber.getText().toString());
                 return true;
             }
         }
@@ -179,6 +179,12 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
     }
 
      public interface OnRegoAcceptPhoneFragmentInteractionListener {
-        void onNextPressed(String countryCode, String phoneNo);
+        void onPhoneNumberEntered(String countryCode, String phoneNo);
+    }
+
+    public void enableInput(){
+        mMenuNext.setEnabled(true);
+        mETCountryCode.setEnabled(true);
+        mETPhoneNumber.setEnabled(true);
     }
 }

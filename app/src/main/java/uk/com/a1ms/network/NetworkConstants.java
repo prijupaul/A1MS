@@ -20,4 +20,7 @@ public class NetworkConstants {
     public static final String BASE_URL = "http://163.172.137.155:8000";
 
     public static final boolean IS_MOCK = false;
+
+    public static final int RESPONSE_CODE_SUCCESS = 200;
+
 }

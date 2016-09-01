@@ -39,7 +39,7 @@ public class UserMessageWebSocketHandler{
     public void connect(){
         try {
             webSocketFactory.setConnectionTimeout(10000);
-            webSocket = webSocketFactory.createSocket("ws://echo.websocket.org");ws://163.172.137.155:8080");
+            webSocket = webSocketFactory.createSocket("ws://163.172.137.155:8080");
             webSocket.addListener(new WebSocketAdapter() {
                 @Override
                 public void onTextMessage(WebSocket websocket, String text) throws Exception {
@@ -55,6 +55,7 @@ public class UserMessageWebSocketHandler{
                 public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
                     super.onConnected(websocket, headers);
                     Log.d(TAG,"onConnected");
+
                 }
 
                 @Override

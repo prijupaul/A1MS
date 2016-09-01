@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import uk.com.a1ms.R;
@@ -27,21 +29,26 @@ import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.dto.ShortMessage;
 import uk.com.a1ms.messages.MessageParser;
 import uk.com.a1ms.network.dto.MessageResponseDetails;
+import uk.com.a1ms.network.handlers.UserMessageIOSocketHandler;
 import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
 import uk.com.a1ms.util.DateTime;
 import uk.com.a1ms.util.ExecutorUtils;
+import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
  * Created by priju.jacobpaul on 28/07/16.
  */
-public class MessagingFragment extends BaseFragment implements View.OnClickListener, UserMessageWebSocketHandler.UserMessageWebSocketListener {
+public class MessagingFragment extends BaseFragment implements View.OnClickListener,
+        UserMessageWebSocketHandler.UserMessageWebSocketListener,
+        UserMessageIOSocketHandler.UserMessageIOSocketListener {
 
     private MessagingFragmentListener mMessagingFragmentListener;
     private ListView msgListView;
     private EditText msg_edittext;
     private ArrayList<Message> mMessagesArrayList = new ArrayList<>();
     public static MessageAdapter messageAdapter;
-    private UserMessageWebSocketHandler webSocketHandler;
+    //    private UserMessageWebSocketHandler webSocketHandler;
+    private UserMessageIOSocketHandler webIOSocketHandler;
     private MessageParser messageParser;
 
 
@@ -59,12 +66,14 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        webSocketHandler = new UserMessageWebSocketHandler(this);
+//        webSocketHandler = new UserMessageWebSocketHandler(this);
+        webIOSocketHandler = new UserMessageIOSocketHandler(this);
         messageParser = new MessageParser();
         ExecutorUtils.runInBackgroundThread(new Runnable() {
             @Override
             public void run() {
-                webSocketHandler.connect();
+//                webSocketHandler.connect();
+                webIOSocketHandler.connect();
             }
         });
     }
@@ -124,23 +133,15 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     }
 
     public void sendTextMessage(View v) {
-        String message = msg_edittext.getEditableText().toString();
+            String message = msg_edittext.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
 
-//            final Message chatMessage = new ChatMessage(user1, user2,
-//                    message, "" + random.nextInt(1000), true);
-//            chatMessage.setMsgID();
-//            chatMessage.body = message;
-//            chatMessage.Date = CommonMethods.getCurrentDate();
-//            chatMessage.Time = CommonMethods.getCurrentTime();
 
             // TODO: Parse the messages here.
 
             SpannableString spannableString = new SpannableString(messageParser.Parse(message));
 
             Message messageObj = new Message();
-
-
 
             LongMessage longMessage = new LongMessage();
             longMessage.setLongMessage(new SpannableString(messageParser.getLongSpannableStringBuilder()));
@@ -157,7 +158,12 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             messageAdapter.add(messageObj);
             messageAdapter.notifyDataSetChanged();
 
-            webSocketHandler.sendMessage(shortMessage.getShortMessage().toString());
+            String token = SharedPreferenceManager.getUserToken(getContext());
+            final JSONObject jsonObject = messageObj.convertToJson(token);
+
+//            webSocketHandler.sendMessage(jsonObject.toString());
+            webIOSocketHandler.sendMessage(jsonObject.toString());
+
         }
     }
 
@@ -165,6 +171,10 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public boolean onBackPressed() {
         getActivity().finish();
+        if (webIOSocketHandler != null) {
+            webIOSocketHandler.disconnect();
+        }
+
         return super.onBackPressed();
     }
 
@@ -174,13 +184,15 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         Gson gson = new GsonBuilder().create();
         String msg = message;
 
+
         try {
             MessageResponseDetails response = gson.fromJson(message, MessageResponseDetails.class);
-            if (response.canIgnore()) {
+            if ((response != null) && response.canIgnore()) {
                 return;
             }
 
-            msg = response.getMsg().getData();
+//            msg = response.getMsg().getData();
+            msg = message;
 
         } catch (JsonSyntaxException e) {
 

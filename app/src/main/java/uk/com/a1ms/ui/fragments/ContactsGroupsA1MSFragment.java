@@ -119,7 +119,6 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     @Override
     public void onDetach() {
         super.onDetach();
-        mDataSource.close();
     }
 
     public void setGlobalCheckBoxStatusChange(boolean statusChange){

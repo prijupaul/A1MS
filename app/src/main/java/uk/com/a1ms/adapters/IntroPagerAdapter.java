@@ -33,15 +33,6 @@ public class IntroPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         ViewGroup layout = (ViewGroup) inflater.inflate(customPagerEnum.getLayoutResId(), collection, false);
         collection.addView(layout);
-        if(position == 2){
-            mRegister = (Button)layout.findViewById(R.id.button_register);
-            mRegister.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mIntroPageListener.registerButtonPressed();
-                }
-            });
-        }
         return layout;
     }
 
@@ -68,9 +59,13 @@ public class IntroPagerAdapter extends PagerAdapter {
 
     private enum IntroPagerEnum {
 
-        RED(R.string.intro_one, R.layout.view_intro_one),
-        BLUE(R.string.intro_two, R.layout.view_intro_two),
-        ORANGE(R.string.intro_three, R.layout.view_intro_three);
+        RED(R.string.intro_one_details, R.layout.view_intro_one),
+        BLUE(R.string.intro_two_details, R.layout.view_intro_two),
+        ORANGE(R.string.intro_three_details, R.layout.view_intro_three),
+        PURPLE(R.string.intro_four_details,R.layout.view_intro_four),
+        BLACK(R.string.intro_five_details,R.layout.view_intro_five),
+        WHITE(R.string.intro_six_details,R.layout.view_intro_six);
+
 
         private int mTitleResId;
         private int mLayoutResId;

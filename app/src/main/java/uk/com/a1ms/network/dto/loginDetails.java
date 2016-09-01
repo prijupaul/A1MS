@@ -3,17 +3,17 @@ package uk.com.a1ms.network.dto;
 /**
  * Created by priju.jacobpaul on 24/06/16.
  */
-public class UserDetails {
+public class loginDetails {
 
 
 
     private String token;
-    private user user;
+    private data data;
     private String Message;
     private String responseCode;
     private String errorMessage;
 
-    public class user {
+    public class data {
 
         private String username;
         private String name;
@@ -134,12 +134,12 @@ public class UserDetails {
         this.token = token;
     }
 
-    public user getUser() {
-        return user;
+    public data getData() {
+        return data;
     }
 
-    public void setUser(user user) {
-        this.user = user;
+    public void setData(data data) {
+        this.data = data;
     }
 
     public String getMessage() {

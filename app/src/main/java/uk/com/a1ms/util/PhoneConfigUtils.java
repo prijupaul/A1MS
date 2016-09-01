@@ -1,6 +1,8 @@
 package uk.com.a1ms.util;
 
+import android.Manifest;
 import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 
@@ -48,7 +50,18 @@ public class PhoneConfigUtils {
         return CountryPhoneCode;
     }
 
+    public static String getMacAddress(){
+
+        WifiManager m_wm = (WifiManager)A1MSApplication.applicationContext.getSystemService(Context.WIFI_SERVICE);
+        String m_wlanMacAdd = m_wm.getConnectionInfo().getMacAddress();
+        return m_wlanMacAdd;
+
+    }
     public static String getIMEI(){
+
+        if(!PermissionRequestManager.checkPermission(A1MSApplication.applicationContext, Manifest.permission.READ_PHONE_STATE)){
+            return "";
+        }
 
         TelephonyManager telephonyManager = (TelephonyManager) A1MSApplication.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();

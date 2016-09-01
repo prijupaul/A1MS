@@ -7,6 +7,7 @@
     <string name="hint_enter_email">Enter your email address</string>
     <string name="hint_create_password">Enter or create password</string>
     <string name="login_register">Login / Register</string>
+    <string name="register">Register</string>
     <string name="login_already_a1ms_user">Already an A1MS user - Synchronise this new device
     </string>
     <string name="login_enjoy_great_deals">Enjoy great retail deals based on what you chat about
@@ -76,9 +77,27 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     
-    <string name="intro_one">A1MS Intro 1</string>
-    <string name="intro_two">A1MS Intro 2</string>
-    <string name="intro_three">A1MS Intro 3</string>
+    <string name="intro_one_details_heading">All-in-One\nMessaging \u0026 Shopping</string>
+    <string name="intro_one_details">Ad-Free Secret Messaging \n\n Personalised Deals \u0026 Offers \n\n Echo Mate Practice Companion \n\n FREE Weekly \u00A310 Cash Price Draw \n\n\n\n No Fees or Subscriptions</string>
+
+    <string name="intro_two_details_heading">Highest Levels of Security</string>
+    <string name="intro_two_details">As Well As \n\n User Controlled Message Encryption\n\nUser Enhanced Privacy \u0026 Secrecy</string>
+
+    <string name="intro_three_details_heading">Obscure \u0026 Confuse Prying Eyes</string>
+    <string name="intro_three_details">Creating Secret Anonyms as You Type\n\nthat only you and your\n\n Recipients can Translate \u0026 Understand \n\n\n Simply Capitalize 1st Letter of Sequential Words\n\n or Delimit Text with \'..\' (dot dot)</string>
+
+    <string name="intro_four_details_heading">Personalized Deals \u0026 Offers</string>
+    <string name="intro_four_details">Based on Key Words in Your Chats \n\n We Do Not Share Any Other Information\n\nYou Remain Anonymous with Our Retailers</string>
+    <string name="checkbox_intro_four_details">Opt-in to get Retailer Deals \u0026 Offers</string>
+
+    <string name="intro_five_details_heading">Familiarize Using Echo Mate</string>
+    <string name="intro_five_details">While You Wait for Your Friends to Join\n\n Practice Creating Secret Acronyms\n\n Generate Personalized Deals \u0026 Offers\n\n\n Echo Mate is an A1MS Contact</string>
+
+    <string name="intro_six_details_heading">FREE\nWeekly \u00A310 Cash Prize Draw</string>
+    <string name="intro_six_details">Monday 12pm UK Time\n <font size="13">(Minimum 1000 Users) </font> \n\n\nPrizes Paid via PayPal\n\n Increase Your Chances to Win via Invites\n\n If an Invitee Wins, So Do You.!!\n <font size="13"> (First Invite First Serve Basis via A1MS)</font>\n\n Prizes Rollover if Unclaimed </string>
+    <string name="checkbox_intro_six_enrol_details">Enroll for the FREE Weekly Prize Draw</string>
+    <string name="checkbox_intro_six_details">Invite My Contacts to Join A1MS</string>
+
 
     <string name="hint_register">Register</string>
 

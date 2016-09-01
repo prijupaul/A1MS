@@ -1,7 +1,5 @@
 package uk.com.a1ms.network.dto;
 
-import java.util.ArrayList;
-
 /**
  * Created by priju.jacobpaul on 7/07/16.
  */
@@ -10,9 +8,9 @@ public class GroupDetails {
     private String name;
     private String idUser;
     private String id;
-    private user user;
+    private data data;
 
-    private class user {
+    private class data {
 
         private String code;
         private String dateCreated;
@@ -149,11 +147,11 @@ public class GroupDetails {
         this.id = id;
     }
 
-    public GroupDetails.user getUser() {
-        return user;
+    public data getData() {
+        return data;
     }
 
-    public void setUser(GroupDetails.user user) {
-        this.user = user;
+    public void setData(data data) {
+        this.data = data;
     }
 }

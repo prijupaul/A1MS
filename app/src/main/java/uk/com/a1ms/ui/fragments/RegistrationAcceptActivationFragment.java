@@ -144,6 +144,10 @@ public class RegistrationAcceptActivationFragment extends BaseFragment implement
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_phone_registration,menu);
         mMenuNext = menu.findItem(R.id.action_send_activation_code);
+
+        if((code!=null) && (!code.isEmpty())){
+            mMenuNext.setEnabled(true);
+        }
     }
 
     @Override

@@ -16,13 +16,15 @@ import android.widget.Toast;
 import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.R;
+import uk.com.a1ms.messages.FileReaderService;
+import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.dto.UserDetails;
+import uk.com.a1ms.network.dto.loginDetails;
 import uk.com.a1ms.network.handlers.UserActivationNetworkHandler;
 import uk.com.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
 import uk.com.a1ms.ui.fragments.RegistrationAcceptPhoneFragment;
 import uk.com.a1ms.ui.uiutil.ProgressView;
 import uk.com.a1ms.util.AndroidUtils;
-import uk.com.a1ms.messages.FileReaderService;
 import uk.com.a1ms.util.LocationService;
 import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
@@ -42,7 +44,6 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
         super.onCreate(savedInstanceState);
 
-        SharedPreferenceManager.setFirstTimeLaunch(false,this);
         setContentView(R.layout.mainactivity);
 
         mFrameLayoutHolder = (FrameLayout) findViewById(R.id.framelayout_holder);
@@ -136,13 +137,13 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         Fragment fr = RegistrationAcceptPhoneFragment.newInstance();
-        fragmentTransaction.replace(R.id.framelayout_holder, fr);
+        fragmentTransaction.replace(R.id.framelayout_holder, fr,"rego");
         fragmentTransaction.commit();
 
     }
 
     @Override
-    public void onNextPressed(final String countryCode, final String phoneNo) {
+    public void onPhoneNumberEntered(final String countryCode, final String phoneNo) {
         if (!countryCode.isEmpty() && !phoneNo.isEmpty()) {
 
             // TODO: remove the deprecated fields.
@@ -151,25 +152,44 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             mFrameLayoutHolder.setEnabled(false);
             ProgressView.addProgressView(mFrameLayoutHolder, "Registering +" + countryCode + phoneNo);
 
-            final String password = PhoneConfigUtils.getIMEI() + ":" + Random.getRandomString();
+            final String password = PhoneConfigUtils.getMacAddress() + ":" + Random.getRandomString();
             UserActivationNetworkHandler builder = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
-                    .setMobileNumber(phoneNo)
+                    .setMobileNumber("+" + countryCode + phoneNo)
                     .setName("deprecated")
                     .setPassword(password)
                     .build();
             builder.doRegisterUserWithMobileNumber(new UserActivationNetworkHandler.UserActivationListener() {
                 @Override
-                public void onUserActivationResponse(UserDetails details) {
+                public void onUserActivationResponse(Object object) {
+
+                    loginDetails details = (loginDetails)object;
 
                     ProgressView.removeProgressView(mFrameLayoutHolder);
+                    int responseCode = Integer.valueOf(details.getResponseCode());
 
-                    if ((details != null) && (details.getToken() != null)) {
-                        SharedPreferenceManager.saveMobileNumber(details.getUser().getUsername(),MainActivity.this);
+                    if ((details != null) && (responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS)) {
+                        SharedPreferenceManager.saveMobileNumber(details.getData().getUsername(),MainActivity.this);
                         SharedPreferenceManager.saveUserToken(details.getToken(), MainActivity.this);
-                        SharedPreferenceManager.saveUserId(details.getUser().getId(),MainActivity.this);
+                        SharedPreferenceManager.saveUserId(details.getData().getId(),MainActivity.this);
                         SharedPreferenceManager.saveUserPassword(password,MainActivity.this);
                         AndroidUtils.setWaitingForSms(true);
-                        launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,details.getUser().getCode());
+                        launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,details.getData().getCode());
+                    }
+
+                    else {
+                        mFrameLayoutHolder.setEnabled(true);
+                        FragmentManager fm = getSupportFragmentManager();
+                        RegistrationAcceptPhoneFragment registrationAcceptPhoneFragment = (RegistrationAcceptPhoneFragment)fm.findFragmentByTag("rego");
+                        if(registrationAcceptPhoneFragment != null){
+                            registrationAcceptPhoneFragment.enableInput();
+                        }
+                        switch (responseCode){
+                            case 413:{
+                                Toast.makeText(MainActivity.this,details.getErrorMessage(),Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                        }
+
                     }
                 }
 
@@ -192,8 +212,6 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     @Override
     public void onSendActivationCode(String activationCode) {
-        // TODO:
-        // Send the activation code to the server
 
         UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                 .setActivationCode(activationCode)
@@ -201,9 +219,20 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 .build();
         activationNetworkHandler.doActivateUserWithCode(new UserActivationNetworkHandler.UserActivationListener() {
             @Override
-            public void onUserActivationResponse(UserDetails userDetails) {
-                AndroidUtils.setWaitingForSms(false);
-                doUserLogin(userDetails);
+            public void onUserActivationResponse(Object object) {
+                loginDetails loginDetails = (loginDetails)object;
+                if (loginDetails!= null) {
+                    if(loginDetails.getResponseCode() != null) {
+                        int responseCode = Integer.valueOf(loginDetails.getResponseCode());
+                        if(responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS){
+                            AndroidUtils.setWaitingForSms(false);
+                            doUserLogin(loginDetails);
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this,loginDetails.getErrorMessage(),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
             }
 
             @Override
@@ -216,7 +245,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     }
 
 
-    private void doUserLogin(UserDetails details){
+    private void doUserLogin(loginDetails details){
 
 
         UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
@@ -227,14 +256,21 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 .setLongitude("" + LocationService.getLongitude())
                 .setLocale(PhoneConfigUtils.getCountryLocale())
                 .setIMEI(PhoneConfigUtils.getIMEI())
+                .setMacAddress(PhoneConfigUtils.getMacAddress())
                 .setCountryCode(PhoneConfigUtils.getCountryCode())
                 .setAndroidVersion(String.valueOf(PhoneConfigUtils.getAndroidVersion()))
                 .setManufacture(PhoneConfigUtils.getManufacture())
                 .setLanguage(PhoneConfigUtils.getDisplayLanguage())
                 .build();
+
         activationNetworkHandler.doUserLogin(new UserActivationNetworkHandler.UserActivationListener() {
             @Override
-            public void onUserActivationResponse(UserDetails userDetails) {
+            public void onUserActivationResponse(Object object) {
+
+                UserDetails userDetails = (UserDetails)object;
+                SharedPreferenceManager.saveUserToken(userDetails.getToken(),MainActivity.this);
+                SharedPreferenceManager.setFirstTimeLaunch(false,MainActivity.this);
+
                 startContactsGroupsActivity(null, true);
             }
 

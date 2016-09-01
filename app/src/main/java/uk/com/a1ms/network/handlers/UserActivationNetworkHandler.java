@@ -8,6 +8,7 @@ import uk.com.a1ms.network.BaseNetwork;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.NetworkServices;
 import uk.com.a1ms.network.dto.UserDetails;
+import uk.com.a1ms.network.dto.loginDetails;
 
 /**
  * Created by priju.jacobpaul on 24/06/16.
@@ -15,7 +16,7 @@ import uk.com.a1ms.network.dto.UserDetails;
 public class UserActivationNetworkHandler extends BaseNetwork {
 
     public interface UserActivationListener{
-        void onUserActivationResponse(UserDetails userDetails);
+        void onUserActivationResponse(Object userDetails);
         void onUserActivationError();
     }
 
@@ -26,6 +27,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
     private String longitude;
     private String locale;
     private String imei;
+    private String macAddress;
     private String countryCode;
     private String androidVersion;
     private String manufacture;
@@ -53,6 +55,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         private String longitude;
         private String locale;
         private String imei;
+        private String macAddress;
         private String countryCode;
         private String androidVersion;
         private String manufacture;
@@ -109,6 +112,11 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             return this;
         }
 
+        public UserActivationNetworkHandlerBuilder setMacAddress(String macAddress){
+            this.macAddress = macAddress;
+            return this;
+        }
+
         public UserActivationNetworkHandlerBuilder setCountryCode(String countryCode){
             this.countryCode = countryCode;
             return this;
@@ -147,6 +155,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             userActivationNetworkHandler.setLatitude(latitude);
             userActivationNetworkHandler.setLongitude(longitude);
             userActivationNetworkHandler.setImei(imei);
+            userActivationNetworkHandler.setMacAddress(macAddress);
             userActivationNetworkHandler.setAndroidVersion(androidVersion);
             userActivationNetworkHandler.setLocale(locale);
             userActivationNetworkHandler.setCountryCode(countryCode);
@@ -225,20 +234,24 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         this.country = country;
     }
 
+    public void setMacAddress(String macAddress){
+        this.macAddress = macAddress;
+    }
+
     public void doActivateUserWithCode(UserActivationListener listener){
 
         this.userActivationListener = listener;
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doActivatePhoneNumber(activationCode,userId);
-        call.enqueue(new Callback<UserDetails>() {
+        final Call<loginDetails> call = userActivation.doActivatePhoneNumber(activationCode,userId);
+        call.enqueue(new Callback<loginDetails>() {
             @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+            public void onResponse(Call<loginDetails> call, Response<loginDetails> response) {
                 userActivationListener.onUserActivationResponse(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
+            public void onFailure(Call<loginDetails> call, Throwable t) {
                 userActivationListener.onUserActivationError();
             }
         });
@@ -278,7 +291,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
         final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
-                locale,imei,countryCode,androidVersion,manufacture,language,country);
+                locale,imei,macAddress,countryCode,androidVersion,manufacture,language,country);
         call.enqueue(new Callback<UserDetails>() {
             @Override
             public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
@@ -299,15 +312,15 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         this.userActivationListener = listener;
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doRegisterPhoneNumber(mobileNumber,password,name);
-        call.enqueue(new Callback<UserDetails>() {
+        final Call<loginDetails> call = userActivation.doRegisterPhoneNumber(mobileNumber,password,name);
+        call.enqueue(new Callback<loginDetails>() {
             @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+            public void onResponse(Call<loginDetails> call, Response<loginDetails> response) {
                 userActivationListener.onUserActivationResponse(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
+            public void onFailure(Call<loginDetails> call, Throwable t) {
                 userActivationListener.onUserActivationError();
             }
         });

@@ -71,6 +71,11 @@ public class MessageAdapter extends BaseAdapter{
 //        viewHolder.indicatorView = addView(message,viewHolder);
         viewHolder.timeView.setText(message.getTime());
 
+        int paddingLeft = viewHolder.linearLayout.getPaddingLeft();
+        int paddingRight = viewHolder.linearLayout.getPaddingRight();
+        int paddingTop = viewHolder.linearLayout.getPaddingTop();
+        int paddingBottom = viewHolder.linearLayout.getPaddingBottom();
+
         // if message is mine then align to right
         if (message.isSelf()) {
             viewHolder.linearLayout.setBackgroundResource(R.drawable.bubble2);
@@ -81,6 +86,9 @@ public class MessageAdapter extends BaseAdapter{
             viewHolder.linearLayout.setBackgroundResource(R.drawable.bubble1);
             viewHolder.linearLayoutParent.setGravity(Gravity.LEFT);
         }
+
+        viewHolder.linearLayout.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+
         viewHolder.textView.setTextColor(Color.BLACK);
         viewHolder.linearLayoutParent.setOnTouchListener(new OnSwipeTouchListener(viewHolder.textView.getContext()){
             @Override

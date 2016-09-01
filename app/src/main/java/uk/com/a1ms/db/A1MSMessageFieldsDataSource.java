@@ -18,7 +18,7 @@ import uk.com.a1ms.util.NotificationController;
 /**
  * Created by priju.jacobpaul on 6/06/16.
  */
-public class A1MSUsersFieldsDataSource extends BaseFields{
+public class A1MSMessageFieldsDataSource extends BaseFields{
 
 
     private SQLiteDatabase sqLiteDatabase = null;
@@ -63,7 +63,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
     }
 
 
-    public A1MSUsersFieldsDataSource(Context context){
+    public A1MSMessageFieldsDataSource(Context context){
         a1MSDbHelper = A1MSDbHelper.getInstance(context);
     }
 
@@ -94,7 +94,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
     }
 
     public void createDb(SQLiteDatabase sqLiteDatabase){
-        sqLiteDatabase.execSQL(A1MSUsersFieldsDataSource.A1MSUsersEntry.SQL_CREATE_ENTRIES);
+        sqLiteDatabase.execSQL(A1MSMessageFieldsDataSource.A1MSUsersEntry.SQL_CREATE_ENTRIES);
     }
 
     public  long insertA1MSUser(SQLiteDatabase sqLiteDatabase,A1MSUser a1MSUser){

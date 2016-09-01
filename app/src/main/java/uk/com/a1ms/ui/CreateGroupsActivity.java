@@ -15,6 +15,8 @@ import java.util.List;
 
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
+import uk.com.a1ms.db.A1MSDbHelper;
+import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
@@ -100,6 +102,8 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
                 // TODO: The create group details should be inserted to the database
                 // and this should should be shown to the user.
                 // A toast should be shown that the group was created. ?
+
+                addgroupDetailsToDb(groupDetails);
                 finish();
             }
 
@@ -162,5 +166,20 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
             }
 
         }
+    }
+
+    private void addgroupDetailsToDb(GroupDetails details){
+
+        A1MSDbHelper a1MSDbHelper = A1MSDbHelper.getInstance(A1MSApplication.applicationContext);
+        A1MSUsersFieldsDataSource dataSource =  new A1MSUsersFieldsDataSource(A1MSApplication.applicationContext);
+        A1MSUser a1msuser = constructA1MSUser(details);
+        dataSource.insertA1MSUser(a1MSDbHelper.getWritableDatabase(),a1msuser);
+    }
+
+    private A1MSUser constructA1MSUser(GroupDetails details){
+        A1MSUser a1MSUser = new A1MSUser();
+        a1MSUser.setGroup(true);
+        a1MSUser.setName(details.getName());
+        return a1MSUser;
     }
 }

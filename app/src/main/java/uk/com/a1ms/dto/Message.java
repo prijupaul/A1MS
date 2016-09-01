@@ -1,5 +1,8 @@
 package uk.com.a1ms.dto;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import uk.com.a1ms.db.dto.A1MSUser;
 
 /**
@@ -69,5 +72,24 @@ public class Message {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public JSONObject convertToJson(String token){
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put("token", token);
+
+            JSONObject messageObject = new JSONObject();
+            messageObject.put("longMessage",getMessage().getLongMessage().toString());
+            messageObject.put("shortMessage",getShortMessage().getShortMessage().toString());
+            jsonObject.put("message",messageObject);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+
     }
 }

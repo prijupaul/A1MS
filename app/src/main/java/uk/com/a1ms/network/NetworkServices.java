@@ -9,6 +9,7 @@ import retrofit2.http.Path;
 import uk.com.a1ms.network.dto.GroupDetails;
 import uk.com.a1ms.network.dto.MemberGroupDetails;
 import uk.com.a1ms.network.dto.UserDetails;
+import uk.com.a1ms.network.dto.loginDetails;
 
 /**
  * Created by priju.jacobpaul on 23/06/16.
@@ -17,7 +18,7 @@ public interface NetworkServices {
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_REGISTRATION)
-    Call<UserDetails> doRegisterPhoneNumber(
+    Call<loginDetails> doRegisterPhoneNumber(
             @Field("username") String phoneNumber,
             @Field("password") String password,
             @Field("name") String name);
@@ -25,7 +26,7 @@ public interface NetworkServices {
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_ACTIVATION)
-    Call<UserDetails> doActivatePhoneNumber(@Field("code") String code,
+    Call<loginDetails> doActivatePhoneNumber(@Field("code") String code,
                                             @Field("id") String id);
 
     @FormUrlEncoded
@@ -36,6 +37,7 @@ public interface NetworkServices {
                                   @Field("longitude")String longitude,
                                   @Field("locale")String locale,
                                   @Field("imei")String imei,
+                                  @Field("macAddress")String macAddress,
                                   @Field("countryCode")String countryCode,
                                   @Field("androidVersion")String androidVersion,
                                   @Field("manufacture")String manufacture,

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -16,7 +18,8 @@ import uk.com.a1ms.util.SharedPreferenceManager;
 public class IntroActivity extends BaseActivity implements IntroPagerAdapter.IntroPageListener {
 
     private ViewPager mViewPager;
-    private ImageView mImageView[] = new ImageView[3];
+    private ImageView mImageView[] = new ImageView[6];
+    private Button mButtonRego;
 
 
 
@@ -41,10 +44,26 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
         ImageView img1 = (ImageView)findViewById(R.id.imageview_circle1);
         ImageView img2 = (ImageView)findViewById(R.id.imageview_circle2);
         ImageView img3 = (ImageView)findViewById(R.id.imageview_circle3);
+        ImageView img4 = (ImageView)findViewById(R.id.imageview_circle4);
+        ImageView img5 = (ImageView)findViewById(R.id.imageview_circle5);
+        ImageView img6 = (ImageView)findViewById(R.id.imageview_circle6);
+
 
         mImageView[0] = img1;
         mImageView[1] = img2;
         mImageView[2] = img3;
+        mImageView[3] = img4;
+        mImageView[4] = img5;
+        mImageView[5] = img6;
+
+
+        mButtonRego = (Button) findViewById(R.id.button_register);
+        mButtonRego.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerButtonPressed();
+            }
+        });
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new IntroPagerAdapter(this,this));
@@ -61,15 +80,15 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
                 int next = position + 1;
                 int previous = position - 1;
 
-                if(next > 2){
+                if(next > 5){
                     next = 0;
                 }
 
                 if(previous < 0) {
-                    previous = 2;
+                    previous = 5;
                 }
 
-                if(next <=2 && previous >= 0){
+                if(next <=5 && previous >= 0){
                     mImageView[next].setBackground(getResources().getDrawable(R.drawable.circle_blue));
                     mImageView[previous].setBackground(getResources().getDrawable(R.drawable.circle_blue));
 

@@ -10,7 +10,7 @@
                android:layout_height="200dp"
                android:layout_gravity="center"
                android:layout_marginTop="35dp"
-               android:background="@drawable/intro_page_3"
+               android:background="@drawable/intro_page_4"
                android:scaleType="fitXY"
     />
 
@@ -19,7 +19,7 @@
               android:layout_gravity="center"
               android:layout_marginTop="20dp"
               android:gravity="center"
-              android:text="@string/intro_three_details_heading"
+              android:text="@string/intro_four_details_heading"
               android:textColor="@android:color/black"
               android:textSize="25dp"
               android:textStyle="bold"
@@ -30,8 +30,17 @@
               android:layout_gravity="center"
               android:layout_marginTop="30dp"
               android:gravity="center"
-              android:text="@string/intro_three_details"
+              android:text="@string/intro_four_details"
               android:textSize="15dp"
+    />
+
+    <CheckBox android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:layout_marginTop="20dp"
+              android:checked="true"
+              android:gravity="center"
+              android:text="@string/checkbox_intro_four_details"
     />
 
 </LinearLayout>

@@ -14,8 +14,16 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "a1ms.db";
     private Context mContext;
+    private static A1MSDbHelper mDbHelper;
 
-    public A1MSDbHelper(Context context){
+    public static A1MSDbHelper getInstance(Context context){
+        if(mDbHelper == null){
+            mDbHelper = new A1MSDbHelper(context);
+        }
+        return mDbHelper;
+    }
+
+    private A1MSDbHelper(Context context){
         super(new A1MSDatabaseContext(context),DATABASE_NAME,null,DATABASE_VERSION);
         mContext = context;
     }
@@ -45,4 +53,10 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
         super.onOpen(db);
     }
 
+    public void closeDb(){
+
+        if(mDbHelper != null){
+            mDbHelper.close();
+        }
+    }
 }

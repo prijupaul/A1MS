@@ -155,7 +155,7 @@ public class MessageParser {
                     // If its the last word, check whether the previous word was caps.
                     int prevStrIndex = index - 1;
                     if (prevStrIndex >= 0) {
-                        prevStr = parsedOriginalArray.get(prevStrIndex);
+                        prevStr = getPreviousWord(index);
                         if (isFirstCharCaps(prevStr)) {
                             appendCharacter(firstCharStr);
                             addSpan(new BackgroundColorSpan(newAcroColor),
@@ -330,6 +330,21 @@ public class MessageParser {
         return null;
     }
 
+    private String getPreviousWord(int index){
+        --index;
+        for(;index >= 0;index--){
+            String prevString = parsedOriginalArray.get(index);
+            if(prevString.trim().isEmpty()){
+                continue;
+            }
+            else {
+                this.prevStr = prevString;
+                break;
+            }
+        }
+        return prevStr;
+    }
+
     private String getNextWord(int index){
 
         index++;
@@ -339,7 +354,7 @@ public class MessageParser {
                 continue;
             }
             else {
-                this.nextStr = parsedOriginalArray.get(index);
+                this.nextStr = nextString;
                 break;
             }
         }

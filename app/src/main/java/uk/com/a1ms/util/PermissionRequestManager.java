@@ -1,6 +1,7 @@
 package uk.com.a1ms.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -17,24 +18,25 @@ public class PermissionRequestManager {
 
 
 
-    public static boolean checkPermission(Activity activity, String permission) {
+
+    public static boolean checkPermission(Context context, String permission) {
 
         if (BuildUtils.isVersionLesserThanM()) {
             return true;
         }
 
-        int permissionStatus = ContextCompat.checkSelfPermission(activity, permission);
+        int permissionStatus = ContextCompat.checkSelfPermission(context, permission);
         return (permissionStatus == PackageManager.PERMISSION_GRANTED) ? true : false;
     }
 
-    public static boolean checkPermissions(Activity activity, String[] permissions) {
+    public static boolean checkPermissions(Context context, String[] permissions) {
 
         if (BuildUtils.isVersionLesserThanM()) {
             return true;
         }
 
         for (String permission : permissions) {
-            if (!checkPermission(activity, permission)) {
+            if (!checkPermission(context, permission)) {
                 return false;
             }
         }

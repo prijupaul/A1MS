@@ -4,12 +4,31 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <ImageView android:layout_width="350dp"
+               android:layout_height="200dp"
+               android:scaleType="fitXY"
+               android:layout_gravity="center"
+               android:background="@drawable/logo"
+    />
+
     <TextView android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:text="A1MS Intro ONE"
-              android:textSize="20dp"
+              android:layout_height="wrap_content"
+              android:text="@string/intro_one_details_heading"
+              android:textSize="25dp"
+              android:textStyle="bold"
               android:layout_gravity="center"
+              android:textColor="@android:color/black"
               android:gravity="center"
     />
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="25dp"
+              android:text="@string/intro_one_details"
+              android:textSize="15dp"
+              android:layout_gravity="center"
+              android:gravity="center"    />
+
+
 
 </LinearLayout>
