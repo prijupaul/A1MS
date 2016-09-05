@@ -17,6 +17,7 @@ import uk.com.a1ms.ui.fragments.MessagingFragment;
 public class MessagingActivity extends BaseActivity implements MessagingFragment.MessagingFragmentListener {
 
     private MessagingFragment mMessagingFragment;
+    private A1MSUser mCurrentUser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MessagingActivity extends BaseActivity implements MessagingFragment
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         A1MSUser a1MSUser = getIntent().getParcelableExtra("user");
+        mCurrentUser = a1MSUser;
         getSupportActionBar().setTitle(a1MSUser.getName());
     }
 
@@ -55,6 +57,10 @@ public class MessagingActivity extends BaseActivity implements MessagingFragment
         mMessagingFragment = MessagingFragment.newInstance(this);
         fragmentTransaction.replace(R.id.message_framelayout_holder, mMessagingFragment);
         fragmentTransaction.commit();
+    }
+
+    public A1MSUser getCurrentUser(){
+        return mCurrentUser;
     }
 
 }

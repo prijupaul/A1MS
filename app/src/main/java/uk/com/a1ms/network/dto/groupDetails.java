@@ -1,46 +1,30 @@
 package uk.com.a1ms.network.dto;
 
+import java.util.ArrayList;
+
+import uk.com.a1ms.db.dto.A1MSUser;
+
 /**
  * Created by priju.jacobpaul on 7/07/16.
  */
 public class GroupDetails {
 
-    private String name;
-    private String idUser;
-    private String id;
+    private String errorMessage;
+    private String responseCode;
     private data data;
 
-    private class data {
-
-        private String code;
-        private String dateCreated;
+    public class data {
         private String id;
-        private String ids;
-        private boolean isActiSent;
-        private boolean isActive;
-        private boolean isAdmin;
-        private boolean isDeleted;
-        private boolean isRetailer;
+
+        private String isActive;
+
         private String name;
-        private String password;
-        private String username;
 
+        private String idUser;
 
-        public String getCode() {
-            return code;
-        }
+        private A1MSUser user;
 
-        public void setCode(String code) {
-            this.code = code;
-        }
-
-        public String getDateCreated() {
-            return dateCreated;
-        }
-
-        public void setDateCreated(String dateCreated) {
-            this.dateCreated = dateCreated;
-        }
+        private ArrayList<String> members;
 
         public String getId() {
             return id;
@@ -50,52 +34,12 @@ public class GroupDetails {
             this.id = id;
         }
 
-        public String getIds() {
-            return ids;
-        }
-
-        public void setIds(String ids) {
-            this.ids = ids;
-        }
-
-        public boolean isActiSent() {
-            return isActiSent;
-        }
-
-        public void setActiSent(boolean actiSent) {
-            isActiSent = actiSent;
-        }
-
-        public boolean isActive() {
+        public String getIsActive() {
             return isActive;
         }
 
-        public void setActive(boolean active) {
-            isActive = active;
-        }
-
-        public boolean isAdmin() {
-            return isAdmin;
-        }
-
-        public void setAdmin(boolean admin) {
-            isAdmin = admin;
-        }
-
-        public boolean isDeleted() {
-            return isDeleted;
-        }
-
-        public void setDeleted(boolean deleted) {
-            isDeleted = deleted;
-        }
-
-        public boolean isRetailer() {
-            return isRetailer;
-        }
-
-        public void setRetailer(boolean retailer) {
-            isRetailer = retailer;
+        public void setIsActive(String isActive) {
+            this.isActive = isActive;
         }
 
         public String getName() {
@@ -106,45 +50,35 @@ public class GroupDetails {
             this.name = name;
         }
 
-        public String getPassword() {
-            return password;
+        public String getIdUser() {
+            return idUser;
         }
 
-        public void setPassword(String password) {
-            this.password = password;
+        public void setIdUser(String idUser) {
+            this.idUser = idUser;
         }
 
-        public String getUsername() {
-            return username;
+        public A1MSUser getUser() {
+            return user;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setUser(A1MSUser user) {
+            this.user = user;
         }
-    }
 
-    public String getName() {
-        return name;
-    }
+        public ArrayList<String> getMembers() {
+            return members;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setMembers(ArrayList<String> members) {
+            this.members = members;
+        }
 
-    public String getIdUser() {
-        return idUser;
-    }
+        @Override
+        public String toString() {
+            return "ClassPojo [id = " + id + ", isActive = " + isActive + ", name = " + name + ", idUser = " + idUser + ", user = " + user + ", members = " + members + "]";
+        }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public data getData() {
@@ -154,4 +88,21 @@ public class GroupDetails {
     public void setData(data data) {
         this.data = data;
     }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public String getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(String responseCode) {
+        this.responseCode = responseCode;
+    }
 }
+

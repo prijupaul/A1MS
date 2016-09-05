@@ -33,6 +33,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
         public static final String COLUMN_NAME_A1MS_USER_EMAIL = "emailid";
         public static final String COLUMN_NAME_A1MS_USER_AVATAR = "avatar";
         public static final String COLUMN_NAME_A1MS_USER_TOKEN = "token";
+        public static final String COLUMN_NAME_A1MS_USER_ID = "userid";
         public static final String COLUMN_NAME_A1MS_USER_EDITABLE = "editable";
         public static final String COLUMN_NAME_A1MS_IS_GROUP = "isGroup";
 
@@ -43,6 +44,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN + TEXT_TYPE + COMMA_SEP +
+                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR + TEXT_TYPE + " );";
@@ -56,6 +58,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
@@ -105,6 +108,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,a1MSUser.getEmail());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,a1MSUser.getAvatar());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,a1MSUser.getToken());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,a1MSUser.getUserId());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,a1MSUser.isEditable());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,a1MSUser.isGroup());
 
@@ -162,6 +166,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
@@ -212,6 +217,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR

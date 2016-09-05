@@ -33,8 +33,10 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
         public static final String COLUMN_NAME_A1MS_USER_EMAIL = "emailid";
         public static final String COLUMN_NAME_A1MS_USER_AVATAR = "avatar";
         public static final String COLUMN_NAME_A1MS_USER_TOKEN = "token";
+        public static final String COLUMN_NAME_A1MS_USER_ID = "userid";
         public static final String COLUMN_NAME_A1MS_USER_EDITABLE = "editable";
         public static final String COLUMN_NAME_A1MS_IS_GROUP = "isGroup";
+        public static final String COLUMN_NAME_A1MS_IS_ECHOMATE = "isEchomate";
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + A1MSUsersEntry.TABLE_NAME + " (" +
@@ -43,6 +45,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN + TEXT_TYPE + COMMA_SEP +
+                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR + TEXT_TYPE + " );";
@@ -56,6 +59,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
@@ -105,6 +109,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,a1MSUser.getEmail());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,a1MSUser.getAvatar());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,a1MSUser.getToken());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,a1MSUser.getUserId());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,a1MSUser.isEditable());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,a1MSUser.isGroup());
 
@@ -162,6 +167,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
@@ -212,6 +218,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
@@ -268,11 +275,12 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
         a1MSUser.setMobile(c.getString(2));
         a1MSUser.setEmail(c.getString(3));
         a1MSUser.setToken(c.getString(4));
-        String editable = c.getString(5);
+        a1MSUser.setUserId(c.getString(5));
+        String editable = c.getString(6);
         a1MSUser.setEditable(editable.contains("1") ? true : false);
-        String isGroup = c.getString(6);
+        String isGroup = c.getString(7);
         a1MSUser.setGroup(isGroup.contains("1") ? true : false);
-        a1MSUser.setAvatar(c.getString(7));
+        a1MSUser.setAvatar(c.getString(8));
         return a1MSUser;
     }
 

@@ -1,5 +1,7 @@
 package uk.com.a1ms.network.handlers;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +25,7 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
 
     private String bearerToken;
     private String groupName;
+    private ArrayList<String>membersIDs;
 
     public UserGroupsNetworkHandler(){
         super();
@@ -47,12 +50,21 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
         this.groupName = groupName;
     }
 
+    public ArrayList<String> getMembersIDs() {
+        return membersIDs;
+    }
+
+    public void setMembersIDs(ArrayList<String> membersIDs) {
+        this.membersIDs = membersIDs;
+    }
+
     public void createGroup(final UserGroupsNetworkListener listener){
 
         init();
 
         NetworkServices userInviteService = getRetrofit().create(NetworkServices.class);
-        final Call<GroupDetails> call = userInviteService.doCreateGroup(getGroupName());
+        final Call<GroupDetails> call = userInviteService.doCreateGroup(getGroupName(),
+                                        getMembersIDs());
         call.enqueue(new Callback<GroupDetails>() {
             @Override
             public void onResponse(Call<GroupDetails> call, Response<GroupDetails> response) {

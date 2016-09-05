@@ -18,6 +18,7 @@ public class NotificationController {
     public static final int didReceiveSmsCode = totalEvents++;
     public static final int didReceiveLocation = totalEvents++;
     public static final int didOpenDatabase = totalEvents++;
+    public static final int userDatabaseChanged = totalEvents++;
 
 
     private int broadcasting = 0;

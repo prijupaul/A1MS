@@ -34,12 +34,13 @@ import uk.com.a1ms.ui.fragments.BaseFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsInviteFragment;
 import uk.com.a1ms.util.BuildUtils;
+import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
 
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsActivity extends BaseActivity{
+public class ContactsGroupsActivity extends BaseActivity implements NotificationController.NotificationListener{
 
     private ContactsGroupsPagerAdapter mAdapter;
     private ViewPager mViewPager;
@@ -122,9 +123,18 @@ public class ContactsGroupsActivity extends BaseActivity{
     @Override
     protected void onResume() {
         super.onResume();
+        NotificationController.getInstance().addObserver(this,
+                NotificationController.userDatabaseChanged);
         askForPermissons();
+
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NotificationController.getInstance().removeObserver(this,
+                NotificationController.userDatabaseChanged);
+    }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void askForPermissons() {
@@ -299,5 +309,15 @@ public class ContactsGroupsActivity extends BaseActivity{
         Bundle bundle = new Bundle();
         bundle.putParcelable("user",a1MSUser);
         startActivity(MessagingActivity.class,bundle,false);
+    }
+
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+        if(id == NotificationController.userDatabaseChanged){
+            BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+            if(fragment instanceof ContactsGroupsA1MSFragment){
+//                ((ContactsGroupsA1MSFragment)fragment).fetchLatestDetails();
+            }
+        }
     }
 }

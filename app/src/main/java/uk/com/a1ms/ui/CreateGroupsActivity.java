@@ -10,16 +10,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.db.A1MSDbHelper;
+import uk.com.a1ms.db.A1MSGroupsFieldsDataSource;
 import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
+import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
+import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.dto.GroupDetails;
 import uk.com.a1ms.network.dto.MemberGroupDetails;
 import uk.com.a1ms.network.handlers.UserGroupsNetworkHandler;
@@ -93,18 +98,32 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
         // TODO: Here the network should support taking in paramters like name, contact users, and group image
         // This part is to be worked on.
 
+        ArrayList<String> memberIDs = new ArrayList<>();
+        for(A1MSUser user:a1MSUsers){
+            memberIDs.add(user.getUserId());
+        }
+
         UserGroupsNetworkHandler userGroupsNetworkHandler = new UserGroupsNetworkHandler();
         userGroupsNetworkHandler.setBearerToken(SharedPreferenceManager.getUserToken(this));
         userGroupsNetworkHandler.setGroupName(groupName);
+        userGroupsNetworkHandler.setMembersIDs(memberIDs);
         userGroupsNetworkHandler.createGroup(new UserGroupsNetworkHandler.UserGroupsNetworkListener() {
             @Override
             public void onGroupCreated(GroupDetails groupDetails) {
                 // TODO: The create group details should be inserted to the database
                 // and this should should be shown to the user.
                 // A toast should be shown that the group was created. ?
-
-                addgroupDetailsToDb(groupDetails);
-                finish();
+                if(groupDetails != null) {
+                    int responseCode = Integer.valueOf(groupDetails.getResponseCode());
+                    if(responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS) {
+                        addgroupDetailsToUserDb(groupDetails);
+                        finish();
+                        NotificationController.getInstance().postNotificationName(NotificationController.userDatabaseChanged,null);
+                    }
+                    else {
+                        Toast.makeText(CreateGroupsActivity.this,groupDetails.getErrorMessage(),Toast.LENGTH_LONG).show();
+                    }
+                }
             }
 
             @Override
@@ -114,7 +133,7 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
 
             @Override
             public void onCreateGroupError() {
-                // TODO: Show appropriate error message to the user.
+                Toast.makeText(CreateGroupsActivity.this,"Error while creating groups. ",Toast.LENGTH_LONG).show();
 
             }
         });
@@ -168,18 +187,36 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
         }
     }
 
-    private void addgroupDetailsToDb(GroupDetails details){
+    private void addgroupDetailsToUserDb(GroupDetails details){
 
         A1MSDbHelper a1MSDbHelper = A1MSDbHelper.getInstance(A1MSApplication.applicationContext);
         A1MSUsersFieldsDataSource dataSource =  new A1MSUsersFieldsDataSource(A1MSApplication.applicationContext);
         A1MSUser a1msuser = constructA1MSUser(details);
         dataSource.insertA1MSUser(a1MSDbHelper.getWritableDatabase(),a1msuser);
+
+        A1MSGroupsFieldsDataSource groupsDataSource = new A1MSGroupsFieldsDataSource(A1MSApplication.applicationContext);
+        A1MSGroup a1MSGroup = constructA1MSGroup(details);
+        groupsDataSource.insertA1MSGroup(a1MSDbHelper.getWritableDatabase(),a1MSGroup);
     }
 
     private A1MSUser constructA1MSUser(GroupDetails details){
         A1MSUser a1MSUser = new A1MSUser();
         a1MSUser.setGroup(true);
-        a1MSUser.setName(details.getName());
+        a1MSUser.setEditable(true);
+        a1MSUser.setName(details.getData().getName());
+        a1MSUser.setUserId(details.getData().getId());
         return a1MSUser;
+    }
+
+    private A1MSGroup constructA1MSGroup(GroupDetails details){
+
+        A1MSGroup a1MSGroup = new A1MSGroup();
+        a1MSGroup.setActivate(Boolean.valueOf(details.getData().getIsActive()));
+        a1MSGroup.setGroupId(details.getData().getId());
+        a1MSGroup.setAdminId(details.getData().getIdUser());
+        a1MSGroup.setGroupName(details.getData().getName());
+        a1MSGroup.setMembersList(details.getData().getMembers());
+        a1MSGroup.setAvatar("");
+        return a1MSGroup;
     }
 }

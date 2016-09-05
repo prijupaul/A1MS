@@ -1,5 +1,7 @@
 package uk.com.a1ms.network;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -68,7 +70,8 @@ public interface NetworkServices {
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_CREATE_GROUP)
-    Call<GroupDetails> doCreateGroup(@Field("name") String name);
+    Call<GroupDetails> doCreateGroup(@Field("name") String name,
+                                     @Field("members") ArrayList<String>members);
 
 
     @GET(NetworkConstants.USER_CREATE_GROUP)

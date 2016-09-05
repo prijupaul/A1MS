@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import uk.com.a1ms.BuildConfig;
+import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.db.mock.AddMockUsers;
 
 /**
@@ -36,6 +37,11 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
             AddMockUsers.addMockA1MSUsers(dataSource,sqLiteDatabase);
         }
 
+        addEchomate(dataSource,sqLiteDatabase);
+
+        A1MSGroupsFieldsDataSource groupsDataSource =  new A1MSGroupsFieldsDataSource(mContext);
+        groupsDataSource.createDb(sqLiteDatabase);
+
     }
 
     @Override
@@ -58,5 +64,17 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
         if(mDbHelper != null){
             mDbHelper.close();
         }
+    }
+
+    private void addEchomate(A1MSUsersFieldsDataSource dataSource,SQLiteDatabase sqLiteDatabase){
+
+        A1MSUser a1MSUser = new A1MSUser();
+        a1MSUser.setEmail("info@a1ms-uk.com");
+        a1MSUser.setMobile("01234 567 8901");
+        a1MSUser.setUserId("priju-echos-0000-0000-0000");
+        a1MSUser.setName("Echo Mate");
+        a1MSUser.setEchomate(true);
+        a1MSUser.setEditable(false);
+        dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser);
     }
 }

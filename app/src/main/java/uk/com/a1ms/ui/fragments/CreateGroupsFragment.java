@@ -49,7 +49,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
     private RecyclerView mRecyclerView;
     private FastScroller mFastScroller;
     private Toolbar mToolbar;
-    private A1MSUsersFieldsDataSource mDataSource;
+    private A1MSUsersFieldsDataSource mUsersDataSource;
     private CreateGroupsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private HorizontalScrollView mScrollView;
@@ -87,8 +87,8 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         super.onAttach(context);
 
         NotificationController.getInstance().addObserver(this,NotificationController.didOpenDatabase);
-        mDataSource = new A1MSUsersFieldsDataSource(context);
-        mDataSource.open();
+        mUsersDataSource = new A1MSUsersFieldsDataSource(context);
+        mUsersDataSource.open();
 
     }
 
@@ -122,7 +122,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
     public void onNotificationReceived(int id, Object... args) {
 
         if(id == NotificationController.didOpenDatabase){
-            mA1MSUsers = mDataSource.getAllA1MSUsers(true,false);
+            mA1MSUsers = mUsersDataSource.getAllA1MSUsers(true,false);
             if(mAdapter == null) {
                 mAdapter = new CreateGroupsAdapter(mA1MSUsers, true,this);
                 mRecyclerView.setAdapter(mAdapter);
@@ -144,7 +144,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
     @Override
     public void onDetach() {
         super.onDetach();
-        mDataSource.close();
+        mUsersDataSource.close();
     }
 
     @Override
@@ -152,9 +152,6 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         super.onCreateOptionsMenu( menu, inflater );
         inflater.inflate(R.menu.menu_create_group,menu);
         mMenuNext = menu.findItem(R.id.action_create_groups);
-        if((mA1MSUsers!=null ) && mA1MSUsers.size() > 0){
-            mMenuNext.setEnabled(true);
-        }
     }
 
 
@@ -233,7 +230,9 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
 
         mSelectedA1MSUsers.add(a1MSUser);
 
-        mMenuNext.setEnabled(true);
+        if(mSelectedA1MSUsers.size() > 1) {
+            mMenuNext.setEnabled(true);
+        }
 
         mToolbar.setSubtitle(String.format("(%d/100)",mSelectedA1MSUsers.size()));
 

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.MessageAdapter;
+import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dto.LongMessage;
 import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.dto.ShortMessage;
@@ -31,6 +32,7 @@ import uk.com.a1ms.messages.MessageParser;
 import uk.com.a1ms.network.dto.MessageResponseDetails;
 import uk.com.a1ms.network.handlers.UserMessageIOSocketHandler;
 import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
+import uk.com.a1ms.ui.MessagingActivity;
 import uk.com.a1ms.util.DateTime;
 import uk.com.a1ms.util.ExecutorUtils;
 import uk.com.a1ms.util.SharedPreferenceManager;
@@ -50,6 +52,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     //    private UserMessageWebSocketHandler webSocketHandler;
     private UserMessageIOSocketHandler webIOSocketHandler;
     private MessageParser messageParser;
+    private A1MSUser mCurrentUser;
 
 
     public interface MessagingFragmentListener {
@@ -61,6 +64,13 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        MessagingActivity messagingActivity = (MessagingActivity)getActivity();
+        mCurrentUser = messagingActivity.getCurrentUser();
     }
 
     @Override
@@ -136,9 +146,6 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             String message = msg_edittext.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
 
-
-            // TODO: Parse the messages here.
-
             SpannableString spannableString = new SpannableString(messageParser.Parse(message));
 
             Message messageObj = new Message();
@@ -154,6 +161,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             messageObj.setSelf(true);
             messageObj.setTime(DateTime.getTimeInAmPm());
 
+            messageObj.setIdToUser(mCurrentUser);
+
             msg_edittext.setText("");
             messageAdapter.add(messageObj);
             messageAdapter.notifyDataSetChanged();
@@ -161,8 +170,20 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             String token = SharedPreferenceManager.getUserToken(getContext());
             final JSONObject jsonObject = messageObj.convertToJson(token);
 
-//            webSocketHandler.sendMessage(jsonObject.toString());
-            webIOSocketHandler.sendMessage(jsonObject.toString());
+
+            if(!mCurrentUser.isEditable()) {
+            // webSocketHandler.sendEchoMessage(jsonObject.toString());
+               webIOSocketHandler.sendEchoMessage(jsonObject.toString());
+            }
+            else if(mCurrentUser.isGroup()){
+                // webSocketHandler.sendMessage(jsonObject.toString());
+                webIOSocketHandler.sendGroupMessage(jsonObject.toString());
+            }
+            else {
+                // webSocketHandler.sendMessage(jsonObject.toString());
+                webIOSocketHandler.sendMessage(jsonObject.toString());
+            }
+
 
         }
     }

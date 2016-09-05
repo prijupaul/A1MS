@@ -83,6 +83,7 @@ public class Message {
             JSONObject messageObject = new JSONObject();
             messageObject.put("longMessage",getMessage().getLongMessage().toString());
             messageObject.put("shortMessage",getShortMessage().getShortMessage().toString());
+            messageObject.put("userId",getIdToUser().getUserId());
             jsonObject.put("message",messageObject);
         }
         catch (JSONException e){

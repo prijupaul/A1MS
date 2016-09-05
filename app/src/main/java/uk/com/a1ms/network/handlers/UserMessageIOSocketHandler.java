@@ -3,17 +3,20 @@ package uk.com.a1ms.network.handlers;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.util.ExecutorUtils;
+
+//import com.github.nkzawa.emitter.Emitter;
+//import com.github.nkzawa.socketio.client.IO;
+//import com.github.nkzawa.socketio.client.Socket;
 
 /**
  * Created by priju.jacobpaul on 3/08/16.
@@ -72,7 +75,7 @@ public class UserMessageIOSocketHandler {
 
     public void sendEchoMessage(final String message) {
 
-        Log.d(TAG,"sendMessage..: " + mSocket.connected());
+        Log.d(TAG,"sendEchoMessage..: " + mSocket.connected());
 
         ExecutorUtils.runInBackgroundThread(new Runnable() {
             @Override

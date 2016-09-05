@@ -16,6 +16,8 @@ public class A1MSUser implements Parcelable {
     private boolean isEditable = true;
     private boolean isChecked = false;
     private boolean isGroup = false;
+    private boolean isEchomate;
+    private String userId;
 
     public String getName() {
         return name;
@@ -81,6 +83,21 @@ public class A1MSUser implements Parcelable {
         isGroup = group;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public boolean isEchomate() {
+        return isEchomate;
+    }
+
+    public void setEchomate(boolean echomate) {
+        isEchomate = echomate;
+    }
 
     @Override
     public int describeContents() {
@@ -98,6 +115,8 @@ public class A1MSUser implements Parcelable {
         parcel.writeInt(isEditable() ? 1 : 0);
         parcel.writeInt(isChecked() ? 1: 0);
         parcel.writeInt(isGroup() ? 1: 0);
+        parcel.writeString(getUserId());
+        parcel.writeInt(isEchomate() ? 1 : 0);
     }
 
     public A1MSUser(){
@@ -113,6 +132,8 @@ public class A1MSUser implements Parcelable {
         setEditable(source.readInt() == 1 ? true : false);
         setChecked(source.readInt() == 1 ? true : false);
         setGroup(source.readInt() == 1 ? true : false);
+        setUserId(source.readString());
+        setEchomate(source.readInt() == 1 ? true : false);
     }
 
     public static final Creator<A1MSUser> CREATOR = new Creator<A1MSUser>() {

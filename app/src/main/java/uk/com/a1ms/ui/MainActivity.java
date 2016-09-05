@@ -213,6 +213,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     @Override
     public void onSendActivationCode(String activationCode) {
 
+        ProgressView.addProgressView(mFrameLayoutHolder, " Activating..");
         UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                 .setActivationCode(activationCode)
                 .setUserID(SharedPreferenceManager.getUserId(this))
@@ -220,12 +221,13 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         activationNetworkHandler.doActivateUserWithCode(new UserActivationNetworkHandler.UserActivationListener() {
             @Override
             public void onUserActivationResponse(Object object) {
+                AndroidUtils.setWaitingForSms(false);
+                ProgressView.removeProgressView(mFrameLayoutHolder);
                 loginDetails loginDetails = (loginDetails)object;
                 if (loginDetails!= null) {
                     if(loginDetails.getResponseCode() != null) {
                         int responseCode = Integer.valueOf(loginDetails.getResponseCode());
                         if(responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS){
-                            AndroidUtils.setWaitingForSms(false);
                             doUserLogin(loginDetails);
                         }
                         else {
@@ -237,6 +239,8 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
             @Override
             public void onUserActivationError() {
+                AndroidUtils.setWaitingForSms(false);
+                ProgressView.removeProgressView(mFrameLayoutHolder);
                 Toast.makeText(MainActivity.this,"Activation error",Toast.LENGTH_LONG).show();
             }
         });
@@ -268,7 +272,10 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             public void onUserActivationResponse(Object object) {
 
                 UserDetails userDetails = (UserDetails)object;
+
                 SharedPreferenceManager.saveUserToken(userDetails.getToken(),MainActivity.this);
+                SharedPreferenceManager.saveUserId(userDetails.getUser().getId(),MainActivity.this);
+
                 SharedPreferenceManager.setFirstTimeLaunch(false,MainActivity.this);
 
                 startContactsGroupsActivity(null, true);
