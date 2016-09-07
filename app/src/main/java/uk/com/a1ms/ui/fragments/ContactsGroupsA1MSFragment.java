@@ -34,6 +34,7 @@ import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
 import uk.com.a1ms.ui.ContactsGroupsActivity;
+import uk.com.a1ms.util.ExecutorUtils;
 import uk.com.a1ms.util.NotificationController;
 
 /**
@@ -71,6 +72,8 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 
         mGroupsDataSource = new A1MSGroupsFieldsDataSource(context);
         mGroupsDataSource.open();
+
+        populateItems();
     }
 
     @Nullable
@@ -312,16 +315,43 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
         }
     }
 
-    @Override
-    public void onNotificationReceived(int id, Object... args) {
-        if(id == NotificationController.didOpenDatabase){
-            if(mAdapter == null) {
-                mA1MSUsers = mUsersDataSource.getAllA1MSUsers(false,true);
-                mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, this);
+    private void populateItems(){
+
+        ExecutorUtils.runInBackgroundThread(new Runnable() {
+            @Override
+            public void run() {
+                if(mAdapter == null) {
+                    mA1MSUsers = mUsersDataSource.getAllA1MSUsers(false,true);
+                    showUsers();
+            }
+        }});
+
+    }
+
+    private void showUsers(){
+        ExecutorUtils.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, ContactsGroupsA1MSFragment.this);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
                 mFastScroller.setRecyclerView(mRecyclerView);
             }
+        },0);
+
+    }
+
+
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+        if(id == NotificationController.didOpenDatabase){
+//            if(mAdapter == null) {
+//                mA1MSUsers = mUsersDataSource.getAllA1MSUsers(false,true);
+//                mAdapter = new ContactsGroupsA1MSAdapter(mA1MSUsers, this);
+//                mRecyclerView.setAdapter(mAdapter);
+//                mAdapter.notifyDataSetChanged();
+//                mFastScroller.setRecyclerView(mRecyclerView);
+//            }
             NotificationController.getInstance().removeObserver(this,NotificationController.didOpenDatabase);
         }
         else if(id == NotificationController.userDatabaseChanged){

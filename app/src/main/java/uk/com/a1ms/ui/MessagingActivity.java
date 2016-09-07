@@ -8,16 +8,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 
 import uk.com.a1ms.R;
+import uk.com.a1ms.db.A1MSGroupsFieldsDataSource;
+import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.ui.fragments.MessagingFragment;
+import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 17/06/16.
  */
-public class MessagingActivity extends BaseActivity implements MessagingFragment.MessagingFragmentListener {
+public class MessagingActivity extends BaseActivity implements MessagingFragment.MessagingFragmentListener,
+        NotificationController.NotificationListener
+{
 
     private MessagingFragment mMessagingFragment;
     private A1MSUser mCurrentUser;
+    private A1MSGroup mCurrentGroup;
+    private A1MSGroupsFieldsDataSource mGroupsDataSource;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +39,13 @@ public class MessagingActivity extends BaseActivity implements MessagingFragment
         A1MSUser a1MSUser = getIntent().getParcelableExtra("user");
         mCurrentUser = a1MSUser;
         getSupportActionBar().setTitle(a1MSUser.getName());
+
+        if(mCurrentUser.isGroup()){
+            mGroupsDataSource = new A1MSGroupsFieldsDataSource(this);
+            mGroupsDataSource.open();
+            mCurrentGroup = mGroupsDataSource.getDetailsOfGroups(mCurrentUser.getUserId());
+        }
+
     }
 
     @Override
@@ -63,4 +77,20 @@ public class MessagingActivity extends BaseActivity implements MessagingFragment
         return mCurrentUser;
     }
 
+    public A1MSGroup getCurrentGroup(){
+        return mCurrentGroup;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mGroupsDataSource != null) {
+            mGroupsDataSource.close();
+        }
+    }
+
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+
+    }
 }

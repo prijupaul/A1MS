@@ -3,6 +3,7 @@ package uk.com.a1ms.dto;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
 
 /**
@@ -74,7 +75,7 @@ public class Message {
         this.time = time;
     }
 
-    public JSONObject convertToJson(String token){
+    public JSONObject convertToJson(String token, A1MSUser user, A1MSGroup group){
         JSONObject jsonObject = new JSONObject();
         try {
 
@@ -84,6 +85,12 @@ public class Message {
             messageObject.put("longMessage",getMessage().getLongMessage().toString());
             messageObject.put("shortMessage",getShortMessage().getShortMessage().toString());
             messageObject.put("userId",getIdToUser().getUserId());
+
+            if(user.isGroup()){
+                messageObject.put("groupId", group.getGroupId());
+                messageObject.put("groupArray", group.getMembersList());
+            }
+
             jsonObject.put("message",messageObject);
         }
         catch (JSONException e){

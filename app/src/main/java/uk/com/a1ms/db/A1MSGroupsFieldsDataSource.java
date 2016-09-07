@@ -11,10 +11,9 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
-import uk.com.a1ms.util.ExecutorUtils;
-import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 6/06/16.
@@ -67,28 +66,14 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
 
     public void open() throws SQLException {
-
-        ExecutorUtils.runInBackgroundThread(new Runnable() {
-            @Override
-            public void run() {
-                sqLiteDatabase = a1MSDbHelper.getWritableDatabase();
-
-                ExecutorUtils.runOnUIThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        NotificationController.getInstance().postNotificationName(NotificationController.didOpenDatabase, null);
-                    }
-                }, 0);
-
-            }
-        });
+        sqLiteDatabase = A1MSApplication.sqLiteDatabase;
     }
 
     public void close() {
 
-        if (a1MSDbHelper != null) {
-            a1MSDbHelper.close();
-        }
+//        if (a1MSDbHelper != null) {
+//            a1MSDbHelper.close();
+//        }
     }
 
     public void createDb(SQLiteDatabase sqLiteDatabase) {
@@ -156,6 +141,33 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
     }
 
+    public A1MSGroup getDetailsOfGroups(String groupdID,String groupName){
+
+        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID+" =? AND " +
+                A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME + " =?";
+
+        String [] whereArgs = new String[2];
+        whereArgs[0] = groupdID;
+        whereArgs[1] = groupName;
+
+        Cursor c = sqLiteDatabase.query(
+                A1MSGroupsEntry.TABLE_NAME,  // The table to query
+                A1MSGroupsEntry.allColumns,                               // The columns to return
+                whereClause,                                // The columns for the WHERE clause
+                whereArgs,                               // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+
+        if(c != null) {
+            c.moveToFirst();
+            A1MSGroup group = cursorToUser(c);
+            return group;
+        }
+        return null;
+    }
+
     public A1MSGroup getDetailsOfGroups(String groupId){
 
         String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID+"=?";
@@ -172,6 +184,7 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
                 null                                 // The sort order
         );
 
+        c.moveToFirst();
         A1MSGroup group = cursorToUser(c);
         return group;
     }
@@ -208,22 +221,26 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
     private A1MSGroup cursorToUser(Cursor c) {
 
+
         A1MSGroup a1MSGroup = new A1MSGroup();
-        a1MSGroup.setGroupName(c.getString(1));
-        String groupMembersList = c.getString(2);
-        ArrayList<String> members = new ArrayList<>();
-        String[] membersSplit = groupMembersList.split("&");
-        for(String member : membersSplit) {
-            members.add(member);
+
+        if(c.getCount() > 0) {
+            a1MSGroup.setGroupName(c.getString(1));
+            String groupMembersList = c.getString(2);
+            ArrayList<String> members = new ArrayList<>();
+            String[] membersSplit = groupMembersList.split("&");
+            for (String member : membersSplit) {
+                members.add(member);
+            }
+            a1MSGroup.setMembersList(members);
+
+            a1MSGroup.setGroupId(c.getString(3));
+            a1MSGroup.setAdminId(c.getString(4));
+
+            String active = c.getString(5);
+            a1MSGroup.setActivate(active.contains("1") ? true : false);
+            a1MSGroup.setAvatar(c.getString(6));
         }
-        a1MSGroup.setMembersList(members);
-
-        a1MSGroup.setGroupId(c.getString(3));
-        a1MSGroup.setAdminId(c.getString(4));
-
-        String active = c.getString(5);
-        a1MSGroup.setActivate(active.contains("1") ? true : false);
-        a1MSGroup.setAvatar(c.getString(6));
 
         return a1MSGroup;
     }

@@ -742,14 +742,14 @@ twt	tweet
 twtr	twitter
 twtrin	twittering
 txted	texted
-UI	user interface
+UI	data interface
 undrstnd	understand
 undrst%d	understood
 untl	until
 upd8	update
 usd	used
 usin	using
-usr	user
+usr	data
 vi	via
 vid	video
 vids	videos

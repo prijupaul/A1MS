@@ -274,7 +274,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 UserDetails userDetails = (UserDetails)object;
 
                 SharedPreferenceManager.saveUserToken(userDetails.getToken(),MainActivity.this);
-                SharedPreferenceManager.saveUserId(userDetails.getUser().getId(),MainActivity.this);
+                SharedPreferenceManager.saveUserId(userDetails.getData().getId(),MainActivity.this);
 
                 SharedPreferenceManager.setFirstTimeLaunch(false,MainActivity.this);
 

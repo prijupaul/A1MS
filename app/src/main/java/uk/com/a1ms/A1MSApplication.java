@@ -3,11 +3,13 @@ package uk.com.a1ms;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
+import uk.com.a1ms.db.A1MSDbHelper;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
@@ -18,6 +20,8 @@ public class A1MSApplication extends Application {
     private Activity mActivity;
     public static Context applicationContext;
     public static volatile Handler applicationHandler;
+    public static A1MSDbHelper dbHelper;
+    public static SQLiteDatabase sqLiteDatabase;
 
     @Override
     public void onCreate() {
@@ -36,6 +40,9 @@ public class A1MSApplication extends Application {
         else {
             Logger.init().logLevel(LogLevel.NONE);
         }
+
+        dbHelper = A1MSDbHelper.getInstance(applicationContext);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
     }
 
 
@@ -45,6 +52,15 @@ public class A1MSApplication extends Application {
 
     public Activity getCurrentActivity(){
         return this.mActivity;
+    }
+
+    public static A1MSDbHelper getDatabaseAdapter()
+    {
+        return dbHelper;
+    }
+
+    public static SQLiteDatabase getSqLiteDatabase(){
+        return sqLiteDatabase;
     }
 
 }

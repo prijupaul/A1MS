@@ -55,7 +55,7 @@ public class UserMessageIOSocketHandler {
     public void connect() {
         try {
 
-            mSocket = IO.socket("http://163.172.137.155:8181"); //"http://chat.socket.io");
+            mSocket = IO.socket("http://chat.voltric.io:8181");//http://163.172.137.155:8181"); //"http://chat.socket.io");
 
             mSocket.on(Socket.EVENT_CONNECT,onConnected);
             mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);

@@ -27,21 +27,23 @@ public class AddMockUsers {
         a1MSUser1.setUserId("583cb2fc-24fd-4010-9e5d-57a005f074b9");
         a1MSUser1.setEditable(true);
         dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser1);
-//
-//
-//        A1MSUser a1MSUser2 = new A1MSUser();
-//        a1MSUser2.setEmail("sanjay@a1ms-uk.com");
-//        a1MSUser2.setMobile("01224 567 8902");
-//        a1MSUser2.setName("Sanjay");
-//        a1MSUser2.setEditable(true);
-//        dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser2);
-//
-//        A1MSUser a1MSUser3 = new A1MSUser();
-//        a1MSUser3.setEmail("simon@a1ms-uk.com");
-//        a1MSUser3.setMobile("01224 567 8903");
-//        a1MSUser3.setName("Simon");
-//        a1MSUser.setEditable(true);
-//        dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser3);
+
+
+        A1MSUser a1MSUser2 = new A1MSUser();
+        a1MSUser2.setEmail("sanjay@a1ms-uk.com");
+        a1MSUser2.setMobile("01224 567 8902");
+        a1MSUser2.setName("Sanjay");
+        a1MSUser2.setEditable(true);
+        a1MSUser2.setUserId("389cbb5c-b0c1-4b2a-b0bc-1286da68b901");
+        dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser2);
+
+        A1MSUser a1MSUser3 = new A1MSUser();
+        a1MSUser3.setEmail("kajanth@a1ms-uk.com");
+        a1MSUser3.setMobile("01224 567 8903");
+        a1MSUser3.setName("Kajath");
+        a1MSUser.setEditable(true);
+        a1MSUser3.setUserId("61e6b3ae-b226-4227-84f6-2aeee470bffe");
+        dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser3);
 //
 //        A1MSUser a1MSUser4 = new A1MSUser();
 //        a1MSUser4.setEmail("priju@a1ms-uk.com");

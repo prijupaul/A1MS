@@ -1,7 +1,7 @@
 package uk.com.a1ms.util;
 
 import android.Manifest;
-import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 
 import uk.com.a1ms.A1MSApplication;
@@ -54,12 +54,10 @@ public class BuildUtils {
 
     public static boolean isDbOnSDCard(){
 
-        Activity activity = ((A1MSApplication)A1MSApplication.applicationContext).getCurrentActivity();
-        if(activity != null) {
-            if ((BuildConfig.DEBUG) &&
-                    (PermissionRequestManager.checkPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE))){
+        Context context = A1MSApplication.applicationContext;
+        if ((BuildConfig.DEBUG) &&
+                    (PermissionRequestManager.checkPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE))){
                 return true;
-            }
         }
         return false;
     }

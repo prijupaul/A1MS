@@ -837,7 +837,7 @@ eom	end of message
 eos	end of story
 eotw	end of the world
 eot	end of transmission
-eula	end user license agreement
+eula	end data license agreement
 nme	enemy
 nrg	energy
 njoy	enjoy
@@ -1463,7 +1463,7 @@ gma	grandma
 gilf	Grandma I'd like to fuck
 gmilf	grandmother i'd like to fuck
 gaw	grandparents are watching
-gui	graphical user interface
+gui	graphical data interface
 gfx	graphics
 grfx	graphics
 gr8	great
@@ -2753,7 +2753,7 @@ mfr	motherfucker
 mtrfkr	motherfucker
 mfah	motherfucking asshole
 mpd	Multiple Personality Disorder
-muve	multi-user virtual environment
+muve	multi-data virtual environment
 187	murder
 musiq	music
 muzik	music
@@ -4352,9 +4352,9 @@ utfs	Use the fucking search
 utfse	use the fucking search engine
 utw	used to work
 uat	User Acceptance Testing
-ua	user agreement
+ua	data agreement
 ui	User Interface
-luser	user who is a loser
+luser	data who is a loser
 u/n	username
 cunt	vagina
 twat	vagina

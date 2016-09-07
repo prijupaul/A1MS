@@ -184,7 +184,7 @@ AAAAA	American Association Against Acronym Abuse
 AAF	As A Friend	
 AAF	As a matter of fact	
 AAK	Asleep At Keyboard	
-AAK	Asleep at keyboard	
+AAK	Asleep atï¿½keyboard	
 AAMOF	As A Matter Of Fact	
 AAMOF	As A Matter Of Fact	
 AAMOF	As a matter of fact	
@@ -371,7 +371,7 @@ AYSOS	Are You Stupid Or Something?
 AYSOS	Are you stupid or something	
 AYT	Are You There	
 AYTMTB	And you're telling me this because?	
-AYTMTB	And you're telling me this because 	
+AYTMTB	And you're telling me this becauseï¿½	
 B	Be	
 B	Bye	
 B	be	
@@ -456,7 +456,7 @@ BC	Because
 BC	Because	
 BCBS	Big company, big school	
 BCC	Blind carbon copy	
-BCNU	Be seein’ you	
+BCNU	Be seeinï¿½ you	
 BCNU	be seeing you	
 BCNU	Be seein' you	
 BCNU	be seeing you	
@@ -485,7 +485,7 @@ BFF	Best Friends Forever
 BFFEAE	best friends for ever and ever	
 BFFEAE	best friend for ever and ever	
 BFFEAE	best friends forever and ever	
-BFG	Big  fucking grin	
+BFG	Bigï¿½ fucking grin	
 BFN	Bye For Now	
 BFN	Bye For Now	
 BFN	Bye For Now	
@@ -657,7 +657,7 @@ cm4agt	call me for a good time
 CMF	Count my fingers	
 CMI	Cannot Make It	
 CMIIW	Correct Me If I'm Wrong	
-CMIIW	Correct Me If I’m Wrong	
+CMIIW	Correct Me If Iï¿½m Wrong	
 CMIIW	Correct me if I'm wrong	
 CMON	Come on	
 cmputA	computer	
@@ -712,7 +712,7 @@ Cson	season
 CT	City	
 CT	city	
 CT	can not talk	
-CT	C'était	
+CT	C'ï¿½tait	
 CT	Cash Transaction	
 CT	It was	
 CTC	Community Technology Centers	
@@ -831,7 +831,7 @@ DIY	Do It Yourself
 DIY	Do it yourself	
 DJ	Dumb Jerk	
 DK	Don't Know	
-DK	Don’t Know	
+DK	Donï¿½t Know	
 DL	Download	
 DL	Download	
 dlAd	delayed	
@@ -994,7 +994,7 @@ foto	photograph
 FRED	fucking ridiculous electronic device	
 freeballin	not wearing any underpants	
 FRM	from	
-FRT	For real though	
+FRT	Forï¿½realï¿½though	
 FS	For Sale	
 FSCK	File System Check	
 FTASB	Faster Than A Speeding Bullet	
@@ -1025,7 +1025,7 @@ FUD	Fear, Uncertainty and Doubt
 FURTB	Full Up Ready To Burst	
 FWD	Forward	
 FWIW	For What It's Worth	
-FWIW	For What It’s Worth	
+FWIW	For What Itï¿½s Worth	
 FWIW	For What It's Worth	
 FWIW	For what it's worth	
 FYA	For Your Amusement	
@@ -1068,7 +1068,7 @@ GA	Go ahead
 GAL	Get A life	
 GAL	Get A Life	
 GAL	Get A Life	
-GAL	Get a life	
+GAL	Get aï¿½life	
 gal	get a life	
 gal	girl	
 gal	madman	
@@ -1105,7 +1105,7 @@ GFR	Grim File Reaper
 GFY	Good For You	
 GG	Good Game	
 GG	Good Game	
-GG	Gotta Go or Good Game	
+GG	Gotta Go orï¿½Goodï¿½Game	
 GGN	Gotta Go Now	
 GGN	Gotta Go Now	
 GGP	Gotta Go Pee	
@@ -1117,7 +1117,7 @@ GIDK	Gee I Don't Know
 GIGO	Garbage in, garbage out	
 GIGO	Garbage in, garbage out	
 GINU	Glad I'm Not You	
-GIWIST	Gee, I Wish I’d Said That	
+GIWIST	Gee, I Wish Iï¿½d Said That	
 GJ	Good Job	
 GJ	Good Job	
 GJIAGDVYCN	Go jump in a god damn volcano, you fucking cave newt	
@@ -1128,7 +1128,7 @@ GL	Good luck
 GL/HF	Good luck, have fun	
 GLGH	Good Luck and Good Hunting	
 GLLA	Great lovers love alike	
-GLNG	Good luck next game	
+GLNG	Good luck nextï¿½game	
 GLWT	Good Luck With That	
 GLWTN	Guffawing loudly waking up the neighborhood	
 GLYASDI	God loves you and so do I	
@@ -1292,8 +1292,8 @@ hpn	happen
 hrtz	hurts	
 hrtz	hearts	
 HRU	How are you?	
-HRU	Cómo estás?	
-HRU	Cómo estás	
+HRU	Cï¿½mo estï¿½s?	
+HRU	Cï¿½mo estï¿½s	
 HRU	how are you	
 HRU	how are you?	
 HRU	how r u	
@@ -1415,7 +1415,7 @@ IKYABWAI	I Know You Are But What Am I?
 ILBL8	I'll be late	
 ilbl8	I'll be late	
 ilbl8	I will be late	
-ilbl8	I’ll be late	
+ilbl8	Iï¿½ll be late	
 ILICISCOMK	I laughed, I cried, I spat coffee over my keyboard	
 ILICISCOMK	I laughed, I cried, I spilt coffee over my keyboard	
 ILICISCOMK	I laughed, I cried, I spat crumbs over my keyboard	
@@ -1518,9 +1518,9 @@ IRLU	I really love you
 IRMC	I rest my case	
 IRS	It Really Stinks	
 ISFB	I'm So Frigging Bored	
-ISS	I’m So Sure	
+ISS	Iï¿½m So Sure	
 ISS	I said so	
-ISSYGTI	I’m So Sure You Get The Idea!	
+ISSYGTI	Iï¿½m So Sure You Get The Idea!	
 ISTM	It Seems to Me	
 ISTR	I Seem To Remember	
 ISWYM	I See What You Mean	
@@ -2071,7 +2071,7 @@ ntrtain	Entertain
 NTYMI	Now That You Mention It	
 NUF	Enough	
 nuf	enough	
-nuf	non user friendly	
+nuf	non data friendly
 NUF SED	Enough Said	
 NUFF	Enough Said	
 NUTS	Neils Unix Talker Server	
@@ -2189,7 +2189,7 @@ PANS	Pretty awesome new stuff
 PAW	parents are watching	
 PB	Panic Button	
 PCM	Please call me	
-PCM	Please call me	
+PCM	Pleaseï¿½callï¿½me	
 PCO	Please Carry On	
 PCS	Please Contribute Some 	
 PD	Public Domain	
@@ -2653,7 +2653,7 @@ TA	Thanks Alot
 TA	Thanks a lot	
 TAC	Take A Chance	
 TAF	That's All, Folks!	
-TAFN	That’s All For Now	
+TAFN	Thatï¿½s All For Now	
 TAFN	That's all for now	
 TAFN	That's all for now	
 TAH	Take a hike	
@@ -2662,8 +2662,8 @@ talkin	talking
 TAM	That Amuses Me	
 TAM	Tomorrow a.m.	
 tanglD	tangled	
-TANJ	There Ain’t No Justice	
-TANSTAAFL	There Ain’t No Such Thing As A Free Lunch	
+TANJ	There Ainï¿½t No Justice	
+TANSTAAFL	There Ainï¿½t No Such Thing As A Free Lunch	
 tanstaafl	There Ain't No Such Thing As A Free Lunch	
 tanstaafl	there's no such thing as a free lunch	
 tanstaafl	There \'aint such thing as a free lunch	
@@ -2966,7 +2966,7 @@ Vges	vegetables
 Vges	veggies	
 VIP	Very important person	
 VM	Voice mail	
-VM	Voice mail	
+VM	Voiceï¿½mail	
 Vmail	voicemail	
 Vmail	voice mail	
 VOL	Volume	
@@ -3125,7 +3125,7 @@ WIBAMU	Well, I'll Be A Monkey's Uncle
 WIBBI	Wouldn't It Be Better If 	
 WIBN	Wouldn't It Be Nice	
 WIBNI	Wouldn't It Be Nice If	
-WIBNI	Wouldn’t It Be Nice If	
+WIBNI	Wouldnï¿½t It Be Nice If	
 WIBNI	Wouldn't it be nice if	
 WICY	When I'm Calling You	
 WID	With	
@@ -3375,7 +3375,7 @@ YAVIS	Young, Attractive, Verbal, Intelligent, and Successful
 YAVIS	young, attractive, verbal, intelligent, successful	
 YAVIS	you are very intelligent sir	
 yb	why be	
-YBS	You’ll be Sorry	
+YBS	Youï¿½ll be Sorry	
 YBS	You'll be sorry	
 YBYSA	You Bet Your Sweet Ass	
 YCMU	You crack me up	

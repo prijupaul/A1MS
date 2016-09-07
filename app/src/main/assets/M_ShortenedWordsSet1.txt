@@ -8557,7 +8557,7 @@ typd	typed
 tytnd	tightened
 u	you
 u2	you too
-UI	user interface
+UI	data interface
 uk	united kingdom
 u-l	you will
 umpird	umpired
@@ -8651,7 +8651,7 @@ uve	you've
 uwot	you what
 uz	use
 uzd	used
-uzr	user
+uzr	data
 v	very
 vac8d	vacated
 vacatnd	vacationed

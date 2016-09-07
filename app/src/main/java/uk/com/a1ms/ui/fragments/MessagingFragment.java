@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.MessageAdapter;
+import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dto.LongMessage;
 import uk.com.a1ms.dto.Message;
@@ -53,6 +54,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private UserMessageIOSocketHandler webIOSocketHandler;
     private MessageParser messageParser;
     private A1MSUser mCurrentUser;
+    private A1MSGroup mCurrentGroup;
+
 
 
     public interface MessagingFragmentListener {
@@ -71,6 +74,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         super.onActivityCreated(savedInstanceState);
         MessagingActivity messagingActivity = (MessagingActivity)getActivity();
         mCurrentUser = messagingActivity.getCurrentUser();
+        mCurrentGroup = messagingActivity.getCurrentGroup();
     }
 
     @Override
@@ -168,7 +172,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             messageAdapter.notifyDataSetChanged();
 
             String token = SharedPreferenceManager.getUserToken(getContext());
-            final JSONObject jsonObject = messageObj.convertToJson(token);
+            final JSONObject jsonObject = messageObj.convertToJson(token,mCurrentUser,mCurrentGroup);
 
 
             if(!mCurrentUser.isEditable()) {

@@ -92,9 +92,9 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
 
     public void close(){
 
-        if(a1MSDbHelper!= null){
-            a1MSDbHelper.close();
-        }
+//        if(a1MSDbHelper!= null){
+//            a1MSDbHelper.close();
+//        }
     }
 
     public void createDb(SQLiteDatabase sqLiteDatabase){
@@ -243,7 +243,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
                 whereArgs,                               // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                null                                 // The sort order
         );
 
         if(c != null) {
