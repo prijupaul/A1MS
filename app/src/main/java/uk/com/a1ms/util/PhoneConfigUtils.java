@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 import java.util.Locale;
@@ -65,6 +66,13 @@ public class PhoneConfigUtils {
 
         TelephonyManager telephonyManager = (TelephonyManager) A1MSApplication.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();
+    }
+
+    public static String getAndroidSecureId(){
+
+        final String androidId = Settings.Secure.getString(
+                A1MSApplication.applicationContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return androidId;
     }
 
     public static int getAndroidVersion(){

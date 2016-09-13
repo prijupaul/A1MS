@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         } else {
             startContactsGroupsActivity(null, true);
         }
+
     }
 
     @Override
@@ -261,6 +262,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 .setLocale(PhoneConfigUtils.getCountryLocale())
                 .setIMEI(PhoneConfigUtils.getIMEI())
                 .setMacAddress(PhoneConfigUtils.getMacAddress())
+                .setAndroidId(PhoneConfigUtils.getAndroidSecureId())
                 .setCountryCode(PhoneConfigUtils.getCountryCode())
                 .setAndroidVersion(String.valueOf(PhoneConfigUtils.getAndroidVersion()))
                 .setManufacture(PhoneConfigUtils.getManufacture())

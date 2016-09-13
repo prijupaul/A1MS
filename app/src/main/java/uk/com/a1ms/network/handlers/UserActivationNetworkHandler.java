@@ -28,6 +28,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
     private String locale;
     private String imei;
     private String macAddress;
+    private String androidId;
     private String countryCode;
     private String androidVersion;
     private String manufacture;
@@ -56,6 +57,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         private String locale;
         private String imei;
         private String macAddress;
+        private String androidId;
         private String countryCode;
         private String androidVersion;
         private String manufacture;
@@ -117,6 +119,12 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             return this;
         }
 
+        public UserActivationNetworkHandlerBuilder setAndroidId(String androidId){
+            this.androidId = androidId;
+            return this;
+        }
+
+
         public UserActivationNetworkHandlerBuilder setCountryCode(String countryCode){
             this.countryCode = countryCode;
             return this;
@@ -156,6 +164,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
             userActivationNetworkHandler.setLongitude(longitude);
             userActivationNetworkHandler.setImei(imei);
             userActivationNetworkHandler.setMacAddress(macAddress);
+            userActivationNetworkHandler.setAndroidId(androidId);
             userActivationNetworkHandler.setAndroidVersion(androidVersion);
             userActivationNetworkHandler.setLocale(locale);
             userActivationNetworkHandler.setCountryCode(countryCode);
@@ -238,6 +247,11 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         this.macAddress = macAddress;
     }
 
+    public void setAndroidId(String androidId){
+        this.androidId = androidId;
+    }
+
+
     public void doActivateUserWithCode(UserActivationListener listener){
 
         this.userActivationListener = listener;
@@ -291,7 +305,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
         final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
-                locale,imei,macAddress,countryCode,androidVersion,manufacture,language,country);
+                locale,imei,macAddress,androidId,countryCode,androidVersion,manufacture,language,country);
         call.enqueue(new Callback<UserDetails>() {
             @Override
             public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {

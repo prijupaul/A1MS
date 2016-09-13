@@ -11,9 +11,8 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.db.dto.A1MSUser;
-import uk.com.a1ms.util.ExecutorUtils;
-import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 6/06/16.
@@ -74,20 +73,22 @@ public class A1MSUsersFieldsDataSource extends BaseFields{
 
     public void open() throws SQLException {
 
-        ExecutorUtils.runInBackgroundThread(new Runnable() {
-            @Override
-            public void run() {
-                sqLiteDatabase = a1MSDbHelper.getWritableDatabase();
+        sqLiteDatabase = A1MSApplication.getSqLiteDatabase();
 
-                ExecutorUtils.runOnUIThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        NotificationController.getInstance().postNotificationName(NotificationController.didOpenDatabase,null);
-                    }
-                },0);
-
-            }
-        });
+//        ExecutorUtils.runInBackgroundThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                sqLiteDatabase = a1MSDbHelper.getWritableDatabase();
+//
+//                ExecutorUtils.runOnUIThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        NotificationController.getInstance().postNotificationName(NotificationController.didOpenDatabase,null);
+//                    }
+//                },0);
+//
+//            }
+//        });
     }
 
     public void close(){

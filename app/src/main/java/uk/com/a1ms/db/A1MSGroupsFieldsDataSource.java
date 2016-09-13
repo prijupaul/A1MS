@@ -117,17 +117,30 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
         ArrayList<String> users = new ArrayList<>();
         for (A1MSGroup user : a1MSGroups) {
-            users.add("\'" + user.getGroupName() + "\'");
+            users.add("\'" + user.getGroupId() + "\'");
         }
 
         String args = TextUtils.join(", ", users);
         String statement = "DELETE FROM " + A1MSGroupsEntry.TABLE_NAME + " WHERE " +
-                A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME + " IN" + " ( " + args + " )";
+                A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + " IN" + " ( " + args + " )";
 
         sqLiteDatabase.execSQL(statement);
 
     }
 
+    public void deleteA1MSUsersFromGroup(List<A1MSUser> a1MSUserList){
+
+        List<A1MSGroup> groupList = new ArrayList<>();
+        for(A1MSUser a1MSUser : a1MSUserList){
+            if(a1MSUser.isGroup()){
+                A1MSGroup a1MSGroup = new A1MSGroup();
+                a1MSGroup.setGroupId(a1MSUser.getUserId());
+                a1MSGroup.setGroupName(a1MSUser.getName());
+                groupList.add(a1MSGroup);
+            }
+        }
+        deleteA1MSGroup(groupList);
+    }
 
     public void deleteA1MSUserFromGroup(A1MSUser a1MSUser, A1MSGroup a1MSGroup) {
 

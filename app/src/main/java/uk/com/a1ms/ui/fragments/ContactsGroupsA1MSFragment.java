@@ -124,6 +124,20 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     @Override
     public void onResume() {
         super.onResume();
+
+//        A1MSUser user = new A1MSUser();
+//        user.setName("Personal Device");
+//        user.setMobile("+61235647896");
+//        user.setUserId("77882aaf-647d-46a2-9b3d-46b48d38720e");
+//        user.setEditable(true);
+//        mUsersDataSource.insertA1MSUser(A1MSApplication.getSqLiteDatabase(),user);
+
+//        A1MSUser user = new A1MSUser();
+//        user.setName("Office Device");
+//        user.setMobile("+61235642896");
+//        user.setUserId("e77a60a0-3dcb-4b17-adec-3b050043ffc9");
+//        user.setEditable(true);
+//        mUsersDataSource.insertA1MSUser(A1MSApplication.getSqLiteDatabase(),user);
     }
 
     @Override
@@ -288,7 +302,11 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
                 getString(R.string.dialog_delete), getString(R.string.dialog_cancel), new DialogCallBackListener() {
                     @Override
                     public void run() {
+
+
                         mUsersDataSource.deleteA1MSUsers(mSelectedA1MSUsers);
+                        mUsersDataSource.deleteA1MSUsers(mSelectedA1MSUsers);
+
                         mA1MSUsers = mUsersDataSource.getAllA1MSUsers(false,true);
                         mAdapter.setDataSet(mA1MSUsers);
                         mAdapter.notifyDataSetChanged();

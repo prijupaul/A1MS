@@ -40,6 +40,7 @@ public interface NetworkServices {
                                   @Field("locale")String locale,
                                   @Field("imei")String imei,
                                   @Field("macAddress")String macAddress,
+                                  @Field("deviceId")String androidId,
                                   @Field("countryCode")String countryCode,
                                   @Field("androidVersion")String androidVersion,
                                   @Field("manufacture")String manufacture,
