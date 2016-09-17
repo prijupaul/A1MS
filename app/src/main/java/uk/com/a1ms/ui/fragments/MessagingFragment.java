@@ -3,6 +3,8 @@ package uk.com.a1ms.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -55,7 +57,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private MessageParser messageParser;
     private A1MSUser mCurrentUser;
     private A1MSGroup mCurrentGroup;
-
+    private MenuItem mShowGroupInfo;
 
 
     public interface MessagingFragmentListener {
@@ -126,8 +128,22 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(mCurrentUser.getName());
+
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_message,menu);
+        mShowGroupInfo = menu.findItem(R.id.action_group_info);
+
+        if(mCurrentUser != null && mCurrentUser.isGroup()){
+            mShowGroupInfo.setVisible(true);
+        }
     }
 
     @Override
@@ -136,6 +152,16 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             case android.R.id.home: {
                 onBackPressed();
                 return true;
+            }
+            case R.id.action_group_info:{
+
+                GroupInfoFragment groupInfoFragment = GroupInfoFragment.getInstance(mCurrentGroup,(GroupInfoFragment.GroupInfoFragmentListener) getActivity());
+                android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.message_framelayout_holder,groupInfoFragment,
+                        groupInfoFragment.getClass().getSimpleName());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                break;
             }
         }
         return super.onOptionsItemSelected(item);
@@ -198,6 +224,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         getActivity().finish();
         if (webIOSocketHandler != null) {
             webIOSocketHandler.disconnect();
+            return true;
         }
 
         return super.onBackPressed();

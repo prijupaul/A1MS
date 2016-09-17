@@ -89,7 +89,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         NotificationController.getInstance().addObserver(this,NotificationController.didOpenDatabase);
         mUsersDataSource = new A1MSUsersFieldsDataSource(context);
         mUsersDataSource.open();
-
+        mA1MSUsers = mUsersDataSource.getAllA1MSUsers(true,false);
     }
 
     @Nullable
@@ -111,6 +111,13 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setNestedScrollingEnabled(false);
+
+        if(mAdapter == null) {
+            mAdapter = new CreateGroupsAdapter(mA1MSUsers, true,this);
+            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+            mFastScroller.setRecyclerView(mRecyclerView);
+        }
 
         if(((AppCompatActivity)getActivity()).getSupportActionBar() != null){
             mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);

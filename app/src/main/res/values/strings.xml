@@ -32,6 +32,7 @@
     <string name="hint_add_contacts_groups">Add Contacts \u0026 Groups</string>
     <string name="menu_select_all">Select All</string>
     <string name="hint_show_groups">Show Groups</string>
+    <string name="hint_group_details">Group Info</string>
     <string name="hint_show_contacts">Show Contacts</string>
     <string name="hint_add_contacts">Add Contact</string>
     <string name="hint_delete">Delete Selected</string>
@@ -47,6 +48,9 @@
         number %s
     </string>
     <string name="hint_input_activation_code">Activation code</string>
+
+    <!-- Toolbar title -->
+    <string name="toolbar_group_info">Group Info</string>
 
     <!-- dialogs -->
     <string name="dialog_cancel">Cancel</string>
@@ -103,5 +107,7 @@
 
     <!-- Groups -->
     <string name="max_group_size_reached">You have reached the maximum members that can be added for a group.</string>
+    <string name="exit_group">Exit Group</string>
+    <string name="group_info_current_members">Current Members</string>
 
 </resources>

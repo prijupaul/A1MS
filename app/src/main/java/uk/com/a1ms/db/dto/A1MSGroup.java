@@ -1,11 +1,14 @@
 package uk.com.a1ms.db.dto;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by priju.jacobpaul on 4/09/16.
  */
-public class A1MSGroup {
+public class A1MSGroup implements Parcelable{
 
     private String groupName;
     private String adminId;
@@ -62,5 +65,25 @@ public class A1MSGroup {
         this.membersList = membersList;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        // TODO: Implement this
+    }
+
+    public static final Creator<A1MSGroup> CREATOR = new Creator<A1MSGroup>() {
+        @Override
+        public A1MSGroup createFromParcel(Parcel parcel) {
+            return null;
+        }
+
+        @Override
+        public A1MSGroup[] newArray(int i) {
+            return new A1MSGroup[0];
+        }
+    };
 }

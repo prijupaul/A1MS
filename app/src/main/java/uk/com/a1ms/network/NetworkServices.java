@@ -3,10 +3,12 @@ package uk.com.a1ms.network;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import uk.com.a1ms.network.dto.GroupDetails;
 import uk.com.a1ms.network.dto.MemberGroupDetails;
@@ -70,12 +72,28 @@ public interface NetworkServices {
                                 @Field("messageId")String guid);
 
     @FormUrlEncoded
-    @POST(NetworkConstants.USER_CREATE_GROUP)
+    @POST(NetworkConstants.USER_GROUP)
     Call<GroupDetails> doCreateGroup(@Field("name") String name,
                                      @Field("members") ArrayList<String>members);
 
+    @FormUrlEncoded
+    @DELETE(NetworkConstants.USER_GROUP)
+    Call<GroupDetails> trashGroup(@Field("name") String name,
+                                     @Field("members") ArrayList<String>members);
 
-    @GET(NetworkConstants.USER_CREATE_GROUP)
+    @FormUrlEncoded
+    @POST(NetworkConstants.USER_REMOVE_GROUP)
+    Call<GroupDetails> exitGroup(@Field("id") String id,
+                                  @Field("groupId") String groupId);
+
+
+    @FormUrlEncoded
+    @PUT(NetworkConstants.USER_GROUP)
+    Call<GroupDetails> editGroup(@Field("name") String name,
+                                   @Field("members") ArrayList<String>members);
+
+
+    @GET(NetworkConstants.USER_GROUP)
     Call<MemberGroupDetails> getMembershipGroups();
 
     @GET(NetworkConstants.USER_DETAILS)

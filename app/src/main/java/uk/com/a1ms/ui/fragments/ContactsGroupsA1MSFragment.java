@@ -134,10 +134,12 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 
 //        A1MSUser user = new A1MSUser();
 //        user.setName("Office Device");
-//        user.setMobile("+61235642896");
+//        user.setMobile("+61235647892");
 //        user.setUserId("e77a60a0-3dcb-4b17-adec-3b050043ffc9");
 //        user.setEditable(true);
 //        mUsersDataSource.insertA1MSUser(A1MSApplication.getSqLiteDatabase(),user);
+
+
     }
 
     @Override

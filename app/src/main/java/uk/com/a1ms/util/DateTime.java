@@ -12,7 +12,7 @@ public class DateTime {
     public static String getTimeInAmPm(){
 
         Calendar now = Calendar.getInstance();
-        DateFormat outputFormat = new SimpleDateFormat("KK:mm a");
+        DateFormat outputFormat = new SimpleDateFormat("h:mm a");
         return outputFormat.format(now.getTime());
     }
 }

@@ -20,12 +20,18 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
         void onGroupCreated(GroupDetails groupDetails);
         void onMembershipGroupDetails(MemberGroupDetails memberGroupDetails);
         void onCreateGroupError();
+    }
 
+    public interface UserExitGroupNetworkListener{
+        void onExitGroup(GroupDetails groupDetails);
+        void onExitGroupError();
     }
 
     private String bearerToken;
     private String groupName;
     private ArrayList<String>membersIDs;
+    private String userId;
+    private String groupId;
 
     public UserGroupsNetworkHandler(){
         super();
@@ -58,6 +64,22 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
         this.membersIDs = membersIDs;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
     public void createGroup(final UserGroupsNetworkListener listener){
 
         init();
@@ -78,6 +100,27 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
         });
 
     }
+
+    public void exitGroup(final UserExitGroupNetworkListener listener){
+
+        init();
+
+        NetworkServices userInviteService = getRetrofit().create(NetworkServices.class);
+        final Call<GroupDetails> call = userInviteService.exitGroup(getUserId(),getGroupId());
+        call.enqueue(new Callback<GroupDetails>() {
+            @Override
+            public void onResponse(Call<GroupDetails> call, Response<GroupDetails> response) {
+                listener.onExitGroup(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GroupDetails> call, Throwable t) {
+                listener.onExitGroupError();
+            }
+        });
+
+    }
+
 
     public void getMembershipGroupDetails(final UserGroupsNetworkListener listener){
 

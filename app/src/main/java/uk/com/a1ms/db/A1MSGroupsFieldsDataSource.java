@@ -43,7 +43,8 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
                         A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID + TEXT_TYPE + COMMA_SEP +
                         A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + TEXT_TYPE + COMMA_SEP +
                         A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_IS_ACTIVE + TEXT_TYPE + COMMA_SEP +
-                        A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_AVATAR + TEXT_TYPE + " );";
+                        A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_AVATAR + TEXT_TYPE + COMMA_SEP +
+                        "PRIMARY KEY (" + A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME + "," + A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + ")" + " );";
 
         public static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + A1MSGroupsEntry.TABLE_NAME;

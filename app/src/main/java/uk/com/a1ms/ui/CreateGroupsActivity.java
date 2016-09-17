@@ -134,8 +134,8 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
             @Override
             public void onCreateGroupError() {
                 Toast.makeText(CreateGroupsActivity.this,"Error while creating groups. ",Toast.LENGTH_LONG).show();
-
             }
+
         });
     }
 
