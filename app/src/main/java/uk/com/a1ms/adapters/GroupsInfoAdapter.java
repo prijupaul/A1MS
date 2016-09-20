@@ -27,11 +27,13 @@ public class GroupsInfoAdapter extends RecyclerView.Adapter<GroupsInfoAdapter.Vi
 
         TextView mMemberName;
         ImageView mMemberIcon;
+        TextView mGroupAdmin;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mMemberIcon = (ImageView)itemView.findViewById(R.id.imageview_icon);
             mMemberName = (TextView)itemView.findViewById(R.id.textview_contact_name);
+            mGroupAdmin = (TextView) itemView.findViewById(R.id.textview_admin);
 
         }
 
@@ -49,6 +51,12 @@ public class GroupsInfoAdapter extends RecyclerView.Adapter<GroupsInfoAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mMemberName.setText(mA1MSUsers.get(position).getName());
+        String adminID = mGroups.getAdminId();
+        String userId = mA1MSUsers.get(position).getUserId();
+        if(adminID.compareTo(userId) == 0){
+            holder.mGroupAdmin.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override

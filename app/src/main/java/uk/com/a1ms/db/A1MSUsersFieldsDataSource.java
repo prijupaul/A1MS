@@ -326,6 +326,31 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         return a1MSUsers;
     }
 
+    public void updateUserDetails(A1MSUser user){
+        if (user == null) {
+            return;
+        }
+
+        String whereClause = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID + " =? ";
+        String[] whereArgs = new String[1];
+        whereArgs[0] = user.getUserId();
+
+        ContentValues values = new ContentValues();
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME, user.getName());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB, user.getMobile());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL, user.getEmail());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR, user.getAvatar());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN, user.getToken());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID, user.getUserId());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE, user.isEditable());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP, user.isGroup());
+
+        sqLiteDatabase.update(A1MSUsersEntry.TABLE_NAME,
+                values,
+                whereClause, whereArgs);
+
+    }
+
     private A1MSUser cursorToUser(Cursor c) {
         A1MSUser a1MSUser = new A1MSUser();
         a1MSUser.setName(c.getString(1));

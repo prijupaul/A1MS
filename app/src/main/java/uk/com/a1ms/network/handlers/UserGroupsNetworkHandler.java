@@ -27,6 +27,11 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
         void onExitGroupError();
     }
 
+    public interface editGroupDetailsListener{
+        void onEditGroupSuccess(GroupDetails groupDetails);
+        void onEditGroupError();
+    }
+
     private String bearerToken;
     private String groupName;
     private ArrayList<String>membersIDs;
@@ -116,6 +121,25 @@ public class UserGroupsNetworkHandler extends BaseNetwork {
             @Override
             public void onFailure(Call<GroupDetails> call, Throwable t) {
                 listener.onExitGroupError();
+            }
+        });
+
+    }
+
+    public void editGroupDetails(final editGroupDetailsListener listener){
+        init();
+
+        NetworkServices userInviteService = getRetrofit().create(NetworkServices.class);
+        final Call<GroupDetails> call = userInviteService.editGroup(getGroupName(),getMembersIDs(),getGroupId());
+        call.enqueue(new Callback<GroupDetails>() {
+            @Override
+            public void onResponse(Call<GroupDetails> call, Response<GroupDetails> response) {
+                listener.onEditGroupSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GroupDetails> call, Throwable t) {
+                listener.onEditGroupError();
             }
         });
 

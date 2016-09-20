@@ -37,6 +37,7 @@
     <string name="hint_add_contacts">Add Contact</string>
     <string name="hint_delete">Delete Selected</string>
     <string name="hint_next">Next</string>
+    <string name="hint_change_name_group">Change group name</string>
     <string name="hint_create_group">Create Group</string>
     <string name="hint_groupname">Enter your group name</string>
     <string name="hint_enter_phone">--- --- --- --- --- --- --- --- ---</string>
@@ -57,6 +58,7 @@
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
     <string name="dialog_delete">Delete</string>
+    <string name="dialog_exit_group">Exit Group</string>
 
     <!-- Permissions -->
     <string name="permission_title">Permission Request</string>
@@ -109,5 +111,10 @@
     <string name="max_group_size_reached">You have reached the maximum members that can be added for a group.</string>
     <string name="exit_group">Exit Group</string>
     <string name="group_info_current_members">Current Members</string>
+    <string name="group_info_add_members">Add Members</string>
+    <string name="exit_group_message">Do you really want to exit this group?</string>
+    <string name="group_not_member">You can\u2019t send messages to this group as you\u2019re no longer a member.</string>
+    <string name="group_name">Group name</string>
+    <string name="renaming_group">Renaming group..</string>
 
 </resources>

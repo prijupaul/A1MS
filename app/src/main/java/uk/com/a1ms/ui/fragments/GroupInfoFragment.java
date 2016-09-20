@@ -2,6 +2,7 @@ package uk.com.a1ms.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,8 @@ import uk.com.a1ms.adapters.GroupsInfoAdapter;
 import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.dialogutil.DialogCallBackListener;
+import uk.com.a1ms.dialogutil.DialogUtil;
 
 /**
  * Created by priju.jacobpaul on 16/09/16.
@@ -37,6 +41,7 @@ public class GroupInfoFragment extends BaseFragment {
     private ArrayList<A1MSUser> mMembersA1MSUsersList;
     private A1MSUsersFieldsDataSource a1MSUsersFieldsDataSource;
     private GroupInfoFragmentListener infoFragmentListener;
+    private TextView mTvGroupName;
 
     public interface GroupInfoFragmentListener{
         void onExitGroup();
@@ -75,7 +80,7 @@ public class GroupInfoFragment extends BaseFragment {
 
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setCollapsible(false);
-        toolbar.setTitle(getString(R.string.toolbar_group_info));
+        toolbar.setTitle(mGroupDetails.getGroupName());
 
         mMembersList = mGroupDetails.getMembersList();
         mMembersA1MSUsersList = a1MSUsersFieldsDataSource.getA1MSUsersDetails(mMembersList);
@@ -83,6 +88,9 @@ public class GroupInfoFragment extends BaseFragment {
         mAdapter = new GroupsInfoAdapter(mGroupDetails,mMembersA1MSUsersList);
         mGroupMembersRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+
+        mTvGroupName.setText(mGroupDetails.getGroupName());
+
     }
 
 
@@ -93,6 +101,7 @@ public class GroupInfoFragment extends BaseFragment {
 
         mGroupMembersRecyclerView = (RecyclerView)view.findViewById(R.id.group_members_recycler_view);
         mButtonExitGroup = (Button)view.findViewById(R.id.button_exitgroup);
+        mTvGroupName = (TextView)view.findViewById(R.id.tv_group_name);
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mGroupMembersRecyclerView.setLayoutManager(mLayoutManager);
@@ -102,8 +111,35 @@ public class GroupInfoFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 if(infoFragmentListener != null){
-                    infoFragmentListener.onExitGroup();
+                    DialogUtil.showYESNODialog(getActivity(),
+                            getString(R.string.dialog_exit_group),
+                            getString(R.string.exit_group_message),
+                            getString(R.string.dialog_yes),
+                            getString(R.string.dialog_cancel),
+                            new DialogCallBackListener() {
+                                @Override
+                                public void run() {
+                                    infoFragmentListener.onExitGroup();
+                                }
+                            },
+                            null,
+                            true
+                    );
+
                 }
+            }
+        });
+
+        mTvGroupName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                GroupNameChangeFragment groupNameChangeFragment = GroupNameChangeFragment.getInstance(mGroupDetails,(GroupNameChangeFragment.GroupNameChangeFragmentListener) getActivity());
+                android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.message_framelayout_holder,groupNameChangeFragment,
+                        groupNameChangeFragment.getClass().getSimpleName());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
     }

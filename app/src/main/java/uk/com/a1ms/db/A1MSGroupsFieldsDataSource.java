@@ -81,22 +81,28 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
         sqLiteDatabase.execSQL(A1MSGroupsEntry.SQL_CREATE_ENTRIES);
     }
 
-    public long insertA1MSGroup(SQLiteDatabase sqLiteDatabase, A1MSGroup a1MSGroup) {
+    private String computeGroupMembersList(A1MSGroup a1MSGroup) {
 
         StringBuffer members = new StringBuffer();
         int index = 0;
-        for(String member:a1MSGroup.getMembersList()){
-            index ++;
+        for (String member : a1MSGroup.getMembersList()) {
+            index++;
             members.append(member);
-            if(index!= a1MSGroup.getMembersList().size()) {
+            if (index != a1MSGroup.getMembersList().size()) {
                 members.append("&");
             }
         }
+        return members.toString();
+    }
+
+    public long insertA1MSGroup(SQLiteDatabase sqLiteDatabase, A1MSGroup a1MSGroup) {
+
+        String members = computeGroupMembersList(a1MSGroup);
 
         ContentValues values = new ContentValues();
         values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME, a1MSGroup.getGroupName());
         values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ADMIN_ID, a1MSGroup.getAdminId());
-        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID, members.toString());
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID, members);
         values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID, a1MSGroup.getGroupId());
         values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_AVATAR, a1MSGroup.getAvatar());
         values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_IS_ACTIVE, a1MSGroup.isActivate());
@@ -129,11 +135,11 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
     }
 
-    public void deleteA1MSUsersFromGroup(List<A1MSUser> a1MSUserList){
+    public void deleteA1MSUsersFromGroup(List<A1MSUser> a1MSUserList) {
 
         List<A1MSGroup> groupList = new ArrayList<>();
-        for(A1MSUser a1MSUser : a1MSUserList){
-            if(a1MSUser.isGroup()){
+        for (A1MSUser a1MSUser : a1MSUserList) {
+            if (a1MSUser.isGroup()) {
                 A1MSGroup a1MSGroup = new A1MSGroup();
                 a1MSGroup.setGroupId(a1MSUser.getUserId());
                 a1MSGroup.setGroupName(a1MSUser.getName());
@@ -143,24 +149,71 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
         deleteA1MSGroup(groupList);
     }
 
-    public void deleteA1MSUserFromGroup(A1MSUser a1MSUser, A1MSGroup a1MSGroup) {
+    public void deleteA1MSUserFromGroup(String userId, A1MSGroup a1MSGroup) {
 
-        if (a1MSUser == null) {
+        if ((userId == null) || (a1MSGroup == null)) {
             return;
         }
 
-        String selection = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME + " LIKE ?";
-        String[] selectionArgs = {String.valueOf(a1MSUser.getName())};
-        sqLiteDatabase.delete(A1MSGroupsEntry.TABLE_NAME, selection, selectionArgs);
+        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + " =? ";
+        String[] whereArgs = new String[1];
+        whereArgs[0] = a1MSGroup.getGroupId();
+
+
+        boolean removed = a1MSGroup.getMembersList().remove(userId);
+        if (removed) {
+            String members = computeGroupMembersList(a1MSGroup);
+
+            ContentValues values = new ContentValues();
+            values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME, a1MSGroup.getGroupName());
+            values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ADMIN_ID, a1MSGroup.getAdminId());
+            values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID, members);
+            values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID, a1MSGroup.getGroupId());
+            values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_AVATAR, a1MSGroup.getAvatar());
+            values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_IS_ACTIVE, a1MSGroup.isActivate());
+
+            sqLiteDatabase.update(A1MSGroupsEntry.TABLE_NAME,
+                    values,
+                    whereClause, whereArgs);
+
+        }
+
 
     }
 
-    public A1MSGroup getDetailsOfGroups(String groupdID,String groupName){
+    public void updateGroupDetails(A1MSGroup a1MSGroup) {
 
-        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID+" =? AND " +
+        if (a1MSGroup == null) {
+            return;
+        }
+
+        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + " =? ";
+        String[] whereArgs = new String[1];
+        whereArgs[0] = a1MSGroup.getGroupId();
+
+        String members = computeGroupMembersList(a1MSGroup);
+
+        ContentValues values = new ContentValues();
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME, a1MSGroup.getGroupName());
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ADMIN_ID, a1MSGroup.getAdminId());
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID, members);
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID, a1MSGroup.getGroupId());
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_AVATAR, a1MSGroup.getAvatar());
+        values.put(A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_IS_ACTIVE, a1MSGroup.isActivate());
+
+        sqLiteDatabase.update(A1MSGroupsEntry.TABLE_NAME,
+                values,
+                whereClause, whereArgs);
+
+
+    }
+
+    public A1MSGroup getDetailsOfGroups(String groupdID, String groupName) {
+
+        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + " =? AND " +
                 A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME + " =?";
 
-        String [] whereArgs = new String[2];
+        String[] whereArgs = new String[2];
         whereArgs[0] = groupdID;
         whereArgs[1] = groupName;
 
@@ -174,7 +227,7 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
                 null                                 // The sort order
         );
 
-        if(c != null) {
+        if (c != null) {
             c.moveToFirst();
             A1MSGroup group = cursorToUser(c);
             return group;
@@ -182,10 +235,10 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
         return null;
     }
 
-    public A1MSGroup getDetailsOfGroups(String groupId){
+    public A1MSGroup getDetailsOfGroups(String groupId) {
 
-        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID+"=?";
-        String [] whereArgs = new String[1];
+        String whereClause = A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID + "=?";
+        String[] whereArgs = new String[1];
         whereArgs[0] = groupId;
 
         Cursor c = sqLiteDatabase.query(
@@ -238,7 +291,7 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
         A1MSGroup a1MSGroup = new A1MSGroup();
 
-        if(c.getCount() > 0) {
+        if (c.getCount() > 0) {
             a1MSGroup.setGroupName(c.getString(1));
             String groupMembersList = c.getString(2);
             ArrayList<String> members = new ArrayList<>();

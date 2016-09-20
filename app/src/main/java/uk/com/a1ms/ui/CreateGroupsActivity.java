@@ -99,6 +99,7 @@ public class CreateGroupsActivity extends BaseActivity implements NotificationCo
         // This part is to be worked on.
 
         ArrayList<String> memberIDs = new ArrayList<>();
+        memberIDs.add(SharedPreferenceManager.getUserId(this));
         for(A1MSUser user:a1MSUsers){
             memberIDs.add(user.getUserId());
         }

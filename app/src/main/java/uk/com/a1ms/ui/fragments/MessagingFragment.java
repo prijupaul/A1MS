@@ -50,6 +50,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private MessagingFragmentListener mMessagingFragmentListener;
     private ListView msgListView;
     private EditText msg_edittext;
+    private ImageButton mSendButton;
     private ArrayList<Message> mMessagesArrayList = new ArrayList<>();
     public static MessageAdapter messageAdapter;
     //    private UserMessageWebSocketHandler webSocketHandler;
@@ -58,6 +59,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private A1MSUser mCurrentUser;
     private A1MSGroup mCurrentGroup;
     private MenuItem mShowGroupInfo;
+    private boolean isMemberOfGroup = true;
 
 
     public interface MessagingFragmentListener {
@@ -77,6 +79,17 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         MessagingActivity messagingActivity = (MessagingActivity)getActivity();
         mCurrentUser = messagingActivity.getCurrentUser();
         mCurrentGroup = messagingActivity.getCurrentGroup();
+
+        if(!isMemberOfGroups()){
+            isMemberOfGroup = false;
+        }
+
+        if(!isMemberOfGroup){
+            mSendButton.setVisibility(View.GONE);
+            msg_edittext.setEnabled(false);
+            msg_edittext.setFocusable(false);
+            msg_edittext.setText(getString(R.string.group_not_member));
+        }
     }
 
     @Override
@@ -85,6 +98,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 //        webSocketHandler = new UserMessageWebSocketHandler(this);
         webIOSocketHandler = new UserMessageIOSocketHandler(this);
         messageParser = new MessageParser();
+
         ExecutorUtils.runInBackgroundThread(new Runnable() {
             @Override
             public void run() {
@@ -122,8 +136,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         messageAdapter = new MessageAdapter(getActivity(), mMessagesArrayList);
         msgListView.setAdapter(messageAdapter);
 
-        ImageButton sendButton = (ImageButton) view.findViewById(R.id.sendMessageButton);
-        sendButton.setOnClickListener(this);
+        mSendButton = (ImageButton) view.findViewById(R.id.sendMessageButton);
+        mSendButton.setOnClickListener(this);
     }
 
 
@@ -141,7 +155,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         inflater.inflate(R.menu.menu_message,menu);
         mShowGroupInfo = menu.findItem(R.id.action_group_info);
 
-        if(mCurrentUser != null && mCurrentUser.isGroup()){
+        if(mCurrentUser != null && mCurrentUser.isGroup() && isMemberOfGroup){
             mShowGroupInfo.setVisible(true);
         }
     }
@@ -172,7 +186,18 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         sendTextMessage(view);
     }
 
+    private boolean isMemberOfGroups(){
+        if(mCurrentGroup != null){
+            ArrayList<String> members = mCurrentGroup.getMembersList();
+            if(!members.contains(SharedPreferenceManager.getUserId(getActivity()))){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void sendTextMessage(View v) {
+
             String message = msg_edittext.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
 

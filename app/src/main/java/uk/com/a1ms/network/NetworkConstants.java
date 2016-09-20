@@ -18,7 +18,7 @@ public class NetworkConstants {
 
 
 
-    public static final String BASE_URL = "http://163.172.137.155:8000";
+    public static final String BASE_URL = "http://chat.voltric.io:8000"; // http://163.172.137.155:8000";
 
     public static final boolean IS_MOCK = false;
 

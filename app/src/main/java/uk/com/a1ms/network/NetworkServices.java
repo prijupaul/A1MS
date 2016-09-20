@@ -7,6 +7,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -19,6 +20,7 @@ import uk.com.a1ms.network.dto.loginDetails;
  * Created by priju.jacobpaul on 23/06/16.
  */
 public interface NetworkServices {
+
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_REGISTRATION)
@@ -81,8 +83,9 @@ public interface NetworkServices {
     Call<GroupDetails> trashGroup(@Field("name") String name,
                                      @Field("members") ArrayList<String>members);
 
+
     @FormUrlEncoded
-    @POST(NetworkConstants.USER_REMOVE_GROUP)
+    @HTTP(method = "DELETE", path = NetworkConstants.USER_REMOVE_GROUP, hasBody = true)
     Call<GroupDetails> exitGroup(@Field("id") String id,
                                   @Field("groupId") String groupId);
 
@@ -90,7 +93,8 @@ public interface NetworkServices {
     @FormUrlEncoded
     @PUT(NetworkConstants.USER_GROUP)
     Call<GroupDetails> editGroup(@Field("name") String name,
-                                   @Field("members") ArrayList<String>members);
+                                 @Field("members") ArrayList<String>members,
+                                 @Field("id") String groupId);
 
 
     @GET(NetworkConstants.USER_GROUP)
