@@ -117,5 +117,6 @@
     <string name="group_not_member">You can\u2019t send messages to this group as you\u2019re no longer a member.</string>
     <string name="group_name">Group name</string>
     <string name="renaming_group">Renaming group..</string>
+    <string name="adding_members">Adding members..</string>
 
 </resources>

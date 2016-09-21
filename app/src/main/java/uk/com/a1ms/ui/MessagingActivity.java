@@ -208,5 +208,48 @@ public class MessagingActivity extends BaseActivity implements
     @Override
     public void usersAdded(ArrayList<A1MSUser> users) {
 
+        UserGroupsNetworkHandler userGroupsNetworkHandler = new UserGroupsNetworkHandler();
+        userGroupsNetworkHandler.setBearerToken(SharedPreferenceManager.getUserToken(this));
+        userGroupsNetworkHandler.setGroupName(mCurrentGroup.getGroupName());
+        userGroupsNetworkHandler.setGroupId(mCurrentGroup.getGroupId());
+
+        final ArrayList<String> members = mCurrentGroup.getMembersList();
+        for (A1MSUser user: users){
+            members.add(user.getUserId());
+        }
+        userGroupsNetworkHandler.setMembersIDs(members);
+
+        ProgressView.addProgressView(mFrameLayoutHolder,getString(R.string.adding_members));
+        userGroupsNetworkHandler.editGroupDetails(new UserGroupsNetworkHandler.editGroupDetailsListener() {
+            @Override
+            public void onEditGroupSuccess(GroupDetails groupDetails) {
+
+                ProgressView.removeProgressView(mFrameLayoutHolder);
+                if(groupDetails != null && Integer.valueOf(groupDetails.getResponseCode()) == NetworkConstants.RESPONSE_CODE_SUCCESS) {
+
+                    Toast.makeText(MessagingActivity.this, "Members added to the group.", Toast.LENGTH_SHORT).show();
+                    mCurrentGroup.setGroupName(mCurrentGroup.getGroupName());
+                    mCurrentGroup.setMembersList(members);
+                    mGroupsDataSource.updateGroupDetails(mCurrentGroup);
+
+                    mUsersFieldsDataSource.updateUserDetails(mCurrentUser);
+
+                    FragmentManager fm = getSupportFragmentManager();
+                    fm.popBackStack();
+
+                    NotificationController.getInstance().postNotificationName(NotificationController.userDatabaseChanged,null);
+                }
+                else {
+                    Toast.makeText(MessagingActivity.this, "Error while adding members to the group", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onEditGroupError() {
+                ProgressView.removeProgressView(mFrameLayoutHolder);
+                Toast.makeText(MessagingActivity.this, "Error while adding members to the group", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
