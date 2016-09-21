@@ -26,6 +26,7 @@ import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
+import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
  * Created by priju.jacobpaul on 16/09/16.
@@ -42,6 +43,8 @@ public class GroupInfoFragment extends BaseFragment {
     private A1MSUsersFieldsDataSource a1MSUsersFieldsDataSource;
     private GroupInfoFragmentListener infoFragmentListener;
     private TextView mTvGroupName;
+    private TextView mMembersCount;
+    private Button mAddMembers;
 
     public interface GroupInfoFragmentListener{
         void onExitGroup();
@@ -85,6 +88,7 @@ public class GroupInfoFragment extends BaseFragment {
         mMembersList = mGroupDetails.getMembersList();
         mMembersA1MSUsersList = a1MSUsersFieldsDataSource.getA1MSUsersDetails(mMembersList);
 
+        mMembersA1MSUsersList.add(createYourUser());
         mAdapter = new GroupsInfoAdapter(mGroupDetails,mMembersA1MSUsersList);
         mGroupMembersRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
@@ -102,6 +106,11 @@ public class GroupInfoFragment extends BaseFragment {
         mGroupMembersRecyclerView = (RecyclerView)view.findViewById(R.id.group_members_recycler_view);
         mButtonExitGroup = (Button)view.findViewById(R.id.button_exitgroup);
         mTvGroupName = (TextView)view.findViewById(R.id.tv_group_name);
+        mMembersCount = (TextView)view.findViewById(R.id.tv_members_counter);
+
+        mMembersCount.setText(mGroupDetails.getMembersList().size() + "/" + getResources().getInteger(R.integer.group_max_members_size) );
+
+        mAddMembers = (Button)view.findViewById(R.id.button_add_members);
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mGroupMembersRecyclerView.setLayoutManager(mLayoutManager);
@@ -142,6 +151,19 @@ public class GroupInfoFragment extends BaseFragment {
                 fragmentTransaction.commit();
             }
         });
+
+        mAddMembers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                GroupAddUserFragment groupAddUserFragment = GroupAddUserFragment.getInstance(mGroupDetails,(GroupAddUserFragment.GroupAddUserFragmentListener) getActivity());
+                android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.message_framelayout_holder,groupAddUserFragment,
+                        groupAddUserFragment.getClass().getSimpleName());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     @Override
@@ -158,5 +180,13 @@ public class GroupInfoFragment extends BaseFragment {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private A1MSUser createYourUser(){
+        A1MSUser a1MSUser = new A1MSUser();
+        a1MSUser.setUserId(SharedPreferenceManager.getUserId(getActivity()));
+        a1MSUser.setName("You");
+        a1MSUser.setEchomate(false);
+        return a1MSUser;
     }
 }

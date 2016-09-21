@@ -3,4 +3,5 @@
     <integer name="MY_PERMISSIONS_REQUEST_READ_CONTACTS">100</integer>
     <integer name="MY_PERMISSIONS_REQUEST_WRITE_CONTACTS">101</integer>
     <integer name="group_name_max_length">20</integer>
+    <integer name="group_max_members_size">100</integer>
 </resources>

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.db.A1MSGroupsFieldsDataSource;
@@ -19,6 +21,7 @@ import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.dto.GroupDetails;
 import uk.com.a1ms.network.handlers.UserGroupsNetworkHandler;
+import uk.com.a1ms.ui.fragments.GroupAddUserFragment;
 import uk.com.a1ms.ui.fragments.GroupInfoFragment;
 import uk.com.a1ms.ui.fragments.GroupNameChangeFragment;
 import uk.com.a1ms.ui.fragments.MessagingFragment;
@@ -33,7 +36,8 @@ public class MessagingActivity extends BaseActivity implements
         MessagingFragment.MessagingFragmentListener,
         NotificationController.NotificationListener,
         GroupInfoFragment.GroupInfoFragmentListener,
-        GroupNameChangeFragment.GroupNameChangeFragmentListener
+        GroupNameChangeFragment.GroupNameChangeFragmentListener,
+        GroupAddUserFragment.GroupAddUserFragmentListener
 
 {
 
@@ -199,5 +203,10 @@ public class MessagingActivity extends BaseActivity implements
                 Toast.makeText(MessagingActivity.this, "Error during changing group name", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void usersAdded(ArrayList<A1MSUser> users) {
+
     }
 }

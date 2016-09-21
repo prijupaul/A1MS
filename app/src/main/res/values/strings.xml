@@ -38,6 +38,7 @@
     <string name="hint_delete">Delete Selected</string>
     <string name="hint_next">Next</string>
     <string name="hint_change_name_group">Change group name</string>
+    <string name="hint_add_user_groups">Add users</string>
     <string name="hint_create_group">Create Group</string>
     <string name="hint_groupname">Enter your group name</string>
     <string name="hint_enter_phone">--- --- --- --- --- --- --- --- ---</string>
