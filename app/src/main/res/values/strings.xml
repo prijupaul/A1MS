@@ -119,4 +119,8 @@
     <string name="renaming_group">Renaming group..</string>
     <string name="adding_members">Adding members..</string>
 
+    <!-- Permissions -->
+    <string name="message_permission">uk.com.a1ms.message.permission</string>
+
+
 </resources>

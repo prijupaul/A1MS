@@ -16,10 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,13 +27,15 @@ import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dto.LongMessage;
 import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.dto.ShortMessage;
+import uk.com.a1ms.messages.MessageImpl;
+import uk.com.a1ms.messages.MessageListerner;
 import uk.com.a1ms.messages.MessageParser;
-import uk.com.a1ms.network.dto.MessageResponseDetails;
 import uk.com.a1ms.network.handlers.UserMessageIOSocketHandler;
 import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
 import uk.com.a1ms.ui.MessagingActivity;
 import uk.com.a1ms.util.DateTime;
 import uk.com.a1ms.util.ExecutorUtils;
+import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
@@ -45,7 +43,9 @@ import uk.com.a1ms.util.SharedPreferenceManager;
  */
 public class MessagingFragment extends BaseFragment implements View.OnClickListener,
         UserMessageWebSocketHandler.UserMessageWebSocketListener,
-        UserMessageIOSocketHandler.UserMessageIOSocketListener {
+        UserMessageIOSocketHandler.UserMessageIOSocketListener,
+        NotificationController.NotificationListener
+{
 
     private MessagingFragmentListener mMessagingFragmentListener;
     private ListView msgListView;
@@ -54,11 +54,12 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     private ArrayList<Message> mMessagesArrayList = new ArrayList<>();
     public static MessageAdapter messageAdapter;
     //    private UserMessageWebSocketHandler webSocketHandler;
-    private UserMessageIOSocketHandler webIOSocketHandler;
+//    private UserMessageIOSocketHandler webIOSocketHandler;
     private MessageParser messageParser;
     private A1MSUser mCurrentUser;
     private A1MSGroup mCurrentGroup;
     private MenuItem mShowGroupInfo;
+    private MessageImpl mMessageSender;
     private boolean isMemberOfGroup = true;
 
 
@@ -71,6 +72,8 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        NotificationController.getInstance().addObserver(this,
+                NotificationController.messageReceivedFromServer);
     }
 
     @Override
@@ -79,6 +82,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         MessagingActivity messagingActivity = (MessagingActivity)getActivity();
         mCurrentUser = messagingActivity.getCurrentUser();
         mCurrentGroup = messagingActivity.getCurrentGroup();
+        mMessageSender = new MessageImpl();
 
         if(!isMemberOfGroups()){
             isMemberOfGroup = false;
@@ -96,16 +100,16 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void onAttach(Context context) {
         super.onAttach(context);
 //        webSocketHandler = new UserMessageWebSocketHandler(this);
-        webIOSocketHandler = new UserMessageIOSocketHandler(this);
+//        webIOSocketHandler = new UserMessageIOSocketHandler(this);
         messageParser = new MessageParser();
 
-        ExecutorUtils.runInBackgroundThread(new Runnable() {
-            @Override
-            public void run() {
-//                webSocketHandler.connect();
-                webIOSocketHandler.connect();
-            }
-        });
+//        ExecutorUtils.runInBackgroundThread(new Runnable() {
+//            @Override
+//            public void run() {
+////                webSocketHandler.connect();
+//                webIOSocketHandler.connect();
+//            }
+//        });
     }
 
     public static MessagingFragment newInstance(MessagingFragmentListener createGroupsFragmentListener) {
@@ -198,7 +202,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
     public void sendTextMessage(View v) {
 
-            String message = msg_edittext.getEditableText().toString();
+        String message = msg_edittext.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
 
             SpannableString spannableString = new SpannableString(messageParser.Parse(message));
@@ -228,15 +232,18 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
             if(!mCurrentUser.isEditable()) {
             // webSocketHandler.sendEchoMessage(jsonObject.toString());
-               webIOSocketHandler.sendEchoMessage(jsonObject.toString());
+//               webIOSocketHandler.sendEchoMessage(jsonObject.toString());
+                mMessageSender.sendMessage(MessageListerner.MESSAGETYPE.MESSAGE_ECHO,jsonObject);
             }
             else if(mCurrentUser.isGroup()){
                 // webSocketHandler.sendMessage(jsonObject.toString());
-                webIOSocketHandler.sendGroupMessage(jsonObject.toString());
+//                webIOSocketHandler.sendGroupMessage(jsonObject.toString());
+                mMessageSender.sendMessage(MessageListerner.MESSAGETYPE.MESSAGE_GROUP,jsonObject);
             }
             else {
                 // webSocketHandler.sendMessage(jsonObject.toString());
-                webIOSocketHandler.sendMessage(jsonObject.toString());
+//                webIOSocketHandler.sendMessage(jsonObject.toString());
+                mMessageSender.sendMessage(MessageListerner.MESSAGETYPE.MESSAGE_PRIVATE,jsonObject);
             }
 
 
@@ -247,33 +254,36 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public boolean onBackPressed() {
         getActivity().finish();
-        if (webIOSocketHandler != null) {
-            webIOSocketHandler.disconnect();
-            return true;
-        }
+        NotificationController.getInstance().removeObserver(this,
+                NotificationController.messageReceivedFromServer);
+
+//        if (webIOSocketHandler != null) {
+//            webIOSocketHandler.disconnect();
+//            return true;
+//        }
 
         return super.onBackPressed();
     }
 
     @Override
-    public void onMessageReceived(String message) {
+    public void onMessageReceived(String message,String shortMsg) {
 
-        Gson gson = new GsonBuilder().create();
+//        Gson gson = new GsonBuilder().create();
         String msg = message;
 
 
-        try {
-            MessageResponseDetails response = gson.fromJson(message, MessageResponseDetails.class);
-            if ((response != null) && response.canIgnore()) {
-                return;
-            }
-
-//            msg = response.getMsg().getData();
-            msg = message;
-
-        } catch (JsonSyntaxException e) {
-
-        }
+//        try {
+//            MessageResponseDetails response = gson.fromJson(message, MessageResponseDetails.class);
+//            if ((response != null) && response.canIgnore()) {
+//                return;
+//            }
+//
+////            msg = response.getMsg().getData();
+//            msg = message;
+//
+//        } catch (JsonSyntaxException e) {
+//
+//        }
 
 
         final Message messageObj = new Message();
@@ -281,7 +291,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
         LongMessage longMessage = new LongMessage();
         longMessage.setLongMessage(new SpannableString(msg));
-        shortMessage.setShortMessage(new SpannableString(msg));
+        shortMessage.setShortMessage(new SpannableString(shortMsg));
 
         messageObj.setShortMessage(shortMessage);
         messageObj.setSelf(false);
@@ -295,4 +305,31 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         }, 0);
     }
 
+    @Override
+    public void onNotificationReceived(int id, Object... args) {
+        if(id == NotificationController.messageReceivedFromServer){
+            String messageType = (String)args[0];
+            Message  message = (Message) args[1];
+
+            if(message != null){
+                switch (messageType){
+                    case "echoMessage":
+                    case "privateMessage":{
+                        if(mCurrentUser.getUserId().compareTo(message.getIdUser().getUserId()) == 0){
+                            onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        }
+                        break;
+                    }
+                    case "groupMessage":{
+                        if(mCurrentGroup.getGroupId().compareTo(message.getIdUser().getUserId()) == 0){
+                            onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        }
+                        break;
+                    }
+
+                }
+
+            }
+        }
+    }
 }

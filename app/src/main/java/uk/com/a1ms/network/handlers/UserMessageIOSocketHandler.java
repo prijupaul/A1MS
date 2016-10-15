@@ -45,7 +45,7 @@ public class UserMessageIOSocketHandler {
 
 
     public interface UserMessageIOSocketListener {
-        void onMessageReceived(String message);
+        void onMessageReceived(String message,String shortMessage);
     }
 
     public UserMessageIOSocketHandler(UserMessageIOSocketListener listener) {
@@ -197,7 +197,7 @@ public class UserMessageIOSocketHandler {
 
                 Log.d(TAG, "onTextMessage" + " " + data);
                 if (listener != null) {
-                    listener.onMessageReceived(data);
+                    listener.onMessageReceived(data,data);
                 }
             }
             catch (Exception e){
@@ -225,7 +225,7 @@ public class UserMessageIOSocketHandler {
 
                 Log.d(TAG, "onNewPrivateMessage" + " " + data);
                 if (listener != null) {
-                    listener.onMessageReceived(data);
+                    listener.onMessageReceived(data,data);
                 }
             }
             catch (Exception e){

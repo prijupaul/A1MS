@@ -19,6 +19,8 @@ public class NotificationController {
     public static final int didReceiveLocation = totalEvents++;
     public static final int didOpenDatabase = totalEvents++;
     public static final int userDatabaseChanged = totalEvents++;
+    public static final int messageReceivedFromServer = totalEvents++;
+
 
 
     private int broadcasting = 0;

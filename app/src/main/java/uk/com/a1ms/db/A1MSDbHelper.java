@@ -57,6 +57,8 @@ public class A1MSDbHelper extends SQLiteOpenHelper {
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
+
+
     }
 
     public void closeDb(){

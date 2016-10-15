@@ -10,6 +10,7 @@ import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.db.A1MSDbHelper;
+import uk.com.a1ms.services.ServiceConnection;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
@@ -21,13 +22,15 @@ public class A1MSApplication extends Application {
     public static Context applicationContext;
     public static volatile Handler applicationHandler;
     public static A1MSDbHelper dbHelper;
-    public static SQLiteDatabase sqLiteDatabase;
+    private static SQLiteDatabase sqLiteDatabase;
+    public static ServiceConnection mServiceConnection;
 
     @Override
     public void onCreate() {
         super.onCreate();
         applicationContext = getApplicationContext();
         applicationHandler = new Handler(getMainLooper());
+        mServiceConnection = new uk.com.a1ms.services.ServiceConnection();
         SharedPreferenceManager.setFilePath(this);
 
         if(BuildConfig.DEBUG) {
@@ -43,6 +46,8 @@ public class A1MSApplication extends Application {
 
         dbHelper = A1MSDbHelper.getInstance(applicationContext);
         sqLiteDatabase = dbHelper.getWritableDatabase();
+
+        mServiceConnection.doBindService();
     }
 
 
@@ -62,5 +67,7 @@ public class A1MSApplication extends Application {
     public static SQLiteDatabase getSqLiteDatabase(){
         return sqLiteDatabase;
     }
+
+    public static ServiceConnection getServiceConnection() { return  mServiceConnection; }
 
 }

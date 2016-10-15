@@ -102,5 +102,11 @@ public interface NetworkServices {
 
     @GET(NetworkConstants.USER_DETAILS)
     Call<Object> getUserDetails();
+
+    @FormUrlEncoded
+    @POST(NetworkConstants.ADMIN_CHANGE_ADMIN)
+    Call<GroupDetails> addAdmin(@Field("id") String id,
+                                @Field("toUserId") String toUserId,
+                                @Field("groupId") String groupId);
 }
 

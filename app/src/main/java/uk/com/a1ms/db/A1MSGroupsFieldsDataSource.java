@@ -37,7 +37,6 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + A1MSGroupsEntry.TABLE_NAME + " (" +
-                        A1MSGroupsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME + TEXT_TYPE + COMMA_SEP +
                         A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ADMIN_ID + TEXT_TYPE + COMMA_SEP +
                         A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID + TEXT_TYPE + COMMA_SEP +
@@ -50,7 +49,6 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
                 "DROP TABLE IF EXISTS " + A1MSGroupsEntry.TABLE_NAME;
 
         private static String[] allColumns = {
-                A1MSGroupsEntry._ID,
                 A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_USER_NAME,
                 A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_MEMBERS_ID,
                 A1MSGroupsEntry.COLUMN_NAME_A1MS_GROUPS_ID,
@@ -67,7 +65,7 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
 
 
     public void open() throws SQLException {
-        sqLiteDatabase = A1MSApplication.sqLiteDatabase;
+        sqLiteDatabase = A1MSApplication.getSqLiteDatabase();
     }
 
     public void close() {
@@ -292,8 +290,8 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
         A1MSGroup a1MSGroup = new A1MSGroup();
 
         if (c.getCount() > 0) {
-            a1MSGroup.setGroupName(c.getString(1));
-            String groupMembersList = c.getString(2);
+            a1MSGroup.setGroupName(c.getString(0));
+            String groupMembersList = c.getString(1);
             ArrayList<String> members = new ArrayList<>();
             String[] membersSplit = groupMembersList.split("&");
             for (String member : membersSplit) {
@@ -301,12 +299,12 @@ public class A1MSGroupsFieldsDataSource extends BaseFields {
             }
             a1MSGroup.setMembersList(members);
 
-            a1MSGroup.setGroupId(c.getString(3));
-            a1MSGroup.setAdminId(c.getString(4));
+            a1MSGroup.setGroupId(c.getString(2));
+            a1MSGroup.setAdminId(c.getString(3));
 
-            String active = c.getString(5);
+            String active = c.getString(4);
             a1MSGroup.setActivate(active.contains("1") ? true : false);
-            a1MSGroup.setAvatar(c.getString(6));
+            a1MSGroup.setAvatar(c.getString(5));
         }
 
         return a1MSGroup;

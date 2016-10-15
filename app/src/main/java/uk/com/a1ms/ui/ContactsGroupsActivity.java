@@ -319,5 +319,9 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
 //                ((ContactsGroupsA1MSFragment)fragment).fetchLatestDetails();
             }
         }
+
+        else if(id == NotificationController.messageReceivedFromServer){
+            
+        }
     }
 }

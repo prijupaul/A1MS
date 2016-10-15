@@ -16,15 +16,15 @@ public class AddMockUsers {
         a1MSUser.setEmail("info@a1ms-uk.com");
         a1MSUser.setMobile("01234 567 8901");
         a1MSUser.setName("Test User");
-        a1MSUser.setUserId("0ad8cfe5-abc3-42ca-ae8a-9a71d299637b");
+        a1MSUser.setUserId("a64dac24-b7dc-490f-a2bd-4e8f87579205");
         a1MSUser.setEditable(true);
         dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser);
 
         A1MSUser a1MSUser1 = new A1MSUser();
         a1MSUser1.setEmail("priju@a1ms-uk.com");
         a1MSUser1.setMobile("01224 567 8901");
-        a1MSUser1.setName("Priju");
-        a1MSUser1.setUserId("583cb2fc-24fd-4010-9e5d-57a005f074b9");
+        a1MSUser1.setName("Office Phone");
+        a1MSUser1.setUserId("3bfd6d0d-0c8a-4bdd-ad5f-7c39d50e178e");
         a1MSUser1.setEditable(true);
         dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser1);
 

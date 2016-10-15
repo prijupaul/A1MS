@@ -27,7 +27,7 @@ public class UserMessageWebSocketHandler{
     private String TAG = UserMessageWebSocketHandler.class.getSimpleName();
 
     public interface UserMessageWebSocketListener{
-        void onMessageReceived(String message);
+        void onMessageReceived(String message,String shortMessage);
     }
 
     public UserMessageWebSocketHandler(UserMessageWebSocketListener listener){
@@ -47,7 +47,7 @@ public class UserMessageWebSocketHandler{
 
                     Log.d(TAG,"onTextMessage" + " " + text);
                     if(listener != null) {
-                        listener.onMessageReceived(text);
+                        listener.onMessageReceived(text,text);
                     }
                 }
 

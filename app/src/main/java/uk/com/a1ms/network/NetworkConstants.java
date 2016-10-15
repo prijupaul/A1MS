@@ -15,6 +15,7 @@ public class NetworkConstants {
     public static final String USER_GROUP = "/api/group";
     public static final String USER_REMOVE_GROUP = "/api/group/userRemove";
     public static final String USER_GET_GROUP = "/api/group";
+    public static final String ADMIN_CHANGE_ADMIN = "/api/admin/changeAdmin";
 
 
 

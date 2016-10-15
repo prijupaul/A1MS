@@ -16,6 +16,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="uk.com.a1ms.message.permission"/>
+
+    <permission android:name="uk.com.a1ms.message.permission"
+    android:protectionLevel="signature"/>
 
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
 
@@ -61,7 +65,12 @@
             </intent-filter>
         </receiver>
 
+        <!-- Services -->
         <service android:name=".messages.FileReaderService"></service>
+        <service android:enabled="true"
+                 android:exported="false"
+                 android:permission="@string/message_permission"
+                 android:name=".services.MessagingService"></service>
 
         <!-- FCM Messaging Service -->
         <service
@@ -77,10 +86,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
-
-        <service
-            android:name=".network.handlers.UserMessageIOSocketService"
-            android:exported="false"/>
 
     </application>
 

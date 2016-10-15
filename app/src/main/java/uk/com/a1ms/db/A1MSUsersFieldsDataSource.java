@@ -39,7 +39,6 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
 
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + A1MSUsersEntry.TABLE_NAME + " (" +
-                        A1MSUsersEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL + TEXT_TYPE + COMMA_SEP +
@@ -54,7 +53,6 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                 "DROP TABLE IF EXISTS " + A1MSUsersEntry.TABLE_NAME;
 
         private static String[] allColumns = {
-                A1MSUsersEntry._ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
@@ -175,7 +173,6 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
 
 
         String[] projection = {
-                A1MSUsersEntry._ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
@@ -222,7 +219,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         };
 
         String[] projection = {
-                A1MSUsersEntry._ID,
+
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
@@ -272,7 +269,6 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         List<A1MSUser> a1MSUsers = new ArrayList<>();
 
         String[] projection = {
-                A1MSUsersEntry._ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
@@ -353,16 +349,16 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
 
     private A1MSUser cursorToUser(Cursor c) {
         A1MSUser a1MSUser = new A1MSUser();
-        a1MSUser.setName(c.getString(1));
-        a1MSUser.setMobile(c.getString(2));
-        a1MSUser.setEmail(c.getString(3));
-        a1MSUser.setToken(c.getString(4));
-        a1MSUser.setUserId(c.getString(5));
-        String editable = c.getString(6);
+        a1MSUser.setName(c.getString(0));
+        a1MSUser.setMobile(c.getString(1));
+        a1MSUser.setEmail(c.getString(2));
+        a1MSUser.setToken(c.getString(3));
+        a1MSUser.setUserId(c.getString(4));
+        String editable = c.getString(5);
         a1MSUser.setEditable(editable.contains("1") ? true : false);
-        String isGroup = c.getString(7);
+        String isGroup = c.getString(6);
         a1MSUser.setGroup(isGroup.contains("1") ? true : false);
-        a1MSUser.setAvatar(c.getString(8));
+        a1MSUser.setAvatar(c.getString(7));
         return a1MSUser;
     }
 
