@@ -33,6 +33,7 @@ import uk.com.a1ms.db.A1MSUsersFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
+import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.ui.ContactsGroupsActivity;
 import uk.com.a1ms.util.ExecutorUtils;
 import uk.com.a1ms.util.NotificationController;
@@ -53,6 +54,7 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 
     private Toolbar mToolbar;
     protected TextView mTextViewCounter;
+
     private int selectionCounter;
     private boolean mIsInActionMode = false;
     List<A1MSUser> mSelectedA1MSUsers = new ArrayList<>();
@@ -379,5 +381,9 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
             mAdapter.setDataSet(mA1MSUsers);
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void messageReceived(String messageType, Message message){
+
     }
 }

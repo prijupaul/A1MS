@@ -29,10 +29,13 @@ import uk.com.a1ms.contacts.FetchContactsHandler;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
+import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.listeners.CustomTabLayoutListener;
+import uk.com.a1ms.messages.MessageNotificationHandler;
 import uk.com.a1ms.ui.fragments.BaseFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsA1MSFragment;
 import uk.com.a1ms.ui.fragments.ContactsGroupsInviteFragment;
+import uk.com.a1ms.ui.uiutil.NotificationBuilder;
 import uk.com.a1ms.util.BuildUtils;
 import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
@@ -40,7 +43,8 @@ import uk.com.a1ms.util.PermissionRequestManager;
 /**
  * Created by priju.jacobpaul on 28/05/16.
  */
-public class ContactsGroupsActivity extends BaseActivity implements NotificationController.NotificationListener{
+public class ContactsGroupsActivity extends BaseActivity implements NotificationController.NotificationListener,
+        MessageNotificationHandler.MessageNotificationHandlerListener{
 
     private ContactsGroupsPagerAdapter mAdapter;
     private ViewPager mViewPager;
@@ -61,8 +65,8 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("A1MS"));
-        tabLayout.addTab(tabLayout.newTab().setText("Invites"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.a1ms_tab));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.invites));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         toolbar.setVisibility(View.VISIBLE);
 
@@ -125,15 +129,19 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
         super.onResume();
         NotificationController.getInstance().addObserver(this,
                 NotificationController.userDatabaseChanged);
+        MessageNotificationHandler.getInstance().registerForEvents(MessageNotificationHandler.PRIORITY_MEDIUM,this);
         askForPermissons();
 
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         NotificationController.getInstance().removeObserver(this,
                 NotificationController.userDatabaseChanged);
+
+        MessageNotificationHandler.getInstance().unregisterForEvents(MessageNotificationHandler.PRIORITY_MEDIUM);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -313,15 +321,24 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
 
     @Override
     public void onNotificationReceived(int id, Object... args) {
+        BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+
         if(id == NotificationController.userDatabaseChanged){
-            BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+
             if(fragment instanceof ContactsGroupsA1MSFragment){
 //                ((ContactsGroupsA1MSFragment)fragment).fetchLatestDetails();
             }
         }
+    }
 
-        else if(id == NotificationController.messageReceivedFromServer){
-            
-        }
+    @Override
+    public boolean onNewMessageReceived(String messageType, Message message) {
+
+        BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
+        ContactsGroupsA1MSFragment contactsGroupsA1MSFragment = (ContactsGroupsA1MSFragment)fragment;
+        contactsGroupsA1MSFragment.messageReceived(messageType,message);
+        NotificationBuilder.showNotification(this,message.getMessage().getLongMessage().toString());
+
+        return true;
     }
 }

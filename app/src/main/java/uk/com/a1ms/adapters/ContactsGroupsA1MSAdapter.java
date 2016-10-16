@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
 
+import java.util.HashMap;
 import java.util.List;
 
 import uk.com.a1ms.R;
@@ -26,7 +27,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
     private boolean mCheckboxStatus;
     private ContactsGroupsA1MSAdapterListener mListener;
     private boolean isAnItemSelected;
-
+    private HashMap<String,Integer>mUnreadTextCounter = new HashMap<>();
 
     public interface ContactsGroupsA1MSAdapterListener {
         void onLongClick(View view,int position);
@@ -42,6 +43,7 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
         TextView textViewPhone;
         CardView cardView;
         CheckBox checkBox;
+        TextView textViewUnreadMsgs;
 
         public ViewHolder(View view) {
             super(view);
@@ -50,6 +52,8 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
             this.textViewEmail = (TextView) view.findViewById(R.id.textview_contact_email);
             this.textViewPhone = (TextView) view.findViewById(R.id.textview_contact_sms);
             this.checkBox = (CheckBox) view.findViewById(R.id.checkbox_imageview_icon);
+            this.textViewUnreadMsgs = (TextView) view.findViewById(R.id.tv_unread_text);
+
             this.checkBox.setVisibility(View.GONE);
             this.checkBox.setChecked(false);
 
@@ -189,4 +193,6 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
     public String getSectionTitle(int position) {
         return mDataSet.get(position).getName().substring(0,1);
     }
+
+
 }

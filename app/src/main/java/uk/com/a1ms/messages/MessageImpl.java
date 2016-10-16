@@ -58,13 +58,13 @@ public class MessageImpl implements MessageListerner {
         public void handleMessage(android.os.Message msg) {
             Log.d(TAG, "IncomingHandler:handleMessage");
             switch (msg.what) {
-                case MessagingService.MSG_FROM_SERVER_PRIVATE_REPLY: {
+                case MessagingService.MSG_FROM_SERVER_ECHO_REPLY: {
                     String message = msg.getData().getString("message");
                     NotificationController.getInstance().postNotificationName(NotificationController.messageReceivedFromServer,
                             "echoMessage",convertToMessage(message));
                     break;
                 }
-                case MessagingService.MSG_FROM_SERVER_ECHO_REPLY: {
+                case MessagingService.MSG_FROM_SERVER_PRIVATE_REPLY: {
                     String message = msg.getData().getString("message");
                     NotificationController.getInstance().postNotificationName(NotificationController.messageReceivedFromServer,
                             "privateMessage",convertToMessage(message));

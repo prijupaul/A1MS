@@ -121,6 +121,9 @@
 
     <!-- Permissions -->
     <string name="message_permission">uk.com.a1ms.message.permission</string>
+    <string name="invites">Invites</string>
+    <string name="a1ms_tab">A1MS</string>
+    <string name="new_message">New message</string>
 
 
 </resources>

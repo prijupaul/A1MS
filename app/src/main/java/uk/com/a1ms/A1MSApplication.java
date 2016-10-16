@@ -10,6 +10,7 @@ import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.db.A1MSDbHelper;
+import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.services.ServiceConnection;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
@@ -24,6 +25,7 @@ public class A1MSApplication extends Application {
     public static A1MSDbHelper dbHelper;
     private static SQLiteDatabase sqLiteDatabase;
     public static ServiceConnection mServiceConnection;
+    private static A1MSUser mCurrentActiveUser;
 
     @Override
     public void onCreate() {
@@ -70,4 +72,11 @@ public class A1MSApplication extends Application {
 
     public static ServiceConnection getServiceConnection() { return  mServiceConnection; }
 
+    public static A1MSUser getCurrentActiveUser() {
+        return mCurrentActiveUser;
+    }
+
+    public static void setCurrentActiveUser(A1MSUser currentActiveUser) {
+        mCurrentActiveUser = currentActiveUser;
+    }
 }

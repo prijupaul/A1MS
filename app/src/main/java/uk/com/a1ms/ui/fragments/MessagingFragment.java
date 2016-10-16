@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.MessageAdapter;
 import uk.com.a1ms.db.dto.A1MSGroup;
@@ -29,13 +30,13 @@ import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.dto.ShortMessage;
 import uk.com.a1ms.messages.MessageImpl;
 import uk.com.a1ms.messages.MessageListerner;
+import uk.com.a1ms.messages.MessageNotificationHandler;
 import uk.com.a1ms.messages.MessageParser;
 import uk.com.a1ms.network.handlers.UserMessageIOSocketHandler;
 import uk.com.a1ms.network.handlers.UserMessageWebSocketHandler;
 import uk.com.a1ms.ui.MessagingActivity;
 import uk.com.a1ms.util.DateTime;
 import uk.com.a1ms.util.ExecutorUtils;
-import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
@@ -44,7 +45,7 @@ import uk.com.a1ms.util.SharedPreferenceManager;
 public class MessagingFragment extends BaseFragment implements View.OnClickListener,
         UserMessageWebSocketHandler.UserMessageWebSocketListener,
         UserMessageIOSocketHandler.UserMessageIOSocketListener,
-        NotificationController.NotificationListener
+        MessageNotificationHandler.MessageNotificationHandlerListener
 {
 
     private MessagingFragmentListener mMessagingFragmentListener;
@@ -72,8 +73,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        NotificationController.getInstance().addObserver(this,
-                NotificationController.messageReceivedFromServer);
+        MessageNotificationHandler.getInstance().registerForEvents(MessageNotificationHandler.PRIORITY_HIGH,this);
     }
 
     @Override
@@ -83,6 +83,9 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         mCurrentUser = messagingActivity.getCurrentUser();
         mCurrentGroup = messagingActivity.getCurrentGroup();
         mMessageSender = new MessageImpl();
+
+        A1MSApplication context = (A1MSApplication) getActivity().getApplicationContext();
+        context.setCurrentActiveUser(mCurrentUser);
 
         if(!isMemberOfGroups()){
             isMemberOfGroup = false;
@@ -250,12 +253,16 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        MessageNotificationHandler.getInstance().unregisterForEvents(MessageNotificationHandler.PRIORITY_HIGH);
+        A1MSApplication.setCurrentActiveUser(null);
+    }
 
     @Override
     public boolean onBackPressed() {
         getActivity().finish();
-        NotificationController.getInstance().removeObserver(this,
-                NotificationController.messageReceivedFromServer);
 
 //        if (webIOSocketHandler != null) {
 //            webIOSocketHandler.disconnect();
@@ -306,30 +313,36 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void onNotificationReceived(int id, Object... args) {
-        if(id == NotificationController.messageReceivedFromServer){
-            String messageType = (String)args[0];
-            Message  message = (Message) args[1];
+    public boolean onNewMessageReceived(String messageType, Message message) {
+        if(message != null){
 
-            if(message != null){
-                switch (messageType){
-                    case "echoMessage":
-                    case "privateMessage":{
-                        if(mCurrentUser.getUserId().compareTo(message.getIdUser().getUserId()) == 0){
-                            onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
-                        }
-                        break;
+            switch (messageType){
+                case "echoMessage":
+                    if(mCurrentUser.getUserId().compareTo(message.getIdToUser().getUserId()) == 0){
+                        onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        return true;
                     }
-                    case "groupMessage":{
-                        if(mCurrentGroup.getGroupId().compareTo(message.getIdUser().getUserId()) == 0){
-                            onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
-                        }
-                        break;
+                    break;
+                case "privateMessage":{
+                    if(mCurrentUser.getUserId().compareTo(message.getIdUser().getUserId()) == 0){
+                        onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        return true;
                     }
-
+                    break;
+                }
+                case "groupMessage":{
+                    if(mCurrentGroup.getGroupId().compareTo(message.getIdUser().getUserId()) == 0){
+                        onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        return true;
+                    }
+                    break;
                 }
 
             }
+
         }
+
+        return false;
     }
+
 }
