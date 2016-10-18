@@ -384,6 +384,8 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     }
 
     public void messageReceived(String messageType, Message message){
-
+        if(mAdapter != null){
+            mAdapter.addToUnreadTextCounter(messageType,message);
+        }
     }
 }

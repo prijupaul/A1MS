@@ -335,10 +335,12 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
     public boolean onNewMessageReceived(String messageType, Message message) {
 
         BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
-        ContactsGroupsA1MSFragment contactsGroupsA1MSFragment = (ContactsGroupsA1MSFragment)fragment;
-        contactsGroupsA1MSFragment.messageReceived(messageType,message);
-        NotificationBuilder.showNotification(this,message.getMessage().getLongMessage().toString());
+        if(fragment instanceof  ContactsGroupsA1MSFragment) {
+            ContactsGroupsA1MSFragment contactsGroupsA1MSFragment = (ContactsGroupsA1MSFragment) fragment;
+            contactsGroupsA1MSFragment.messageReceived(messageType, message);
 
+        }
+        NotificationBuilder.showNotification(this, message.getMessage().getLongMessage().toString());
         return true;
     }
 }

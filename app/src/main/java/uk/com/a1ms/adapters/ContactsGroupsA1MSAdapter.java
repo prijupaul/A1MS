@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.dto.Message;
 
 import static uk.com.a1ms.R.layout.contactsgroups_a1ms_card;
 
@@ -44,6 +46,8 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
         CardView cardView;
         CheckBox checkBox;
         TextView textViewUnreadMsgs;
+        FrameLayout frameLayoutunReadMessageCounterHolder;
+        TextView textViewUnreadCounter;
 
         public ViewHolder(View view) {
             super(view);
@@ -53,6 +57,8 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
             this.textViewPhone = (TextView) view.findViewById(R.id.textview_contact_sms);
             this.checkBox = (CheckBox) view.findViewById(R.id.checkbox_imageview_icon);
             this.textViewUnreadMsgs = (TextView) view.findViewById(R.id.tv_unread_text);
+            this.frameLayoutunReadMessageCounterHolder = (FrameLayout) view.findViewById(R.id.framelayout_unreadtext_holder);
+            this.textViewUnreadCounter = (TextView)view.findViewById(R.id.tv_unread_text);
 
             this.checkBox.setVisibility(View.GONE);
             this.checkBox.setChecked(false);
@@ -124,6 +130,8 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                     }
                     else {
                         mListener.onItemClick(view, getAdapterPosition());
+                        A1MSUser a1MSUser = mDataSet.get(getAdapterPosition());
+                        clearUnreadCounter(a1MSUser);
                     }
                 }
             });
@@ -150,18 +158,29 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.textViewName.setText(mDataSet.get(position).getName());
-        holder.textViewEmail.setText(mDataSet.get(position).getEmail());
-        holder.textViewPhone.setText(mDataSet.get(position).getMobile());
+        A1MSUser user = mDataSet.get(position);
 
-        if(isAnItemSelected && mDataSet.get(position).isChecked()){
+        holder.textViewName.setText(user.getName());
+        holder.textViewEmail.setText(user.getEmail());
+        holder.textViewPhone.setText(user.getMobile());
+
+        if(isAnItemSelected && user.isChecked()){
             holder.checkBox.setVisibility(View.VISIBLE);
             holder.checkBox.setChecked(true);
         }
         else {
             holder.checkBox.setVisibility(View.GONE);
             holder.checkBox.setChecked(false);
-            mDataSet.get(position).setChecked(false);
+            user.setChecked(false);
+        }
+
+        holder.frameLayoutunReadMessageCounterHolder.setVisibility(View.GONE);
+
+        if(mUnreadTextCounter.size() > 0){
+            if(mUnreadTextCounter.containsKey(user.getUserId())){
+                holder.frameLayoutunReadMessageCounterHolder.setVisibility(View.VISIBLE);
+                holder.textViewUnreadCounter.setText(String.valueOf(mUnreadTextCounter.get(user.getUserId())));
+            }
         }
     }
 
@@ -192,6 +211,23 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
     @Override
     public String getSectionTitle(int position) {
         return mDataSet.get(position).getName().substring(0,1);
+    }
+
+    public void addToUnreadTextCounter(String messageType,Message message){
+
+        Integer count = mUnreadTextCounter.get(message.getIdUser().getUserId());
+        if(count == null){
+            count = new Integer(0);
+        }
+        mUnreadTextCounter.put(message.getIdUser().getUserId(),count+1);
+        notifyDataSetChanged();
+    }
+
+    private void clearUnreadCounter(A1MSUser user){
+        if(mUnreadTextCounter != null){
+            mUnreadTextCounter.remove(user.getUserId());
+            notifyDataSetChanged();
+        }
     }
 
 
