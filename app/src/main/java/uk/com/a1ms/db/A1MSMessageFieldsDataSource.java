@@ -26,7 +26,7 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
 
 
     public static abstract class A1MSUsersEntry implements BaseColumns{
-        public static final String TABLE_NAME = "A1MSUsers";
+        public static final String TABLE_NAME = "Messages";
         public static final String COLUMN_NAME_NULLABLE = "nullhack";
         public static final String COLUMN_NAME_A1MS_USER_NAME = "username";
         public static final String COLUMN_NAME_A1MS_USER_MOB = "mobileno";

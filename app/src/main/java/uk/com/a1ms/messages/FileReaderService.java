@@ -3,7 +3,6 @@ package uk.com.a1ms.messages;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.support.v4.os.ResultReceiver;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -60,10 +59,8 @@ public class FileReaderService extends IntentService {
 
         try {
             Context context = A1MSApplication.applicationContext;
-            AssetManager am = context.getAssets();
             for(String filename: filesToRead) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
-                StringBuilder stringBuilder = new StringBuilder();
                 String line = reader.readLine();
                 while (line != null) {
                     String[] array = line.split("\\s+", 2);

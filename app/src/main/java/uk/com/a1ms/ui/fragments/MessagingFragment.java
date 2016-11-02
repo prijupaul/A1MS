@@ -275,8 +275,12 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onMessageReceived(String message,String shortMsg) {
 
+    }
+
+
+    public void onMessageReceived(SpannableString message,SpannableString shortMsg) {
+
 //        Gson gson = new GsonBuilder().create();
-        String msg = message;
 
 
 //        try {
@@ -295,13 +299,16 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
         final Message messageObj = new Message();
         ShortMessage shortMessage = new ShortMessage();
-
         LongMessage longMessage = new LongMessage();
-        longMessage.setLongMessage(new SpannableString(msg));
-        shortMessage.setShortMessage(new SpannableString(shortMsg));
 
+        longMessage.setLongMessage(message);
+        shortMessage.setShortMessage(shortMsg);
+
+        messageObj.setMessage(longMessage);
         messageObj.setShortMessage(shortMessage);
         messageObj.setSelf(false);
+        messageObj.setTime(DateTime.getTimeInAmPm());
+
 
         ExecutorUtils.runOnUIThread(new Runnable() {
             @Override
@@ -319,20 +326,20 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             switch (messageType){
                 case "echoMessage":
                     if(mCurrentUser.getUserId().compareTo(message.getIdToUser().getUserId()) == 0){
-                        onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        onMessageReceived(message.getMessage().getLongMessage(),message.getShortMessage().getShortMessage());
                         return true;
                     }
                     break;
                 case "privateMessage":{
                     if(mCurrentUser.getUserId().compareTo(message.getIdUser().getUserId()) == 0){
-                        onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        onMessageReceived(message.getMessage().getLongMessage(),message.getShortMessage().getShortMessage());
                         return true;
                     }
                     break;
                 }
                 case "groupMessage":{
                     if(mCurrentGroup.getGroupId().compareTo(message.getIdUser().getUserId()) == 0){
-                        onMessageReceived(message.getMessage().getLongMessage().toString(),message.getShortMessage().getShortMessage().toString());
+                        onMessageReceived(message.getMessage().getLongMessage(),message.getShortMessage().getShortMessage());
                         return true;
                     }
                     break;

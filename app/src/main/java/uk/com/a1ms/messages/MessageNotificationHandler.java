@@ -2,7 +2,9 @@ package uk.com.a1ms.messages;
 
 import java.util.HashMap;
 
+import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.dto.Message;
+import uk.com.a1ms.ui.uiutil.NotificationBuilder;
 import uk.com.a1ms.util.NotificationController;
 
 /**
@@ -58,14 +60,20 @@ public class MessageNotificationHandler implements NotificationController.Notifi
             Message message = (Message) args[1];
             int priorityArrayIndex = priorityArray.length - 1;
 
+            boolean handled = false;
             while (priorityArrayIndex >= 0) {
                 MessageNotificationHandlerListener listener = (MessageNotificationHandlerListener) getNextObjectToHandle(priorityArray[priorityArrayIndex]);
                 if (listener != null) {
                     if (listener.onNewMessageReceived(messageType, message)) {
+                        handled = true;
                         break;
                     }
                 }
                 --priorityArrayIndex;
+            }
+
+            if(!handled){
+                NotificationBuilder.showNotification(A1MSApplication.applicationContext, message.getMessage().getLongMessage().toString());
             }
 
         }

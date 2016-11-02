@@ -10,6 +10,8 @@ import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
@@ -69,20 +71,48 @@ public class MessageParser {
 
         for(String sentence: sentenceArray) {
 
-            parsedOriginalArray = breakIntoWords(sentence); // sentence.split("\\s+");
-            isCapsFound = false;
+            if(isSentenceDottedAcronym(sentence)){
 
-            if (parsedOriginalArray.size() > 0) {
+                String[] words = sentence.split(" ");
+                StringBuffer dottedAcronym = new StringBuffer();
+                for (int i=0;i<words.length;i++){
+                    String word = words[i];
+                    String subString = word;
+                    if(i == 0) {
+                        subString = word.substring(2);
+                    }
+                    else if(i == words.length -1 ){
+                        subString = word.substring(0,word.length()-2);
+                    }
+                    dottedAcronym.append(subString.substring(0,1).toUpperCase());
+                }
+                dottedAcronym.append(" ");
 
-                for (int i = 0; i < parsedOriginalArray.size(); i++) {
+                appendString(dottedAcronym.toString());
+                addSpan(new BackgroundColorSpan(newAcroColor),
+                        spannableStringBuilder.length() - (dottedAcronym.length()), spannableStringBuilder.length() , spannableStringBuilder);
 
-                    currentStr = "";
-                    nextStr = "";
-                    prevStr = "";
+                longSpannableStringBuilder.append(sentence);
+                longSpannableStringBuilder.setSpan(new BackgroundColorSpan(newAcroColor),
+                        (longSpannableStringBuilder.length()) - (sentence.length()),
+                        longSpannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            else {
+                parsedOriginalArray = breakIntoWords(sentence); // sentence.split("\\s+");
+                isCapsFound = false;
 
-                    currentStr = parsedOriginalArray.get(i);
-                    customAcronymCreation(currentStr,i);
+                if (parsedOriginalArray.size() > 0) {
 
+                    for (int i = 0; i < parsedOriginalArray.size(); i++) {
+
+                        currentStr = "";
+                        nextStr = "";
+                        prevStr = "";
+
+                        currentStr = parsedOriginalArray.get(i);
+                        customAcronymCreation(currentStr, i);
+
+                    }
                 }
             }
         }
@@ -91,18 +121,18 @@ public class MessageParser {
 
     private void customAcronymCreation(String currentStr,int index){
 
-        String acryonym = getAcryonym(currentStr);
+        String acronym = getAcryonym(currentStr);
         if(currentStr.trim().isEmpty()) {
             if(!isCapsFound){
                 appendString(currentStr);
             }
             longSpannableStringBuilder.append(currentStr);
         }
-        else if(acryonym != null) {
+        else if(acronym != null) {
 
-            appendString(acryonym);
+            appendString(acronym);
             addSpan(new BackgroundColorSpan(existAcryColor),
-                    spannableStringBuilder.length() - (acryonym.length()), spannableStringBuilder.length() , spannableStringBuilder);
+                    spannableStringBuilder.length() - (acronym.length()), spannableStringBuilder.length() , spannableStringBuilder);
 
             longSpannableStringBuilder.append(currentStr);
             longSpannableStringBuilder.setSpan(new BackgroundColorSpan(existAcryColor),
@@ -116,14 +146,13 @@ public class MessageParser {
 
                 // Check whether the word is the last word in the sentence.
                 if ((index + 1) != parsedOriginalArray.size()) {
-//                    nextStr = parsedOriginalArray.get(index + 1);
+
                     nextStr = getNextWord(index);
 
                     if (isFirstCharCaps(nextStr)) {
 
 //                    Character firstCharNxtStr = getFirstChar(nextStr);
                         isCapsFound = true;
-//                                i++;
 
                         appendCharacter(firstCharStr);
                         addSpan(new BackgroundColorSpan(newAcroColor),
@@ -200,9 +229,20 @@ public class MessageParser {
     }
 
 
+    private boolean isWordOnlyDot(String word){
+
+        if(word == null || word.isEmpty()) {
+            return false;
+        }
+        if(word.length() == 1 && isCharacterDot(word.charAt(0))){
+            return true;
+        }
+        return false;
+    }
+
     private Character getFirstChar(String word){
 
-        if(word.isEmpty() || word == null) {
+        if(word == null || word.isEmpty()) {
            return null;
         }
         char firstChar = word.charAt(0);
@@ -260,10 +300,56 @@ public class MessageParser {
 
         for (int end = breakIterator.next(); end != BreakIterator.DONE;
             start = end, end = breakIterator.next()) {
-            sentenceArray.add(source.substring(start, end));
+            String subString = source.substring(start, end);
+
+            //(\s\.\..*\b\.\.)
+            // \.\.\b((?!=|\,|\.).)+(.)\b\.\.
+            Pattern pattern = Pattern.compile("\\.\\.\\b((?=[\\w\\'\\s]+).)+(.)\\b\\.\\.");
+            Matcher matcher = pattern.matcher(subString);
+            int count = 0;
+            int startIndex = 0;
+
+            while (matcher.find())
+            {
+                count++;
+                System.out.println("found: " + count + " : "
+                        + matcher.start() + " - " + matcher.end());
+                String group = matcher.group();
+                String start_end = subString.substring(startIndex, matcher.start());
+                if(!start_end.trim().isEmpty()){
+                    sentenceArray.add(start_end);
+                }
+                sentenceArray.add(subString.substring(matcher.start(),matcher.end()));
+                startIndex = matcher.end();
+
+            }
+
+            if(startIndex != subString.length()){
+                sentenceArray.add(subString.substring(startIndex,subString.length()));
+            }
+
         }
 
         return sentenceArray;
+    }
+
+    private boolean isSentenceDottedAcronym(String sentence){
+
+        if(sentence != null && !sentence.isEmpty()){
+            String[] words = sentence.split(" ");
+            // 4 makes sure there are atleast there are
+            // two words other than .. ..
+            if(words.length >= 2){
+                String lastWord = words[words.length-1];
+                String firstWord = words[0].substring(0,2);
+                if(firstWord.equalsIgnoreCase("..") &&
+                        lastWord.substring(lastWord.length() -2, lastWord.length()).equalsIgnoreCase("..")){
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private ArrayList<String> breakIntoWords(String source) {
@@ -273,23 +359,13 @@ public class MessageParser {
         BreakIterator breakIterator = BreakIterator.getWordInstance(Locale.getDefault());
         breakIterator.setText(source);
 
-        int previousEnd = 0;
-
         int start = breakIterator.first();
-
         for (int end = breakIterator.next(); end != BreakIterator.DONE;
              start = end, end = breakIterator.next()) {
-            sentenceArray.add(source.substring(start, end));
 
-//            if(previousEnd !=0){
-//                String delimiter = source.substring(previousEnd,end+1);
-//                if(!delimiter.isEmpty()) {
-//                    sentenceArray.add(delimiter);
-//                }
-//            }
-//            previousEnd = end;
+                String subString = source.substring(start,end);
+                sentenceArray.add(subString);
         }
-
         return sentenceArray;
     }
 

@@ -2,7 +2,6 @@ package uk.com.a1ms.ui;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.R;
-import uk.com.a1ms.messages.FileReaderService;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.dto.UserDetails;
 import uk.com.a1ms.network.dto.loginDetails;
@@ -56,9 +54,6 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setTitle("Activation");
         }
-
-        Intent intent = new Intent(Intent.ACTION_SYNC,null,this, FileReaderService.class);
-        startService(intent);
     }
 
 

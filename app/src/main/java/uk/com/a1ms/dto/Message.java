@@ -1,5 +1,7 @@
 package uk.com.a1ms.dto;
 
+import android.text.Html;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,8 +86,22 @@ public class Message {
 //            jsonObject.put("token", token);
 
             JSONObject messageObject = new JSONObject();
-            messageObject.put("longMessage", getMessage().getLongMessage().toString());
-            messageObject.put("shortMessage", getShortMessage().getShortMessage().toString());
+
+
+            String shortHtmlString;
+            String longHtmlString;
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                shortHtmlString = Html.toHtml(getShortMessage().getShortMessage(),Html.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH);
+                longHtmlString = Html.toHtml(getMessage().getLongMessage(),Html.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH);
+
+            } else {
+                shortHtmlString = Html.toHtml(getShortMessage().getShortMessage());
+                longHtmlString = Html.toHtml(getMessage().getLongMessage());
+            }
+
+            messageObject.put("longMessage", longHtmlString);
+            messageObject.put("shortMessage", shortHtmlString);
             messageObject.put("userId", SharedPreferenceManager.getUserId(A1MSApplication.applicationContext));
 
             if (user.isGroup()) {

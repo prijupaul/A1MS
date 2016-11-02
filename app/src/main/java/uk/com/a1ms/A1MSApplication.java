@@ -3,6 +3,7 @@ package uk.com.a1ms;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 
@@ -11,6 +12,8 @@ import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.db.A1MSDbHelper;
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.db.messages.MessagesDbHelper;
+import uk.com.a1ms.messages.FileReaderService;
 import uk.com.a1ms.services.ServiceConnection;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
@@ -24,6 +27,8 @@ public class A1MSApplication extends Application {
     public static volatile Handler applicationHandler;
     public static A1MSDbHelper dbHelper;
     private static SQLiteDatabase sqLiteDatabase;
+    private static MessagesDbHelper messagesDbHelper;
+    private static SQLiteDatabase messagesSqLiteDb;
     public static ServiceConnection mServiceConnection;
     private static A1MSUser mCurrentActiveUser;
 
@@ -49,7 +54,13 @@ public class A1MSApplication extends Application {
         dbHelper = A1MSDbHelper.getInstance(applicationContext);
         sqLiteDatabase = dbHelper.getWritableDatabase();
 
+        messagesDbHelper = MessagesDbHelper.getInstance(applicationContext);
+        messagesSqLiteDb = messagesDbHelper.getWritableDatabase();
+
         mServiceConnection.doBindService();
+
+        Intent intent = new Intent(Intent.ACTION_SYNC,null,this, FileReaderService.class);
+        startService(intent);
     }
 
 

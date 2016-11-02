@@ -12,7 +12,6 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -207,13 +206,13 @@ public class MessagingService extends Service {
     private Emitter.Listener onConnectError = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            ExecutorUtils.runOnUIThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(A1MSApplication.applicationContext,
-                            "error", Toast.LENGTH_LONG).show();
-                }
-            },0);
+//            ExecutorUtils.runOnUIThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Toast.makeText(A1MSApplication.applicationContext,
+//                            "error", Toast.LENGTH_LONG).show();
+//                }
+//            },0);
         }
     };
 

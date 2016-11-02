@@ -31,6 +31,8 @@ public class NotificationBuilder {
                         .setContentTitle(context.getString(R.string.new_message))
                         .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                         .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .setPriority(Notification.PRIORITY_HIGH)
                         .setContentText(message);
 
         Notification notification = mBuilder.build();
