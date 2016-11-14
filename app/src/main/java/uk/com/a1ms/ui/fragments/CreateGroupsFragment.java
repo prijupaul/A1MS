@@ -237,7 +237,7 @@ public class CreateGroupsFragment extends BaseFragment implements CreateGroupsAd
 
         mSelectedA1MSUsers.add(a1MSUser);
 
-        if(mSelectedA1MSUsers.size() > 1) {
+        if(mSelectedA1MSUsers.size() > BuildUtils.getMinGroupMemberSize()) {
             mMenuNext.setEnabled(true);
         }
 

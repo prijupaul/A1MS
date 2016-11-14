@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import static uk.com.a1ms.R.layout.contactsgroups_a1ms_card;
  */
 public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGroupsA1MSAdapter.ViewHolder> implements SectionTitleProvider {
 
-    private List<A1MSUser> mDataSet;
+    private List<A1MSUser> mDataSet = new ArrayList<>();
     private boolean mCheckboxStatus;
     private ContactsGroupsA1MSAdapterListener mListener;
     private boolean isAnItemSelected;
@@ -129,9 +130,10 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
                         mListener.onPrepareSelection(checkBox,getAdapterPosition());
                     }
                     else {
-                        mListener.onItemClick(view, getAdapterPosition());
-                        A1MSUser a1MSUser = mDataSet.get(getAdapterPosition());
+                        int position = getAdapterPosition();
+                        A1MSUser a1MSUser = mDataSet.get(position);
                         clearUnreadCounter(a1MSUser);
+                        mListener.onItemClick(view, position);
                     }
                 }
             });
@@ -139,12 +141,13 @@ public class ContactsGroupsA1MSAdapter extends RecyclerView.Adapter<ContactsGrou
     }
 
     public ContactsGroupsA1MSAdapter(List<A1MSUser> dataSet, ContactsGroupsA1MSAdapterListener listener) {
-        mDataSet = dataSet;
+        mDataSet.addAll(dataSet);
         mListener = listener;
     }
 
     public void setDataSet(List<A1MSUser> dataSet) {
-        mDataSet = dataSet;
+        mDataSet.clear();
+        mDataSet.addAll(dataSet);
     }
 
     @Override

@@ -35,4 +35,21 @@ public class ExecutorUtils {
             }
         }.start();
     }
+
+    public static void runInBackgroundThreadWithDelay(final Runnable runnable,final int delay){
+
+        new Thread(runnable){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(delay);
+                    android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                    runnable.run();
+                }
+                catch (InterruptedException e){
+
+                }
+            }
+        }.start();
+    }
 }

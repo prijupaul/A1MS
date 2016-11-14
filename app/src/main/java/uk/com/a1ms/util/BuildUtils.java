@@ -65,4 +65,8 @@ public class BuildUtils {
     public static int getMaxGroupsMemberSize(){
         return 100;
     }
+
+    public static int getMinGroupMemberSize() {
+        return 2;
+    }
 }

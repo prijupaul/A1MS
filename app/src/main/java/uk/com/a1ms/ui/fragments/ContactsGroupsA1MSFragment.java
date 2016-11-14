@@ -62,6 +62,9 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     List<A1MSUser> mA1MSUsers;
     FloatingActionButton mFab;
     boolean mIsGroupsShown;
+    int currentSelectedUserPos;
+    A1MSUser currentSelectedA1MSUser;
+
 
     @Override
     public void onAttach(Context context) {
@@ -127,6 +130,9 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     public void onResume() {
         super.onResume();
 
+        currentSelectedA1MSUser = null;
+        currentSelectedUserPos = 0;
+
 //        A1MSUser user = new A1MSUser();
 //        user.setName("Personal Device");
 //        user.setMobile("+61235647896");
@@ -142,6 +148,20 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
 //        mUsersDataSource.insertA1MSUser(A1MSApplication.getSqLiteDatabase(),user);
 
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if(currentSelectedA1MSUser != null) {
+            if(currentSelectedUserPos != 0) {
+                mA1MSUsers.remove(currentSelectedUserPos);
+                mA1MSUsers.add(1, currentSelectedA1MSUser);
+                mAdapter.setDataSet(mA1MSUsers);
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override
@@ -217,9 +237,13 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        A1MSUser a1MSUser = mA1MSUsers.get(position);
+    public void onItemClick(View view,final int position) {
+
+        final A1MSUser a1MSUser = mA1MSUsers.get(position);
         ((ContactsGroupsActivity)getActivity()).chatWith(a1MSUser);
+        mUsersDataSource.updateUserViewDateTime(a1MSUser);
+        currentSelectedA1MSUser = a1MSUser;
+        currentSelectedUserPos = position;
     }
 
     @Override
@@ -293,6 +317,11 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
             setIsInActionMode(false);
             return true;
         }
+        else {
+            currentSelectedA1MSUser = null;
+            currentSelectedUserPos = 0;
+        }
+
         return false;
     }
 

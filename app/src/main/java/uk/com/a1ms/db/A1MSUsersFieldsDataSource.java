@@ -13,6 +13,7 @@ import java.util.List;
 
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.util.DateTime;
 
 /**
  * Created by priju.jacobpaul on 6/06/16.
@@ -35,6 +36,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         public static final String COLUMN_NAME_A1MS_USER_ID = "userid";
         public static final String COLUMN_NAME_A1MS_USER_EDITABLE = "editable";
         public static final String COLUMN_NAME_A1MS_IS_GROUP = "isGroup";
+        public static final String COLUMN_NAME_A1MS_DATE_TIME = "dateTime";
         public static final String COLUMN_NAME_A1MS_IS_ECHOMATE = "isEchomate";
 
         public static final String SQL_CREATE_ENTRIES =
@@ -47,6 +49,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP + TEXT_TYPE + COMMA_SEP +
                         A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR + TEXT_TYPE + COMMA_SEP +
+                        A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME + DATE_TYPE + DEFAULT + CURRENT_TIMESTAMP + COMMA_SEP +
                         "PRIMARY KEY (" + A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB + "," + A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID + ")" + " );";
 
         public static final String SQL_DELETE_ENTRIES =
@@ -60,7 +63,8 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME
         };
     }
 
@@ -180,7 +184,8 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME
         };
 
         String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
@@ -227,7 +232,8 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME
         };
 
         String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
@@ -276,7 +282,8 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
                 A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
+                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,
+                A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME
         };
 
         String whereClause = null;
@@ -289,7 +296,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         }
 
 
-        String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
+        String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME + " DESC";
         Cursor c = sqLiteDatabase.query(
                 A1MSUsersEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
@@ -297,7 +304,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
                 whereArgs,                               // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                null                                 // The sort order
+                sortOrder                                 // The sort order
         );
 
         if (c != null) {
@@ -322,6 +329,24 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         return a1MSUsers;
     }
 
+    public void updateUserViewDateTime(A1MSUser user){
+
+        if (user == null) {
+            return;
+        }
+
+        String whereClause = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID + " =? ";
+        String[] whereArgs = new String[1];
+        whereArgs[0] = user.getUserId();
+
+        ContentValues values = new ContentValues();
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME, DateTime.getDateTime());
+
+        sqLiteDatabase.update(A1MSUsersEntry.TABLE_NAME,
+                values,
+                whereClause, whereArgs);
+    }
+
     public void updateUserDetails(A1MSUser user){
         if (user == null) {
             return;
@@ -340,6 +365,7 @@ public class A1MSUsersFieldsDataSource extends BaseFields {
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID, user.getUserId());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE, user.isEditable());
         values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP, user.isGroup());
+        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_DATE_TIME,DateTime.getDateTime());
 
         sqLiteDatabase.update(A1MSUsersEntry.TABLE_NAME,
                 values,

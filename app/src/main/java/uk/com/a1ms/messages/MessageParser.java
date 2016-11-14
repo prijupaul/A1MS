@@ -33,6 +33,7 @@ public class MessageParser {
     private SpannableStringBuilder spannableStringBuilder;
     private SpannableStringBuilder longSpannableStringBuilder;
 
+
     private Resources resources;
     private int newAcroColor;
     private int existAcryColor;
@@ -335,18 +336,23 @@ public class MessageParser {
 
     private boolean isSentenceDottedAcronym(String sentence){
 
-        if(sentence != null && !sentence.isEmpty()){
-            String[] words = sentence.split(" ");
-            // 4 makes sure there are atleast there are
-            // two words other than .. ..
-            if(words.length >= 2){
-                String lastWord = words[words.length-1];
-                String firstWord = words[0].substring(0,2);
-                if(firstWord.equalsIgnoreCase("..") &&
-                        lastWord.substring(lastWord.length() -2, lastWord.length()).equalsIgnoreCase("..")){
-                    return true;
+        try {
+            if (sentence != null && !sentence.isEmpty()) {
+                String[] words = sentence.split(" ");
+                // 4 makes sure there are atleast there are
+                // two words other than .. ..
+                if (words.length >= 2) {
+                    String lastWord = words[words.length - 1];
+                    String firstWord = words[0].substring(0, 2);
+                    if (firstWord.equalsIgnoreCase("..") &&
+                            lastWord.substring(lastWord.length() - 2, lastWord.length()).equalsIgnoreCase("..")) {
+                        return true;
+                    }
                 }
             }
+        }
+        catch (StringIndexOutOfBoundsException e){
+            e.printStackTrace();
         }
 
         return false;

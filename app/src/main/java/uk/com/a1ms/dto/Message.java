@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.util.Random;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
@@ -102,6 +103,7 @@ public class Message {
 
             messageObject.put("longMessage", longHtmlString);
             messageObject.put("shortMessage", shortHtmlString);
+            messageObject.put("messageId", Random.getUUID());
             messageObject.put("userId", SharedPreferenceManager.getUserId(A1MSApplication.applicationContext));
 
             if (user.isGroup()) {
