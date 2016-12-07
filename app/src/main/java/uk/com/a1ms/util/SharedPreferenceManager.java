@@ -15,6 +15,7 @@ public class SharedPreferenceManager {
     private static String mUserId;
     private static String mUserPassword;
     private static String mMobileNumber;
+    private static String mFcmToken;
 
     private static String TAG = SharedPreferenceManager.class.getName();
 
@@ -27,7 +28,7 @@ public class SharedPreferenceManager {
         mIsUserRegistered = mFile + "." + "isUserRegistered";
         mUserPassword = mFile + "." + "userPassword";
         mMobileNumber = mFile + "." + "mobileNumber";
-
+        mFcmToken = mFile + "." + "fcmToken";
     }
 
     public static void saveUserToken(String authToken, Context context) {
@@ -56,6 +57,14 @@ public class SharedPreferenceManager {
 
     public static void saveUserPassword(String userPassword, Context context) {
         saveStringValue(mUserPassword, userPassword, context);
+    }
+
+    public static String getPushNotificationToken(Context context) {
+        return getStringValue(mFcmToken, context, "");
+    }
+
+    public static void savePushNotificationToken(String fcmToken, Context context) {
+        saveStringValue(mFcmToken, fcmToken, context);
     }
 
     public static String getUserPassword(Context context) {

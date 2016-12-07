@@ -4,10 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import uk.com.a1ms.db.A1MSDatabaseContext;
+import uk.com.a1ms.db.A1MSMessageFieldsDataSource;
 
-import static uk.com.a1ms.db.A1MSDbHelper.DATABASE_NAME;
-import static uk.com.a1ms.db.A1MSDbHelper.DATABASE_VERSION;
 
 /**
  * Created by priju.jacobpaul on 28/10/2016.
@@ -16,6 +14,7 @@ import static uk.com.a1ms.db.A1MSDbHelper.DATABASE_VERSION;
 public class MessagesDbHelper extends SQLiteOpenHelper{
 
     public static final String MESSGES_DATABASE_NAME = "oats.db";
+    private static final int DATABASE_VERSION = 1;
     private Context context;
     private static MessagesDbHelper mMessagesDbHelper;
 
@@ -27,12 +26,15 @@ public class MessagesDbHelper extends SQLiteOpenHelper{
     }
 
     private MessagesDbHelper(Context context){
-        super(new A1MSDatabaseContext(context),DATABASE_NAME,null,DATABASE_VERSION);
+        super(new A1MSMessagesDatabaseContext(context),MESSGES_DATABASE_NAME,null,DATABASE_VERSION);
         this.context = context;
     }
+
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        A1MSMessageFieldsDataSource dataSource = new A1MSMessageFieldsDataSource(context);
+        dataSource.createDb(sqLiteDatabase);
     }
 
     @Override
@@ -43,5 +45,12 @@ public class MessagesDbHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public void closeDb(){
+
+        if(mMessagesDbHelper != null){
+            mMessagesDbHelper.close();
+        }
     }
 }

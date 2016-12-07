@@ -6,14 +6,19 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.SpannableString;
 import android.text.TextUtils;
+
+import uk.com.a1ms.db.dto.A1MSUser;
+import uk.com.a1ms.dto.LongMessage;
+import uk.com.a1ms.dto.Message;
+import uk.com.a1ms.dto.ShortMessage;
+import uk.com.a1ms.util.DateTime;
+import uk.com.a1ms.util.ExecutorUtils;
+import uk.com.a1ms.util.NotificationController;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import uk.com.a1ms.db.dto.A1MSUser;
-import uk.com.a1ms.util.ExecutorUtils;
-import uk.com.a1ms.util.NotificationController;
 
 /**
  * Created by priju.jacobpaul on 6/06/16.
@@ -25,43 +30,50 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
     private A1MSDbHelper   a1MSDbHelper;
 
 
-    public static abstract class A1MSUsersEntry implements BaseColumns{
+    public static abstract class A1MSMessageEntry implements BaseColumns{
         public static final String TABLE_NAME = "Messages";
         public static final String COLUMN_NAME_NULLABLE = "nullhack";
-        public static final String COLUMN_NAME_A1MS_USER_NAME = "username";
-        public static final String COLUMN_NAME_A1MS_USER_MOB = "mobileno";
-        public static final String COLUMN_NAME_A1MS_USER_EMAIL = "emailid";
-        public static final String COLUMN_NAME_A1MS_USER_AVATAR = "avatar";
-        public static final String COLUMN_NAME_A1MS_USER_TOKEN = "token";
         public static final String COLUMN_NAME_A1MS_USER_ID = "userid";
-        public static final String COLUMN_NAME_A1MS_USER_EDITABLE = "editable";
-        public static final String COLUMN_NAME_A1MS_IS_GROUP = "isGroup";
+        public static final String COLUMN_NAME_A1MS_TO_USER_ID = "toUserId";
+
+        // This should be the viewing id. for private message, if the message is send
+        // then this should be the touser id and if the message is received, it sud be the
+        // from user id.
+
+        // for groups, always the group id.
+        public static final String COLUMN_NAME_A1MS_VIEWING_USER_ID = "viewUserId";
+
+        public static final String COLUMN_NAME_A1MS_MESSAGE = "longMessage";
+        public static final String COLUMN_NAME_A1MS_SHORT_MESSAGE = "shortMessage";
+        public static final String COLUMN_NAME_A1MS_MESSAGE_ID = "messageId";
+        public static final String COLUMN_NAME_A1MS_DATE_TIME = "dateTime";
+        public static final String COLUMN_NAME_A1MS_ISREAD = "IsRead";
 
         public static final String SQL_CREATE_ENTRIES =
-                "CREATE TABLE " + A1MSUsersEntry.TABLE_NAME + " (" +
-                        A1MSUsersEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP + TEXT_TYPE + COMMA_SEP +
-                        A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR + TEXT_TYPE + " );";
+                "CREATE TABLE " + A1MSMessageEntry.TABLE_NAME + " (" +
+                        A1MSMessageEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_TO_USER_ID + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_DATE_TIME + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_VIEWING_USER_ID + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE_ID + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_SHORT_MESSAGE + TEXT_TYPE + COMMA_SEP +
+                        A1MSMessageEntry.COLUMN_NAME_A1MS_ISREAD + BOOL_TYPE  +" );";
 
         public static final String SQL_DELETE_ENTRIES =
-                "DROP TABLE IF EXISTS " + A1MSUsersEntry.TABLE_NAME;
+                "DROP TABLE IF EXISTS " + A1MSMessageEntry.TABLE_NAME;
 
         private static String[] allColumns = {
-                A1MSUsersEntry._ID,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
+                A1MSMessageEntry._ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_TO_USER_ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_SHORT_MESSAGE,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE_ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_DATE_TIME,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_ISREAD,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID
         };
     }
 
@@ -97,189 +109,206 @@ public class A1MSMessageFieldsDataSource extends BaseFields{
     }
 
     public void createDb(SQLiteDatabase sqLiteDatabase){
-        sqLiteDatabase.execSQL(A1MSMessageFieldsDataSource.A1MSUsersEntry.SQL_CREATE_ENTRIES);
+        sqLiteDatabase.execSQL(A1MSMessageEntry.SQL_CREATE_ENTRIES);
     }
 
-    public  long insertA1MSUser(SQLiteDatabase sqLiteDatabase,A1MSUser a1MSUser){
+    public  long insertMessage(SQLiteDatabase sqLiteDatabase,Message message,boolean isMessageReceived,boolean isGroup,boolean isRead){
 
         ContentValues values = new ContentValues();
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,a1MSUser.getName());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,a1MSUser.getMobile());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,a1MSUser.getEmail());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR,a1MSUser.getAvatar());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,a1MSUser.getToken());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,a1MSUser.getUserId());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,a1MSUser.isEditable());
-        values.put(A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,a1MSUser.isGroup());
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_TO_USER_ID,message.getIdToUser().getUserId());
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID,message.getIdUser().getUserId());
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_DATE_TIME, DateTime.getDateTime());
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE_ID, message.getMessageId());
+        if(isGroup) {
+         values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_VIEWING_USER_ID,message.getIdToUser().getUserId());
+        }
+        else {
+            values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_VIEWING_USER_ID, (isMessageReceived == true) ? message.getIdUser().getUserId() : message.getIdToUser().getUserId());
+        }
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_ISREAD,isRead);
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE,message.getMessage().getLongMessage().toString());
+        values.put(A1MSMessageEntry.COLUMN_NAME_A1MS_SHORT_MESSAGE,message.getShortMessage().getShortMessage().toString());
 
         long newRowId = sqLiteDatabase.insert(
-                A1MSUsersEntry.TABLE_NAME,
-                A1MSUsersEntry.COLUMN_NAME_NULLABLE,
+                A1MSMessageEntry.TABLE_NAME,
+                A1MSMessageEntry.COLUMN_NAME_NULLABLE,
                 values);
 
         return newRowId;
     }
 
-    public  void deleteA1MSUsers(List<A1MSUser> a1MSUser){
 
-        if(a1MSUser == null){
-            return ;
+
+
+    public  void deleteMessages(List<Message> messages){
+
+        if (messages == null) {
+            return;
         }
 
-        ArrayList<String>users = new ArrayList<>();
-        for(A1MSUser user: a1MSUser){
-            users.add("\'" + user.getName() +"\'");
+        ArrayList<String> messagesArray = new ArrayList<>();
+        for (Message message : messages) {
+            messagesArray.add("\'" + message.getMessageId() + "\'");
         }
 
-        String args = TextUtils.join(", ", users);
-        String statement = "DELETE FROM " + A1MSUsersEntry.TABLE_NAME + " WHERE " +
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " IN" + " ( "+ args + " )";
-
+        String args = TextUtils.join(", ", messagesArray);
+        String statement = "DELETE FROM " + A1MSMessageFieldsDataSource.A1MSMessageEntry.TABLE_NAME + " WHERE " +
+                A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE_ID + " IN" + " ( " + args + " )";
         sqLiteDatabase.execSQL(statement);
 
     }
 
 
-    public  void deleteA1MSUser(A1MSUser a1MSUser){
+    public  void deleteMessage(Message message){
 
-        if(a1MSUser == null){
+        if(message == null){
             return;
         }
 
-        String selection = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " LIKE ?";
-        String[] selectionArgs = {String.valueOf(a1MSUser.getName())};
-        sqLiteDatabase.delete(A1MSUsersEntry.TABLE_NAME,selection,selectionArgs);
+        String selection = A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE_ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(message.getMessageId())};
+        sqLiteDatabase.delete(A1MSMessageEntry.TABLE_NAME,selection,selectionArgs);
 
     }
 
-    public List<A1MSUser> getAllA1MSGroups(){
+    public List<Message> getAllMessagesBetweenUsers(A1MSUser fromUserId, A1MSUser toUserId){
 
-        List<A1MSUser> a1MSUsers = new ArrayList<>();
-        String whereClause = A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP + " = ?";
-        String[] whereArgs = new String[]{
-                "1"
-        };
+        List<Message> messageList = new ArrayList<>();
 
         String[] projection = {
-                A1MSUsersEntry._ID,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
+                A1MSMessageEntry.COLUMN_NAME_A1MS_TO_USER_ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_DATE_TIME,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE_ID,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_ISREAD,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_MESSAGE,
+                A1MSMessageEntry.COLUMN_NAME_A1MS_SHORT_MESSAGE
         };
 
-        String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
-        Cursor c = sqLiteDatabase.query(
-                A1MSUsersEntry.TABLE_NAME,  // The table to query
-                projection,                               // The columns to return
-                whereClause,                                // The columns for the WHERE clause
-                whereArgs,                               // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
-        );
+        String whereClause = "( " + A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID + " = ?" +
+                            " OR " + A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID + " = ?" + " ) " +
+                            "AND " + "( " +A1MSMessageEntry.COLUMN_NAME_A1MS_TO_USER_ID + " = ?" +
+                            " OR " + A1MSMessageEntry.COLUMN_NAME_A1MS_TO_USER_ID + " = ?" + " )";
+        String[] whereArgs = new String[] {
+                fromUserId.getUserId(),toUserId.getUserId(),
+                toUserId.getUserId(),fromUserId.getUserId()
+        };
+
+        String sortOrder = A1MSMessageEntry.COLUMN_NAME_A1MS_DATE_TIME + " ASC";
+        Cursor c = sqLiteDatabase.query(A1MSMessageEntry.TABLE_NAME,
+                projection,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                sortOrder);
 
         if(c != null) {
             c.moveToFirst();
 
 
-            boolean isEchomateFound = false;
-
             while (!c.isAfterLast()){
-                A1MSUser a1MSUser = cursorToUser(c);
-                if(!isEchomateFound && a1MSUser.getName().contentEquals("Echo Mate")){
-                    isEchomateFound  = true;
-                    a1MSUsers.add(0,a1MSUser);
-                }
-                else {
-                    a1MSUsers.add(a1MSUser);
+                Message message = cursorToUser(c);
+                messageList.add(message);
                 }
                 c.moveToNext();
             }
             c.close();
-        }
 
-        return a1MSUsers;
+        return messageList;
     }
 
 
-    public List<A1MSUser> getAllA1MSUsers(boolean removeEchomate,boolean includeGroups){
-
-        List<A1MSUser> a1MSUsers = new ArrayList<>();
-
-        String[] projection = {
-                A1MSUsersEntry._ID,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_MOB,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EMAIL,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_TOKEN,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_ID,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP,
-                A1MSUsersEntry.COLUMN_NAME_A1MS_USER_AVATAR
-        };
-
-        String whereClause = null;
-        String [] whereArgs = null;
-
-        if(!includeGroups) {
-            whereClause = A1MSUsersEntry.COLUMN_NAME_A1MS_IS_GROUP+"=?";
-            whereArgs = new String[1];
-            whereArgs[0] = "0";
-        }
+//    public List<Message> getAllMessagesContaining(String message, A1MS)
 
 
+//    public List<A1MSUser> getAllA1MSUsers(boolean removeEchomate,boolean includeGroups){
+//
+//        List<A1MSUser> a1MSUsers = new ArrayList<>();
+//
+//        String[] projection = {
+//                A1MSMessageEntry._ID,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_NAME,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_MOB,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_EMAIL,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_TOKEN,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_ID,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_EDITABLE,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_IS_GROUP,
+//                A1MSMessageEntry.COLUMN_NAME_A1MS_USER_AVATAR
+//        };
+//
+//        String whereClause = null;
+//        String [] whereArgs = null;
+//
+//        if(!includeGroups) {
+//            whereClause = A1MSMessageEntry.COLUMN_NAME_A1MS_IS_GROUP+"=?";
+//            whereArgs = new String[1];
+//            whereArgs[0] = "0";
+//        }
+//
+//
+//
+//        String sortOrder = A1MSMessageEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
+//        Cursor c = sqLiteDatabase.query(
+//                A1MSMessageEntry.TABLE_NAME,  // The table to query
+//                projection,                               // The columns to return
+//                whereClause,                                // The columns for the WHERE clause
+//                whereArgs,                               // The values for the WHERE clause
+//                null,                                     // don't group the rows
+//                null,                                     // don't filter by row groups
+//                sortOrder                                 // The sort order
+//        );
+//
+//        if(c != null) {
+//            c.moveToFirst();
+//            boolean isEchomateFound = false;
+//
+//            while (!c.isAfterLast()){
+//                A1MSUser a1MSUser = cursorToUser(c);
+//                if(!isEchomateFound && a1MSUser.getName().contentEquals("Echo Mate")){
+//                    isEchomateFound  = true;
+//                    if(!removeEchomate) {
+//                        a1MSUsers.add(0, a1MSUser);
+//                    }
+//                }
+//                else {
+//                    a1MSUsers.add(a1MSUser);
+//                }
+//                c.moveToNext();
+//            }
+//            c.close();
+//        }
+//
+//        return a1MSUsers;
+//    }
 
-        String sortOrder = A1MSUsersEntry.COLUMN_NAME_A1MS_USER_NAME + " ASC";
-        Cursor c = sqLiteDatabase.query(
-                A1MSUsersEntry.TABLE_NAME,  // The table to query
-                projection,                               // The columns to return
-                whereClause,                                // The columns for the WHERE clause
-                whereArgs,                               // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
-        );
+    private Message cursorToUser(Cursor c){
 
-        if(c != null) {
-            c.moveToFirst();
-            boolean isEchomateFound = false;
+        Message message = new Message();
 
-            while (!c.isAfterLast()){
-                A1MSUser a1MSUser = cursorToUser(c);
-                if(!isEchomateFound && a1MSUser.getName().contentEquals("Echo Mate")){
-                    isEchomateFound  = true;
-                    if(!removeEchomate) {
-                        a1MSUsers.add(0, a1MSUser);
-                    }
-                }
-                else {
-                    a1MSUsers.add(a1MSUser);
-                }
-                c.moveToNext();
-            }
-            c.close();
-        }
+        A1MSUser toUser = new A1MSUser();
+        toUser.setUserId(c.getString(1));
+        message.setIdToUser(toUser);
 
-        return a1MSUsers;
-    }
+        A1MSUser fromUser = new A1MSUser();
+        fromUser.setUserId(c.getString(2));
+        message.setIdUser(fromUser);
 
-    private A1MSUser cursorToUser(Cursor c){
-        A1MSUser a1MSUser = new A1MSUser();
-        a1MSUser.setName(c.getString(1));
-        a1MSUser.setMobile(c.getString(2));
-        a1MSUser.setEmail(c.getString(3));
-        a1MSUser.setToken(c.getString(4));
-        String editable = c.getString(5);
-        a1MSUser.setEditable(editable.contains("1") ? true : false);
-        String isGroup = c.getString(6);
-        a1MSUser.setGroup(isGroup.contains("1") ? true : false);
-        a1MSUser.setAvatar(c.getString(7));
-        return a1MSUser;
+        message.setDateTime(c.getString(3));
+        message.setMessageId(c.getString(4));
+
+        message.setRead( (c.getInt(5) == 0) ? false : true );
+
+        LongMessage longMessage = new LongMessage();
+        longMessage.setLongMessage(new SpannableString(c.getString(6)));
+        message.setMessage(longMessage);
+
+        ShortMessage shortMessage = new ShortMessage();
+        shortMessage.setShortMessage(new SpannableString(c.getString(7)));
+        message.setShortMessage(shortMessage);
+
+        return message;
     }
 
 }

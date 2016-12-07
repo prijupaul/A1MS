@@ -80,6 +80,16 @@ public class MessagingActivity extends BaseActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+
+//        A1MSUser a1MSUser3 = new A1MSUser();
+//        a1MSUser3.setEmail("kajanth@a1ms-uk.com");
+//        a1MSUser3.setMobile("01224 567 8903");
+//        a1MSUser3.setName("Personal Phone");
+//        a1MSUser3.setEditable(true);
+//        a1MSUser3.setUserId("fe7bb0ee-07b3-4d27-8ac8-e31fff076075");
+//        mUsersFieldsDataSource.insertA1MSUser(A1MSApplication.getSqLiteDatabase(),a1MSUser3);
+
+
         A1MSUser user = getIntent().getParcelableExtra("user");
         launchMessagingFragment(user);
     }

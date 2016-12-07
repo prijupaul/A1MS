@@ -12,19 +12,21 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
+
+import uk.com.a1ms.A1MSApplication;
+import uk.com.a1ms.R;
+import uk.com.a1ms.messages.MessageImpl;
+import uk.com.a1ms.util.ExecutorUtils;
+import uk.com.a1ms.util.SharedPreferenceManager;
 
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import uk.com.a1ms.A1MSApplication;
-import uk.com.a1ms.R;
-import uk.com.a1ms.messages.MessageImpl;
-import uk.com.a1ms.util.ExecutorUtils;
-import uk.com.a1ms.util.SharedPreferenceManager;
 
 /**
  * Created by priju.jacobpaul on 6/10/2016.
@@ -47,6 +49,8 @@ public class MessagingService extends Service {
     private final String GROUPMESSAGE = "groupMessage";
     private final String GROUPMESSAGE_REPLY = "grespMessage";
 
+    private final String USERNOTIFICATION = "userNotification";
+
     private final String USERS = "users";
 
     public static final int MSG_SEND_PRIVATE_MESSAGE = 1;
@@ -55,6 +59,7 @@ public class MessagingService extends Service {
     public static final int MSG_FROM_SERVER_PRIVATE_REPLY = 4;
     public static final int MSG_FROM_SERVER_GROUP_REPLY = 5;
     public static final int MSG_FROM_SERVER_ECHO_REPLY = 6;
+    public static final int MSG_FROM_SERVER_USER_NOTIFICATION = 7;
 
     private final Messenger mMessenger = new Messenger(new IncomingMessageHandler());
     private Messenger mUIMessenger = new Messenger(new MessageImpl.IncomingMessageHandler());
@@ -111,6 +116,7 @@ public class MessagingService extends Service {
                     mSocket.on(ECHOMESSAGE_REPLY, onNewEchoMessage);
                     mSocket.on(PRIVATEMESSAGE_REPLY,onNewPrivateMessage);
                     mSocket.on(GROUPMESSAGE_REPLY,onGroupMessage);
+                    mSocket.on(USERNOTIFICATION,onUserNotification);
                     mSocket = mSocket.connect();
 
 
@@ -182,6 +188,7 @@ public class MessagingService extends Service {
             mSocket.off(ECHOMESSAGE_REPLY, onNewEchoMessage);
             mSocket.off(PRIVATEMESSAGE_REPLY,onNewPrivateMessage);
             mSocket.off(GROUPMESSAGE_REPLY,onGroupMessage);
+            mSocket.off(USERNOTIFICATION,onUserNotification);
         }
 
     }
@@ -216,6 +223,29 @@ public class MessagingService extends Service {
         }
     };
 
+    private Emitter.Listener onUserNotification = new Emitter.Listener(){
+        @Override
+        public void call(final Object... args) {
+
+            String data = "";
+            Object object = args[0];
+            if (object instanceof JSONObject) {
+                data = object.toString();
+            } else if (object instanceof String) {
+                data = (String) object;
+            }
+
+            final String placeHolderData = data;
+            ExecutorUtils.runOnUIThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(),placeHolderData,Toast.LENGTH_SHORT).show();
+                }
+            },0);
+
+            sendMessageToUI(MSG_FROM_SERVER_USER_NOTIFICATION,data);
+        }
+    };
 
     private Emitter.Listener onGroupMessage = new Emitter.Listener() {
         @Override

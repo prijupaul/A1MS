@@ -1,11 +1,12 @@
 package uk.com.a1ms.messages;
 
-import java.util.HashMap;
-
 import uk.com.a1ms.A1MSApplication;
+import uk.com.a1ms.db.A1MSMessageFieldsDataSource;
 import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.ui.uiutil.NotificationBuilder;
 import uk.com.a1ms.util.NotificationController;
+
+import java.util.HashMap;
 
 /**
  * Created by priju.jacobpaul on 16/10/2016.
@@ -74,6 +75,10 @@ public class MessageNotificationHandler implements NotificationController.Notifi
 
             if(!handled){
                 NotificationBuilder.showNotification(A1MSApplication.applicationContext, message.getMessage().getLongMessage().toString());
+
+                // Add to the message database
+                A1MSMessageFieldsDataSource dataSource = new A1MSMessageFieldsDataSource(A1MSApplication.applicationContext);
+                dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),message,true,messageType.equalsIgnoreCase("groupMessage"),false);
             }
 
         }

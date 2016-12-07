@@ -25,7 +25,7 @@ public class A1MSApplication extends Application {
     private Activity mActivity;
     public static Context applicationContext;
     public static volatile Handler applicationHandler;
-    public static A1MSDbHelper dbHelper;
+    public static A1MSDbHelper a1msDbHelper;
     private static SQLiteDatabase sqLiteDatabase;
     private static MessagesDbHelper messagesDbHelper;
     private static SQLiteDatabase messagesSqLiteDb;
@@ -51,8 +51,8 @@ public class A1MSApplication extends Application {
             Logger.init().logLevel(LogLevel.NONE);
         }
 
-        dbHelper = A1MSDbHelper.getInstance(applicationContext);
-        sqLiteDatabase = dbHelper.getWritableDatabase();
+        a1msDbHelper = A1MSDbHelper.getInstance(applicationContext);
+        sqLiteDatabase = a1msDbHelper.getWritableDatabase();
 
         messagesDbHelper = MessagesDbHelper.getInstance(applicationContext);
         messagesSqLiteDb = messagesDbHelper.getWritableDatabase();
@@ -74,12 +74,14 @@ public class A1MSApplication extends Application {
 
     public static A1MSDbHelper getDatabaseAdapter()
     {
-        return dbHelper;
+        return a1msDbHelper;
     }
 
     public static SQLiteDatabase getSqLiteDatabase(){
         return sqLiteDatabase;
     }
+
+    public static SQLiteDatabase getMessagesSqLiteDb() { return messagesSqLiteDb ;}
 
     public static ServiceConnection getServiceConnection() { return  mServiceConnection; }
 

@@ -23,9 +23,6 @@ import android.widget.TextView;
 
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.ContactsGroupsA1MSAdapter;
 import uk.com.a1ms.db.A1MSGroupsFieldsDataSource;
@@ -37,6 +34,9 @@ import uk.com.a1ms.dto.Message;
 import uk.com.a1ms.ui.ContactsGroupsActivity;
 import uk.com.a1ms.util.ExecutorUtils;
 import uk.com.a1ms.util.NotificationController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
@@ -154,13 +154,11 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
     public void onStop() {
         super.onStop();
 
-        if(currentSelectedA1MSUser != null) {
-            if(currentSelectedUserPos != 0) {
+        if( (currentSelectedA1MSUser != null) && (currentSelectedUserPos != 0)) {
                 mA1MSUsers.remove(currentSelectedUserPos);
                 mA1MSUsers.add(1, currentSelectedA1MSUser);
                 mAdapter.setDataSet(mA1MSUsers);
                 mAdapter.notifyDataSetChanged();
-            }
         }
     }
 
@@ -288,6 +286,11 @@ public class ContactsGroupsA1MSFragment extends BaseFragment implements Contacts
             }
             case R.id.action_create_group:{
                 ((ContactsGroupsActivity)getActivity()).showCreateGroupsActivity(null,false);
+                return true;
+            }
+
+            case R.id.action_view_profile:{
+
                 return true;
             }
         }

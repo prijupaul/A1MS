@@ -1,4 +1,7 @@
-package uk.com.a1ms.messages;
+package uk.com.a1ms.messages.fcm;
+
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,9 +11,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.ui.MainActivity;

@@ -20,12 +20,11 @@ import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
-import java.util.ArrayList;
-
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.ContactsGroupsPagerAdapter;
 import uk.com.a1ms.contacts.FetchContactsHandler;
+import uk.com.a1ms.db.A1MSMessageFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dialogutil.DialogCallBackListener;
 import uk.com.a1ms.dialogutil.DialogUtil;
@@ -39,6 +38,8 @@ import uk.com.a1ms.ui.uiutil.NotificationBuilder;
 import uk.com.a1ms.util.BuildUtils;
 import uk.com.a1ms.util.NotificationController;
 import uk.com.a1ms.util.PermissionRequestManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by priju.jacobpaul on 28/05/16.
@@ -96,7 +97,6 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-                BaseFragment fragment = (BaseFragment)mAdapter.getRegisteredFragment(mViewPager.getCurrentItem());
 
             }
 
@@ -341,6 +341,11 @@ public class ContactsGroupsActivity extends BaseActivity implements Notification
 
         }
         NotificationBuilder.showNotification(this, message.getMessage().getLongMessage().toString());
+
+        // Add to the message database
+        A1MSMessageFieldsDataSource dataSource = new A1MSMessageFieldsDataSource(A1MSApplication.applicationContext);
+        dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),message,true,messageType.equalsIgnoreCase("groupMessage"),false);
+
         return true;
     }
 }

@@ -40,9 +40,9 @@ public class AddMockUsers {
         A1MSUser a1MSUser3 = new A1MSUser();
         a1MSUser3.setEmail("kajanth@a1ms-uk.com");
         a1MSUser3.setMobile("01224 567 8903");
-        a1MSUser3.setName("Kajath");
+        a1MSUser3.setName("Personal Phone");
         a1MSUser.setEditable(true);
-        a1MSUser3.setUserId("61e6b3ae-b226-4227-84f6-2aeee470bffe");
+        a1MSUser3.setUserId("8f675d9a-deb1-4a96-8779-f27811ca718d");
         dataSource.insertA1MSUser(sqLiteDatabase,a1MSUser3);
 //
 //        A1MSUser a1MSUser4 = new A1MSUser();

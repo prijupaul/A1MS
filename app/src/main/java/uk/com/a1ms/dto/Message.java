@@ -16,19 +16,21 @@ import uk.com.a1ms.util.SharedPreferenceManager;
  */
 public class Message {
 
-    private int messageId;
+    private String messageId;
     private ShortMessage shortMessage;
     private LongMessage message;
     private A1MSUser idToUser;
     private A1MSUser idUser;
     private boolean isSelf;
     private String time;
+    private String dateTime;
+    private boolean isRead;
 
-    public int getMessageId() {
+    public String getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(int messageId) {
+    public void setMessageId(String messageId) {
         this.messageId = messageId;
     }
 
@@ -78,6 +80,22 @@ public class Message {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
     public JSONObject convertToJson(String token, A1MSUser user, A1MSGroup group) {

@@ -44,6 +44,9 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
         setContentView(R.layout.mainactivity);
 
+
+
+
         mFrameLayoutHolder = (FrameLayout) findViewById(R.id.framelayout_holder);
         mLocationService = new LocationService(this);
 
@@ -54,7 +57,11 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setTitle("Activation");
         }
+
+
     }
+
+
 
 
     @Override
@@ -79,6 +86,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     @Override
     protected void onStop() {
         super.onStop();
+
         NotificationController.getInstance().removeObserver(this,NotificationController.didReceiveLocation);
         mLocationService.stopLocationListener();
     }
@@ -181,7 +189,8 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                         }
                         switch (responseCode){
                             case 413:{
-                                Toast.makeText(MainActivity.this,details.getErrorMessage(),Toast.LENGTH_LONG).show();
+//                                Toast.makeText(MainActivity.this,details.getErrorMessage(),Toast.LENGTH_LONG).show();
+                                resendActivationCode(countryCode,phoneNo);
                                 break;
                             }
                         }
@@ -195,6 +204,25 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 }
             });
         }
+    }
+
+    private void resendActivationCode(String countryCode, String phoneNo) {
+        UserActivationNetworkHandler resendActivation = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
+                .setMobileNumber("+" + countryCode + phoneNo)
+                .setName("deprecated")
+                .build();
+        resendActivation.doResendActivationCode(new UserActivationNetworkHandler.UserActivationListener() {
+            @Override
+            public void onUserActivationResponse(Object userDetails) {
+//                doUserLogin((UserDetails)userDetails);
+            }
+
+            @Override
+            public void onUserActivationError() {
+
+            }
+        });
+
     }
 
     private void launchRegoInputActivationCodeFragment(String phoneNumber,String code) {

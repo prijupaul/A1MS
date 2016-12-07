@@ -1,14 +1,17 @@
 package uk.com.a1ms.network.handlers;
 
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.network.BaseNetwork;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.NetworkServices;
 import uk.com.a1ms.network.dto.UserDetails;
 import uk.com.a1ms.network.dto.loginDetails;
+import uk.com.a1ms.util.SharedPreferenceManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by priju.jacobpaul on 24/06/16.
@@ -252,6 +255,42 @@ public class UserActivationNetworkHandler extends BaseNetwork {
     }
 
 
+    /**
+     * This is the last step of three step login.
+     * 1. Registration (user)
+     * 2. Activation
+     * 3. Login
+     * @param listener
+     */
+    public void doUserLogin(UserActivationListener listener){
+
+        this.userActivationListener = listener;
+
+        NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
+        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
+                locale,imei,macAddress,androidId,countryCode,androidVersion,manufacture,language,country);
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+                userActivationListener.onUserActivationResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UserDetails> call, Throwable t) {
+                userActivationListener.onUserActivationError();
+            }
+        });
+
+    }
+
+    /**
+     * This is the first step of three step login.
+     * 1. Registration (user)
+     * 2. Activation
+     * 3. Login
+     * @param listener
+     */
+
     public void doActivateUserWithCode(UserActivationListener listener){
 
         this.userActivationListener = listener;
@@ -292,41 +331,16 @@ public class UserActivationNetworkHandler extends BaseNetwork {
 
     }
 
-    /**
-     * This is the last step of two step login.
-     * 1. Registration
-     * 2. Activation
-     * 3. Login
-     * @param listener
-     */
-    public void doUserLogin(UserActivationListener listener){
-
-        this.userActivationListener = listener;
-
-        NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
-                locale,imei,macAddress,androidId,countryCode,androidVersion,manufacture,language,country);
-        call.enqueue(new Callback<UserDetails>() {
-            @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
-                userActivationListener.onUserActivationResponse(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
-                userActivationListener.onUserActivationError();
-            }
-        });
-
-    }
-
 
     public void doRegisterUserWithMobileNumber(UserActivationListener listener){
 
         this.userActivationListener = listener;
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<loginDetails> call = userActivation.doRegisterPhoneNumber(mobileNumber,password,name);
+
+        final Call<loginDetails> call = userActivation.doRegisterPhoneNumber(mobileNumber,password,name,
+                SharedPreferenceManager.getPushNotificationToken(A1MSApplication.applicationContext));
+
         call.enqueue(new Callback<loginDetails>() {
             @Override
             public void onResponse(Call<loginDetails> call, Response<loginDetails> response) {

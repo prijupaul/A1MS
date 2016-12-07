@@ -74,18 +74,20 @@
 
         <!-- FCM Messaging Service -->
         <service
-            android:name=".messages.FCMMessagingService">
+            android:name=".messages.fcm.FCMMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
         <service
-            android:name=".messages.FCMInstanceIDService">
+            android:name=".messages.fcm.FCMInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+
+        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
 
     </application>
 

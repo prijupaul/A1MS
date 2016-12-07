@@ -18,11 +18,10 @@ import android.widget.ListView;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.MessageAdapter;
+import uk.com.a1ms.db.A1MSMessageFieldsDataSource;
 import uk.com.a1ms.db.dto.A1MSGroup;
 import uk.com.a1ms.db.dto.A1MSUser;
 import uk.com.a1ms.dto.LongMessage;
@@ -38,6 +37,8 @@ import uk.com.a1ms.ui.MessagingActivity;
 import uk.com.a1ms.util.DateTime;
 import uk.com.a1ms.util.ExecutorUtils;
 import uk.com.a1ms.util.SharedPreferenceManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by priju.jacobpaul on 28/07/16.
@@ -73,7 +74,6 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        MessageNotificationHandler.getInstance().registerForEvents(MessageNotificationHandler.PRIORITY_HIGH,this);
     }
 
     @Override
@@ -154,6 +154,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(mCurrentUser.getName());
 
+        MessageNotificationHandler.getInstance().registerForEvents(MessageNotificationHandler.PRIORITY_HIGH,this);
     }
 
     @Override
@@ -232,21 +233,19 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
             String token = SharedPreferenceManager.getUserToken(getContext());
             final JSONObject jsonObject = messageObj.convertToJson(token,mCurrentUser,mCurrentGroup);
 
+            A1MSMessageFieldsDataSource dataSource = new A1MSMessageFieldsDataSource(getContext());
 
             if(!mCurrentUser.isEditable()) {
-            // webSocketHandler.sendEchoMessage(jsonObject.toString());
-//               webIOSocketHandler.sendEchoMessage(jsonObject.toString());
                 mMessageSender.sendMessage(MessageListerner.MESSAGETYPE.MESSAGE_ECHO,jsonObject);
+                dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),messageObj,false,false,true);
             }
             else if(mCurrentUser.isGroup()){
-                // webSocketHandler.sendMessage(jsonObject.toString());
-//                webIOSocketHandler.sendGroupMessage(jsonObject.toString());
                 mMessageSender.sendMessage(MessageListerner.MESSAGETYPE.MESSAGE_GROUP,jsonObject);
+                dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),messageObj,false,true,true);
             }
             else {
-                // webSocketHandler.sendMessage(jsonObject.toString());
-//                webIOSocketHandler.sendMessage(jsonObject.toString());
                 mMessageSender.sendMessage(MessageListerner.MESSAGETYPE.MESSAGE_PRIVATE,jsonObject);
+                dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),messageObj,false,false,true);
             }
 
 
@@ -263,12 +262,6 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     @Override
     public boolean onBackPressed() {
         getActivity().finish();
-
-//        if (webIOSocketHandler != null) {
-//            webIOSocketHandler.disconnect();
-//            return true;
-//        }
-
         return super.onBackPressed();
     }
 
@@ -323,16 +316,21 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
     public boolean onNewMessageReceived(String messageType, Message message) {
         if(message != null){
 
+            A1MSMessageFieldsDataSource dataSource = new A1MSMessageFieldsDataSource(getContext());
+
+
             switch (messageType){
                 case "echoMessage":
                     if(mCurrentUser.getUserId().compareTo(message.getIdToUser().getUserId()) == 0){
                         onMessageReceived(message.getMessage().getLongMessage(),message.getShortMessage().getShortMessage());
+                        dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),message,true,false,true);
                         return true;
                     }
                     break;
                 case "privateMessage":{
                     if(mCurrentUser.getUserId().compareTo(message.getIdUser().getUserId()) == 0){
                         onMessageReceived(message.getMessage().getLongMessage(),message.getShortMessage().getShortMessage());
+                        dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),message,true,false,true);
                         return true;
                     }
                     break;
@@ -340,6 +338,7 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
                 case "groupMessage":{
                     if(mCurrentGroup.getGroupId().compareTo(message.getIdUser().getUserId()) == 0){
                         onMessageReceived(message.getMessage().getLongMessage(),message.getShortMessage().getShortMessage());
+                        dataSource.insertMessage(A1MSApplication.getMessagesSqLiteDb(),message,true,true,true);
                         return true;
                     }
                     break;

@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.IntroPagerAdapter;
 import uk.com.a1ms.util.SharedPreferenceManager;
+
+import java.util.ArrayList;
 
 public class IntroActivity extends BaseActivity implements IntroPagerAdapter.IntroPageListener {
 
@@ -28,6 +31,8 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        checkForCrashes();
+
 //        SharedPreferenceManager.setFirstTimeLaunch(false,this);
 
         if(SharedPreferenceManager.isFirstTimeLaunch(this)) {
@@ -37,8 +42,23 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
             startContactsGroupsActivity(savedInstanceState,true);
         }
 
+        checkForUpdates();
+
     }
 
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this);
+    }
+
+
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
+
+    private void unregisterManagers() {
+        UpdateManager.unregister();
+    }
 
     private void initPages(){
         ImageView img1 = (ImageView)findViewById(R.id.imageview_circle1);
@@ -124,5 +144,17 @@ public class IntroActivity extends BaseActivity implements IntroPagerAdapter.Int
         if(requestCode == 1){
             startRegistrationActivity(null,true);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        unregisterManagers();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
     }
 }

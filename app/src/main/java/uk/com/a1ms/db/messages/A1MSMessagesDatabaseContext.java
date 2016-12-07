@@ -8,9 +8,9 @@ import android.os.Environment;
 
 import com.orhanobut.logger.Logger;
 
-import java.io.File;
-
 import uk.com.a1ms.util.BuildUtils;
+
+import java.io.File;
 
 /**
  * Created by priju.jacobpaul on 29/06/16.
@@ -52,9 +52,9 @@ public class A1MSMessagesDatabaseContext extends ContextWrapper {
 
     @Override
     public SQLiteDatabase openOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory) {
-        if(!BuildUtils.isDbOnSDCard()) {
-            return super.openOrCreateDatabase(name, mode, factory);
-        }
+//        if(!BuildUtils.isDbOnSDCard()) {
+//            return super.openOrCreateDatabase(name, mode, factory);
+//        }
 
         SQLiteDatabase result = SQLiteDatabase.openOrCreateDatabase(getDatabasePath(name), null);
 
@@ -65,9 +65,9 @@ public class A1MSMessagesDatabaseContext extends ContextWrapper {
 
     @Override
     public SQLiteDatabase openOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory, DatabaseErrorHandler errorHandler) {
-        if (!BuildUtils.isDbOnSDCard()) {
-            return super.openOrCreateDatabase(name,mode,factory,errorHandler);
-        }
+//        if (!BuildUtils.isDbOnSDCard()) {
+//            return super.openOrCreateDatabase(name,mode,factory,errorHandler);
+//        }
 
         return openOrCreateDatabase(name, mode, factory);
     }

@@ -1,5 +1,10 @@
 package uk.com.a1ms.network;
 
+import uk.com.a1ms.network.dto.GroupDetails;
+import uk.com.a1ms.network.dto.MemberGroupDetails;
+import uk.com.a1ms.network.dto.UserDetails;
+import uk.com.a1ms.network.dto.loginDetails;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -11,10 +16,6 @@ import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import uk.com.a1ms.network.dto.GroupDetails;
-import uk.com.a1ms.network.dto.MemberGroupDetails;
-import uk.com.a1ms.network.dto.UserDetails;
-import uk.com.a1ms.network.dto.loginDetails;
 
 /**
  * Created by priju.jacobpaul on 23/06/16.
@@ -27,7 +28,16 @@ public interface NetworkServices {
     Call<loginDetails> doRegisterPhoneNumber(
             @Field("username") String phoneNumber,
             @Field("password") String password,
-            @Field("name") String name);
+            @Field("name") String name,
+            @Field("fcmPushId") String fcmPushId);
+
+    @FormUrlEncoded
+    @PUT(NetworkConstants.USER_REGISTRATION)
+    Call<loginDetails> updateRegoDetails(
+            @Field("username") String phoneNumber,
+            @Field("password") String password,
+            @Field("name") String name,
+            @Field("fcmPushId") String fcmPushId);
 
 
     @FormUrlEncoded
