@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 import com.orhanobut.logger.Logger;
 
-import java.util.SortedMap;
-
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
 import uk.com.a1ms.adapters.ContactsGroupsInviteAdapter;
@@ -26,7 +24,10 @@ import uk.com.a1ms.contacts.FetchContactsHandler;
 import uk.com.a1ms.dto.Contacts;
 import uk.com.a1ms.network.handlers.UserInviteNetworkHandler;
 import uk.com.a1ms.util.NotificationController;
+import uk.com.a1ms.util.PhoneConfigUtils;
 import uk.com.a1ms.util.SharedPreferenceManager;
+
+import java.util.SortedMap;
 
 /**
  * Created by priju.jacobpaul on 27/05/16.
@@ -159,9 +160,16 @@ public class ContactsGroupsInviteFragment extends BaseFragment implements  Notif
 
     @Override
     public void onInviteClick(String email, String mobileNumber, int position) {
+
+        if(!PhoneConfigUtils.isValidNumber(mobileNumber)){
+            Toast.makeText(getContext(),getResources().getText(R.string.invalid_phone_number), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         UserInviteNetworkHandler inviteNetworkHandler = new UserInviteNetworkHandler.UserInviteNetworkBuilder()
                 .setMobileNumber(mobileNumber)
                 .setUserEmail(email)
+                .setCountryCode(PhoneConfigUtils.getCountryCode())
                 .setBearerToken(SharedPreferenceManager.getUserToken(getActivity()))
                 .build();
         inviteNetworkHandler.sendInviteToUser(new UserInviteNetworkHandler.UserInviteNetworkListener() {

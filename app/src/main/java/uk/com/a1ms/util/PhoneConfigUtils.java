@@ -1,5 +1,9 @@
 package uk.com.a1ms.util;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
 import android.Manifest;
 import android.content.Context;
 import android.net.wifi.WifiManager;
@@ -7,10 +11,10 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
-import java.util.Locale;
-
 import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.R;
+
+import java.util.Locale;
 
 /**
  * Created by priju.jacobpaul on 17/06/16.
@@ -89,6 +93,22 @@ public class PhoneConfigUtils {
 
     public static String getManufacture(){
         return Build.MANUFACTURER;
+    }
+
+    public static boolean isValidNumber(String number){
+
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        try {
+            Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(number, getCountryCode());
+
+            if(phoneUtil.isValidNumber(phoneNumber)){
+                return false;
+            }
+
+        } catch (NumberParseException e) {
+            System.err.println("NumberParseException was thrown: " + e.toString());
+        }
+        return true;
     }
 
 

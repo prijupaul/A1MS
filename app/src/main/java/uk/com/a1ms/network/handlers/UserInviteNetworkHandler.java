@@ -1,12 +1,13 @@
 package uk.com.a1ms.network.handlers;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import uk.com.a1ms.network.BaseNetwork;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.NetworkServices;
 import uk.com.a1ms.network.dto.UserDetails;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by priju.jacobpaul on 6/07/16.
@@ -21,6 +22,7 @@ public class UserInviteNetworkHandler extends BaseNetwork {
     private String bearerToken;
     private String mobileNumber;
     private String userEmail;
+    private String countryCode;
 
 
     public UserInviteNetworkHandler(){
@@ -54,12 +56,20 @@ public class UserInviteNetworkHandler extends BaseNetwork {
         this.userEmail = userEmail;
     }
 
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
 
     public static class UserInviteNetworkBuilder{
 
         private String bearerToken;
         private String mobileNumber;
         private String userEmail;
+        private String countryCode;
 
         public UserInviteNetworkBuilder setBearerToken(String bearerToken){
             this.bearerToken = bearerToken;
@@ -76,11 +86,17 @@ public class UserInviteNetworkHandler extends BaseNetwork {
             return this;
         }
 
+        public UserInviteNetworkBuilder setCountryCode(String countryCode) {
+            this.countryCode = countryCode;
+            return this;
+        }
+
         public UserInviteNetworkHandler build(){
             UserInviteNetworkHandler userInviteNetworkHandler = new UserInviteNetworkHandler();
             userInviteNetworkHandler.setUserEmail(userEmail);
             userInviteNetworkHandler.setMobileNumber(mobileNumber);
             userInviteNetworkHandler.setBearerToken(bearerToken);
+            userInviteNetworkHandler.setCountryCode(countryCode);
             userInviteNetworkHandler.init();
             return userInviteNetworkHandler;
         }
@@ -89,7 +105,7 @@ public class UserInviteNetworkHandler extends BaseNetwork {
     public void sendInviteToUser(final UserInviteNetworkListener inviteNetworkListener){
 
         NetworkServices userInviteService = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userInviteService.doInviteUser(getUserEmail(),getMobileNumber());
+        final Call<UserDetails> call = userInviteService.doInviteUser(getUserEmail(),getMobileNumber(),getCountryCode());
         call.enqueue(new Callback<UserDetails>() {
             @Override
             public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {

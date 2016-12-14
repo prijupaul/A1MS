@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -67,7 +68,18 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
         mTVCountry = (TextView)view.findViewById(R.id.textview_country);
         mETCountryCode = (EditText)view.findViewById(R.id.edittext_country_code);
         mETPhoneNumber = (EditText)view.findViewById(R.id.edittext_enter_phone);
-
+        mETPhoneNumber.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyCode == keyEvent.KEYCODE_ENTER) {
+                    if (mETPhoneNumber.getText().length() >= BuildUtils.getMaxPhoneNumberDigits()) {
+                        processPhoneNumber();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
         return view;
     }
 
@@ -161,14 +173,18 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
             if(item.isEnabled()){
 
                 // hide keyboard
-                AndroidUtils.hideKeyboard(mETCountryCode);
-                AndroidUtils.hideKeyboard(mETPhoneNumber);
-                disableInput();
-                mListener.onPhoneNumberEntered(mETCountryCode.getText().toString(),mETPhoneNumber.getText().toString());
+                processPhoneNumber();
                 return true;
             }
         }
         return false;
+    }
+
+    private void processPhoneNumber() {
+        AndroidUtils.hideKeyboard(mETCountryCode);
+        AndroidUtils.hideKeyboard(mETPhoneNumber);
+        disableInput();
+        mListener.onPhoneNumberEntered(mETCountryCode.getText().toString(),mETPhoneNumber.getText().toString());
     }
 
 

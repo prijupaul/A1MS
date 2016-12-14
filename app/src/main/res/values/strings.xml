@@ -125,6 +125,7 @@
     <string name="invites">Invites</string>
     <string name="a1ms_tab">A1MS</string>
     <string name="new_message">New message</string>
+    <string name="invalid_phone_number">Phone number not valid. Please check your number.</string>
 
 
 </resources>
