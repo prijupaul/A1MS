@@ -16,7 +16,6 @@ import com.orhanobut.logger.Logger;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.network.NetworkConstants;
-import uk.com.a1ms.network.dto.UserDetails;
 import uk.com.a1ms.network.dto.loginDetails;
 import uk.com.a1ms.network.handlers.UserActivationNetworkHandler;
 import uk.com.a1ms.ui.fragments.RegistrationAcceptActivationFragment;
@@ -36,6 +35,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     private FrameLayout mFrameLayoutHolder;
     private final String TAG = MainActivity.class.getSimpleName();
     private LocationService mLocationService;
+    private String mPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +43,6 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.mainactivity);
-
-
-
 
         mFrameLayoutHolder = (FrameLayout) findViewById(R.id.framelayout_holder);
         mLocationService = new LocationService(this);
@@ -57,12 +54,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setTitle("Activation");
         }
-
-
     }
-
-
-
 
     @Override
     protected void onResume() {
@@ -150,17 +142,15 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
     public void onPhoneNumberEntered(final String countryCode, final String phoneNo) {
         if (!countryCode.isEmpty() && !phoneNo.isEmpty()) {
 
-            // TODO: remove the deprecated fields.
-
-
             mFrameLayoutHolder.setEnabled(false);
             ProgressView.addProgressView(mFrameLayoutHolder, "Registering +" + countryCode + phoneNo);
 
-            final String password = PhoneConfigUtils.getMacAddress() + ":" + Random.getRandomString();
+            mPassword = PhoneConfigUtils.getMacAddress() + ":" + Random.getRandomString();
             UserActivationNetworkHandler builder = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                     .setMobileNumber("+" + countryCode + phoneNo)
                     .setName("deprecated")
-                    .setPassword(password)
+                    .setPassword(mPassword)
+                    .setCountryCode(PhoneConfigUtils.getCountryCode())
                     .build();
             builder.doRegisterUserWithMobileNumber(new UserActivationNetworkHandler.UserActivationListener() {
                 @Override
@@ -175,7 +165,7 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                         SharedPreferenceManager.saveMobileNumber(details.getData().getUsername(),MainActivity.this);
                         SharedPreferenceManager.saveUserToken(details.getToken(), MainActivity.this);
                         SharedPreferenceManager.saveUserId(details.getData().getId(),MainActivity.this);
-                        SharedPreferenceManager.saveUserPassword(password,MainActivity.this);
+                        SharedPreferenceManager.saveUserPassword(mPassword,MainActivity.this);
                         AndroidUtils.setWaitingForSms(true);
                         launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,details.getData().getCode());
                     }
@@ -189,8 +179,11 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                         }
                         switch (responseCode){
                             case 413:{
-//                                Toast.makeText(MainActivity.this,details.getErrorMessage(),Toast.LENGTH_LONG).show();
                                 resendActivationCode(countryCode,phoneNo);
+                                break;
+                            }
+                            default:{
+                                Toast.makeText(getApplicationContext(), details.getMessage(), Toast.LENGTH_SHORT).show();
                                 break;
                             }
                         }
@@ -201,25 +194,49 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 @Override
                 public void onUserActivationError() {
                     ProgressView.removeProgressView(mFrameLayoutHolder);
+
+                    mFrameLayoutHolder.setEnabled(true);
+                    FragmentManager fm = getSupportFragmentManager();
+                    RegistrationAcceptPhoneFragment registrationAcceptPhoneFragment = (RegistrationAcceptPhoneFragment)fm.findFragmentByTag("rego");
+                    if(registrationAcceptPhoneFragment != null){
+                        registrationAcceptPhoneFragment.enableInput();
+                    }
+
+                    Toast.makeText(MainActivity.this, R.string.activation_error_internet_connectivity,Toast.LENGTH_LONG).show();
                 }
             });
         }
     }
 
-    private void resendActivationCode(String countryCode, String phoneNo) {
+    private void resendActivationCode(final String countryCode, final String phoneNo) {
         UserActivationNetworkHandler resendActivation = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
                 .setMobileNumber("+" + countryCode + phoneNo)
                 .setName("deprecated")
                 .build();
         resendActivation.doResendActivationCode(new UserActivationNetworkHandler.UserActivationListener() {
             @Override
-            public void onUserActivationResponse(Object userDetails) {
-//                doUserLogin((UserDetails)userDetails);
+            public void onUserActivationResponse(Object object) {
+                loginDetails loginDetail = (loginDetails) object;
+                if ((loginDetail != null) && loginDetail.getResponseCode() != null) {
+                    int responseCode = Integer.valueOf(loginDetail.getResponseCode());
+
+                    if (responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS) {
+                        SharedPreferenceManager.saveMobileNumber(loginDetail.getData().getUsername(),MainActivity.this);
+                        SharedPreferenceManager.saveUserToken(loginDetail.getToken(), MainActivity.this);
+                        SharedPreferenceManager.saveUserId(loginDetail.getData().getId(),MainActivity.this);
+                        SharedPreferenceManager.saveUserPassword(mPassword,MainActivity.this);
+                        AndroidUtils.setWaitingForSms(true);
+                        launchRegoInputActivationCodeFragment("+" + countryCode + phoneNo,loginDetail.getData().getCode());
+                    } else {
+                        Toast.makeText(getApplicationContext(), getString(R.string.activation_error), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
             }
 
             @Override
             public void onUserActivationError() {
-
+                Toast.makeText(MainActivity.this, R.string.activation_error,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -251,8 +268,12 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
                 if (loginDetails!= null) {
                     if(loginDetails.getResponseCode() != null) {
                         int responseCode = Integer.valueOf(loginDetails.getResponseCode());
-                        if(responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS){
-                            doUserLogin(loginDetails);
+
+                        if((responseCode == NetworkConstants.RESPONSE_CODE_SUCCESS) ||
+                                (responseCode == NetworkConstants.RESPONSE_CODE_USER_ALREADY_ACTIVATED)){
+
+//                            doUserLogin(loginDetails);
+                            activationComplete(loginDetails);
                         }
                         else {
                             Toast.makeText(MainActivity.this,loginDetails.getErrorMessage(),Toast.LENGTH_LONG).show();
@@ -272,46 +293,58 @@ public class MainActivity extends BaseActivity implements RegistrationAcceptPhon
 
     }
 
+    private void activationComplete(loginDetails loginDetails) {
 
-    private void doUserLogin(loginDetails details){
+        SharedPreferenceManager.saveUserToken(loginDetails.getToken(),MainActivity.this);
+        if((loginDetails.getData()!=null) && (loginDetails.getData().getId() != null)) {
+            SharedPreferenceManager.saveUserId(loginDetails.getData().getId(), MainActivity.this);
+        }
 
+        SharedPreferenceManager.setFirstTimeLaunch(false,MainActivity.this);
 
-        UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
-                .setMobileNumber(SharedPreferenceManager.getMobileNumber(this))
-                .setPassword(SharedPreferenceManager.getUserPassword(this))
-                .setCountry(PhoneConfigUtils.getDisplayCountry())
-                .setLatitude("" + LocationService.getLatitude())
-                .setLongitude("" + LocationService.getLongitude())
-                .setLocale(PhoneConfigUtils.getCountryLocale())
-                .setIMEI(PhoneConfigUtils.getIMEI())
-                .setMacAddress(PhoneConfigUtils.getMacAddress())
-                .setAndroidId(PhoneConfigUtils.getAndroidSecureId())
-                .setCountryCode(PhoneConfigUtils.getCountryCode())
-                .setAndroidVersion(String.valueOf(PhoneConfigUtils.getAndroidVersion()))
-                .setManufacture(PhoneConfigUtils.getManufacture())
-                .setLanguage(PhoneConfigUtils.getDisplayLanguage())
-                .build();
-
-        activationNetworkHandler.doUserLogin(new UserActivationNetworkHandler.UserActivationListener() {
-            @Override
-            public void onUserActivationResponse(Object object) {
-
-                UserDetails userDetails = (UserDetails)object;
-
-                SharedPreferenceManager.saveUserToken(userDetails.getToken(),MainActivity.this);
-                SharedPreferenceManager.saveUserId(userDetails.getData().getId(),MainActivity.this);
-
-                SharedPreferenceManager.setFirstTimeLaunch(false,MainActivity.this);
-
-                startContactsGroupsActivity(null, true);
-            }
-
-            @Override
-            public void onUserActivationError() {
-                Toast.makeText(MainActivity.this,"Login error",Toast.LENGTH_LONG).show();
-            }
-        });
+        startContactsGroupsActivity(null, true);
     }
+
+
+//    private void doUserLogin(loginDetails details){
+//
+//
+//        UserActivationNetworkHandler activationNetworkHandler = new UserActivationNetworkHandler.UserActivationNetworkHandlerBuilder()
+//                .setMobileNumber(SharedPreferenceManager.getMobileNumber(this))
+//                .setPassword(SharedPreferenceManager.getUserPassword(this))
+//                .setCountry(PhoneConfigUtils.getDisplayCountry())
+//                .setLatitude("" + LocationService.getLatitude())
+//                .setLongitude("" + LocationService.getLongitude())
+//                .setLocale(PhoneConfigUtils.getCountryLocale())
+//                .setIMEI(PhoneConfigUtils.getIMEI())
+//                .setMacAddress(PhoneConfigUtils.getMacAddress())
+//                .setAndroidId(PhoneConfigUtils.getAndroidSecureId())
+//                .setCountryCode(PhoneConfigUtils.getCountryCode())
+//                .setAndroidVersion(String.valueOf(PhoneConfigUtils.getAndroidVersion()))
+//                .setManufacture(PhoneConfigUtils.getManufacture())
+//                .setLanguage(PhoneConfigUtils.getDisplayLanguage())
+//                .build();
+//
+//        activationNetworkHandler.doUserLogin(new UserActivationNetworkHandler.UserActivationListener() {
+//            @Override
+//            public void onUserActivationResponse(Object object) {
+//
+//                UserDetails userDetails = (UserDetails)object;
+//
+//                SharedPreferenceManager.saveUserToken(userDetails.getToken(),MainActivity.this);
+//                SharedPreferenceManager.saveUserId(userDetails.getData().getId(),MainActivity.this);
+//
+//                SharedPreferenceManager.setFirstTimeLaunch(false,MainActivity.this);
+//
+//                startContactsGroupsActivity(null, true);
+//            }
+//
+//            @Override
+//            public void onUserActivationError() {
+//                Toast.makeText(MainActivity.this,"Login error",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
 
     @Override

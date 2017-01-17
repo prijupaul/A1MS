@@ -226,6 +226,10 @@ public class MessagingFragment extends BaseFragment implements View.OnClickListe
 
             messageObj.setIdToUser(mCurrentUser);
 
+            A1MSUser a1MSUser = new A1MSUser();
+            a1MSUser.setUserId(SharedPreferenceManager.getUserId(getContext()));
+            messageObj.setIdUser(a1MSUser);
+
             msg_edittext.setText("");
             messageAdapter.add(messageObj);
             messageAdapter.notifyDataSetChanged();

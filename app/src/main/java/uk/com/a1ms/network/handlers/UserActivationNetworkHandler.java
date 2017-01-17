@@ -5,7 +5,6 @@ import uk.com.a1ms.A1MSApplication;
 import uk.com.a1ms.network.BaseNetwork;
 import uk.com.a1ms.network.NetworkConstants;
 import uk.com.a1ms.network.NetworkServices;
-import uk.com.a1ms.network.dto.UserDetails;
 import uk.com.a1ms.network.dto.loginDetails;
 import uk.com.a1ms.util.SharedPreferenceManager;
 
@@ -262,26 +261,26 @@ public class UserActivationNetworkHandler extends BaseNetwork {
      * 3. Login
      * @param listener
      */
-    public void doUserLogin(UserActivationListener listener){
-
-        this.userActivationListener = listener;
-
-        NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
-                locale,imei,macAddress,androidId,countryCode,androidVersion,manufacture,language,country);
-        call.enqueue(new Callback<UserDetails>() {
-            @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
-                userActivationListener.onUserActivationResponse(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
-                userActivationListener.onUserActivationError();
-            }
-        });
-
-    }
+//    public void doUserLogin(UserActivationListener listener){
+//
+//        this.userActivationListener = listener;
+//
+//        NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
+//        final Call<UserDetails> call = userActivation.doUserLogin(mobileNumber,password,latitude,longitude,
+//                locale,imei,macAddress,androidId,countryCode,androidVersion,manufacture,language,country);
+//        call.enqueue(new Callback<UserDetails>() {
+//            @Override
+//            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+//                userActivationListener.onUserActivationResponse(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserDetails> call, Throwable t) {
+//                userActivationListener.onUserActivationError();
+//            }
+//        });
+//
+//    }
 
     /**
      * This is the first step of three step login.
@@ -316,15 +315,15 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         this.userActivationListener = listener;
 
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
-        final Call<UserDetails> call = userActivation.doResendActivationCode(userId);
-        call.enqueue(new Callback<UserDetails>() {
+        final Call<loginDetails> call = userActivation.doResendActivationCode(mobileNumber);
+        call.enqueue(new Callback<loginDetails>() {
             @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+            public void onResponse(Call<loginDetails> call, Response<loginDetails> response) {
                 userActivationListener.onUserActivationResponse(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
+            public void onFailure(Call<loginDetails> call, Throwable t) {
                 userActivationListener.onUserActivationError();
             }
         });
@@ -339,7 +338,7 @@ public class UserActivationNetworkHandler extends BaseNetwork {
         NetworkServices userActivation = getRetrofit().create(NetworkServices.class);
 
         final Call<loginDetails> call = userActivation.doRegisterPhoneNumber(mobileNumber,password,name,
-                SharedPreferenceManager.getPushNotificationToken(A1MSApplication.applicationContext));
+                SharedPreferenceManager.getPushNotificationToken(A1MSApplication.applicationContext),countryCode);
 
         call.enqueue(new Callback<loginDetails>() {
             @Override

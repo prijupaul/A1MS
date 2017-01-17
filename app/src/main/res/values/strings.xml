@@ -126,6 +126,10 @@
     <string name="a1ms_tab">A1MS</string>
     <string name="new_message">New message</string>
     <string name="invalid_phone_number">Phone number not valid. Please check your number.</string>
+    <string name="activation_error">Activation error</string>
+    <string name="activation_error_internet_connectivity">Activation error. Please check your
+        internet connectivity and try again
+    </string>
 
 
 </resources>

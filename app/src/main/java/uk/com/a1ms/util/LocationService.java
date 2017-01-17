@@ -183,6 +183,7 @@ public class LocationService extends Service {
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
 
+
         private void populateLastKnownDetails() {
 
             if (!isPermissionAvailable()) {
@@ -349,6 +350,10 @@ public class LocationService extends Service {
         public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
         }
+
+
     }
+
+
 
 }

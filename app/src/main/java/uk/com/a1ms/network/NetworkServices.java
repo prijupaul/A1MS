@@ -29,7 +29,8 @@ public interface NetworkServices {
             @Field("username") String phoneNumber,
             @Field("password") String password,
             @Field("name") String name,
-            @Field("fcmPushId") String fcmPushId);
+            @Field("fcmPushId") String fcmPushId,
+            @Field("countryCode") String countryCode);
 
     @FormUrlEncoded
     @PUT(NetworkConstants.USER_REGISTRATION)
@@ -64,7 +65,7 @@ public interface NetworkServices {
 
     @FormUrlEncoded
     @POST(NetworkConstants.USER_ACTIVATION_CODE_RESEND)
-    Call<UserDetails> doResendActivationCode(@Field("id") String id);
+    Call<loginDetails> doResendActivationCode(@Field("username") String id);
 
 
     @FormUrlEncoded

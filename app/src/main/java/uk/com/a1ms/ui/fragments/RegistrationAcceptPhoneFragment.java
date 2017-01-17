@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import uk.com.a1ms.R;
 import uk.com.a1ms.util.AndroidUtils;
@@ -67,6 +68,7 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
 
         mTVCountry = (TextView)view.findViewById(R.id.textview_country);
         mETCountryCode = (EditText)view.findViewById(R.id.edittext_country_code);
+        mETCountryCode.setEnabled(false);
         mETPhoneNumber = (EditText)view.findViewById(R.id.edittext_enter_phone);
         mETPhoneNumber.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -181,6 +183,12 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
     }
 
     private void processPhoneNumber() {
+
+        if(!PhoneConfigUtils.isValidNumber(mETCountryCode.getText().toString() + mETPhoneNumber.getText().toString())){
+            Toast.makeText(getActivity(),getResources().getText(R.string.invalid_phone_number), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         AndroidUtils.hideKeyboard(mETCountryCode);
         AndroidUtils.hideKeyboard(mETPhoneNumber);
         disableInput();
@@ -200,7 +208,6 @@ public class RegistrationAcceptPhoneFragment extends BaseFragment {
 
     public void enableInput(){
         mMenuNext.setEnabled(true);
-        mETCountryCode.setEnabled(true);
         mETPhoneNumber.setEnabled(true);
     }
 }

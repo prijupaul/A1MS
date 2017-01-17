@@ -101,12 +101,13 @@ public class PhoneConfigUtils {
         try {
             Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(number, getCountryCode());
 
-            if(phoneUtil.isValidNumber(phoneNumber)){
+            if(!phoneUtil.isValidNumber(phoneNumber)){
                 return false;
             }
 
         } catch (NumberParseException e) {
             System.err.println("NumberParseException was thrown: " + e.toString());
+            return false;
         }
         return true;
     }

@@ -22,5 +22,6 @@ public class NetworkConstants {
     public static final boolean IS_MOCK = false;
 
     public static final int RESPONSE_CODE_SUCCESS = 200;
+    public static final int RESPONSE_CODE_USER_ALREADY_ACTIVATED = 414;
 
 }
